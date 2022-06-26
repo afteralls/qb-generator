@@ -1,0 +1,112 @@
+body {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
+}
+
+::selection {
+  background-color: #4f13af33;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+svg {
+  height: 120px;
+  width: auto;
+}
+
+th, td {
+  background: #3f3f3f33;
+  border-spacing: none;
+}
+
+table {
+  margin: 15px 15px 14px 15px;
+  display: block;
+  border-spacing: none;
+  border-radius: $br-rad;
+}
+
+th {
+  border: 1px solid #3f3f3f77;
+  text-align: center;
+  padding: 10px;
+}
+
+th:nth-child(1) {
+  border-radius: $br-rad 0 0 0;
+}
+
+th:nth-child(2) {
+  border-radius: 0 $br-rad 0 0;
+}
+
+tr:last-child td:nth-child(1) {
+  border-radius: 0 0 0 $br-rad;
+}
+
+tr:last-child td:nth-child(2) {
+  border-radius: 0 0 $br-rad 0;
+}
+
+select {
+  width: 200px;
+  height: 40px;
+  @include tag-settings;
+  transition: 1s ease;
+}
+
+input {
+  height: 40px;
+  @include tag-settings;
+  transition: 1s ease;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + label::before {
+  content: '';
+  background-size: 100%;
+  background-color: lawngreen;
+  perspective: 1000ms;
+  transition: 0.5s;
+}
+
+label {
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+label::before {
+  content: '';
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+  margin-left: -20px;
+  margin-right: $margin;
+  border-radius: 25%;
+  background-color: rgb(255, 255, 255);
+}
+
+select:hover, input:hover, button:hover {
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #FBAB7E;
+  background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
