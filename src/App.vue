@@ -46,7 +46,7 @@
               <h3>Какое количество штрих-кодов нужно?</h3>
             </div>
             <div class="_flex">
-              <input type="text" class="_text" placeholder="Количество" v-model="count" pattern="">
+              <input type="text" class="_text" placeholder="Количество" v-model="count">
             </div>
           </div>
           <div v-else-if="sIdx === 3" class="form__item">
@@ -65,9 +65,9 @@
             <div class="_label-wrapper">
               <div class="_step"><h3>#3</h3></div>
               <h3 for="format">Введите необходимое содержимое </h3>
-              <button v-if="generated" @click.prevent="exportToPDF" class="_btn">Экспортировать в PDF</button>
             </div>
-            <button class="_btn" @click.prevent="generator">Сгенерировать</button>
+            <button class="_btn" @click.prevent="generate">Сгенерировать</button>
+            <button v-if="generated" @click.prevent="exportHandler" class="_btn">Экспортировать</button>
           </div>
         </div>
       </form>
@@ -75,15 +75,11 @@
         <div class="layout__barcode-container">
           <h3 v-if="!generated">Вы пока не сгенерировали необходимые штрих-коды</h3>
           <div v-else class="layout__table-container">
-            <table>
+            <table id="table">
               <tr><th>№</th><th>Штрих-код</th></tr>
-              <tr v-for="(num, idx) in +beforeGenerate" :key="num">
+              <tr v-for="(num, idx) in beforeGenerate" :key="num">
                 <td>{{ idx + 1 }}</td>
-                <td>
-                  <div class="_barcode" >
-                    <svg :data-num="idx + 1"></svg>
-                  </div>
-                </td>
+                <td><svg :data-num="idx + 1"></svg></td>
               </tr>
             </table>
             <div class="_space"></div>
@@ -96,7 +92,8 @@
 
 <script>
 import JsBarcode from 'jsbarcode'
-// import SVGtoPDF from 'svg-to-pdfkit'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver'
 
 export default {
   data: () => ({
@@ -113,7 +110,7 @@ export default {
     }
   }),
   methods: {
-    generator () {
+    generate () {
       let content = ''
       if (this.format === 'ean13') {
         let result = ''
@@ -129,7 +126,7 @@ export default {
     generateBarcode (content) {
       this.beforeGenerate = +this.count
       setTimeout(() => {
-        for (let i = 0; i <= this.beforeGenerate; i++) {
+        for (let i = 0; i < this.beforeGenerate; i++) {
           const res = +content.substring(0, content.length) + i
           JsBarcode(`[data-num="${i + 1}"]`, res, {
             format: this.format,
@@ -138,6 +135,41 @@ export default {
         }
       }, 1000)
       this.generated = true
+    },
+    exportHandler () {
+      const flag = this.count
+      const zip = new JSZip()
+
+      for (let i = 1; i <= this.count; i++) {
+        const canvas = document.createElement('canvas')
+        const { width, height } = document.querySelector('[data-num]').getBBox()
+        canvas.width = width
+        canvas.height = height
+
+        const ctx = canvas.getContext('2d')
+        const serializer = new XMLSerializer()
+
+        const svgString = serializer.serializeToString(document.querySelector(`[data-num="${i}"]`))
+        const svg = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' })
+        const url = URL.createObjectURL(svg)
+        const img = new Image()
+
+        img.onload = function () {
+          ctx.drawImage(img, 0, 0)
+          URL.revokeObjectURL(url)
+
+          canvas.toBlob(function (blob) {
+            zip.file(`BC-${i}.png`, blob, { base64: true })
+
+            zip.generateAsync({ type: 'blob' }).then(function (content) {
+              if (i >= flag) {
+                saveAs(content, 'collection.zip')
+              }
+            })
+          }, 'image/png')
+        }
+        img.src = url
+      }
     }
   }
 }
