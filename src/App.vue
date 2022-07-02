@@ -31,31 +31,32 @@
             <select v-model="formatName">
               <option value="ean13">EAN 13</option>
               <option value="ean8">EAN 8</option>
-              <!-- <option value="ean5">EAN 5</option>
+              <option value="ean5">EAN 5</option>
+              <option value="code128">CODE 128</option>
+              <option value="itf14">ITF-14</option>
+              <option value="msi">MSI</option>
               <option value="pharmacode">Pharmacode</option>
-              <option value="codabar">Codabar</option>
-              <option value="code128">CODE128</option>
-              <option value="code39">CODE39</option>
-              <option value="itf">ITF</option> -->
             </select>
           </div>
-          <div class="format__desc">
-            <h3> Краткое описание</h3>
-            <p>{{ activeFormat.desc }}</p>
-          </div>
           <div class="format">
-            <div class="format__info">
-              <h3>Структура штрих-кода</h3>
-              <ul>
-                <li v-for="el in activeFormat.info" :key="el">{{ el }}</li>
-              </ul>
+            <div class="format__desc">
+              <h3> Краткое описание</h3>
+              <p>{{ activeFormat.desc }}</p>
             </div>
-            <div class="format__example">
-              <h3>Пример</h3>
-              <img
-                :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
-                alt="Пример штрих-кода"
-              >
+            <div class="format__info">
+              <div class="format__structure">
+                <h3>Структура штрих-кода</h3>
+                <ul>
+                  <li v-for="el in activeFormat.info" :key="el">{{ el }}</li>
+                </ul>
+              </div>
+              <div class="format__example">
+                <h3>Пример штрих-кода</h3>
+                <img
+                  :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
+                  alt="Пример штрих-кода"
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -115,16 +116,56 @@ export default {
         info: [
           '1-я группа (2-3 цифры) – код страны-производителя товара;',
           '2-я группа (4-6 цифр) – это регистрационный номер компании;',
-          '3-я граппа (3-5 цифр) – порядковый номер продукта;',
+          '3-я группа (3-5 цифр) – порядковый номер продукта;',
           'Последняя цифра — контрольная. Вычисляется автоматически.'
         ]
       },
       ean8: {
-        desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
+        desc: 'Был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки.',
         info: [
           '1-я группа (3 цифры) – код страны-производителя товара;',
-          '2-я граппа (5 цифр) – порядковый номер продукта;',
+          '2-я группа (4 цифры) – порядковый номер продукта;',
           'Последняя цифра — контрольная. Вычисляется автоматически.'
+        ]
+      },
+      ean5: {
+        desc: 'EAN-5 — является дополнением к штрих-коду EAN-13. Используется для указания цены книги.',
+        info: [
+          'Кодировка символов EAN-5 очень похожа на кодировку других европейских артикульных номеров;',
+          'Единственное отличие состоит в том, что цифры разделены символом 01;',
+          'R-код не используется.'
+        ]
+      },
+      code128: {
+        desc: 'Штриховой код Code 128 включает в себя 107 символов, из которых 103 символа данных, 3 стартовых и 1 остановочный (стоп) символ.',
+        info: [
+          'Стартовый символ (Start);',
+          'Кодированная информация;',
+          'Проверочный символ (контрольный знак)',
+          'Остановочный (Stop) символ.'
+        ]
+      },
+      itf14: {
+        desc: 'Штрих код ITF-14 разработан специально для транспортной упаковки. Он создаётся на основе кодов EAN-8 или EAN-13 и дополнительно несёт в себе один символ «тип упаковки», которым кодируется вариант упаковки.',
+        info: [
+          'Первая цифра показывает тип упаковки;',
+          'Группа далее (12 цифр) – код стандарта EAN 13;',
+          'Последняя цифра — контрольная. Вычисляется автоматически.'
+        ]
+      },
+      msi: {
+        desc: 'Это непрерывная символика, которая не поддается самоконтролю. MSI используется в основном для управления запасами, маркировки контейнеров и полок на складах.',
+        info: [
+          'Представляет собой только цифры 0–9;',
+          'Не поддерживает буквы и символы;',
+          'Каждая цифра преобразуется в 4 двоично-десятичный код биты. Затем добавляется 1 бит и два 0 бита.'
+        ]
+      },
+      pharmacode: {
+        desc: 'Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.',
+        info: [
+          'Может представляться только одним целым числом от 1 до 131 070;',
+          'Минимальная длина штрихкода — 1 узкая полоса и максимальная — 16 широких.'
         ]
       }
     },
@@ -155,9 +196,14 @@ export default {
     },
     generateBarcode (content) {
       this.beforeGenerate = +this.count
+      let res = ''
       setTimeout(() => {
         for (let i = 0; i < this.beforeGenerate; i++) {
-          const res = +content.substring(0, content.length) + i
+          if (this.formatName !== 'code128') {
+            res = +content.substring(0, content.length) + i
+          } else {
+            res = content
+          }
           JsBarcode(`[data-num="${i + 1}"]`, res, {
             format: this.formatName,
             background: '#ffffff00'
@@ -204,12 +250,33 @@ export default {
   },
   watch: {
     formatName (value) {
-      if (value === 'ean13') {
-        this.activeFormat = this.formats.ean13
-      } else if (value === 'ean8') {
-        this.activeFormat = this.formats.ean8
+      switch (value) {
+        case 'ean13':
+          this.activeFormat = this.formats.ean13
+          break
+        case 'ean8':
+          this.activeFormat = this.formats.ean8
+          break
+        case 'ean5':
+          this.activeFormat = this.formats.ean5
+          break
+        case 'code128':
+          this.activeFormat = this.formats.code128
+          break
+        case 'itf14':
+          this.activeFormat = this.formats.itf14
+          break
+        case 'msi':
+          this.activeFormat = this.formats.msi
+          break
+        case 'pharmacode':
+          this.activeFormat = this.formats.pharmacode
+          break
       }
     }
+  },
+  mounted () {
+    this.activeFormat = this.formats.ean13
   }
 }
 </script>
