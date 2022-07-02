@@ -6,6 +6,11 @@ body {
   background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
 }
 
+ul {
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
 ::selection {
   background-color: #4f13af33;
 }
@@ -58,6 +63,15 @@ select {
   height: 40px;
   @include tag-settings;
   transition: 1s ease;
+  margin-bottom: $margin;
+}
+
+option {
+  padding: 10px;
+}
+
+option:hover {
+  background-color: yellow !important;
 }
 
 input {
