@@ -6,76 +6,88 @@
         <div
           @click.prevent="sIdx = 1"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 1}"
-        ><div v-if="sIdx === 1" class="_step">#1</div><h3>Формат</h3>
-        </div>
+        ><div v-if="sIdx === 1" class="_step">#1</div><h3>Формат</h3></div>
         <div
           @click.prevent="sIdx = 2"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
-        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Контент</h3>
-        </div>
+        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Контент</h3></div>
         <div
           @click.prevent="sIdx = 3"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 3}"
-        ><div v-if="sIdx === 3" class="_step">#3</div><h3>Количество</h3>
-        </div>
+        ><div v-if="sIdx === 3" class="_step">#3</div><h3>Количество</h3></div>
         <div
           @click.prevent="sIdx = 4"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 4}"
-        ><div v-if="sIdx === 4" class="_step">#4</div><h3>Экспорт</h3>
-        </div>
+        ><div v-if="sIdx === 4" class="_step">#4</div><h3>Генерация</h3></div>
       </div>
       <div class="layout__tab-content">
-        <div v-if="sIdx === 1" class="form__item">
-          <h3>Выберите стандарт штрих-кода</h3>
-          <div class="format__wrapper">
-            <select v-model="formatName">
-              <option value="ean13">EAN 13</option>
-              <option value="ean8">EAN 8</option>
-              <option value="ean5">EAN 5</option>
-              <option value="code128">CODE 128</option>
-              <option value="itf14">ITF-14</option>
-              <option value="msi">MSI</option>
-              <option value="pharmacode">Pharmacode</option>
-            </select>
-          </div>
-          <div class="format">
-            <div class="format__desc">
-              <h3> Краткое описание</h3>
-              <p>{{ activeFormat.desc }}</p>
+        <div v-if="sIdx === 1" class="layout__item">
+          <div class="layout__user-sec">
+            <h3>Выберите стандарт штрих-кода</h3>
+            <div class="format__wrapper">
+              <select v-model="formatName">
+                <option value="ean13">EAN 13</option>
+                <option value="ean8">EAN 8</option>
+                <option value="ean5">EAN 5</option>
+                <option value="code128">CODE 128</option>
+                <option value="itf14">ITF-14</option>
+                <option value="msi">MSI</option>
+                <option value="pharmacode">Pharmacode</option>
+              </select>
             </div>
-            <div class="format__info">
-              <div class="format__structure">
-                <h3>Структура штрих-кода</h3>
-                <ul>
-                  <li v-for="el in activeFormat.info" :key="el">{{ el }}</li>
-                </ul>
+          </div>
+          <div class="layout__format-wrapper">
+            <div class="format">
+              <div class="format__desc">
+                <h3> Краткое описание</h3>
+                <p>{{ activeFormat.desc }}</p>
               </div>
-              <div class="format__example">
-                <h3>Пример штрих-кода</h3>
-                <img
-                  :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
-                  alt="Пример штрих-кода"
-                >
+              <div class="format__info">
+                <div class="format__structure">
+                  <h3>Структура штрих-кода</h3>
+                  <ul>
+                    <li v-for="el in activeFormat.info" :key="el">{{ el }}</li>
+                  </ul>
+                </div>
+                <div class="format__example">
+                  <h3>Пример штрих-кода</h3>
+                  <div class="format__img-wrapper">
+                    <img
+                      :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
+                      alt="Пример штрих-кода"
+                    >
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div v-else-if="sIdx === 2" class="form__item">
-          <h3 for="format">Введите необходимое содержимое </h3>
-          <input class="_text" v-if="formatName !== 'ean13'" type="text" placeholder="Текст" v-model="text">
+        <div v-else-if="sIdx === 2" class="layout__item">
+          <h3>Введите содержимое штрих-кода</h3>
+          <input
+            class="_text"
+            v-if="!formatNameHandler"
+            type="text" placeholder="Текст"
+            v-model="text"
+          >
           <div v-else class="_format-group">
-            <input type="text" maxlength="3" class="_number" placeholder="Префикс" v-model="data.prefix">
-            <input type="text" maxlength="6" class="_number" placeholder="Код" v-model="data.code">
-            <input type="text" maxlength="5" class="_number" placeholder="Уникальный номер 1-го штрих-кода" v-model="data.number">
+            <div v-for="quan in inputSettings.quantity" :key="quan" class="_input-wrapper">
+              <input
+                type="text" maxlength="3"
+                class="_input-code"
+                placeholder="Префикс"
+                v-model="data.prefix"
+              >
+            </div>
           </div>
         </div>
-        <div v-else-if="sIdx === 3" class="form__item">
+        <div v-else-if="sIdx === 3" class="layout__item">
           <div class="_flex">
             <div style="width: 70%">
               <h3>Какое количество штрих-кодов нужно?</h3>
               <input type="text" class="_text" placeholder="Количество" v-model="count">
             </div>
-            <div style="width: 25%">
+            <div v-if="formatName !== 'code128'" style="width: 25%">
               <h3>С шагом...</h3>
               <input type="text" class="_text" placeholder="Шаг" v-model="iter">
             </div>
@@ -92,9 +104,9 @@
             <div class="_img-layout"><img src="./assets/img/ex-2.png" alt="Second"></div>
           </div>
         </div>
-        <div v-else-if="sIdx === 4" class="form__item">
+        <div v-else-if="sIdx === 4" class="layout__item">
           <h3 for="format">"rcgjhn"</h3>
-          <button class="_btn" @click.prevent="generate">Сгенерировать</button>
+          <button class="_btn" @click.prevent="generateHandler">Сгенерировать</button>
           <button v-if="generated" @click.prevent="exportHandler" class="_btn">Экспортировать</button>
         </div>
       </div>
@@ -135,7 +147,16 @@ export default {
           '2-я группа (4-6 цифр) – это регистрационный номер компании;',
           '3-я группа (3-5 цифр) – порядковый номер продукта;',
           'Последняя цифра — контрольная. Вычисляется автоматически.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            pref: null,
+            corpCode: null,
+            serialNumber: null
+          },
+          placeholder: null,
+          'v-model': ''
+        }
       },
       ean8: {
         desc: 'Был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки.',
@@ -192,6 +213,17 @@ export default {
     beforeGenerate: null || 1,
     generated: false,
     text: '',
+    inputSettings: {
+      quantity: 3,
+      maxlength: {
+        pref: null,
+        corpCode: null,
+        serialNumber: null
+      },
+      placeholder: null,
+      type: 'text',
+      'v-model': ''
+    },
     data: {
       prefix: '',
       code: '',
@@ -199,7 +231,7 @@ export default {
     }
   }),
   methods: {
-    generate () {
+    generateHandler () {
       let content = ''
       if (this.formatName === 'ean13') {
         let result = ''
@@ -216,12 +248,13 @@ export default {
       this.beforeGenerate = +this.count
       let res = ''
       setTimeout(() => {
-        for (let i = 0, j = 0; i < this.beforeGenerate; i++, j += +this.iter || 1) {
-          if (this.formatName !== 'code128') {
-            res = +content + j
-          } else {
-            res = content
-          }
+        for (let i = 0, j = 0;
+          i < this.beforeGenerate;
+          i++, j += +this.iter || 1
+        ) {
+          this.formatName !== 'code128'
+            ? res = +content + j
+            : res = content
           JsBarcode(`[data-num="${i + 1}"]`, res, {
             format: this.formatName,
             background: '#ffffff00'
@@ -270,27 +303,28 @@ export default {
     formatName (value) {
       switch (value) {
         case 'ean13':
+          this.inputSettings.quantity = 3
           this.activeFormat = this.formats.ean13
+          // this.inputSettings.
           break
         case 'ean8':
+          this.inputSettings.quantity = 2
           this.activeFormat = this.formats.ean8
           break
-        case 'ean5':
-          this.activeFormat = this.formats.ean5
-          break
-        case 'code128':
-          this.activeFormat = this.formats.code128
-          break
+        case 'ean5': this.activeFormat = this.formats.ean5; break
+        case 'code128': this.activeFormat = this.formats.code128; break
         case 'itf14':
+          this.inputSettings.quantity = 2
           this.activeFormat = this.formats.itf14
           break
-        case 'msi':
-          this.activeFormat = this.formats.msi
-          break
-        case 'pharmacode':
-          this.activeFormat = this.formats.pharmacode
-          break
+        case 'msi': this.activeFormat = this.formats.msi; break
+        case 'pharmacode': this.activeFormat = this.formats.pharmacode; break
       }
+    }
+  },
+  computed: {
+    formatNameHandler () {
+      return ['ean13', 'ean8', 'itf14'].includes(this.formatName)
     }
   },
   mounted () {
@@ -300,16 +334,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 @import './assets/scss/variables';
 @import './assets/scss/mixins';
 @import './assets/scss/_globalStyles';
-
-.container {
-  width: 1170px;
-  margin: auto;
-}
-
 @import './assets/scss/_layoutStyles';
 @import './assets/scss/_format';
 @import './assets/scss/_technicalClasses';

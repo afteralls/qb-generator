@@ -69,19 +69,28 @@
   }
   
   &format-group {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+  }
+
+  &input-wrapper {
+    width: auto;
     @include all-cent;
-    justify-content: space-between;
+    input {
+      width: 100%;
+    }
   }
-  
-  &number:nth-child(1) {
-    width: 15%;
+
+  &input-wrapper:nth-child(1) {
+    width: 20%;
   }
-  
-  &number:nth-child(2) {
-    width: 21%;
+
+  &input-wrapper:nth-child(2) {
+    width: 40%;
   }
-  
-  &number:nth-child(3) {
-    width: 46%;
+
+  &input-wrapper:nth-child(3) {
+    width: auto;
   }
 }

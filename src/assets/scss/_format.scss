@@ -2,23 +2,40 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100%;
+  gap: $gap;
 
-  &__info {
+  &__info, &__desc {
     display: flex;
+    gap: $gap;
+  }
+
+  &__desc {
+    flex-direction: column;
   }
 
   &__structure {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
     width: 60%;
   }
 
   &__example {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
     width: 40%;
     text-align: center;
+    max-height: 190px;
+  }
+
+  &__img-wrapper {
+    @include all-cent;
 
     img {
+      display: block;
+      max-height: 100%;
       max-width: 100%;
-      height: auto;
     }
   }
 }

@@ -44,6 +44,8 @@
   }
 
   &__tab-content {
+    display: flex;
+    justify-content: space-around;
     margin: $margin 0;
     padding: 15px;
     width: 75%;
@@ -52,12 +54,27 @@
     border-left: none;
 
     p, h3 {
-      margin: 0 0 15px 0;
+      margin: 0;
     }
   }
 
-  &__item {
+  &__format-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     height: 100%;
+  }
+
+  &__user-sec {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
   }
 
   &__barcode {
