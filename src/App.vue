@@ -11,12 +11,12 @@
         <div
           @click.prevent="sIdx = 2"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
-        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Количество</h3>
+        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Контент</h3>
         </div>
         <div
           @click.prevent="sIdx = 3"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 3}"
-        ><div v-if="sIdx === 3" class="_step">#3</div><h3>Контент</h3>
+        ><div v-if="sIdx === 3" class="_step">#3</div><h3>Количество</h3>
         </div>
         <div
           @click.prevent="sIdx = 4"
@@ -61,18 +61,35 @@
           </div>
         </div>
         <div v-else-if="sIdx === 2" class="form__item">
-          <h3>Какое количество штрих-кодов нужно?</h3>
-          <div class="_flex">
-            <input type="text" class="_text" placeholder="Количество" v-model="count">
-          </div>
-        </div>
-        <div v-else-if="sIdx === 3" class="form__item">
           <h3 for="format">Введите необходимое содержимое </h3>
           <input class="_text" v-if="formatName !== 'ean13'" type="text" placeholder="Текст" v-model="text">
           <div v-else class="_format-group">
             <input type="text" maxlength="3" class="_number" placeholder="Префикс" v-model="data.prefix">
             <input type="text" maxlength="6" class="_number" placeholder="Код" v-model="data.code">
             <input type="text" maxlength="5" class="_number" placeholder="Уникальный номер 1-го штрих-кода" v-model="data.number">
+          </div>
+        </div>
+        <div v-else-if="sIdx === 3" class="form__item">
+          <div class="_flex">
+            <div style="width: 70%">
+              <h3>Какое количество штрих-кодов нужно?</h3>
+              <input type="text" class="_text" placeholder="Количество" v-model="count">
+            </div>
+            <div style="width: 25%">
+              <h3>С шагом...</h3>
+              <input type="text" class="_text" placeholder="Шаг" v-model="iter">
+            </div>
+          </div>
+          <div class="_small-text">
+            <p>*&nbsp;</p><small>По умолчанию значения равны 1</small>
+          </div>
+          <h3>Зачем это нужно?</h3>
+          <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. В разделе 'Контент' укажите номер первого штрих-кода, затем, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
+          <h3>Пример генерации 100 штрих-кодов</h3>
+          <div class="_flex">
+            <div class="_img-layout"><img src="./assets/img/ex-1.png" alt="Firts"></div>
+            <div class="_img-layout"><img src="./assets/img/arrow-right.png" alt="Arrow"></div>
+            <div class="_img-layout"><img src="./assets/img/ex-2.png" alt="Second"></div>
           </div>
         </div>
         <div v-else-if="sIdx === 4" class="form__item">
@@ -171,7 +188,8 @@ export default {
     },
     activeFormat: {},
     count: null,
-    beforeGenerate: null,
+    iter: null,
+    beforeGenerate: null || 1,
     generated: false,
     text: '',
     data: {
@@ -198,9 +216,9 @@ export default {
       this.beforeGenerate = +this.count
       let res = ''
       setTimeout(() => {
-        for (let i = 0; i < this.beforeGenerate; i++) {
+        for (let i = 0, j = 0; i < this.beforeGenerate; i++, j += +this.iter || 1) {
           if (this.formatName !== 'code128') {
-            res = +content.substring(0, content.length) + i
+            res = +content + j
           } else {
             res = content
           }
@@ -294,52 +312,5 @@ export default {
 
 @import './assets/scss/_layoutStyles';
 @import './assets/scss/_format';
-
-._step {
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin: 5px;
-  font-size: 25px;
-  font-weight: bold;
-  color: #3a3a3a77;
-  transition: $transition;
-}
-
-._space {
-  height: 1px;
-}
-
-._btn {
-  height: 50px;
-  border-radius: 10px;
-  border: none;
-  background-color: white;
-  font-family: 'Montserrat', sans-serif;
-}
-
-._select-wrapper {
-  width: 100%;
-}
-
-._text {
-  width: calc(100% - 30px);
-}
-
-._format-group {
-  @include all-cent;
-  justify-content: space-between;
-}
-
-._number:nth-child(1) {
-  width: 15%;
-}
-
-._number:nth-child(2) {
-  width: 21%;
-}
-
-._number:nth-child(3) {
-  width: 46%;
-}
+@import './assets/scss/_technicalClasses';
 </style>
