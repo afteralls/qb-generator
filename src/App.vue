@@ -36,7 +36,7 @@
               </select>
             </div>
           </div>
-          <div class="layout__format-wrapper">
+          <div class="layout__info-wrapper">
             <div class="format">
               <div class="format__desc">
                 <h3> Краткое описание</h3>
@@ -63,49 +63,74 @@
           </div>
         </div>
         <div v-else-if="sIdx === 2" class="layout__item">
-          <h3>Введите содержимое штрих-кода</h3>
-          <input
-            class="_text"
-            v-if="!formatNameHandler"
-            type="text" placeholder="Текст"
-            v-model="text"
-          >
-          <div v-else class="_format-group">
-            <div v-for="quan in inputSettings.quantity" :key="quan" class="_input-wrapper">
-              <input
-                type="text" maxlength="3"
-                class="_input-code"
-                placeholder="Префикс"
-                v-model="data.prefix"
-              >
+          <div class="layout__user-sec">
+            <h3>Введите содержимое штрих-кода</h3>
+            <input
+              class="_text"
+              v-if="!formatNameHandler"
+              type="text" placeholder="Текст"
+              v-model="text"
+            >
+            <div v-else class="_format-group">
+              <div class="_input-wrapper">
+                <input
+                  type="text"
+                  :maxlength="inputSettings.maxlength.first"
+                  class="_input-code"
+                  :placeholder="inputSettings.placeholder.first"
+                  v-model="data.pref"
+                >
+              </div>
+              <div class="_input-wrapper">
+                <input
+                  type="text"
+                  :maxlength="inputSettings.maxlength.second"
+                  class="_input-code"
+                  :placeholder="inputSettings.placeholder.second"
+                  v-model="data.corpCode"
+                >
+              </div>
+              <div v-if="formatName === 'ean13'" class="_input-wrapper">
+                <input
+                  type="text"
+                  :maxlength="inputSettings.maxlength.third"
+                  class="_input-code"
+                  :placeholder="inputSettings.placeholder.third"
+                  v-model="data.serialNumber"
+                >
+              </div>
             </div>
           </div>
         </div>
         <div v-else-if="sIdx === 3" class="layout__item">
-          <div class="_flex">
-            <div style="width: 70%">
-              <h3>Какое количество штрих-кодов нужно?</h3>
-              <input type="text" class="_text" placeholder="Количество" v-model="count">
+          <div class="layout__user-sec">
+            <div class="_row">
+              <div class="_column" style="width: 70%">
+                <h3>Какое количество штрих-кодов нужно?</h3>
+                <input type="text" class="_text" placeholder="Количество" v-model="count">
+              </div>
+              <div class="_column" v-if="formatName !== 'code128'" style="width: 25%">
+                <h3>С шагом...</h3>
+                <input type="text" class="_text" placeholder="Шаг" v-model="iter">
+              </div>
             </div>
-            <div v-if="formatName !== 'code128'" style="width: 25%">
-              <h3>С шагом...</h3>
-              <input type="text" class="_text" placeholder="Шаг" v-model="iter">
+            <div class="_small-text">
+              <p>*&nbsp;</p><small>По умолчанию значения равны 1</small>
             </div>
           </div>
-          <div class="_small-text">
-            <p>*&nbsp;</p><small>По умолчанию значения равны 1</small>
-          </div>
-          <h3>Зачем это нужно?</h3>
-          <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационноно номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
-          <h3>Пример генерации 100 штрих-кодов с шагом 1</h3>
-          <div class="_flex">
-            <div class="_img-layout"><img src="./assets/img/ex-1.png" alt="Firts"></div>
-            <div class="_img-layout"><img src="./assets/img/arrow-right.png" alt="Arrow"></div>
-            <div class="_img-layout"><img src="./assets/img/ex-2.png" alt="Second"></div>
+          <div class="layout__info-wrapper">
+            <h3>Зачем это нужно?</h3>
+            <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационноно номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
+            <h3>Пример генерации 100 штрих-кодов с шагом 1</h3>
+            <div class="_row">
+              <div class="_img-layout"><img src="./assets/img/ex-1.png" alt="Firts"></div>
+              <div class="_img-layout"><img src="./assets/img/arrow-right.png" alt="Arrow"></div>
+              <div class="_img-layout"><img src="./assets/img/ex-2.png" alt="Second"></div>
+            </div>
           </div>
         </div>
         <div v-else-if="sIdx === 4" class="layout__item">
-          <h3 for="format">"rcgjhn"</h3>
+          <h3>"rcgjhn"</h3>
           <button class="_btn" @click.prevent="generateHandler">Сгенерировать</button>
           <button v-if="generated" @click.prevent="exportHandler" class="_btn">Экспортировать</button>
         </div>
@@ -150,12 +175,15 @@ export default {
         ],
         settings: {
           maxlength: {
-            pref: null,
-            corpCode: null,
-            serialNumber: null
+            first: 3,
+            second: 6,
+            third: 5
           },
-          placeholder: null,
-          'v-model': ''
+          placeholder: {
+            first: 'Код страны',
+            second: 'Код производителя',
+            third: 'Код товара'
+          }
         }
       },
       ean8: {
@@ -164,7 +192,17 @@ export default {
           '1-я группа (3 цифры) – код страны-производителя товара;',
           '2-я группа (4 цифры) – порядковый номер продукта;',
           'Последняя цифра — контрольная. Вычисляется автоматически.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            first: 3,
+            second: 4
+          },
+          placeholder: {
+            first: 'Код страны',
+            second: 'Код товара'
+          }
+        }
       },
       ean5: {
         desc: 'EAN-5 — является дополнением к штрих-коду EAN-13. Используется для указания цены книги.',
@@ -189,7 +227,17 @@ export default {
           'Первая цифра показывает тип упаковки;',
           'Группа далее (12 цифр) – код стандарта EAN 13;',
           'Последняя цифра — контрольная. Вычисляется автоматически.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            first: 1,
+            second: 12
+          },
+          placeholder: {
+            first: 'Тип упаковки',
+            second: 'Код стандарта EAN 13'
+          }
+        }
       },
       msi: {
         desc: 'Это непрерывная символика, которая не поддается самоконтролю. MSI используется в основном для управления запасами, маркировки контейнеров и полок на складах.',
@@ -214,20 +262,17 @@ export default {
     generated: false,
     text: '',
     inputSettings: {
-      quantity: 3,
       maxlength: {
         pref: null,
         corpCode: null,
         serialNumber: null
       },
-      placeholder: null,
-      type: 'text',
-      'v-model': ''
+      placeholder: {}
     },
     data: {
       prefix: '',
-      code: '',
-      number: ''
+      corpCode: '',
+      serialNumber: ''
     }
   }),
   methods: {
@@ -303,19 +348,18 @@ export default {
     formatName (value) {
       switch (value) {
         case 'ean13':
-          this.inputSettings.quantity = 3
           this.activeFormat = this.formats.ean13
-          // this.inputSettings.
+          this.inputSettings = this.formats.ean13.settings
           break
         case 'ean8':
-          this.inputSettings.quantity = 2
           this.activeFormat = this.formats.ean8
+          this.inputSettings = this.formats.ean8.settings
           break
         case 'ean5': this.activeFormat = this.formats.ean5; break
         case 'code128': this.activeFormat = this.formats.code128; break
         case 'itf14':
-          this.inputSettings.quantity = 2
           this.activeFormat = this.formats.itf14
+          this.inputSettings = this.formats.itf14.settings
           break
         case 'msi': this.activeFormat = this.formats.msi; break
         case 'pharmacode': this.activeFormat = this.formats.pharmacode; break
@@ -329,6 +373,7 @@ export default {
   },
   mounted () {
     this.activeFormat = this.formats.ean13
+    this.inputSettings = this.formats.ean13.settings
   }
 }
 </script>
