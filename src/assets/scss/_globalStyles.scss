@@ -36,33 +36,10 @@ th, td {
   border-spacing: none;
 }
 
-table {
-  margin: 15px 15px 14px 15px;
-  display: block;
-  border-spacing: none;
-  border-radius: $br-rad;
-}
-
 th {
   border: 1px solid #3f3f3f77;
   text-align: center;
-  padding: 10px;
-}
-
-th:nth-child(1) {
-  border-radius: $br-rad 0 0 0;
-}
-
-th:nth-child(2) {
-  border-radius: 0 $br-rad 0 0;
-}
-
-tr:last-child td:nth-child(1) {
-  border-radius: 0 0 0 $br-rad;
-}
-
-tr:last-child td:nth-child(2) {
-  border-radius: 0 0 $br-rad 0;
+  padding: $table-gap;
 }
 
 select {
@@ -82,28 +59,32 @@ input[type="checkbox"] {
   display: none;
 }
 
-input[type="checkbox"]:checked + label::before {
+input[type="checkbox"]:checked + label::after {
   content: '';
-  background-size: 100%;
-  background-color: lawngreen;
-  perspective: 1000ms;
-  transition: 0.5s;
+  background: url('./assets/img/check.png') center no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0; left: 7px;
 }
 
 label {
   padding-left: 20px;
+  position: relative;
+  transition: $transition;
   cursor: pointer;
 }
 
 label::before {
   content: '';
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   vertical-align: middle;
-  margin-left: -20px;
+  margin-left: -$margin;
   margin-right: $margin;
-  border-radius: 25%;
+  border-radius: $br-rad;
   background-color: rgb(255, 255, 255);
 }
 

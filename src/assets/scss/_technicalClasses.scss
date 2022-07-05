@@ -12,6 +12,8 @@
   &row {
     display: flex;
     justify-content: space-between;
+    gap: $gap;
+    align-items: center;
   }
 
   &column {
@@ -56,13 +58,18 @@
   &space {
     height: 1px;
   }
+
+  &not-gen {
+    margin: $margin;
+  }
   
   &btn {
-    height: 50px;
-    border-radius: 10px;
+    height: 40px;
+    border-radius: $br-rad;
     border: none;
     background-color: white;
     font-family: 'Montserrat', sans-serif;
+    transition: $transition;
   }
   
   &select-wrapper {
@@ -97,5 +104,16 @@
 
   &input-wrapper:nth-child(3) {
     width: auto;
+  }
+
+  &img-wrapper {
+    @include all-cent;
+
+    img {
+      display: block;
+      max-height: 120px;
+      max-width: 100%;
+      border-radius: $br-rad;
+    }
   }
 }

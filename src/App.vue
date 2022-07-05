@@ -43,20 +43,24 @@
                 <p>{{ activeFormat.desc }}</p>
               </div>
               <div class="format__info">
+                <div class="format__example">
+                  <table id="table">
+                    <tr><th>Пример штрих-кода</th></tr>
+                    <tr><td>
+                      <div class="_img-wrapper">
+                        <img
+                          :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
+                          alt="Пример штрих-кода"
+                        >
+                      </div>
+                    </td></tr>
+                  </table>
+                </div>
                 <div class="format__structure">
                   <h3>Структура штрих-кода</h3>
                   <ul>
                     <li v-for="el in activeFormat.info" :key="el">{{ el }}</li>
                   </ul>
-                </div>
-                <div class="format__example">
-                  <h3>Пример штрих-кода</h3>
-                  <div class="format__img-wrapper">
-                    <img
-                      :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
-                      alt="Пример штрих-кода"
-                    >
-                  </div>
                 </div>
               </div>
             </div>
@@ -100,6 +104,65 @@
                 >
               </div>
             </div>
+            <button
+              @click.prevent="generateExample"
+              class="_btn"
+              v-if="setAct === false"
+            >Включить расширенные настройки</button>
+          </div>
+          <div v-if="setAct" class="layout__info-wrapper">
+            <h3>Расширенные настройки</h3>
+            <div class="layout__info-wrapper-row">
+              <div class="layout__live-example">
+                <table id="table">
+                  <tr><th>Пример штрих-кода</th></tr>
+                  <tr><td><div class="_img-wrapper"><img id="example"></div></td></tr>
+                </table>
+              </div>
+              <div class="layout__settings">
+                <div class="_row">
+                  <p>Цвет фона</p>
+                  <input
+                    style="width: 60%"
+                    type="text"
+                    @input="exampleFormat.isTransparent = false"
+                    v-model="exampleFormat.background"
+                    placeholder="'black' или '#ffffff'"
+                  >
+                </div>
+                <input
+                  v-model="exampleFormat.isTransparent"
+                  id="addWhiteBack"
+                  type="checkbox"
+                >
+                <label for="addWhiteBack">Сделать фон прозрачным</label>
+                <input
+                  v-model="exampleFormat.showText"
+                  type="checkbox"
+                  id="showTxt"
+                  value="#ffffff00"
+                >
+                <label for="showTxt">Показать текст</label>
+                <div class="_row">
+                  <p>Цвет штрих-кода</p>
+                  <input
+                    style="width: 45%"
+                    v-model="exampleFormat.lineColor"
+                    type="text"
+                    placeholder="'black' или '#ffffff'"
+                  >
+                </div>
+              </div>
+            </div>
+            <button
+              @click.prevent="toDefault"
+              class="_btn"
+              v-if="setAct === true"
+            >Отключить расширенные настройки</button>
+            <div class="_small-text">
+              <p>*&nbsp;</p>
+              <small>При отключении расширенных настроек все выбранные Вами параметры будут сброшены</small>
+            </div>
           </div>
         </div>
         <div v-else-if="sIdx === 3" class="layout__item">
@@ -138,7 +201,9 @@
     </form>
     <div class="layout__barcode">
       <div class="layout__barcode-container">
-        <h3 v-if="!generated">Вы пока не сгенерировали необходимые штрих-коды</h3>
+        <div v-if="!generated" class="_not-gen">
+          <h3>Данное окно — превью для ваших штрих-кодов, но вы их пока не сгенерировали...</h3>
+        </div>
         <div v-else class="layout__table-container">
           <table id="table">
             <tr><th>№</th><th>Штрих-код</th></tr>
@@ -180,9 +245,9 @@ export default {
             third: 5
           },
           placeholder: {
-            first: 'Код страны',
-            second: 'Код производителя',
-            third: 'Код товара'
+            first: 'Код страны (1-3)',
+            second: 'Код производителя (4-6)',
+            third: 'Код товара (5)'
           }
         }
       },
@@ -199,8 +264,8 @@ export default {
             second: 4
           },
           placeholder: {
-            first: 'Код страны',
-            second: 'Код товара'
+            first: 'Код страны (3)',
+            second: 'Код товара (4)'
           }
         }
       },
@@ -234,8 +299,8 @@ export default {
             second: 12
           },
           placeholder: {
-            first: 'Тип упаковки',
-            second: 'Код стандарта EAN 13'
+            first: 'Тип упаковки (1)',
+            second: 'Код стандарта EAN 13 (12)'
           }
         }
       },
@@ -255,6 +320,7 @@ export default {
         ]
       }
     },
+    setAct: false,
     activeFormat: {},
     count: null,
     iter: null,
@@ -273,12 +339,19 @@ export default {
       prefix: '',
       corpCode: '',
       serialNumber: ''
+    },
+    exampleFormat: {
+      background: 'white',
+      backgroundCopy: 'white',
+      isTransparent: false,
+      showText: true,
+      lineColor: '#000000'
     }
   }),
   methods: {
     generateHandler () {
       let content = ''
-      if (this.formatName === 'ean13') {
+      if (this.formatNameHandler) {
         let result = ''
         for (const key in this.data) {
           result += this.data[key]
@@ -290,7 +363,7 @@ export default {
       this.generateBarcode(content)
     },
     generateBarcode (content) {
-      this.beforeGenerate = +this.count
+      this.beforeGenerate = +this.count || 1
       let res = ''
       setTimeout(() => {
         for (let i = 0, j = 0;
@@ -342,6 +415,36 @@ export default {
         }
         img.src = url
       }
+    },
+    generateExample () {
+      this.setAct = true
+      let content = ''
+      if (this.formatNameHandler) {
+        let result = ''
+        for (const key in this.data) {
+          result += this.data[key]
+        }
+        content = result
+      } else {
+        content = this.text
+      }
+      setTimeout(() => {
+        JsBarcode('#example', content, {
+          format: this.formatName,
+          background: this.exampleFormat.background,
+          lineColor: this.exampleFormat.lineColor,
+          displayValue: this.exampleFormat.showText
+        })
+      }, 1)
+    },
+    toDefault () {
+      this.exampleFormat.isTransparent = false
+      this.exampleFormat.background = 'white'
+      this.exampleFormat.showText = true
+      this.exampleFormat.lineColor = '#000000'
+      setTimeout(() => {
+        this.setAct = false
+      }, 1)
     }
   },
   watch: {
@@ -364,6 +467,18 @@ export default {
         case 'msi': this.activeFormat = this.formats.msi; break
         case 'pharmacode': this.activeFormat = this.formats.pharmacode; break
       }
+    },
+    'exampleFormat.background' (_, oldV) {
+      this.exampleFormat.backgroundCopy = oldV
+      this.generateExample()
+    },
+    'exampleFormat.lineColor' () { this.generateExample() },
+    'exampleFormat.showText' () { this.generateExample() },
+    'exampleFormat.isTransparent' (value) {
+      value
+        ? this.exampleFormat.background = '#ffffff00'
+        : this.exampleFormat.background = this.exampleFormat.backgroundCopy
+      this.generateExample()
     }
   },
   computed: {

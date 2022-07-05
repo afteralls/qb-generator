@@ -52,6 +52,23 @@
     @include glass-effect;
     border-radius: 0 $br-rad $br-rad 0;
     border-left: none;
+    transition: $transition;
+
+    table {
+      border-spacing: none;
+      border-radius: $br-rad;
+      height: 100%;
+    }
+
+    th {
+      border-radius: $br-rad $br-rad 0 0;
+    }
+
+    td {
+      border-radius: 0 0 $br-rad $br-rad;
+      height: 100%;
+      padding: $table-gap;
+    }
 
     p, h3 {
       margin: 0;
@@ -63,6 +80,13 @@
     flex-direction: column;
     justify-content: space-around;
     height: 100%;
+    gap: $gap;
+  }
+
+  &__info-wrapper-row {
+    display: flex;
+    justify-content: space-around;
+    gap: $gap;
   }
 
   &__user-sec {
@@ -75,6 +99,21 @@
     display: flex;
     flex-direction: column;
     gap: $gap;
+  }
+
+  &__settings {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    gap: $gap;
+  }
+
+  &__live-example {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    gap: $gap;
+    text-align: center;
   }
 
   &__barcode {
@@ -96,6 +135,29 @@
     width: 100%;
     height: 100%;
     text-align: center;
+
+    table {
+      margin: 15px 15px 14px 15px;
+      display: block;
+      border-spacing: none;
+      border-radius: $br-rad;
+    }
+
+    th:nth-child(1) {
+      border-radius: $br-rad 0 0 0;
+    }
+    
+    th:nth-child(2) {
+      border-radius: 0 $br-rad 0 0;
+    }
+    
+    tr:last-child td:nth-child(1) {
+      border-radius: 0 0 0 $br-rad;
+    }
+    
+    tr:last-child td:nth-child(2) {
+      border-radius: 0 0 $br-rad 0;
+    }
   }
 
   &__table-container {
