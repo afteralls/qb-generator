@@ -8,7 +8,7 @@
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 1}"
         ><div v-if="sIdx === 1" class="_step">#1</div><h3>Формат</h3></div>
         <div
-          @click.prevent="sIdx = 2"
+          @click.prevent="sIdx = 2, inputLengthHandler ? generateExample() : ''"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
         ><div v-if="sIdx === 2" class="_step">#2</div><h3>Контент</h3></div>
         <div
@@ -66,15 +66,18 @@
             </div>
           </div>
         </div>
-        <div v-else-if="sIdx === 2" class="layout__item">
+        <div v-else-if="sIdx === 2" class="layout__item" style="gap: 0;">
           <div class="layout__user-sec">
             <h3>Введите содержимое штрих-кода</h3>
-            <input
-              class="_text"
-              v-if="!formatNameHandler"
-              type="text" placeholder="Текст"
-              v-model="text"
-            >
+            <div v-if="!formatNameHandler" class="_input-wrapper">
+                <input
+                  class="_text"
+                  type="text"
+                  :maxlength="inputSettings.maxlength.text"
+                  :placeholder="inputSettings.placeholder.text"
+                  v-model="data.text"
+                >
+              </div>
             <div v-else class="_format-group">
               <div class="_input-wrapper">
                 <input
@@ -82,7 +85,7 @@
                   :maxlength="inputSettings.maxlength.first"
                   class="_input-code"
                   :placeholder="inputSettings.placeholder.first"
-                  v-model="data.pref"
+                  v-model="data.prefix"
                 >
               </div>
               <div class="_input-wrapper">
@@ -104,11 +107,14 @@
                 >
               </div>
             </div>
-            <button
-              @click.prevent="generateExample"
-              class="_btn"
-              v-if="setAct === false"
-            >Включить расширенные настройки</button>
+            <div class="_button-wrapper">
+              <button
+                @click.prevent="generateExample"
+                class="_btn"
+                :disabled="!inputLengthHandler"
+                v-if="setAct === false"
+              >Включить расширенные настройки</button>
+            </div>
           </div>
           <div v-if="setAct" class="layout__info-wrapper">
             <h3>Расширенные настройки</h3>
@@ -116,7 +122,10 @@
               <div class="layout__live-example">
                 <table id="table">
                   <tr><th>Пример штрих-кода</th></tr>
-                  <tr><td><div class="_img-wrapper"><img id="example"></div></td></tr>
+                  <tr><td>
+                    <p v-if="correctInputHandler">Проверьте корректность введённых данных</p>
+                    <div v-else class="_img-wrapper"><img id="example"></div>
+                  </td></tr>
                 </table>
               </div>
               <div class="layout__settings">
@@ -170,11 +179,11 @@
             <div class="_row">
               <div class="_column" style="width: 70%">
                 <h3>Какое количество штрих-кодов нужно?</h3>
-                <input type="text" class="_text" placeholder="Количество" v-model="count">
+                <input type="text" class="_text" maxlength="5" placeholder="Количество" v-model="count">
               </div>
               <div class="_column" v-if="formatName !== 'code128'" style="width: 25%">
                 <h3>С шагом...</h3>
-                <input type="text" class="_text" placeholder="Шаг" v-model="iter">
+                <input type="text" class="_text" maxlength="3" placeholder="Шаг" v-model="iter">
               </div>
             </div>
             <div class="_small-text">
@@ -183,7 +192,7 @@
           </div>
           <div class="layout__info-wrapper">
             <h3>Зачем это нужно?</h3>
-            <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационноно номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
+            <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационного номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
             <h3>Пример генерации 100 штрих-кодов с шагом 1</h3>
             <div class="_row">
               <div class="_img-layout"><img src="./assets/img/ex-1.png" alt="Firts"></div>
@@ -229,6 +238,9 @@ export default {
   data: () => ({
     sIdx: 1,
     formatName: 'ean13',
+    isCorrect: false,
+    correctLength: null,
+    content: '',
     formats: {
       ean13: {
         desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
@@ -244,6 +256,7 @@ export default {
             second: 6,
             third: 5
           },
+          correctLength: 12,
           placeholder: {
             first: 'Код страны (1-3)',
             second: 'Код производителя (4-6)',
@@ -263,9 +276,10 @@ export default {
             first: 3,
             second: 4
           },
+          correctLength: 7,
           placeholder: {
-            first: 'Код страны (3)',
-            second: 'Код товара (4)'
+            first: 'Код страны (3 симв.)',
+            second: 'Код товара (4 симв.)'
           }
         }
       },
@@ -275,7 +289,16 @@ export default {
           'Кодировка символов EAN-5 очень похожа на кодировку других европейских артикульных номеров;',
           'Единственное отличие состоит в том, что цифры разделены символом 01;',
           'R-код не используется.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            text: 5
+          },
+          correctLength: 5,
+          placeholder: {
+            text: 'Числа (5 симв.)'
+          }
+        }
       },
       code128: {
         desc: 'Штриховой код Code 128 включает в себя 107 символов, из которых 103 символа данных, 3 стартовых и 1 остановочный (стоп) символ.',
@@ -284,7 +307,16 @@ export default {
           'Кодированная информация;',
           'Проверочный символ (контрольный знак)',
           'Остановочный (Stop) символ.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            text: 30
+          },
+          correctLength: 1,
+          placeholder: {
+            text: 'Текст (1-30 симв.)'
+          }
+        }
       },
       itf14: {
         desc: 'Штрих код ITF-14 разработан специально для транспортной упаковки. Он создаётся на основе кодов EAN-8 или EAN-13 и дополнительно несёт в себе один символ «тип упаковки», которым кодируется вариант упаковки.',
@@ -298,9 +330,10 @@ export default {
             first: 1,
             second: 12
           },
+          correctLength: 13,
           placeholder: {
-            first: 'Тип упаковки (1)',
-            second: 'Код стандарта EAN 13 (12)'
+            first: 'Тип упаковки (1 симв.)',
+            second: 'Код стандарта EAN 13 (12 симв.)'
           }
         }
       },
@@ -310,14 +343,32 @@ export default {
           'Представляет собой только цифры 0–9;',
           'Не поддерживает буквы и символы;',
           'Каждая цифра преобразуется в 4 двоично-десятичный код биты. Затем добавляется 1 бит и два 0 бита.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            text: 16
+          },
+          correctLength: 1,
+          placeholder: {
+            text: 'Числа (1-16 симв.)'
+          }
+        }
       },
       pharmacode: {
         desc: 'Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.',
         info: [
           'Может представляться только одним целым числом от 1 до 131 070;',
           'Минимальная длина штрихкода — 1 узкая полоса и максимальная — 16 широких.'
-        ]
+        ],
+        settings: {
+          maxlength: {
+            text: 6
+          },
+          correctLength: 1,
+          placeholder: {
+            text: 'Числа (1-6 симв.)'
+          }
+        }
       }
     },
     setAct: false,
@@ -326,7 +377,6 @@ export default {
     iter: null,
     beforeGenerate: null || 1,
     generated: false,
-    text: '',
     inputSettings: {
       maxlength: {
         pref: null,
@@ -338,7 +388,8 @@ export default {
     data: {
       prefix: '',
       corpCode: '',
-      serialNumber: ''
+      serialNumber: '',
+      text: ''
     },
     exampleFormat: {
       background: 'white',
@@ -350,29 +401,11 @@ export default {
   }),
   methods: {
     generateHandler () {
-      let content = ''
-      if (this.formatNameHandler) {
-        let result = ''
-        for (const key in this.data) {
-          result += this.data[key]
-        }
-        content = result
-      } else {
-        content = this.text
-      }
-      this.generateBarcode(content)
-    },
-    generateBarcode (content) {
       this.beforeGenerate = +this.count || 1
       let res = ''
       setTimeout(() => {
-        for (let i = 0, j = 0;
-          i < this.beforeGenerate;
-          i++, j += +this.iter || 1
-        ) {
-          this.formatName !== 'code128'
-            ? res = +content + j
-            : res = content
+        for (let i = 0, j = 0; i < this.beforeGenerate; i++, j += +this.iter || 1) {
+          this.formatName !== 'code128' ? res = +this.content + j : res = this.content
           JsBarcode(`[data-num="${i + 1}"]`, res, {
             format: this.formatName,
             background: '#ffffff00'
@@ -418,18 +451,8 @@ export default {
     },
     generateExample () {
       this.setAct = true
-      let content = ''
-      if (this.formatNameHandler) {
-        let result = ''
-        for (const key in this.data) {
-          result += this.data[key]
-        }
-        content = result
-      } else {
-        content = this.text
-      }
       setTimeout(() => {
-        JsBarcode('#example', content, {
+        JsBarcode('#example', this.content, {
           format: this.formatName,
           background: this.exampleFormat.background,
           lineColor: this.exampleFormat.lineColor,
@@ -449,23 +472,46 @@ export default {
   },
   watch: {
     formatName (value) {
+      this.content = ''; this.data.serialNumber = ''
+      this.data.corpCode = ''; this.data.prefix = ''
+      this.data.text = ''; this.setAct = false
+
       switch (value) {
         case 'ean13':
           this.activeFormat = this.formats.ean13
           this.inputSettings = this.formats.ean13.settings
+          this.correctLength = this.formats.ean13.settings.correctLength
           break
         case 'ean8':
           this.activeFormat = this.formats.ean8
           this.inputSettings = this.formats.ean8.settings
+          this.correctLength = this.formats.ean8.settings.correctLength
           break
-        case 'ean5': this.activeFormat = this.formats.ean5; break
-        case 'code128': this.activeFormat = this.formats.code128; break
+        case 'ean5':
+          this.activeFormat = this.formats.ean5
+          this.inputSettings = this.formats.ean5.settings
+          this.correctLength = this.formats.ean5.settings.correctLength
+          break
+        case 'code128':
+          this.activeFormat = this.formats.code128
+          this.inputSettings = this.formats.code128.settings
+          this.correctLength = this.formats.code128.settings.correctLength
+          break
         case 'itf14':
           this.activeFormat = this.formats.itf14
           this.inputSettings = this.formats.itf14.settings
+          this.correctLength = this.formats.itf14.settings.correctLength
           break
-        case 'msi': this.activeFormat = this.formats.msi; break
-        case 'pharmacode': this.activeFormat = this.formats.pharmacode; break
+        case 'msi':
+          this.activeFormat = this.formats.msi
+          this.inputSettings = this.formats.msi.settings
+          this.correctLength = this.formats.msi.settings.correctLength
+          break
+        case 'pharmacode':
+          this.activeFormat = this.formats.pharmacode
+          this.inputSettings = this.formats.pharmacode.settings
+          this.correctLength = this.formats.pharmacode.settings.correctLength
+          break
       }
     },
     'exampleFormat.background' (_, oldV) {
@@ -479,16 +525,55 @@ export default {
         ? this.exampleFormat.background = '#ffffff00'
         : this.exampleFormat.background = this.exampleFormat.backgroundCopy
       this.generateExample()
+    },
+    'data.prefix' () {
+      this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
+      if (this.inputLengthHandler && this.setAct === true) {
+        this.generateExample()
+      }
+    },
+    'data.corpCode' () {
+      this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
+      if (this.inputLengthHandler && this.setAct === true) {
+        this.generateExample()
+      }
+    },
+    'data.serialNumber' () {
+      this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
+      if (this.inputLengthHandler && this.setAct === true) {
+        this.generateExample()
+      }
+    },
+    'data.text' () {
+      this.content = this.data.text
+      if (this.inputLengthHandler && this.setAct === true) {
+        this.generateExample()
+      }
     }
   },
   computed: {
     formatNameHandler () {
       return ['ean13', 'ean8', 'itf14'].includes(this.formatName)
+    },
+    inputLengthHandler () {
+      let length = false
+      this.formatNameHandler
+        ? (this.content.length === this.correctLength ? length = true : length = false)
+        : (this.content.length >= this.correctLength ? length = true : length = false)
+      return length
+    },
+    correctInputHandler () {
+      if (this.content !== 0 || this.formatNameHandler) {
+        return false
+      } else {
+        return true
+      }
     }
   },
   mounted () {
     this.activeFormat = this.formats.ean13
     this.inputSettings = this.formats.ean13.settings
+    this.correctLength = this.formats.ean13.settings.correctLength
   }
 }
 </script>
