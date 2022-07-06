@@ -9,6 +9,38 @@
     }
   }
 
+  &red-mark {
+    border-left: 5px solid red;
+    padding-left: $gap;
+  }
+
+  &or {
+    text-transform: uppercase;
+    // letter-spacing: 5px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &or::before {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 5px;
+    background-color: red;
+    margin-left: -140px;
+  }
+
+  &or::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 5px;
+    background-color: red;
+    margin-right: -140px;
+  }
+
   &row {
     display: flex;
     justify-content: space-between;
@@ -96,6 +128,10 @@
 
   &button-wrapper {
     width: 100%;
+
+    button {
+      width: 100%;
+    }
   }
 
   &input-wrapper:nth-child(1) {

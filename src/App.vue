@@ -8,7 +8,7 @@
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 1}"
         ><div v-if="sIdx === 1" class="_step">#1</div><h3>Формат</h3></div>
         <div
-          @click.prevent="sIdx = 2, inputLengthHandler ? generateExample() : ''"
+          @click.prevent="sIdx = 2, inputLengthHandler && setAct === true ? generateExample() : wrongBarcode = true"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
         ><div v-if="sIdx === 2" class="_step">#2</div><h3>Контент</h3></div>
         <div
@@ -40,7 +40,9 @@
             <div class="format">
               <div class="format__desc">
                 <h3> Краткое описание</h3>
-                <p>{{ activeFormat.desc }}</p>
+                <div class="_red-mark">
+                  <p>{{ activeFormat.desc }}</p>
+                </div>
               </div>
               <div class="format__info">
                 <div class="format__example">
@@ -66,13 +68,14 @@
             </div>
           </div>
         </div>
-        <div v-else-if="sIdx === 2" class="layout__item" style="gap: 0;">
+        <div v-else-if="sIdx === 2" class="layout__item">
           <div class="layout__user-sec">
             <h3>Введите содержимое штрих-кода</h3>
             <div v-if="!formatNameHandler" class="_input-wrapper">
                 <input
                   class="_text"
                   type="text"
+                  v-maska="formatName === 'code128' ? 'X*' : '#*'"
                   :maxlength="inputSettings.maxlength.text"
                   :placeholder="inputSettings.placeholder.text"
                   v-model="data.text"
@@ -84,6 +87,7 @@
                   type="text"
                   :maxlength="inputSettings.maxlength.first"
                   class="_input-code"
+                  v-maska="'#*'"
                   :placeholder="inputSettings.placeholder.first"
                   v-model="data.prefix"
                 >
@@ -93,6 +97,7 @@
                   type="text"
                   :maxlength="inputSettings.maxlength.second"
                   class="_input-code"
+                  v-maska="'#*'"
                   :placeholder="inputSettings.placeholder.second"
                   v-model="data.corpCode"
                 >
@@ -102,28 +107,36 @@
                   type="text"
                   :maxlength="inputSettings.maxlength.third"
                   class="_input-code"
+                  v-maska="'#*'"
                   :placeholder="inputSettings.placeholder.third"
                   v-model="data.serialNumber"
                 >
               </div>
             </div>
+          </div>
+          <div v-if="setAct === false" class="layout__info-wrapper" style="justify-content: center; text-align: center;">
+            <p>На данном этапе, после ввода содержимого, вы можете сразу же перейти к следующему шагу и сгенерировать штрих-коды с настройками по-умолчанию</p>
+            <div class="_or"><strong>и л и</strong></div>
             <div class="_button-wrapper">
               <button
                 @click.prevent="generateExample"
                 class="_btn"
                 :disabled="!inputLengthHandler"
-                v-if="setAct === false"
               >Включить расширенные настройки</button>
             </div>
+            <p>И в режиме реального времени настроить цвет заднего фона, самого штрих-кода, а также скрыть отображение текста/кода, если будет нужно</p>
+            <div class="_small-text" style="display: flex; justify-content: center">
+              <p>*&nbsp;</p><small>Все изменения сразу же вступят в силу для последующих штрих-кодов</small>
+            </div>
           </div>
-          <div v-if="setAct" class="layout__info-wrapper">
+          <div v-else class="layout__info-wrapper">
             <h3>Расширенные настройки</h3>
             <div class="layout__info-wrapper-row">
               <div class="layout__live-example">
                 <table id="table">
                   <tr><th>Пример штрих-кода</th></tr>
                   <tr><td>
-                    <p v-if="correctInputHandler">Проверьте корректность введённых данных</p>
+                    <p v-if="wrongBarcode">Проверьте корректность содержимого</p>
                     <div v-else class="_img-wrapper"><img id="example"></div>
                   </td></tr>
                 </table>
@@ -151,7 +164,7 @@
                   id="showTxt"
                   value="#ffffff00"
                 >
-                <label for="showTxt">Показать текст</label>
+                <label for="showTxt">Показать текст/код</label>
                 <div class="_row">
                   <p>Цвет штрих-кода</p>
                   <input
@@ -192,7 +205,9 @@
           </div>
           <div class="layout__info-wrapper">
             <h3>Зачем это нужно?</h3>
-            <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационного номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
+            <div class="_red-mark">
+              <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационного номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
+            </div>
             <h3>Пример генерации 100 штрих-кодов с шагом 1</h3>
             <div class="_row">
               <div class="_img-layout"><img src="./assets/img/ex-1.png" alt="Firts"></div>
@@ -241,6 +256,7 @@ export default {
     isCorrect: false,
     correctLength: null,
     content: '',
+    wrongBarcode: false,
     formats: {
       ean13: {
         desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
@@ -450,6 +466,7 @@ export default {
       }
     },
     generateExample () {
+      this.wrongBarcode = false
       this.setAct = true
       setTimeout(() => {
         JsBarcode('#example', this.content, {
@@ -549,6 +566,9 @@ export default {
       if (this.inputLengthHandler && this.setAct === true) {
         this.generateExample()
       }
+    },
+    content (value) {
+      value === 0 || value === '' ? this.wrongBarcode = true : this.wrongBarcode = false
     }
   },
   computed: {
@@ -558,16 +578,9 @@ export default {
     inputLengthHandler () {
       let length = false
       this.formatNameHandler
-        ? (this.content.length === this.correctLength ? length = true : length = false)
-        : (this.content.length >= this.correctLength ? length = true : length = false)
+        ? this.content.length === this.correctLength ? length = true : length = false
+        : this.content.length >= this.correctLength ? length = true : length = false
       return length
-    },
-    correctInputHandler () {
-      if (this.content !== 0 || this.formatNameHandler) {
-        return false
-      } else {
-        return true
-      }
     }
   },
   mounted () {
