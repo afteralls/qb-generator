@@ -1,6 +1,11 @@
 <template>
 <div class="container">
   <div class="layout">
+    <TheNotification
+      v-show="hide === true"
+      :format-name="formatName"
+      :notification="activeFormat.errorNotification"
+    />
     <form class="layout__form">
       <div class="layout__tabs">
         <div
@@ -10,7 +15,7 @@
         <div
           @click.prevent="sIdx = 2, inputLengthHandler && setAct === true ? generateExample() : wrongBarcode = true"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
-        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Контент</h3></div>
+        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Содержание</h3></div>
         <div
           @click.prevent="sIdx = 3"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 3}"
@@ -51,7 +56,7 @@
                     <tr><td>
                       <div class="_img-wrapper">
                         <img
-                          :src="require(`./assets/barcode-exsamples/${formatName}.png`)"
+                          :src="require(`./assets/img/barcode-exsamples/${formatName}.png`)"
                           alt="Пример штрих-кода"
                         >
                       </div>
@@ -217,9 +222,18 @@
           </div>
         </div>
         <div v-else-if="sIdx === 4" class="layout__item">
-          <h3>"rcgjhn"</h3>
-          <button class="_btn" @click.prevent="generateHandler">Сгенерировать</button>
-          <button v-if="generated" @click.prevent="exportHandler" class="_btn">Экспортировать</button>
+          <div class="layout__info-wrapper" style="text-align: center">
+            <div class="layout__user-sec">
+              <h3>Почти готово!</h3>
+              <p>Осталось только сгенерировать все штрих-коды...</p>
+              <button
+                class="_btn"
+                @click.prevent="generateHandler"
+                :disabled="!inputLengthHandler"
+              >Сгенерировать</button>
+            </div>
+          </div>
+          <button class="_btn" v-if="generated" @click.prevent="exportHandler">Экспортировать</button>
         </div>
       </div>
     </form>
@@ -233,7 +247,7 @@
             <tr><th>№</th><th>Штрих-код</th></tr>
             <tr v-for="(num, idx) in beforeGenerate" :key="num">
               <td>{{ idx + 1 }}</td>
-              <td><svg :data-num="idx + 1"></svg></td>
+              <td><div class="_img-wrapper"><svg :data-num="idx + 1"></svg></div></td>
             </tr>
           </table>
           <div class="_space"></div>
@@ -248,11 +262,13 @@
 import JsBarcode from 'jsbarcode'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import TheNotification from './components/TheNotification'
 
 export default {
   data: () => ({
     sIdx: 1,
     formatName: 'ean13',
+    hide: false,
     isCorrect: false,
     correctLength: null,
     content: '',
@@ -424,10 +440,12 @@ export default {
           this.formatName !== 'code128' ? res = +this.content + j : res = this.content
           JsBarcode(`[data-num="${i + 1}"]`, res, {
             format: this.formatName,
-            background: '#ffffff00'
+            background: this.exampleFormat.background,
+            lineColor: this.exampleFormat.lineColor,
+            displayValue: this.exampleFormat.showText
           })
         }
-      }, 1000)
+      }, 1)
       this.generated = true
     },
     exportHandler () {
@@ -543,33 +561,42 @@ export default {
         : this.exampleFormat.background = this.exampleFormat.backgroundCopy
       this.generateExample()
     },
-    'data.prefix' () {
+    'data.prefix' (value) {
       this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
       if (this.inputLengthHandler && this.setAct === true) {
         this.generateExample()
       }
+      if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
     },
-    'data.corpCode' () {
+    'data.corpCode' (value) {
       this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
       if (this.inputLengthHandler && this.setAct === true) {
         this.generateExample()
       }
+      if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
     },
-    'data.serialNumber' () {
+    'data.serialNumber' (value) {
       this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
       if (this.inputLengthHandler && this.setAct === true) {
         this.generateExample()
       }
+      if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
     },
-    'data.text' () {
+    'data.text' (value) {
       this.content = this.data.text
       if (this.inputLengthHandler && this.setAct === true) {
         this.generateExample()
       }
+      if (this.formatName !== 'code128') {
+        if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
+      } else {
+        if (!value.match(/[a-zA-Z0-9]/) && value !== '') { this.hide = true }
+      }
     },
     content (value) {
       value === 0 || value === '' ? this.wrongBarcode = true : this.wrongBarcode = false
-    }
+    },
+    hide (value) { if (value) { setTimeout(() => { this.hide = false }, 5000) } }
   },
   computed: {
     formatNameHandler () {
@@ -587,7 +614,8 @@ export default {
     this.activeFormat = this.formats.ean13
     this.inputSettings = this.formats.ean13.settings
     this.correctLength = this.formats.ean13.settings.correctLength
-  }
+  },
+  components: { TheNotification }
 }
 </script>
 
