@@ -1,11 +1,12 @@
 <template>
 <div class="container">
   <div class="layout">
-    <TheNotification
-      v-show="hide === true"
-      :format-name="formatName"
-      :notification="activeFormat.errorNotification"
-    />
+    <div v-if="this.hide === true" class="notification">
+      <img src="./assets/img/ntf.png" alt="Notification">
+      <div class="notification__text">
+        <small>{{ notificationHandler }}</small>
+      </div>
+    </div>
     <form class="layout__form">
       <div class="layout__tabs">
         <div
@@ -232,8 +233,31 @@
                 :disabled="!inputLengthHandler"
               >Сгенерировать</button>
             </div>
+            <div v-if="generated" class="layout__info-wrapper">
+              <p>В окне справа находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию.<br>Если же вас всё устраивает, то выбирайте нужный формат для экспорта и пользуйтесь на здоровье!</p>
+              <div class="_row">
+                <div class="_column">
+                  <p>В каком формате экспортировать?</p>
+                  <div class="_row">
+                    <input v-model="exportFormat" id="png" value="png" type="radio" name="exportFormat">
+                    <label data-radio for="png">PNG</label>
+                    <input v-model="exportFormat" id="jpg" value="jpg" type="radio" name="exportFormat">
+                    <label data-radio for="jpg">JPG</label>
+                    <input v-model="exportFormat" id="svg" value="svg" type="radio" name="exportFormat">
+                    <label data-radio for="svg">SVG</label>
+                  </div>
+                </div>
+                <div class="_column" style="width: auto">
+                  <p>Как будет называться архив?</p>
+                  <input type="text" v-model="zipName" placeholder="Название архива">
+                </div>
+              </div>
+              <button
+                  class="_btn"
+                  @click.prevent="exportHandler"
+                >Экспортировать</button>
+            </div>
           </div>
-          <button class="_btn" v-if="generated" @click.prevent="exportHandler">Экспортировать</button>
         </div>
       </div>
     </form>
@@ -262,11 +286,12 @@
 import JsBarcode from 'jsbarcode'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import TheNotification from './components/TheNotification'
 
 export default {
   data: () => ({
     sIdx: 1,
+    exportFormat: 'png',
+    zipName: 'png-collection',
     formatName: 'ean13',
     hide: false,
     isCorrect: false,
@@ -450,6 +475,8 @@ export default {
     },
     exportHandler () {
       const flag = this.count
+      const exportFormat = this.exportFormat
+      const zipFolderName = this.zipName
       const zip = new JSZip()
 
       for (let i = 1; i <= this.count; i++) {
@@ -471,14 +498,14 @@ export default {
           URL.revokeObjectURL(url)
 
           canvas.toBlob(function (blob) {
-            zip.file(`BC-${i}.png`, blob, { base64: true })
+            zip.file(`BC-${i}.${exportFormat}`, blob, { base64: true })
 
             zip.generateAsync({ type: 'blob' }).then(function (content) {
               if (i >= flag) {
-                saveAs(content, 'collection.zip')
+                saveAs(content, `${zipFolderName}.zip`)
               }
             })
-          }, 'image/png')
+          }, `image/${exportFormat}`)
         }
         img.src = url
       }
@@ -549,6 +576,13 @@ export default {
           break
       }
     },
+    exportFormat (value) {
+      switch (value) {
+        case 'png': this.zipName = 'png-collection'; break
+        case 'jpg': this.zipName = 'jpg-collection'; break
+        case 'svg': this.zipName = 'svg-collection'; break
+      }
+    },
     'exampleFormat.background' (_, oldV) {
       this.exampleFormat.backgroundCopy = oldV
       this.generateExample()
@@ -608,14 +642,18 @@ export default {
         ? this.content.length === this.correctLength ? length = true : length = false
         : this.content.length >= this.correctLength ? length = true : length = false
       return length
+    },
+    notificationHandler () {
+      return this.formatName === 'code128'
+        ? 'Доступен только ввод чисел и латинских символов'
+        : 'Доступен только ввод чисел'
     }
   },
   mounted () {
     this.activeFormat = this.formats.ean13
     this.inputSettings = this.formats.ean13.settings
     this.correctLength = this.formats.ean13.settings.correctLength
-  },
-  components: { TheNotification }
+  }
 }
 </script>
 
