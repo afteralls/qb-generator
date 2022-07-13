@@ -530,6 +530,17 @@ export default {
       setTimeout(() => {
         this.setAct = false
       }, 1)
+    },
+    getSvgs () {
+      const zip = new JSZip()
+      const zipFolderName = this.zipName
+      for (let i = 1; i <= this.count; i++) {
+        zip.file(`Barcode-${i}.svg`, new Blob([document.querySelector(`[data-num="${i}"]`).outerHTML], { type: 'image/svg+xml' }))
+      }
+
+      zip.generateAsync({ type: 'blob' }).then(function (content) {
+        saveAs(content, `${zipFolderName}.zip`)
+      })
     }
   },
   watch: {
