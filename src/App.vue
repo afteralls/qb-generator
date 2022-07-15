@@ -132,7 +132,7 @@
             </div>
             <p>И в режиме реального времени настроить цвет заднего фона, самого штрих-кода, а также скрыть отображение текста/кода, если будет нужно</p>
             <div class="_small-text" style="display: flex; justify-content: center">
-              <p>*&nbsp;</p><small>Все изменения сразу же вступят в силу для последующих штрих-кодов</small>
+              <p>*&nbsp;</p><small>Все изменения сразу же вступят в силу для последующих штрих-кодов<br>(Только для графического формата)</small>
             </div>
           </div>
           <div v-else class="layout__info-wrapper">
@@ -227,13 +227,21 @@
             <div class="layout__user-sec">
               <h3>Почти готово!</h3>
               <p>Осталось только сгенерировать все штрих-коды...</p>
-              <button
-                class="_btn"
-                @click.prevent="generateHandler"
-                :disabled="!inputLengthHandler"
-              >Сгенерировать</button>
+              <div class="_row">
+                <button
+                  class="_btn"
+                  @click.prevent="generateGraphics"
+                  :disabled="!inputLengthHandler"
+                >Сгенерировать в графическом формате</button>
+                <button
+                  class="_btn"
+                  v-if="formatName === 'ean13'"
+                  @click.prevent="generateBarcodeFont"
+                  :disabled="!inputLengthHandler"
+                >Сгенерировать в формате шрифта</button>
+              </div>
             </div>
-            <div v-if="generated" class="layout__info-wrapper">
+            <div v-if="generatedGraphics" class="layout__info-wrapper">
               <p>В окне справа находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию.<br>Если же вас всё устраивает, то выбирайте нужный формат для экспорта и пользуйтесь на здоровье!</p>
               <div class="_row">
                 <div class="_column">
@@ -253,9 +261,19 @@
                 </div>
               </div>
               <button
-                  class="_btn"
-                  @click.prevent="exportHandler"
-                >Экспортировать</button>
+                class="_btn"
+                @click.prevent="exportHandler"
+              >Экспортировать</button>
+            </div>
+            <div v-if="generatedFont" class="layout__info-wrapper">
+              <p>В окне справа находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию.<br>Если же вас всё устраивает, то скачивайте соответсвующий шрифт и смело экспортируйте штрих-коды</p>
+              <div class="_small-text">
+                <small>Просто откройте скачанный файл в Microsoft Excel, установите одноимённый шрифт на своё устройство; затем выделите ячейки с номерами штрих-кода, выберите в соответствующем поле название шрифта (Например: 'EAN-13'; имя будет указано при усноновке шрифта) и будет порядок!</small>
+              </div>
+              <button
+                class="_btn"
+                @click.prevent="getExcel"
+              >Экспортировать</button>
             </div>
           </div>
         </div>
@@ -263,15 +281,22 @@
     </form>
     <div class="layout__barcode">
       <div class="layout__barcode-container">
-        <div v-if="!generated" class="_not-gen">
+        <div v-if="!generatedFont" class="_not-gen">
           <h3>Данное окно — превью для ваших штрих-кодов, но вы их пока не сгенерировали...</h3>
         </div>
         <div v-else class="layout__table-container">
-          <table id="table">
+          <table id="table" v-if="!withFont">
             <tr><th>№</th><th>Штрих-код</th></tr>
             <tr v-for="(num, idx) in beforeGenerate" :key="num">
               <td>{{ idx + 1 }}</td>
               <td><div class="_img-wrapper"><svg :data-num="idx + 1"></svg></div></td>
+            </tr>
+          </table>
+          <table id="table" v-else>
+            <tr><th>№</th><th>Штрих-код</th></tr>
+            <tr v-for="(num, idx) in fontCollection" :key="num">
+              <td>{{ idx + 1 }}</td>
+              <td><div class="barcode-font">{{ num }}</div></td>
             </tr>
           </table>
           <div class="_space"></div>
@@ -286,6 +311,8 @@
 import JsBarcode from 'jsbarcode'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import { toRaw } from 'vue'
+import 'table2excel'
 
 export default {
   data: () => ({
@@ -298,6 +325,9 @@ export default {
     correctLength: null,
     content: '',
     wrongBarcode: false,
+    withFont: false,
+    fontCollection: [],
+    fontClone: [],
     formats: {
       ean13: {
         desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
@@ -433,7 +463,8 @@ export default {
     count: null,
     iter: null,
     beforeGenerate: null || 1,
-    generated: false,
+    generatedGraphics: false,
+    generatedFont: false,
     inputSettings: {
       maxlength: {
         pref: null,
@@ -457,8 +488,10 @@ export default {
     }
   }),
   methods: {
-    generateHandler () {
+    generateGraphics () {
       this.beforeGenerate = +this.count || 1
+      this.withFont = false
+      this.generatedFont = false
       let res = ''
       setTimeout(() => {
         for (let i = 0, j = 0; i < this.beforeGenerate; i++, j += +this.iter || 1) {
@@ -471,7 +504,20 @@ export default {
           })
         }
       }, 1)
-      this.generated = true
+      this.generatedGraphics = true
+    },
+    generateBarcodeFont () {
+      this.beforeGenerate = +this.count || 1
+      this.generatedGraphics = false
+      this.fontCollection = []
+      this.withFont = true
+      let res = ''
+      for (let i = 0, j = 0; i < this.beforeGenerate; i++, j += +this.iter || 1) {
+        this.formatName !== 'code128' ? res = +this.content + j : res = this.content
+        res += this.getControlNumber(res).toString()
+        this.fontCollection.push(res)
+      }
+      this.generatedFont = true
     },
     exportHandler () {
       const flag = this.count
@@ -541,6 +587,23 @@ export default {
       zip.generateAsync({ type: 'blob' }).then(function (content) {
         saveAs(content, `${zipFolderName}.zip`)
       })
+    },
+    getControlNumber (number) {
+      const res = number
+        .toString()
+        .split('')
+        .map(n => +n)
+        .reduce((sum, a, idx) => (
+          idx % 2 ? sum + a * 3 : sum + a
+        ), 0)
+
+      return (10 - (res % 10)) % 10
+    },
+    getExcel () {
+      const Table2Excel = window.Table2Excel
+
+      const table2excel = new Table2Excel()
+      table2excel.export(document.querySelectorAll('table'))
     }
   },
   watch: {
@@ -658,6 +721,9 @@ export default {
       return this.formatName === 'code128'
         ? 'Доступен только ввод чисел и латинских символов'
         : 'Доступен только ввод чисел'
+    },
+    getData () {
+      return toRaw(this.fontCollection)
     }
   },
   mounted () {
