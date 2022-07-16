@@ -1,6 +1,6 @@
 <template>
   <div class="notification">
-    <img src="../assets/img/notification.png" alt="Notification">
+    <img src="../assets/img/ntf.png" alt="Notification">
     <div class="notification__text">
       <small>{{ notificationHandler }}</small>
     </div>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  props: ['formatName', 'notification'],
+  props: ['formatName'],
   computed: {
     notificationHandler () {
       return this.formatName === 'code128'
@@ -21,8 +21,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/mixins';
 @import '../assets/scss/variables';
+@import '../assets/scss/mixins';
+@import '../assets/scss/_globalStyles';
 
 .notification {
   display: flex;
