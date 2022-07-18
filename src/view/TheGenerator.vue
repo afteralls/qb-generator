@@ -8,7 +8,7 @@
   </div>
   <div class="layout">
     <app-notification
-      v-if="this.hide === true"
+      v-if="hide === true"
       :formatName="formatName"
     ></app-notification>
     <form class="layout__form">
@@ -61,8 +61,8 @@
                   class="_text"
                   type="text"
                   v-maska="formatName === 'code128' ? 'X*' : '#*'"
-                  :maxlength="inputSettings.maxlength.text"
-                  :placeholder="inputSettings.placeholder.text"
+                  :maxlength="activeFormat.settings.maxlength.text"
+                  :placeholder="activeFormat.settings.placeholder.text"
                   v-model="data.text"
                 >
               </div>
@@ -70,30 +70,30 @@
               <div class="_input-wrapper">
                 <input
                   type="text"
-                  :maxlength="inputSettings.maxlength.first"
+                  :maxlength="activeFormat.settings.maxlength.first"
                   class="_input-code"
                   v-maska="'#*'"
-                  :placeholder="inputSettings.placeholder.first"
+                  :placeholder="activeFormat.settings.placeholder.first"
                   v-model="data.prefix"
                 >
               </div>
               <div class="_input-wrapper">
                 <input
                   type="text"
-                  :maxlength="inputSettings.maxlength.second"
+                  :maxlength="activeFormat.settings.maxlength.second"
                   class="_input-code"
                   v-maska="'#*'"
-                  :placeholder="inputSettings.placeholder.second"
+                  :placeholder="activeFormat.settings.placeholder.second"
                   v-model="data.corpCode"
                 >
               </div>
               <div v-if="formatName === 'ean13'" class="_input-wrapper">
                 <input
                   type="text"
-                  :maxlength="inputSettings.maxlength.third"
+                  :maxlength="activeFormat.settings.maxlength.third"
                   class="_input-code"
                   v-maska="'#*'"
-                  :placeholder="inputSettings.placeholder.third"
+                  :placeholder="activeFormat.settings.placeholder.third"
                   v-model="data.serialNumber"
                 >
               </div>
@@ -187,7 +187,6 @@
           :generated="generated"
           :exampleFormat="exampleFormat"
           @gen-graphics="generateGraphics"
-          @gen-font="generateBarcodeFont"
         ></app-export-section>
       </div>
     </form>
@@ -206,29 +205,18 @@ import AppContentSectionInfo from '../components/AppContentSectionInfo'
 import AppCountSectionInfo from '../components/AppCountSectionInfo'
 import AppExportSection from '../components/AppExportSection'
 import AppBarcodeDemo from '../components/AppBarcodeDemo'
+import { ref, reactive, onMounted, computed, watch } from 'vue'
 import JsBarcode from 'jsbarcode'
 
 export default {
-  components: {
-    AppNotification,
-    AppFormatSectionInfo,
-    AppContentSectionInfo,
-    AppCountSectionInfo,
-    AppExportSection,
-    AppBarcodeDemo
-  },
-  data: () => ({
-    sIdx: 1,
-    formatName: 'ean13',
-    hide: false,
-    isCorrect: false,
-    correctLength: null,
-    content: '',
-    wrongBarcode: false,
-    withFont: false,
-    fontCollection: [],
-    generated: false,
-    formats: {
+  setup () {
+    const formatName = ref('ean13')
+    const content = ref('')
+    const activeFormat = ref({})
+    const count = ref(null)
+    const iter = ref(null)
+    const beforeGenerate = ref(null || 1)
+    const formats = reactive({
       ean13: {
         desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
         info: [
@@ -357,190 +345,175 @@ export default {
           }
         }
       }
-    },
-    setAct: false,
-    activeFormat: {},
-    count: null,
-    iter: null,
-    beforeGenerate: null || 1,
-    inputSettings: {
-      maxlength: {
-        pref: null,
-        corpCode: null,
-        serialNumber: null
-      },
-      placeholder: {}
-    },
-    data: {
+    })
+    const data = ref({
       prefix: '',
       corpCode: '',
       serialNumber: '',
       text: ''
-    },
-    exampleFormat: {
+    })
+    const exampleFormat = reactive({
       background: 'white',
       backgroundCopy: 'white',
       isTransparent: false,
       showText: true,
       lineColor: '#000000'
-    }
-  }),
-  methods: {
-    generateGraphics () {
-      this.beforeGenerate = +this.count || 1
-      this.withFont = false
+    })
+    const sIdx = ref(1)
+    const hide = ref(false)
+    const isCorrect = ref(false)
+    const wrongBarcode = ref(false)
+    const generated = ref(false)
+    const setAct = ref(false)
+
+    const generateGraphics = () => {
+      beforeGenerate.value = +count.value || 1
       let res = ''
       setTimeout(() => {
-        for (let i = 0, j = 0; i < this.beforeGenerate; i++, j += +this.iter || 1) {
-          this.formatName !== 'code128' ? res = +this.content + j : res = this.content
+        for (let i = 0, j = 0; i < beforeGenerate.value; i++, j += +iter.value || 1) {
+          formatName.value !== 'code128'
+            ? res = +content.value + j
+            : res = content.value
           JsBarcode(`[data-num="${i + 1}"]`, res, {
-            format: this.formatName,
-            background: this.exampleFormat.background,
-            lineColor: this.exampleFormat.lineColor,
-            displayValue: this.exampleFormat.showText
+            format: formatName.value,
+            background: exampleFormat.background,
+            lineColor: exampleFormat.lineColor,
+            displayValue: exampleFormat.showText
           })
         }
       }, 1)
-      this.generated = true
-    },
-    generateExample () {
-      this.wrongBarcode = false
-      this.setAct = true
+      generated.value = true
+    }
+
+    const generateExample = () => {
+      wrongBarcode.value = false
+      setAct.value = true
       setTimeout(() => {
-        JsBarcode('#example', this.content, {
-          format: this.formatName,
-          background: this.exampleFormat.background,
-          lineColor: this.exampleFormat.lineColor,
-          displayValue: this.exampleFormat.showText
+        JsBarcode('#example', content.value, {
+          format: formatName.value,
+          background: exampleFormat.background,
+          lineColor: exampleFormat.lineColor,
+          displayValue: exampleFormat.showText
         })
       }, 1)
-    },
-    toDefault () {
-      this.exampleFormat.isTransparent = false
-      this.exampleFormat.background = 'white'
-      this.exampleFormat.showText = true
-      this.exampleFormat.lineColor = '#000000'
+    }
+
+    const toDefault = () => {
+      exampleFormat.isTransparent = false
+      exampleFormat.background = 'white'
+      exampleFormat.showText = true
+      exampleFormat.lineColor = '#000000'
       setTimeout(() => {
-        this.setAct = false
+        setAct.value = false
       }, 1)
     }
-  },
-  watch: {
-    formatName (value) {
-      this.content = ''; this.data.serialNumber = ''
-      this.data.corpCode = ''; this.data.prefix = ''
-      this.data.text = ''; this.setAct = false
+
+    watch(formatName, value => {
+      content.value = ''; data.value.serialNumber = ''
+      data.value.corpCode = ''; data.value.prefix = ''
+      data.value.text = ''; setAct.value = false
 
       switch (value) {
-        case 'ean13':
-          this.activeFormat = this.formats.ean13
-          this.inputSettings = this.formats.ean13.settings
-          this.correctLength = this.formats.ean13.settings.correctLength
-          break
-        case 'ean8':
-          this.activeFormat = this.formats.ean8
-          this.inputSettings = this.formats.ean8.settings
-          this.correctLength = this.formats.ean8.settings.correctLength
-          break
-        case 'ean5':
-          this.activeFormat = this.formats.ean5
-          this.inputSettings = this.formats.ean5.settings
-          this.correctLength = this.formats.ean5.settings.correctLength
-          break
-        case 'code128':
-          this.activeFormat = this.formats.code128
-          this.inputSettings = this.formats.code128.settings
-          this.correctLength = this.formats.code128.settings.correctLength
-          break
-        case 'itf14':
-          this.activeFormat = this.formats.itf14
-          this.inputSettings = this.formats.itf14.settings
-          this.correctLength = this.formats.itf14.settings.correctLength
-          break
-        case 'msi':
-          this.activeFormat = this.formats.msi
-          this.inputSettings = this.formats.msi.settings
-          this.correctLength = this.formats.msi.settings.correctLength
-          break
-        case 'pharmacode':
-          this.activeFormat = this.formats.pharmacode
-          this.inputSettings = this.formats.pharmacode.settings
-          this.correctLength = this.formats.pharmacode.settings.correctLength
-          break
+        case 'ean13': activeFormat.value = formats.ean13; break
+        case 'ean8': activeFormat.value = formats.ean8; break
+        case 'ean5': activeFormat.value = formats.ean5; break
+        case 'code128': activeFormat.value = formats.code128; break
+        case 'itf14': activeFormat.value = formats.itf14; break
+        case 'msi': activeFormat.value = formats.msi; break
+        case 'pharmacode': activeFormat.value = formats.pharmacode; break
       }
-    },
-    exportFormat (value) {
-      switch (value) {
-        case 'png': this.zipName = 'png-collection'; break
-        case 'jpg': this.zipName = 'jpg-collection'; break
-        case 'svg': this.zipName = 'svg-collection'; break
+    })
+
+    const dataCollection = [data.value.prefix, data.value.corpCode, data.value.serialNumber]
+
+    watch(() => [data.value.prefix, data.value.corpCode, data.value.serialNumber], (value) => {
+      content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
+      console.log(content.value.length + ' ||| ' + inputLengthHandler.value)
+      if (inputLengthHandler.value && setAct.value === true) {
+        generateExample()
       }
-    },
-    'exampleFormat.background' (_, oldV) {
-      this.exampleFormat.backgroundCopy = oldV
-      this.generateExample()
-    },
-    'exampleFormat.lineColor' () { this.generateExample() },
-    'exampleFormat.showText' () { this.generateExample() },
-    'exampleFormat.isTransparent' (value) {
+      dataCollection.forEach((_, i) => {
+        if (!value[i].match(/[0-9]/) && value[i] !== '') {
+          hide.value = true
+        }
+      })
+    })
+    watch(() => exampleFormat.background, (_, oldV) => {
+      exampleFormat.backgroundCopy = oldV
+      generateExample()
+    })
+    watch(() => [exampleFormat.lineColor, exampleFormat.showText], () => {
+      generateExample()
+    })
+    watch(() => exampleFormat.isTransparent, (value) => {
       value
-        ? this.exampleFormat.background = '#ffffff00'
-        : this.exampleFormat.background = this.exampleFormat.backgroundCopy
-      this.generateExample()
-    },
-    'data.prefix' (value) {
-      this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
-      if (this.inputLengthHandler && this.setAct === true) {
-        this.generateExample()
+        ? exampleFormat.background = '#ffffff00'
+        : exampleFormat.background = exampleFormat.backgroundCopy
+      generateExample()
+    })
+    watch(() => [data.value.text], (value) => {
+      content.value = data.value.text
+      if (inputLengthHandler.value && setAct.value === true) {
+        generateExample()
       }
-      if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
-    },
-    'data.corpCode' (value) {
-      this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
-      if (this.inputLengthHandler && this.setAct === true) {
-        this.generateExample()
-      }
-      if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
-    },
-    'data.serialNumber' (value) {
-      this.content = this.data.prefix + this.data.corpCode + this.data.serialNumber
-      if (this.inputLengthHandler && this.setAct === true) {
-        this.generateExample()
-      }
-      if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
-    },
-    'data.text' (value) {
-      this.content = this.data.text
-      if (this.inputLengthHandler && this.setAct === true) {
-        this.generateExample()
-      }
-      if (this.formatName !== 'code128') {
-        if (!value.match(/[0-9]/) && value !== '') { this.hide = true }
+      if (formatName.value !== 'code128') {
+        if (!value[0].match(/[0-9]/) && value[0] !== '') { hide.value = true }
       } else {
-        if (!value.match(/[a-zA-Z0-9]/) && value !== '') { this.hide = true }
+        if (!value[0].match(/[a-zA-Z0-9]/) && value[0] !== '') { hide.value = true }
       }
-    },
-    content (value) {
-      value === 0 || value === '' ? this.wrongBarcode = true : this.wrongBarcode = false
-    },
-    hide (value) { if (value) { setTimeout(() => { this.hide = false }, 5000) } }
-  },
-  computed: {
-    formatNameHandler () {
-      return ['ean13', 'ean8', 'itf14'].includes(this.formatName)
-    },
-    inputLengthHandler () {
+    })
+    watch(content, (value) => {
+      value === 0 || value === ''
+        ? wrongBarcode.value = true
+        : wrongBarcode.value = false
+    })
+    watch(hide, (value) => {
+      if (value) { setTimeout(() => { hide.value = false }, 5000) }
+    })
+
+    const formatNameHandler = computed(() => ['ean13', 'ean8', 'itf14'].includes(formatName.value))
+    const inputLengthHandler = computed(() => {
       let length = false
-      this.formatNameHandler
-        ? this.content.length === this.correctLength ? length = true : length = false
-        : this.content.length >= this.correctLength ? length = true : length = false
+      const correctLength = activeFormat.value.settings.correctLength
+      formatNameHandler.value
+        ? content.value.length === correctLength ? length = true : length = false
+        : content.value.length >= correctLength ? length = true : length = false
       return length
+    })
+
+    onMounted(() => {
+      activeFormat.value = formats.ean13
+    })
+
+    return {
+      formatName,
+      content,
+      activeFormat,
+      count,
+      iter,
+      beforeGenerate,
+      data,
+      exampleFormat,
+      sIdx,
+      hide,
+      isCorrect,
+      wrongBarcode,
+      generated,
+      setAct,
+      generateGraphics,
+      generateExample,
+      toDefault,
+      formatNameHandler,
+      inputLengthHandler
     }
   },
-  mounted () {
-    this.activeFormat = this.formats.ean13
-    this.inputSettings = this.formats.ean13.settings
-    this.correctLength = this.formats.ean13.settings.correctLength
+  components: {
+    AppNotification,
+    AppFormatSectionInfo,
+    AppContentSectionInfo,
+    AppCountSectionInfo,
+    AppExportSection,
+    AppBarcodeDemo
   }
 }
 </script>

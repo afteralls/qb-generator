@@ -113,6 +113,15 @@ export default {
       const table2excel = new Table2Excel()
       table2excel.export(document.querySelectorAll('table'))
     }
+  },
+  watch: {
+    exportFormat (value) {
+      switch (value) {
+        case 'png': this.zipName = 'png-collection'; break
+        case 'jpg': this.zipName = 'jpg-collection'; break
+        case 'svg': this.zipName = 'svg-collection'; break
+      }
+    }
   }
 }
 </script>
