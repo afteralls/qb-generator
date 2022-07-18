@@ -409,9 +409,9 @@ export default {
     }
 
     watch(formatName, value => {
-      content.value = ''; data.value.serialNumber = ''
-      data.value.corpCode = ''; data.value.prefix = ''
-      data.value.text = ''; setAct.value = false
+      content.value = ''
+      setAct.value = false
+      for (const el in data.value) { data.value[el] = '' }
 
       switch (value) {
         case 'ean13': activeFormat.value = formats.ean13; break
@@ -424,19 +424,17 @@ export default {
       }
     })
 
-    const dataCollection = [data.value.prefix, data.value.corpCode, data.value.serialNumber]
-
-    watch(() => [data.value.prefix, data.value.corpCode, data.value.serialNumber], (value) => {
-      content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
-      console.log(content.value.length + ' ||| ' + inputLengthHandler.value)
-      if (inputLengthHandler.value && setAct.value === true) {
-        generateExample()
-      }
-      dataCollection.forEach((_, i) => {
-        if (!value[i].match(/[0-9]/) && value[i] !== '') {
-          hide.value = true
+    watch(() => [data.value.prefix, data.value.corpCode, data.value.serialNumber, data.value.text], (value) => {
+      if (inputLengthHandler.value && setAct.value === true) { generateExample() }
+      for (let i = 0; i < Object.keys(data).length - 1; i++) {
+        if (formatName.value !== 'code128') {
+          content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
+          if (!value[i].match(/[0-9]/) && value[i] !== '') { hide.value = true }
+        } else {
+          content.value = data.value.text
+          if (!value[3].match(/[a-zA-Z0-9]/) && value[3] !== '') { hide.value = true }
         }
-      })
+      }
     })
     watch(() => exampleFormat.background, (_, oldV) => {
       exampleFormat.backgroundCopy = oldV
@@ -450,17 +448,6 @@ export default {
         ? exampleFormat.background = '#ffffff00'
         : exampleFormat.background = exampleFormat.backgroundCopy
       generateExample()
-    })
-    watch(() => [data.value.text], (value) => {
-      content.value = data.value.text
-      if (inputLengthHandler.value && setAct.value === true) {
-        generateExample()
-      }
-      if (formatName.value !== 'code128') {
-        if (!value[0].match(/[0-9]/) && value[0] !== '') { hide.value = true }
-      } else {
-        if (!value[0].match(/[a-zA-Z0-9]/) && value[0] !== '') { hide.value = true }
-      }
     })
     watch(content, (value) => {
       value === 0 || value === ''
