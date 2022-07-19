@@ -8,7 +8,7 @@
   </div>
   <div class="layout">
     <app-notification
-      v-if="hide === true"
+      v-if="flags.hide === true"
       :formatName="formatName"
     ></app-notification>
     <form class="layout__form">
@@ -18,9 +18,7 @@
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 1}"
         ><div v-if="sIdx === 1" class="_step">#1</div><h3>Формат</h3></div>
         <div
-          @click.prevent="sIdx = 2, inputLengthHandler && setAct === true
-            ? generateExample()
-            : wrongBarcode = true"
+          @click.prevent="sIdx = 2, generate()"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
         ><div v-if="sIdx === 2" class="_step">#2</div><h3>Содержание</h3></div>
         <div
@@ -40,7 +38,6 @@
               <select v-model="formatName">
                 <option value="ean13">EAN 13</option>
                 <option value="ean8">EAN 8</option>
-                <option value="ean5">EAN 5</option>
                 <option value="code128">CODE 128</option>
                 <option value="itf14">ITF-14</option>
                 <option value="msi">MSI</option>
@@ -100,7 +97,7 @@
             </div>
           </div>
           <app-content-section-info
-            v-if="setAct === false"
+            v-if="flags.setAct === false"
             @gen-ex="generateExample"
             :inputLengthHandler="inputLengthHandler"
           ></app-content-section-info>
@@ -111,8 +108,9 @@
                 <table id="table">
                   <tr><th>Пример штрих-кода</th></tr>
                   <tr><td>
-                    <p v-if="wrongBarcode">Проверьте корректность содержимого</p>
-                    <div v-else class="_img-wrapper"><img id="example"></div>
+                    <div class="_img-wrapper">
+                      <p v-if="flags.wrongBarcode">Проверьте корректность содержимого</p>
+                      <img v-else id="example"></div>
                   </td></tr>
                 </table>
               </div>
@@ -184,14 +182,14 @@
           :inputLengthHandler="inputLengthHandler"
           :formatName="formatName"
           :count="count"
-          :generated="generated"
+          :generated="flags.generated"
           :exampleFormat="exampleFormat"
           @gen-graphics="generateGraphics"
         ></app-export-section>
       </div>
     </form>
     <app-barcode-demo
-      :generated="generated"
+      :generated="flags.generated"
       :beforeGenerate="beforeGenerate"
     ></app-barcode-demo>
   </div>
@@ -255,23 +253,6 @@ export default {
           placeholder: {
             first: 'Код страны (3 симв.)',
             second: 'Код товара (4 симв.)'
-          }
-        }
-      },
-      ean5: {
-        desc: 'EAN-5 — является дополнением к штрих-коду EAN-13. Используется для указания цены книги.',
-        info: [
-          'Кодировка символов EAN-5 очень похожа на кодировку других европейских артикульных номеров;',
-          'Единственное отличие состоит в том, что цифры разделены символом 01;',
-          'R-код не используется.'
-        ],
-        settings: {
-          maxlength: {
-            text: 5
-          },
-          correctLength: 5,
-          placeholder: {
-            text: 'Числа (5 симв.)'
           }
         }
       },
@@ -360,11 +341,13 @@ export default {
       lineColor: '#000000'
     })
     const sIdx = ref(1)
-    const hide = ref(false)
-    const isCorrect = ref(false)
-    const wrongBarcode = ref(false)
-    const generated = ref(false)
-    const setAct = ref(false)
+    const flags = reactive({
+      hide: false,
+      isCorrect: false,
+      wrongBarcode: false,
+      generated: false,
+      setAct: false
+    })
 
     const generateGraphics = () => {
       beforeGenerate.value = +count.value || 1
@@ -382,12 +365,12 @@ export default {
           })
         }
       }, 1)
-      generated.value = true
+      flags.generated = true
     }
 
     const generateExample = () => {
-      wrongBarcode.value = false
-      setAct.value = true
+      flags.wrongBarcode = false
+      flags.setAct = true
       setTimeout(() => {
         JsBarcode('#example', content.value, {
           format: formatName.value,
@@ -404,15 +387,36 @@ export default {
       exampleFormat.showText = true
       exampleFormat.lineColor = '#000000'
       setTimeout(() => {
-        setAct.value = false
+        flags.setAct = false
       }, 1)
     }
 
+    const generate = () => {
+      inputLengthHandler.value && flags.setAct === true ? generateExample() : flags.wrongBarcode = true
+    }
+
+    watch(() => [data.value.prefix, data.value.corpCode, data.value.serialNumber, data.value.text], (value) => {
+      for (let i = 0; i < Object.keys(data).length - 1; i++) {
+        if (formatNameHandler.value) {
+          content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
+          if (!value[i].match(/[0-9]/) && value[i] !== '') { flags.hide = true }
+          generate()
+        } else if (formatName.value === 'code128') {
+          content.value = data.value.text
+          if (!value[3].match(/[a-zA-Z0-9]/) && value[3] !== '') { flags.hide = true }
+          generate()
+        } else {
+          content.value = data.value.text
+          if (!value[i].match(/[0-9]/) && value[i] !== '') { flags.hide = true }
+          generate()
+        }
+      }
+    })
+
     watch(formatName, value => {
       content.value = ''
-      setAct.value = false
+      flags.setAct = false
       for (const el in data.value) { data.value[el] = '' }
-
       switch (value) {
         case 'ean13': activeFormat.value = formats.ean13; break
         case 'ean8': activeFormat.value = formats.ean8; break
@@ -423,39 +427,24 @@ export default {
         case 'pharmacode': activeFormat.value = formats.pharmacode; break
       }
     })
-
-    watch(() => [data.value.prefix, data.value.corpCode, data.value.serialNumber, data.value.text], (value) => {
-      if (inputLengthHandler.value && setAct.value === true) { generateExample() }
-      for (let i = 0; i < Object.keys(data).length - 1; i++) {
-        if (formatName.value !== 'code128') {
-          content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
-          if (!value[i].match(/[0-9]/) && value[i] !== '') { hide.value = true }
-        } else {
-          content.value = data.value.text
-          if (!value[3].match(/[a-zA-Z0-9]/) && value[3] !== '') { hide.value = true }
-        }
-      }
-    })
     watch(() => exampleFormat.background, (_, oldV) => {
       exampleFormat.backgroundCopy = oldV
-      generateExample()
+      generate()
     })
-    watch(() => [exampleFormat.lineColor, exampleFormat.showText], () => {
-      generateExample()
-    })
+    watch(() => [exampleFormat.lineColor, exampleFormat.showText], () => generate())
     watch(() => exampleFormat.isTransparent, (value) => {
       value
         ? exampleFormat.background = '#ffffff00'
         : exampleFormat.background = exampleFormat.backgroundCopy
-      generateExample()
+      generate()
     })
-    watch(content, (value) => {
-      value === 0 || value === ''
-        ? wrongBarcode.value = true
-        : wrongBarcode.value = false
+    watch(content, () => {
+      !inputLengthHandler.value
+        ? flags.wrongBarcode = true
+        : flags.wrongBarcode = false
     })
-    watch(hide, (value) => {
-      if (value) { setTimeout(() => { hide.value = false }, 5000) }
+    watch(() => flags.hide, (value) => {
+      value ? setTimeout(() => { flags.hide = false }, 5000) : flags.hide = false
     })
 
     const formatNameHandler = computed(() => ['ean13', 'ean8', 'itf14'].includes(formatName.value))
@@ -482,12 +471,9 @@ export default {
       data,
       exampleFormat,
       sIdx,
-      hide,
-      isCorrect,
-      wrongBarcode,
-      generated,
-      setAct,
+      flags,
       generateGraphics,
+      generate,
       generateExample,
       toDefault,
       formatNameHandler,
