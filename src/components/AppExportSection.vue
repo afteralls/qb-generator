@@ -33,7 +33,7 @@
           <button
             class="_btn"
             style="width: 100%"
-            @click.prevent="exportHandler"
+            @click.prevent="exportFormat !== 'svg' ? exportHandler() : getSvgs()"
           >Экспортировать в графическом формате</button>
           <button
             class="_btn"
@@ -51,22 +51,22 @@
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import 'table2excel'
+import { ref, watch } from 'vue'
 
 export default {
   props: ['inputLengthHandler', 'formatName', 'count', 'generated', 'exampleFormat'],
   emits: ['gen-graphics', 'gen-font'],
-  data: () => ({
-    exportFormat: 'png',
-    zipName: 'png-collection'
-  }),
-  methods: {
-    exportHandler () {
-      const flag = this.count
-      const exportFormat = this.exportFormat
-      const zipFolderName = this.zipName
+  setup (props) {
+    const exportFormat = ref('png')
+    const zipName = ref('png-collection')
+
+    const exportHandler = () => {
+      const flag = props.count
+      const exportFormatName = exportFormat.value
+      const zipFolderName = zipName.value
       const zip = new JSZip()
 
-      for (let i = 1; i <= this.count; i++) {
+      for (let i = 1; i <= props.count; i++) {
         const canvas = document.createElement('canvas')
         const { width, height } = document.querySelector('[data-num]').getBBox()
         canvas.width = width
@@ -85,33 +85,51 @@ export default {
           URL.revokeObjectURL(url)
 
           canvas.toBlob(function (blob) {
-            zip.file(`BC-${i}.${exportFormat}`, blob, { base64: true })
+            zip.file(`BC-${i}.${exportFormatName}`, blob, { base64: true })
 
             zip.generateAsync({ type: 'blob' }).then(function (content) {
               if (i >= flag) {
                 saveAs(content, `${zipFolderName}.zip`)
               }
             })
-          }, `image/${exportFormat}`)
+          }, `image/${exportFormatName}`)
         }
         img.src = url
       }
-    },
-    getSvgs () {
+    }
+
+    const getSvgs = () => {
       const zip = new JSZip()
-      const zipFolderName = this.zipName
-      for (let i = 1; i <= this.count; i++) {
+      const zipFolderName = zipName.value
+      for (let i = 1; i <= props.count; i++) {
         zip.file(`Barcode-${i}.svg`, new Blob([document.querySelector(`[data-num="${i}"]`).outerHTML], { type: 'image/svg+xml' }))
       }
 
       zip.generateAsync({ type: 'blob' }).then(function (content) {
         saveAs(content, `${zipFolderName}.zip`)
       })
-    },
-    getExcel () {
+    }
+
+    const getExcel = () => {
       const Table2Excel = window.Table2Excel
       const table2excel = new Table2Excel()
       table2excel.export(document.querySelectorAll('table'))
+    }
+
+    watch(exportFormat, value => {
+      switch (value) {
+        case 'png': zipName.value = 'png-collection'; break
+        case 'jpg': zipName.value = 'jpg-collection'; break
+        case 'svg': zipName.value = 'svg-collection'; break
+      }
+    })
+
+    return {
+      exportFormat,
+      zipName,
+      exportHandler,
+      getSvgs,
+      getExcel
     }
   }
 }

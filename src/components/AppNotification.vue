@@ -8,14 +8,18 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+
 export default {
   props: ['formatName'],
-  computed: {
-    notificationHandler () {
-      return this.formatName === 'code128'
+  setup (props) {
+    const notificationHandler = computed(() => {
+      return props.formatName === 'code128'
         ? 'Доступен только ввод чисел и латинских символов'
         : 'Доступен только ввод чисел'
-    }
+    })
+
+    return { notificationHandler }
   }
 }
 </script>
