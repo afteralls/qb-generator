@@ -1,9 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import Maska from 'maska'
-import Router from './router/router'
+import router from './router'
 
 createApp(App)
-  .use(Router)
   .use(Maska)
+  .use(router)
   .mount('#app')
