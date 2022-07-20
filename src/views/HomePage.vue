@@ -2,7 +2,8 @@
   <div class="main-page">
     <h1>Генератор штрих-кодов</h1>
     <p>Приложение для генерации штрих-кодов в различныйх форматах</p>
-    <button class="_btn" @click.prevent="$router.push('/barcode-generation-app/dist/barcode')">Перейти к Генератору</button>
+    <button class="_btn" @click.prevent="$router.push('/barcode-generation-app/dist/generator')">Перейти к Генератору</button>
+    <!-- /barcode-generation-app/dist/generator -->
   </div>
 </template>
 

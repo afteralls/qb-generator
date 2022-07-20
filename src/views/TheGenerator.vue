@@ -2,6 +2,7 @@
 <div class="container">
   <div class="to-home">
     <router-link to="/barcode-generation-app/dist/" class="_row" style="gap: 0;">
+      <!-- barcode-generation-app/dist/ -->
       <div class="_img-wrapper"><img src="../assets/img/arrow-right.png" alt="Go back"></div>
       <h3>На главную</h3>
     </router-link>
