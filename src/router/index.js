@@ -1,25 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../views/HomePage'
 import TheGenerator from '../views/TheGenerator'
-import AppBarcodeDemo from '../components/AppBarcodeDemo'
 
 const routes = [
   {
-    path: '/home',
-    // /barcode-generation-app/dist/home
+    path: '/barcode-generation-app/dist/home',
     component: HomePage,
-    alias: '/'
-    // /barcode-generation-app/dist/
+    alias: '/barcode-generation-app/dist/'
   },
   {
-    path: '/generator',
-    // /barcode-generation-app/dist/generator
+    path: '/barcode-generation-app/dist/generator',
     component: TheGenerator
-  },
-  {
-    path: '/demo',
-    // /barcode-generation-app/dist/generator
-    component: AppBarcodeDemo
   }
 ]
 
