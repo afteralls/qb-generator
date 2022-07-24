@@ -1,6 +1,11 @@
 .layout {
   position: relative;
   display: flex;
+  justify-content: center;
+  
+  @media (max-width: $large) {
+    flex-wrap: wrap;
+  }
 
   &__form, &__barcode {
     display: flex;
@@ -9,6 +14,14 @@
 
   &__form {
     width: 75%;
+
+    @media (max-width: $large) {
+      width: 90vw;
+    }
+
+    @media (max-width: $extra-medium) {
+      flex-direction: column;
+    }
   }
 
   &__tabs {
@@ -16,6 +29,20 @@
     flex-direction: column;
     align-items: flex-end;
     width: 25%;
+
+    @media (max-width: $extra-medium) {
+      flex-direction: row;
+      width: 100%;
+      margin: 15px 0 0 0;
+    }
+
+    @media (max-width: $medium) {
+      gap: $gap;
+    }
+
+    @media (max-width: $small) {
+      gap: 0;
+    }
   }
 
   &__tab {
@@ -24,7 +51,7 @@
     width: 80%;
     @include glass-effect;
     cursor: pointer;
-    margin: 15px 0;
+    margin: $margin 0;
     border-radius: $br-rad 0 0 $br-rad;
     transition: width $transition;
 
@@ -33,14 +60,38 @@
       border-radius: $br-rad;
       padding: 15px;
     }
+
+    @media (max-width: $extra-medium) {
+      width: 100%;
+      height: 80%;
+      margin: $margin 0 0 0;
+      transition: height $transition;
+      border-radius: $br-rad $br-rad 0 0;
+
+      h3 {
+        padding: 0;
+      }
+    }
   }
 
   &__tab-active {
     border-right: none;
     width: 100%;
+
     h3 {
       background-color: #4158D0;
       background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+    }
+
+    @media (max-width: $extra-medium) {
+      height: 100%;
+      border-right: 1px solid rgba(255,255,255,0.25);;
+      border-bottom: none;
+
+      h3 {
+        background-color: transparent;
+        background-image: none;
+      }
     }
   }
 
@@ -54,6 +105,15 @@
     border-radius: 0 $br-rad $br-rad 0;
     border-left: none;
     transition: $transition;
+
+    @media (max-width: $extra-medium) {
+      margin: 0 0 $margin 0;
+      width: auto;
+      border-left: 1px solid rgba(255,255,255,0.25);;
+      border-top: none;
+      border-radius: 0 $br-rad $br-rad 0;
+      border-radius: 0 0 $br-rad $br-rad;
+    }
 
     table {
       border-spacing: none;
@@ -88,6 +148,10 @@
     display: flex;
     justify-content: space-around;
     gap: $gap;
+
+    @media (max-width: $small) {
+      flex-direction: column;
+    }
   }
 
   &__user-sec {
@@ -107,19 +171,27 @@
     gap: $gap;
   }
 
-  &__settings {
-    display: flex;
-    width: 60%;
-    flex-direction: column;
-    gap: $gap;
-  }
-
   &__live-example {
     display: flex;
     flex-direction: column;
     width: 40%;
     gap: $gap;
     text-align: center;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
+  }
+
+  &__settings {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    gap: $gap;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
   }
 
   &__barcode {
@@ -130,6 +202,12 @@
 
     h3 {
       margin: 0;
+    }
+
+    @media (max-width: $large) {
+      height: 90vh;
+      width: 90vw;
+      margin: 0 0 $margin 0;
     }
   }
 

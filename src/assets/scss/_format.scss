@@ -9,6 +9,12 @@
     gap: $gap;
   }
 
+  &__info {
+    @media (max-width: $small) {
+      flex-direction: column;
+    }
+  }
+
   &__desc {
     flex-direction: column;
   }
@@ -18,15 +24,22 @@
     flex-direction: column;
     gap: $gap;
     width: 60%;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
   }
 
   &__example {
     display: flex;
     flex-direction: column;
     gap: $gap;
-    width: 40%;
     text-align: center;
     max-height: 190px;
+
+    @media (max-width: $small) {
+      width: 100%;
+    }
   }
 
   &__img-wrapper {

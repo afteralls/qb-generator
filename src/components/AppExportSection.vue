@@ -11,11 +11,11 @@
         >Сгенерировать</button>
       </div>
       <div v-if="generated" class="layout__info-wrapper">
-        <p>В окне справа находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию.<br>Если же вас всё устраивает, то выбирайте нужный формат для экспорта и пользуйтесь на здоровье!</p>
+        <p>В окне {{ currentWidth <= 900 ? 'снизу' : 'справа' }} находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию.<br>Если же вас всё устраивает, то выбирайте нужный формат для экспорта и пользуйтесь на здоровье!</p>
         <div class="_row">
           <div class="_column">
             <p>В каком формате экспортировать?</p>
-            <div class="_row">
+            <div class="_row" style="flex-direction: row;">
               <input v-model="exportFormat" id="png" value="png" type="radio" name="exportFormat">
               <label data-radio for="png">PNG</label>
               <input v-model="exportFormat" id="jpg" value="jpg" type="radio" name="exportFormat">
@@ -24,7 +24,7 @@
               <label data-radio for="svg">SVG</label>
             </div>
           </div>
-          <div class="_column" style="width: auto">
+          <div class="_column" :style="`width: ${ currentWidth <= 600 ? '100%' : 'auto' }`">
             <p>Как будет называться архив?</p>
             <input type="text" v-model="zipName" placeholder="Название архива">
           </div>
@@ -54,7 +54,7 @@ import 'table2excel'
 import { ref, watch } from 'vue'
 
 export default {
-  props: ['inputLengthHandler', 'formatName', 'count', 'generated', 'exampleFormat'],
+  props: ['inputLengthHandler', 'formatName', 'count', 'generated', 'exampleFormat', 'currentWidth'],
   emits: ['gen-graphics', 'gen-font'],
   setup (props) {
     const exportFormat = ref('png')
@@ -97,7 +97,6 @@ export default {
         img.src = url
       }
     }
-
     const getSvgs = () => {
       const zip = new JSZip()
       const zipFolderName = zipName.value
@@ -109,7 +108,6 @@ export default {
         saveAs(content, `${zipFolderName}.zip`)
       })
     }
-
     const getExcel = () => {
       const Table2Excel = window.Table2Excel
       const table2excel = new Table2Excel()

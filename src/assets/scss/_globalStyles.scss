@@ -4,18 +4,14 @@ body {
   margin: 0; padding: 0;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
-  background-color: #08AEEA;
-  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);
-}
 
-.barcode-font {
-  font-family: 'Libre Barcode EAN13 Text';
-  font-size: 120px;
-  margin: $margin;
+  @media (max-width: $medium) {
+    font-size: 0.875em;
+  }
 }
 
 .container {
-  width: 1170px;
+  width: $container-width;
   margin: auto;
   box-sizing: border-box;
 }
@@ -54,12 +50,20 @@ select {
   height: 40px;
   @include tag-settings;
   transition: 1s ease;
+
+  @media (max-width: $medium) {
+    font-size: 0.875em;
+  }
 }
 
 input {
   height: 40px;
   @include tag-settings;
   transition: 1s ease;
+
+  @media (max-width: $medium) {
+    font-size: 0.875em;
+  }
 }
 
 input[type="checkbox"] {
@@ -150,6 +154,10 @@ button:hover {
 
   h3 {
     margin: 0 $margin 0 0;
+  }
+
+  @media (max-width: $medium) {
+    margin: $margin $margin 0 15px;
   }
 }
 

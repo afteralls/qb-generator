@@ -1,8 +1,8 @@
 <template>
 <div class="container">
   <div class="to-home">
-    <router-link to="/barcode-generation-app/dist/" class="_row" style="gap: 0;">
-      <!-- barcode-generation-app/dist/ -->
+    <router-link to="/" class="_row" style="gap: 0; flex-direction: row;">
+      <!-- // barcode-generation-app/dist/ -->
       <div class="_img-wrapper"><img src="../assets/img/arrow-right.png" alt="Go back"></div>
       <h3>На главную</h3>
     </router-link>
@@ -17,19 +17,31 @@
         <div
           @click.prevent="sIdx = 1"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 1}"
-        ><div v-if="sIdx === 1" class="_step">#1</div><h3>Формат</h3></div>
+        >
+          <div v-if="sIdx === 1" class="_step">#1</div>
+          <h3>Формат</h3>
+        </div>
         <div
           @click.prevent="sIdx = 2, generate()"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
-        ><div v-if="sIdx === 2" class="_step">#2</div><h3>Содержание</h3></div>
+        >
+          <div v-if="sIdx === 2" class="_step">#2</div>
+          <h3>{{ currentWidth <= 500 ? 'Контент' : 'Содержание' }}</h3>
+        </div>
         <div
           @click.prevent="sIdx = 3"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 3}"
-        ><div v-if="sIdx === 3" class="_step">#3</div><h3>Количество</h3></div>
+        >
+          <div v-if="sIdx === 3" class="_step">#3</div>
+          <h3>{{ currentWidth <= 500 ? 'Кол-во' : 'Количество' }}</h3>
+        </div>
         <div
           @click.prevent="sIdx = 4"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 4}"
-        ><div v-if="sIdx === 4" class="_step">#4</div><h3>Генерация</h3></div>
+        >
+          <div v-if="sIdx === 4" class="_step">#4</div>
+          <h3>{{ currentWidth <= 400 ? 'Ген-ция' : 'Генерация' }}</h3>
+        </div>
       </div>
       <div class="layout__tab-content">
         <div v-if="sIdx === 1" class="layout__item">
@@ -116,7 +128,7 @@
                 </table>
               </div>
               <div class="layout__settings">
-                <div class="_row">
+                <div class="_row" style="flex-direction: row;">
                   <p>Цвет фона</p>
                   <input
                     style="width: 60%"
@@ -139,7 +151,7 @@
                   value="#ffffff00"
                 >
                 <label for="showTxt">Показать текст/код</label>
-                <div class="_row">
+                <div class="_row" style="flex-direction: row;">
                   <p>Цвет штрих-кода</p>
                   <input
                     style="width: 45%"
@@ -163,11 +175,18 @@
         <div v-else-if="sIdx === 3" class="layout__item">
           <div class="layout__user-sec">
             <div class="_row">
-              <div class="_column" style="width: 70%">
+              <div
+                class="_column"
+                :style="`width: ${currentWidth <= 600 ? '100%' : '70%'}`"
+              >
                 <h3>Какое количество штрих-кодов нужно?</h3>
                 <input type="text" class="_text" maxlength="4" placeholder="Количество" v-model="count">
               </div>
-              <div class="_column" v-if="formatName !== 'code128'" style="width: 25%">
+              <div
+                class="_column"
+                v-if="formatName !== 'code128'"
+                :style="`width: ${currentWidth <= 600 ? '100%' : '25%'}`"
+              >
                 <h3>С шагом...</h3>
                 <input type="text" class="_text" maxlength="3" placeholder="Шаг" v-model="iter">
               </div>
@@ -180,6 +199,7 @@
         </div>
         <app-export-section
           v-else-if="sIdx === 4"
+          :currentWidth="currentWidth"
           :inputLengthHandler="inputLengthHandler"
           :formatName="formatName"
           :count="count"
@@ -368,7 +388,6 @@ export default {
       }, 1)
       flags.generated = true
     }
-
     const generateExample = () => {
       flags.wrongBarcode = false
       flags.setAct = true
@@ -381,7 +400,6 @@ export default {
         })
       }, 1)
     }
-
     const toDefault = () => {
       exampleFormat.isTransparent = false
       exampleFormat.background = 'white'
@@ -391,7 +409,6 @@ export default {
         flags.setAct = false
       }, 1)
     }
-
     const generate = () => {
       inputLengthHandler.value && flags.setAct === true ? generateExample() : flags.wrongBarcode = true
     }
@@ -413,7 +430,6 @@ export default {
         }
       }
     })
-
     watch(formatName, value => {
       content.value = ''
       flags.setAct = false
@@ -458,11 +474,13 @@ export default {
       return length
     })
 
-    onMounted(() => {
-      activeFormat.value = formats.ean13
-    })
+    const currentWidth = ref(0)
+    const updateWidth = () => { currentWidth.value = window.innerWidth }
+    window.addEventListener('resize', updateWidth)
+    onMounted(() => { activeFormat.value = formats.ean13; updateWidth() })
 
     return {
+      currentWidth,
       formatName,
       content,
       activeFormat,
