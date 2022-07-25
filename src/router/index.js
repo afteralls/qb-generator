@@ -4,9 +4,8 @@ import TheGenerator from '../views/TheGenerator'
 
 const routes = [
   {
-    path: '/barcode-generation-app/dist/home',
-    component: HomePage,
-    alias: '/barcode-generation-app/dist/'
+    path: '/barcode-generation-app/dist/',
+    component: HomePage
   },
   {
     path: '/barcode-generation-app/dist/generator',

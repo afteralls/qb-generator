@@ -9,9 +9,7 @@ module.exports = defineConfig({
       display: 'standalone',
       background_color: '#2AF598'
     },
-    iconPaths: {
-      msTileImage: 'img/icons/icon-512x512.png'
-    },
+    iconPaths: null,
     icons: [
       {
         'src': 'img/icons/icon-192x192.png',

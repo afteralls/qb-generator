@@ -64,17 +64,15 @@ export default {
       const flag = props.count
       const exportFormatName = exportFormat.value
       const zipFolderName = zipName.value
+      const { width, height } = document.querySelector('[data-num]').getBBox()
       const zip = new JSZip()
 
-      for (let i = 1; i <= props.count; i++) {
+      for (let i = 1; i <= flag; i++) {
         const canvas = document.createElement('canvas')
-        const { width, height } = document.querySelector('[data-num]').getBBox()
         canvas.width = width
         canvas.height = height
-
         const ctx = canvas.getContext('2d')
         const serializer = new XMLSerializer()
-
         const svgString = serializer.serializeToString(document.querySelector(`[data-num="${i}"]`))
         const svg = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' })
         const url = URL.createObjectURL(svg)
@@ -87,11 +85,11 @@ export default {
           canvas.toBlob(function (blob) {
             zip.file(`BC-${i}.${exportFormatName}`, blob, { base64: true })
 
-            zip.generateAsync({ type: 'blob' }).then(function (content) {
-              if (i >= flag) {
+            if (flag <= i) {
+              zip.generateAsync({ type: 'blob' }).then(function (content) {
                 saveAs(content, `${zipFolderName}.zip`)
-              }
-            })
+              })
+            }
           }, `image/${exportFormatName}`)
         }
         img.src = url
