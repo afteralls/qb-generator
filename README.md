@@ -1,6 +1,6 @@
 # Генератор штрих-кодов
 > Приложение для генерации штрих-кодов в различных форматах с возможностью кастомизации и системой экспорта
-### [Перейти к приложению](https://post-apocalypse.github.io/barcode-generation-app/dist/) ###
+### [Перейти к приложению](https://post-apocalypse.github.io/barcode-gen-app/dist/) ###
 ![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/dist/img/icons/android-chrome-maskable-192x192.png?raw=true, 'Barcode')
 
 ## Доступные форматы
@@ -14,13 +14,13 @@
 ## Примеры штрих-кодов
 #### Наведите курсор на изображение для просмотра наименования формата 
 
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/src/assets/img/barcode-examples/ean13.png?raw=true, 'EAN 13')
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/src/assets/img/barcode-examples/ean8.png?raw=true, 'EAN 8')
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/src/assets/img/barcode-examples/code128.png?raw=true, 'CODE 128')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/ean13.png?raw=true, 'EAN 13')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/ean8.png?raw=true, 'EAN 8')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/code128.png?raw=true, 'CODE 128')
 
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/src/assets/img/barcode-examples/itf14.png?raw=true, 'ITF-14')
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/src/assets/img/barcode-examples/msi.png?raw=true, 'MSI')
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/src/assets/img/barcode-examples/pharmacode.png?raw=true, 'Pharmacode')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/itf14.png?raw=true, 'ITF-14')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/msi.png?raw=true, 'MSI')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/pharmacode.png?raw=true, 'Pharmacode')
 
 ## Варианты экспорта
 1. PNG

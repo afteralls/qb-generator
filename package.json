@@ -1,5 +1,5 @@
 {
-  "name": "barcode-generation-app",
+  "name": "barcode-gen-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
