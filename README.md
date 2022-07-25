@@ -1,7 +1,7 @@
 # Генератор штрих-кодов
 > Приложение для генерации штрих-кодов в различных форматах с возможностью кастомизации и системой экспорта
 ### [Перейти к приложению](https://post-apocalypse.github.io/barcode-generation-app/dist/) ###
-![Barcode](https://github.com/post-apocalypse/barcode-generation-app/blob/master/dist/img/icons/android-chrome-maskable-192x192.png?raw=true, 'Barcode')
+![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/dist/img/icons/android-chrome-maskable-192x192.png?raw=true, 'Barcode')
 
 ## Доступные форматы
 - EAN 13 — European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.
