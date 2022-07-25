@@ -14,7 +14,7 @@
             <tr><td>
               <div class="_img-wrapper">
                 <img
-                  :src="require(`../assets/img/barcode-exsamples/${formatName}.png`)"
+                  :src="require(`../assets/img/barcode-examples/${formatName}.png`)"
                   alt="Пример штрих-кода"
                 >
               </div>
