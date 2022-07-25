@@ -5,7 +5,7 @@
     <p>Приложение для генерации штрих-кодов в различных форматах</p>
     <button
       class="_btn"
-      @click.prevent="$router.push('/barcode-generation-app/dist/generator')"
+      @click.prevent="$router.push('/barcode-gen-app/dist/generator')"
     >Перейти к Генератору</button>
     <div style="display: flex; gap: 15px;">
       <div class="main-row">
@@ -15,7 +15,7 @@
         </a>
       </div>
       <div class="main-row">
-        <a href="https://github.com/post-apocalypse/barcode-generation-app">
+        <a href="https://github.com/post-apocalypse/barcode-gen-app">
           <img src="../assets/img/github.png" alt="GitHub">
           <h3>Исходный код</h3>
         </a>

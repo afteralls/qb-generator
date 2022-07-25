@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="to-home">
-    <router-link to="/barcode-generation-app/dist/" class="_row" style="gap: 0; flex-direction: row;">
+    <router-link to="/barcode-gen-app/dist/" class="_row" style="gap: 0; flex-direction: row;">
       <div class="_img-wrapper"><img src="../assets/img/arrow-right.png" alt="Go back"></div>
       <h3>На главную</h3>
     </router-link>
