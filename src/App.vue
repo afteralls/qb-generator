@@ -14,11 +14,9 @@
   &-enter-active {
     transition: all 0.5s ease;
   }
-
   &-leave-active {
     transition: transform 0.5s ease;
   }
-
   &-enter-from {
     opacity: 0;
     transform: translate(-$margin);
@@ -27,7 +25,6 @@
       transform: translateY(-$margin);
     }
   }
-
   &-leave-to {
     opacity: 0;
 
