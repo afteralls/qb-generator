@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Barcode+EAN13+Text&family=Montserrat:wght@500&display=swap');
+
+body {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+
+  @media (max-width: $medium) {
+    font-size: 0.875em;
+  }
+}
+
+a, label, button, select {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+a, a:visited {
+  color: black;
+}
+
+ul {
+  padding: 0 0 0 20px;
+  margin: 0;
+}
+
+::selection {
+  background-color: #4f13af33;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+svg {
+  width: 218px;
+  height: auto;
+}
+
+th, td {
+  background: #3f3f3f33;
+  border-spacing: none;
+}
+
+th {
+  border: 1px solid #3f3f3f77;
+  text-align: center;
+  padding: $table-gap;
+}
+
+select {
+  width: 200px;
+  height: 40px;
+  @include tag-settings;
+  transition: 1s ease;
+
+  @media (max-width: $medium) {
+    font-size: 0.875em;
+  }
+}
+
+input {
+  height: 40px;
+  @include tag-settings;
+  transition: 1s ease;
+
+  @media (max-width: $medium) {
+    font-size: 0.875em;
+  }
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+input[type="checkbox"]:checked + label::after {
+  content: '';
+  background: url('../assets/img/check.webp') center no-repeat;
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 0; left: 7px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label::after {
+  content: '';
+  background: url('../assets/img/check.webp') center no-repeat;
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0; left: 7px;
+}
+
+label {
+  padding-left: 20px;
+  position: relative;
+  transition: $transition;
+}
+
+label::before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+  margin-left: -$margin;
+  margin-right: $margin;
+  border-radius: $br-rad;
+  background-color: rgb(255, 255, 255);
+}
+
+label[data-radio]::before {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+select:hover, input:hover, button:hover {
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: $mColor;
+  background-image: linear-gradient(62deg, $mColor 0%, $sColor 100%);
+}

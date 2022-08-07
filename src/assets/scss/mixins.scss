@@ -15,12 +15,6 @@
 	@return $result;
 }
 
-@mixin all-cent {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 @mixin tag-settings {
   border-radius: $br-rad;
   font-family: 'Montserrat', sans-serif;
@@ -30,10 +24,14 @@
   padding: 0 15px;
 }
 
+@mixin all-cent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @mixin glass-effect {
-	border: 1px solid rgba(255,255,255,0.25);
 	border-radius: $br-rad;
-	border-top: 1px solid rgba(255,255,255,0.5);
 	background: rgba(255,255,255,0.2);
 	backdrop-filter: blur(10px);
 }

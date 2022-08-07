@@ -75,23 +75,12 @@
   }
 
   &__tab-active {
-    border-right: none;
     width: 100%;
-
-    h3 {
-      background-color: #4158D0;
-      background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
-    }
+    background: linear-gradient(90deg, $sColor 10%, rgba(255,255,255,0.2) 100%);
 
     @media (max-width: $extra-medium) {
       height: 100%;
-      border-right: 1px solid rgba(255,255,255,0.25);;
-      border-bottom: none;
-
-      h3 {
-        background-color: transparent;
-        background-image: none;
-      }
+      background: linear-gradient(180deg, $sColor 10%, rgba(255,255,255,0.2) 100%);
     }
   }
 
@@ -103,17 +92,22 @@
     width: 75%;
     @include glass-effect;
     border-radius: 0 $br-rad $br-rad 0;
-    border-left: none;
     transition: $transition;
 
     @media (max-width: $extra-medium) {
       margin: 0 0 $margin 0;
       width: auto;
-      border-left: 1px solid rgba(255,255,255,0.25);;
-      border-top: none;
       border-radius: 0 $br-rad $br-rad 0;
       border-radius: 0 0 $br-rad $br-rad;
+      height: 100%;
     }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: $gap;
 
     table {
       border-spacing: none;
@@ -162,13 +156,6 @@
     button {
       width: 100%;
     }
-  }
-
-  &__item {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: $gap;
   }
 
   &__live-example {
