@@ -1,54 +1,60 @@
 <template>
-  <div class="main-page">
-    <img src="../assets/img/barcode.png" alt="Штрих-код">
+<div class="main-page">
+  <img src="../assets/img/barcode.webp" alt="Штрих-код">
+  <div class="main-page__text">
     <h1>Генератор штрих-кодов</h1>
     <p>Приложение для генерации штрих-кодов в различных форматах</p>
-    <button
-      class="_btn"
-      @click.prevent="$router.push('/barcode-gen-app/dist/generator')"
-    >Перейти к Генератору</button>
-    <div style="display: flex; gap: 15px;">
-      <div class="main-row">
-        <a href="https://t.me/apocalypsecore">
-          <img src="../assets/img/telegram.png" alt="Telegram">
-          <h3>Связаться</h3>
-        </a>
-      </div>
-      <div class="main-row">
-        <a href="https://github.com/post-apocalypse/barcode-gen-app">
-          <img src="../assets/img/github.png" alt="GitHub">
-          <h3>Исходный код</h3>
-        </a>
-      </div>
-    </div>
-    <div class="main-row">
-      <h3>Написано на</h3>
-      <img src="../assets/img/logo.png" alt="Vue Logo">
-      <h3>Vue.js</h3>
+  </div>
+  <button
+    class="_btn"
+    @click.prevent="$router.push('/generator')"
+  ><h3>Перейти к Генератору</h3></button>
+  <div style="display: flex; gap: 15px;">
+    <div class="main-page__row">
+      <a class="_link" href="https://t.me/apocalypsecore">
+        <div class="_img-wrapper"><img src="../assets/img/telegram.webp" alt="Telegram"></div>
+        <h3>Связаться</h3>
+      </a>
+      <a class="_link" href="https://github.com/post-apocalypse/barcode-gen-app">
+        <div class="_img-wrapper"><img src="../assets/img/github.webp" alt="Add"></div>
+        <h3>Исходный код</h3>
+      </a>
     </div>
   </div>
+</div>
 </template>
 
 <style lang="scss">
-@import '../assets/scss/variables';
-
-a {
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-
-a, a:visited {
-  color: black;
-}
+@import '../assets/scss/main';
 
 .main-page {
-  display: flex;
+  @include all-cent;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
+  gap: $gap * 2;
+  width: 100%;
   text-align: center;
+
+  &__text {
+    @include all-cent;
+    flex-direction: column;
+    gap: $gap;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
+    padding: $gap ($gap * 3);
+
+    -webkit-mask: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 1) 7%,
+      rgba(0, 0, 0, 1) 93%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
+  &__row {
+    @include all-cent;
+    gap: $gap;
+  }
 
   h1, p, h3 {
     margin: 0;
@@ -60,17 +66,6 @@ a, a:visited {
 
   button {
     padding: 0 15px;
-  }
-}
-
-.main-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  img {
-    max-width: 30px;
-    margin: 5px;
   }
 }
 </style>

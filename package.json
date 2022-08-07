@@ -9,13 +9,12 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
-    "exceljs": "^4.3.0",
     "file-saver": "^2.0.5",
+    "firebase": "^9.9.2",
     "jsbarcode": "^3.11.5",
     "jszip": "^3.10.0",
     "maska": "^1.5.0",
     "register-service-worker": "^1.7.2",
-    "table2excel": "^1.0.4",
     "vue": "^3.2.13",
     "vue-router": "^4.1.2"
   },

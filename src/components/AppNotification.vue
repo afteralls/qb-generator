@@ -1,6 +1,6 @@
 <template>
   <div class="notification">
-    <img src="../assets/img/ntf.png" alt="Notification">
+    <img src="../assets/img/ntf.webp" alt="Notification">
     <div class="notification__text">
       <small>{{ notificationHandler }}</small>
     </div>
@@ -25,9 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/variables';
-@import '../assets/scss/mixins';
-@import '../assets/scss/_globalStyles';
+@import '../assets/scss/main';
 
 .notification {
   display: flex;

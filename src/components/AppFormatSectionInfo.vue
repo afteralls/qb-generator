@@ -3,7 +3,7 @@
     <div class="format">
       <div class="format__desc">
         <h3> Краткое описание</h3>
-        <div class="_red-mark">
+        <div class="_mark">
           <p>{{ activeFormat.desc }}</p>
         </div>
       </div>
@@ -14,7 +14,7 @@
             <tr><td>
               <div class="_img-wrapper">
                 <img
-                  :src="require(`../assets/img/barcode-examples/${formatName}.png`)"
+                  :src="require(`../assets/img/barcode-examples/${formatName}.webp`)"
                   alt="Пример штрих-кода"
                 >
               </div>

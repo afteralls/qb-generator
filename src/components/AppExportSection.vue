@@ -8,41 +8,37 @@
           class="_btn"
           @click.prevent="$emit('gen-graphics')"
           :disabled="!inputLengthHandler"
-        >Сгенерировать</button>
+        ><h3>Сгенерировать</h3></button>
       </div>
-      <div v-if="generated" class="layout__info-wrapper">
-        <p>В окне {{ currentWidth <= 900 ? 'снизу' : 'справа' }} находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию.<br>Если же вас всё устраивает, то выбирайте нужный формат для экспорта и пользуйтесь на здоровье!</p>
-        <div class="_row">
-          <div class="_column">
-            <p>В каком формате экспортировать?</p>
-            <div class="_row" style="flex-direction: row;">
-              <input v-model="exportFormat" id="png" value="png" type="radio" name="exportFormat">
-              <label data-radio for="png">PNG</label>
-              <input v-model="exportFormat" id="jpg" value="jpg" type="radio" name="exportFormat">
-              <label data-radio for="jpg">JPG</label>
-              <input v-model="exportFormat" id="svg" value="svg" type="radio" name="exportFormat">
-              <label data-radio for="svg">SVG</label>
+      <Transition>
+        <div v-if="generated" class="layout__info-wrapper">
+          <p>В окне {{ currentWidth <= 900 ? 'снизу' : 'справа' }} находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию</p>
+          <div class="_row">
+            <div class="_column">
+              <p>В каком формате экспортировать?</p>
+              <div class="_row" style="flex-direction: row;">
+                <input v-model="exportFormat" id="png" value="png" type="radio" name="exportFormat">
+                <label data-radio for="png">PNG</label>
+                <input v-model="exportFormat" id="jpg" value="jpg" type="radio" name="exportFormat">
+                <label data-radio for="jpg">JPG</label>
+                <input v-model="exportFormat" id="svg" value="svg" type="radio" name="exportFormat">
+                <label data-radio for="svg">SVG</label>
+              </div>
+            </div>
+            <div class="_column" :style="`width: ${ currentWidth <= 600 ? '100%' : 'auto' }`">
+              <p>Как будет называться архив?</p>
+              <input type="text" v-model="zipName" placeholder="Название архива">
             </div>
           </div>
-          <div class="_column" :style="`width: ${ currentWidth <= 600 ? '100%' : 'auto' }`">
-            <p>Как будет называться архив?</p>
-            <input type="text" v-model="zipName" placeholder="Название архива">
+          <div class="_row">
+            <button
+              class="_btn"
+              style="width: 100%"
+              @click.prevent="exportFormat !== 'svg' ? exportHandler() : getSvgs()"
+            ><h3>Экспортировать в графическом формате</h3></button>
           </div>
         </div>
-        <div class="_row">
-          <button
-            class="_btn"
-            style="width: 100%"
-            @click.prevent="exportFormat !== 'svg' ? exportHandler() : getSvgs()"
-          >Экспортировать в графическом формате</button>
-          <button
-            class="_btn"
-            style="width: 100%"
-            v-if="formatName === 'ean13' && exampleFormat.showText === true"
-            @click.prevent="getExcel"
-          >Экспортировать в MS Excel</button>
-        </div>
-      </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -50,7 +46,6 @@
 <script>
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import 'table2excel'
 import { ref, watch } from 'vue'
 
 export default {
