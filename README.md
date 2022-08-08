@@ -1,7 +1,7 @@
 # Генератор штрих-кодов
 > Приложение для генерации штрих-кодов в различных форматах с возможностью кастомизации и системой экспорта
 ### [Перейти к приложению](https://post-apocalypse.github.io/barcode-gen-app/dist/) ###
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/dist/img/icons/android-chrome-maskable-192x192.webp?raw=true, 'Barcode')
+![Barcode](https://raw.githubusercontent.com/post-apocalypse/barcode-gen-app/master/src/assets/img/qr.webp?raw=true, 'Barcode')
 
 ## Доступные форматы
 - EAN 13 — European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.
@@ -23,11 +23,8 @@
 ![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/pharmacode.webp?raw=true, 'Pharmacode')
 
 ## Варианты экспорта
-1. PNG
-2. JPG
-3. SVG
-
-Также для формата EAN 13 есть возможность экспорта в виде Microsoft Excel Таблицы, но для этого необходимо дополнительно устанавливать соответствующий шрифт
-
+1. PNG — Растровый формат хранения графической информации, использующий сжатие без потерь по алгоритму Deflate.
+2. JPG — Один из популярных растровых графических форматов, применяемый для хранения фотографий и подобных им изображений.
+3. SVG — Язык разметки масштабируемой векторной графики, созданный Консорциумом Всемирной паутины (W3C) и входящий в подмножество расширяемого языка разметки XML, предназначен для описания двумерной векторной и смешанной векторно/растровой графики в формате XML.
 ___
-### Написано на Vue.js в качестве Pet проекта, по любым вопросам: [Telegram](https://t.me/apocalypsecore)
+### По любым вопросам: [Telegram](https://t.me/apocalypsecore)
