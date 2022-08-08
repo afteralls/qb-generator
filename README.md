@@ -1,6 +1,6 @@
 # Генератор штрих-кодов
 > Приложение для генерации штрих-кодов в различных форматах с возможностью кастомизации и системой экспорта
-### [Перейти к приложению](https://post-apocalypse.github.io/barcode-gen-app/dist/) ###
+### [Перейти к приложению](https://barcodegenerator.web.app/) ###
 ![Barcode](https://raw.githubusercontent.com/post-apocalypse/barcode-gen-app/master/src/assets/img/qr.webp?raw=true, 'Barcode')
 
 ## Доступные форматы
