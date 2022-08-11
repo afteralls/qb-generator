@@ -73,6 +73,12 @@
       transition: height $transition;
       border-radius: $br-rad $br-rad 0 0;
 
+      &:hover {
+        width: 100%;
+        height: 85%;
+        background: linear-gradient(90deg, rgba(0, 119, 73, 0.7) 10%, rgba(255,255,255,0.2) 100%);
+      }
+
       h3 {
         padding: 0;
       }
@@ -92,6 +98,12 @@
     @media (max-width: $extra-medium) {
       height: 100%;
       background: linear-gradient(180deg, $sColor 10%, rgba(255,255,255,0.2) 100%);
+
+      &:hover {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0, 119, 73, 0.7) 10%, rgba(255,255,255,0.2) 100%);
+      }
     }
   }
 
