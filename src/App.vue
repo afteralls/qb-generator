@@ -10,34 +10,14 @@
 <style lang="scss">
 @import './assets/scss/variables';
 
-.v {
-  &-enter-active {
-    transition: all 0.5s ease;
-  }
-  &-leave-active {
-    transition: transform 0.5s ease;
-  }
-  &-enter-from {
-    opacity: 0;
-    transform: translate(-$margin);
-
-    @media (max-width: $extra-medium) {
-      transform: translateY(-$margin);
-    }
-  }
-  &-leave-to {
-    opacity: 0;
-
-    @media (max-width: $extra-medium) {
-      transform: translateY(-$margin);
-    }
-  }
-}
-
 .route {
   &-enter-from {
     opacity: 0;
     transform: translateX(100px);
+
+    @media (max-width: $extra-medium) {
+      transform: none;
+    }
   }
   &-enter-active {
     transition: all 0.2s ease-out;
@@ -45,6 +25,10 @@
   &-leave-to {
     opacity: 0;
     transform: translateX(-100px);
+
+    @media (max-width: $extra-medium) {
+      transform: none;
+    }
   }
   &-leave-active {
     transition: all 0.2s ease-in;

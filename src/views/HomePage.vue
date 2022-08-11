@@ -56,16 +56,8 @@
     gap: $gap;
   }
 
-  h1, p, h3 {
-    margin: 0;
-  }
-
-  img {
-    max-width: 200px;
-  }
-
-  button {
-    padding: 0 15px;
-  }
+  h1, p, h3 { margin: 0; }
+  img { max-width: 200px; }
+  button { padding: 0 15px; }
 }
 </style>

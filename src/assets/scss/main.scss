@@ -240,18 +240,3 @@
     margin: $margin;
   }
 }
-
-._rel {
-  @include all-cent;
-  flex-direction: column;
-  position: relative;
-  gap: $gap;
-  width: 100%;
-  min-height: 310px;
-}
-
-._abs {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}

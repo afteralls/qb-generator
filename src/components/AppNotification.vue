@@ -1,54 +1,50 @@
 <template>
-  <div class="notification">
-    <img src="../assets/img/ntf.webp" alt="Notification">
-    <div class="notification__text">
-      <small>{{ notificationHandler }}</small>
-    </div>
+<Transition name="ntf" mode="out-in">
+  <div v-if="$store.getters.getMessage" class="notification">
+    <div class="notification__text"><p>{{ $store.getters.getMessage }}</p></div>
   </div>
+</Transition>
 </template>
-
-<script>
-import { computed } from 'vue'
-
-export default {
-  props: ['formatName'],
-  setup (props) {
-    const notificationHandler = computed(() => {
-      return props.formatName === 'code128'
-        ? 'Доступен только ввод чисел и латинских символов'
-        : 'Доступен только ввод чисел'
-    })
-
-    return { notificationHandler }
-  }
-}
-</script>
 
 <style lang="scss">
 @import '../assets/scss/main';
 
 .notification {
   display: flex;
-  box-sizing: border-box;
   align-items: center;
+  text-align: center;
   position: absolute;
-  top: -65px;
-  left: 50%;
-  transform: translateX(-50%);
+  top: -70px;
   margin: $margin;
-  height: 50px;
-  width: auto;
-  z-index: 5;
-  gap: $gap;
+  z-index: 2;
+
+  p { margin: 0 }
 
   &__text {
     @include glass-effect;
-    padding: 15px;
+    padding: $gap;
   }
 
   img {
-    height: 50px;
-    width: auto;
+    max-width: 50px;
+    padding: $gap;
+  }
+}
+
+.ntf {
+  &-enter-from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  &-enter-active {
+    transition: all 0.2s ease-out;
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  &-leave-active {
+    transition: all 0.2s ease-in;
   }
 }
 </style>

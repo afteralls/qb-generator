@@ -10,7 +10,7 @@
           :disabled="!inputLengthHandler"
         ><h3>Сгенерировать</h3></button>
       </div>
-      <Transition>
+      <Transition name="tabs" mode="out-in">
         <div v-if="generated" class="layout__info-wrapper">
           <p>В окне {{ currentWidth <= 900 ? 'снизу' : 'справа' }} находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию</p>
           <div class="_row">
@@ -90,6 +90,7 @@ export default {
         img.src = url
       }
     }
+
     const getSvgs = () => {
       const zip = new JSZip()
       const zipFolderName = zipName.value
@@ -100,11 +101,6 @@ export default {
       zip.generateAsync({ type: 'blob' }).then(function (content) {
         saveAs(content, `${zipFolderName}.zip`)
       })
-    }
-    const getExcel = () => {
-      const Table2Excel = window.Table2Excel
-      const table2excel = new Table2Excel()
-      table2excel.export(document.querySelectorAll('table'))
     }
 
     watch(exportFormat, value => {
@@ -119,8 +115,7 @@ export default {
       exportFormat,
       zipName,
       exportHandler,
-      getSvgs,
-      getExcel
+      getSvgs
     }
   }
 }

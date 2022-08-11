@@ -5,10 +5,7 @@
     <h3>На Главную</h3>
   </router-link>
   <div class="layout">
-    <app-notification
-      v-if="flags.hide === true"
-      :formatName="formatName"
-    ></app-notification>
+    <app-notification />
     <form class="layout__form">
       <div class="layout__tabs">
         <div
@@ -19,7 +16,7 @@
           <h3>Формат</h3>
         </div>
         <div
-          @click.prevent="sIdx = 2, generate()"
+          @click.prevent="sIdx = 2, generate(300)"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
         >
           <div v-if="sIdx === 2" class="_step">#2</div>
@@ -41,186 +38,188 @@
         </div>
       </div>
       <div class="layout__tab-content">
-        <div v-if="sIdx === 1" class="layout__item">
-          <div class="layout__user-sec">
-            <h3>Выберите стандарт штрих-кода</h3>
-            <div class="format__wrapper">
-              <select v-model="formatName">
-                <option value="ean13">EAN 13</option>
-                <option value="ean8">EAN 8</option>
-                <option value="code128">CODE 128</option>
-                <option value="itf14">ITF-14</option>
-                <option value="msi">MSI</option>
-                <option value="pharmacode">Pharmacode</option>
-              </select>
+        <Transition name="tabs" mode="out-in">
+          <div v-if="sIdx === 1" class="layout__item">
+            <div class="layout__user-sec">
+              <h3>Выберите стандарт штрих-кода</h3>
+              <div class="format__wrapper">
+                <select v-model="formatName">
+                  <option value="ean13">EAN 13</option>
+                  <option value="ean8">EAN 8</option>
+                  <option value="code128">CODE 128</option>
+                  <option value="itf14">ITF-14</option>
+                  <option value="msi">MSI</option>
+                  <option value="pharmacode">Pharmacode</option>
+                </select>
+              </div>
             </div>
+            <app-format-section-info
+              :activeFormat="activeFormat"
+              :formatName="formatName"
+            ></app-format-section-info>
           </div>
-          <app-format-section-info
-            :activeFormat="activeFormat"
-            :formatName="formatName"
-          ></app-format-section-info>
-        </div>
-        <div v-else-if="sIdx === 2" class="layout__item">
-          <div class="layout__user-sec">
-          <h3>Введите содержимое штрих-кода</h3>
-          <div v-if="!formatNameHandler" class="_input-wrapper">
-            <input
-              class="_text"
-              type="text"
-              v-maska="formatName === 'code128' ? 'X*' : '#*'"
-              :maxlength="activeFormat.settings.maxlength.text"
-              :placeholder="activeFormat.settings.placeholder.text"
-              v-model="data.text"
-            >
-            </div>
-          <div v-else class="_format-group">
-            <div class="_input-wrapper">
-              <input
-                type="text"
-                :maxlength="activeFormat.settings.maxlength.first"
-                class="_input-code"
-                v-maska="'#*'"
-                :placeholder="activeFormat.settings.placeholder.first"
-                v-model="data.prefix"
-              >
-            </div>
-            <div class="_input-wrapper">
-              <input
-                type="text"
-                :maxlength="activeFormat.settings.maxlength.second"
-                class="_input-code"
-                v-maska="'#*'"
-                :placeholder="activeFormat.settings.placeholder.second"
-                v-model="data.corpCode"
-              >
-            </div>
-            <div v-if="formatName === 'ean13'" class="_input-wrapper">
-              <input
-                type="text"
-                :maxlength="activeFormat.settings.maxlength.third"
-                class="_input-code"
-                v-maska="'#*'"
-                :placeholder="activeFormat.settings.placeholder.third"
-                v-model="data.serialNumber"
-              >
-            </div>
-          </div>
-          </div>
-          <div class="_rel">
-            <app-content-section-info
-              v-if="flags.setAct === false"
-              @gen-ex="generateExample"
-              :inputLengthHandler="inputLengthHandler"
-            ></app-content-section-info>
-            <div v-else class="layout__info-wrapper">
-              <h3>Расширенные настройки</h3>
-              <div class="layout__info-wrapper-row">
-                <div class="layout__live-example">
-                  <table id="table">
-                    <tr><th>Пример штрих-кода</th></tr>
-                    <tr><td>
-                      <div class="_img-wrapper">
-                        <p v-if="flags.wrongBarcode">Проверьте корректность содержимого</p>
-                        <img v-else id="example">
-                      </div>
-                    </td></tr>
-                  </table>
+          <div v-else-if="sIdx === 2" class="layout__item">
+            <div class="layout__user-sec">
+              <h3>Введите содержимое штрих-кода</h3>
+              <div v-if="!formatNameHandler" class="_input-wrapper">
+                <input
+                  class="_text"
+                  type="text"
+                  v-maska="formatName === 'code128' ? 'X*' : '#*'"
+                  :maxlength="activeFormat.settings.maxlength.text"
+                  :placeholder="activeFormat.settings.placeholder.text"
+                  v-model="data.text"
+                >
+              </div>
+              <div v-else class="_format-group">
+                <div class="_input-wrapper">
+                  <input
+                    type="text"
+                    :maxlength="activeFormat.settings.maxlength.first"
+                    class="_input-code"
+                    v-maska="'#*'"
+                    :placeholder="activeFormat.settings.placeholder.first"
+                    v-model="data.prefix"
+                  >
                 </div>
-                <div class="layout__settings">
-                  <div class="_row" style="flex-direction: row;">
-                    <p>Цвет фона</p>
-                    <input
-                      style="width: 60%"
-                      type="text"
-                      @input="exampleFormat.isTransparent = false"
-                      v-model="exampleFormat.background"
-                      placeholder="'black' или '#ffffff'"
-                    >
-                  </div>
+                <div class="_input-wrapper">
                   <input
-                    v-model="exampleFormat.isTransparent"
-                    id="addWhiteBack"
-                    type="checkbox"
+                    type="text"
+                    :maxlength="activeFormat.settings.maxlength.second"
+                    class="_input-code"
+                    v-maska="'#*'"
+                    :placeholder="activeFormat.settings.placeholder.second"
+                    v-model="data.corpCode"
                   >
-                  <label for="addWhiteBack">Сделать фон прозрачным</label>
+                </div>
+                <div v-if="formatName === 'ean13'" class="_input-wrapper">
                   <input
-                    v-model="exampleFormat.showText"
-                    type="checkbox"
-                    id="showTxt"
-                    value="#ffffff00"
+                    type="text"
+                    :maxlength="activeFormat.settings.maxlength.third"
+                    class="_input-code"
+                    v-maska="'#*'"
+                    :placeholder="activeFormat.settings.placeholder.third"
+                    v-model="data.serialNumber"
                   >
-                  <label for="showTxt">Показать текст/код</label>
-                  <div class="_row" style="flex-direction: row;">
-                    <p>Цвет штрих-кода</p>
-                    <input
-                      style="width: 45%"
-                      v-model="exampleFormat.lineColor"
-                      type="text"
-                      placeholder="'black' или '#ffffff'"
-                    >
-                  </div>
                 </div>
               </div>
-              <button
-                @click.prevent="toDefault"
-                class="_btn"
-              ><h3>Отключить расширенные настройки</h3></button>
+            </div>
+            <Transition name="tabs" mode="out-in">
+              <app-content-section-info
+                v-if="flags.setAct === false"
+                @gen-ex="generateExample(300)"
+                :inputLengthHandler="inputLengthHandler"
+              />
+              <div v-else class="layout__info-wrapper">
+                <h3>Расширенные настройки</h3>
+                <div class="layout__info-wrapper-row">
+                  <div class="layout__live-example">
+                    <table id="table">
+                      <tr><th>Пример штрих-кода</th></tr>
+                      <tr><td>
+                        <div class="_img-wrapper">
+                          <p v-if="flags.wrongBarcode">Проверьте корректность содержимого</p>
+                          <img v-else id="example">
+                        </div>
+                      </td></tr>
+                    </table>
+                  </div>
+                  <div class="layout__settings">
+                    <div class="_row" style="flex-direction: row;">
+                      <p>Цвет фона</p>
+                      <input
+                        style="width: 60%"
+                        type="text"
+                        @input="exampleFormat.isTransparent = false"
+                        v-model="exampleFormat.background"
+                        placeholder="'black' или '#ffffff'"
+                      >
+                    </div>
+                    <input
+                      v-model="exampleFormat.isTransparent"
+                      id="addWhiteBack"
+                      type="checkbox"
+                    >
+                    <label for="addWhiteBack">Сделать фон прозрачным</label>
+                    <input
+                      v-model="exampleFormat.showText"
+                      type="checkbox"
+                      id="showTxt"
+                      value="#ffffff00"
+                    >
+                    <label for="showTxt">Показать текст/код</label>
+                    <div class="_row" style="flex-direction: row;">
+                      <p>Цвет штрих-кода</p>
+                      <input
+                        style="width: 45%"
+                        v-model="exampleFormat.lineColor"
+                        type="text"
+                        placeholder="'black' или '#ffffff'"
+                      >
+                    </div>
+                  </div>
+                </div>
+                <button
+                  @click.prevent="toDefault"
+                  class="_btn"
+                ><h3>Отключить расширенные настройки</h3></button>
+                <div class="_small-text">
+                  <p>*&nbsp;</p>
+                  <small>При отключении расширенных настроек все выбранные Вами параметры будут сброшены</small>
+                </div>
+              </div>
+            </Transition>
+          </div>
+          <div v-else-if="sIdx === 3" class="layout__item">
+            <div class="layout__user-sec">
+              <div class="_row">
+                <div
+                  class="_column"
+                  :style="`width: ${currentWidth <= 600 ? '100%' : '70%'}`"
+                >
+                  <h3>Какое количество штрих-кодов нужно?</h3>
+                  <input
+                    type="text"
+                    v-maska="'#*'"
+                    class="_text"
+                    maxlength="4"
+                    placeholder="Количество"
+                    v-model="count"
+                  >
+                </div>
+                <div
+                  class="_column"
+                  v-if="formatName !== 'code128'"
+                  :style="`width: ${currentWidth <= 600 ? '100%' : '25%'}`"
+                >
+                  <h3>С шагом...</h3>
+                  <input
+                    type="text"
+                    class="_text"
+                    v-maska="'#*'"
+                    maxlength="3"
+                    placeholder="Шаг"
+                    v-model="iter"
+                  >
+                </div>
+              </div>
               <div class="_small-text">
-                <p>*&nbsp;</p>
-                <small>При отключении расширенных настроек все выбранные Вами параметры будут сброшены</small>
+                <p>*&nbsp;</p><small>По умолчанию значения равны 1</small>
               </div>
             </div>
+            <app-count-section-info></app-count-section-info>
           </div>
-        </div>
-        <div v-else-if="sIdx === 3" class="layout__item">
-          <div class="layout__user-sec">
-            <div class="_row">
-              <div
-                class="_column"
-                :style="`width: ${currentWidth <= 600 ? '100%' : '70%'}`"
-              >
-                <h3>Какое количество штрих-кодов нужно?</h3>
-                <input
-                  type="text"
-                  v-maska="'#*'"
-                  class="_text"
-                  maxlength="4"
-                  placeholder="Количество"
-                  v-model="count"
-                >
-              </div>
-              <div
-                class="_column"
-                v-if="formatName !== 'code128'"
-                :style="`width: ${currentWidth <= 600 ? '100%' : '25%'}`"
-              >
-                <h3>С шагом...</h3>
-                <input
-                  type="text"
-                  class="_text"
-                  v-maska="'#*'"
-                  maxlength="3"
-                  placeholder="Шаг"
-                  v-model="iter"
-                >
-              </div>
-            </div>
-            <div class="_small-text">
-              <p>*&nbsp;</p><small>По умолчанию значения равны 1</small>
-            </div>
-          </div>
-          <app-count-section-info></app-count-section-info>
-        </div>
-        <app-export-section
-          v-else-if="sIdx === 4"
-          :currentWidth="currentWidth"
-          :inputLengthHandler="inputLengthHandler"
-          :formatName="formatName"
-          :count="count"
-          :generated="flags.generated"
-          :exampleFormat="exampleFormat"
-          @gen-graphics="generateGraphics"
-        />
+          <app-export-section
+            v-else-if="sIdx === 4"
+            :currentWidth="currentWidth"
+            :inputLengthHandler="inputLengthHandler"
+            :formatName="formatName"
+            :count="count"
+            :generated="flags.generated"
+            :exampleFormat="exampleFormat"
+            @gen-graphics="generateGraphics"
+          />
+        </Transition>
       </div>
     </form>
     <app-barcode-demo
@@ -239,12 +238,14 @@ import AppCountSectionInfo from '../components/AppCountSectionInfo'
 import AppExportSection from '../components/AppExportSection'
 import AppBarcodeDemo from '../components/AppBarcodeDemo'
 import { ref, reactive, onMounted, computed, watch } from 'vue'
+import { useStore } from 'vuex'
 import JsBarcode from 'jsbarcode'
 
 export default {
   setup () {
     const formatName = ref('ean13')
     const content = ref('')
+    const store = useStore()
     const activeFormat = ref({})
     const count = ref(null)
     const iter = ref(null)
@@ -377,7 +378,6 @@ export default {
     })
     const sIdx = ref(1)
     const flags = reactive({
-      hide: false,
       isCorrect: false,
       wrongBarcode: false,
       generated: false,
@@ -402,7 +402,8 @@ export default {
       }, 1)
       flags.generated = true
     }
-    const generateExample = () => {
+
+    const generateExample = delay => {
       flags.wrongBarcode = false
       flags.setAct = true
       setTimeout(() => {
@@ -412,8 +413,9 @@ export default {
           lineColor: exampleFormat.lineColor,
           displayValue: exampleFormat.showText
         })
-      }, 1)
+      }, delay || 1)
     }
+
     const toDefault = () => {
       exampleFormat.isTransparent = false
       exampleFormat.background = 'white'
@@ -423,23 +425,32 @@ export default {
         flags.setAct = false
       }, 1)
     }
-    const generate = () => {
-      inputLengthHandler.value && flags.setAct === true ? generateExample() : flags.wrongBarcode = true
+
+    const generate = delay => {
+      inputLengthHandler.value && flags.setAct === true
+        ? generateExample(delay)
+        : flags.wrongBarcode = true
     }
 
     watch(() => [data.value.prefix, data.value.corpCode, data.value.serialNumber, data.value.text], (value) => {
       for (let i = 0; i < Object.keys(data).length - 1; i++) {
         if (formatNameHandler.value) {
           content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
-          if (!value[i].match(/[0-9]/) && value[i] !== '') { flags.hide = true }
+          if (!value[i].match(/[0-9]/) && value[i] !== '') {
+            store.dispatch('setNotification', 'Доступен только ввод чисел')
+          }
           generate()
         } else if (formatName.value === 'code128') {
           content.value = data.value.text
-          if (!value[3].match(/[a-zA-Z0-9]/) && value[3] !== '') { flags.hide = true }
+          if (!value[3].match(/[a-zA-Z0-9]/) && value[3] !== '') {
+            store.dispatch('setNotification', 'Доступен только ввод чисел и латинских символов')
+          }
           generate()
         } else {
           content.value = data.value.text
-          if (!value[i].match(/[0-9]/) && value[i] !== '') { flags.hide = true }
+          if (!value[i].match(/[0-9]/) && value[i] !== '') {
+            store.dispatch('setNotification', 'Доступен только ввод чисел')
+          }
           generate()
         }
       }
@@ -472,9 +483,6 @@ export default {
       !inputLengthHandler.value
         ? flags.wrongBarcode = true
         : flags.wrongBarcode = false
-    })
-    watch(() => flags.hide, (value) => {
-      value ? setTimeout(() => { flags.hide = false }, 5000) : flags.hide = false
     })
 
     const formatNameHandler = computed(() => ['ean13', 'ean8', 'itf14'].includes(formatName.value))
@@ -526,4 +534,29 @@ export default {
 <style lang="scss">
 @import '../assets/scss/main';
 @import '../assets/scss/_layoutStyles';
+
+.tabs {
+  &-enter-from {
+    opacity: 0;
+    transform: translateX(-10px);
+
+    @media (max-width: $extra-medium) {
+      transform: none;
+    }
+  }
+  &-enter-active {
+    transition: all 0.2s ease-out;
+  }
+  &-leave-to {
+    opacity: 0;
+    transform: translateX(10px);
+
+    @media (max-width: $extra-medium) {
+      transform: none;
+    }
+  }
+  &-leave-active {
+    transition: all 0.2s ease-in;
+  }
+}
 </style>

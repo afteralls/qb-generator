@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import './registerServiceWorker.js'
-import Maska from 'maska'
 import router from './router'
+import store from './store'
+import maska from 'maska'
 
 import { initializeApp } from 'firebase/app'
 
@@ -16,7 +17,4 @@ const firebaseConfig = {
 }
 
 initializeApp(firebaseConfig)
-createApp(App)
-  .use(Maska)
-  .use(router)
-  .mount('#app')
+createApp(App).use(store).use(router).use(maska).mount('#app')

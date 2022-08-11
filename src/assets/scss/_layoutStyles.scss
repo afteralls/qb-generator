@@ -53,7 +53,12 @@
     cursor: pointer;
     margin: $margin 0;
     border-radius: $br-rad 0 0 $br-rad;
-    transition: width $transition;
+    transition: all $transition;
+
+    &:hover {
+      width: 85%;
+      background: linear-gradient(90deg, rgba(0, 119, 73, 0.7) 10%, rgba(255,255,255,0.2) 100%);
+    }
 
     h3 {
       transition: $transition;
@@ -76,7 +81,13 @@
 
   &__tab-active {
     width: 100%;
+    transition: all $transition;
     background: linear-gradient(90deg, $sColor 10%, rgba(255,255,255,0.2) 100%);
+
+    &:hover {
+      width: 100%;
+      background: linear-gradient(90deg, rgba(0, 119, 73, 0.7) 10%, rgba(255,255,255,0.2) 100%);
+    }
 
     @media (max-width: $extra-medium) {
       height: 100%;
@@ -108,6 +119,7 @@
     flex-direction: column;
     width: 100%;
     gap: $gap;
+    transition: $transition;
 
     table {
       border-spacing: none;
@@ -136,6 +148,7 @@
     justify-content: space-around;
     height: 100%;
     gap: $gap;
+    transition: $transition;
   }
 
   &__info-wrapper-row {
