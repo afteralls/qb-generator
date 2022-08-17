@@ -1,9 +1,9 @@
 <template>
-<Transition name="ntf" mode="out-in">
-  <div v-if="$store.getters.getMessage" class="notification">
-    <div class="notification__text"><p>{{ $store.getters.getMessage }}</p></div>
-  </div>
-</Transition>
+  <Transition name="ntf" mode="out-in">
+    <div v-if="$store.getters.getMessage" class="notification">
+      <div class="notification__text"><p>{{ $store.getters.getMessage }}</p></div>
+    </div>
+  </Transition>
 </template>
 
 <style lang="scss">
