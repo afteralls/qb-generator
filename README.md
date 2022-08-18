@@ -12,11 +12,22 @@
 - Pharmacode — Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.
 
 ## Примеры штрих-кодов
-![examples](https://user-images.githubusercontent.com/106645309/185174398-6ed9b96f-746d-4ac9-97db-e88234663c33.png)
+![Примеры](https://user-images.githubusercontent.com/106645309/185174398-6ed9b96f-746d-4ac9-97db-e88234663c33.png)
 
 ## Варианты экспорта
 1. PNG — Растровый формат хранения графической информации, использующий сжатие без потерь по алгоритму Deflate.
 2. JPG — Один из популярных растровых графических форматов, применяемый для хранения фотографий и подобных им изображений.
 3. SVG — Язык разметки масштабируемой векторной графики.
+
+## Демо
+[Barcode Generator](https://user-images.githubusercontent.com/106645309/185414250-435b70fa-e9f6-40b8-bcb8-a7bbb90b3bf0.webm)
+
+## Используемые библиотеки
+Данное приложение написано на [Vue](https://www.npmjs.com/package/vue) совместно с [Vuex](https://www.npmjs.com/package/vuex) и [Vue Router](https://www.npmjs.com/package/vue-router) из экосистемы фреймворка.
+- [file-saver](https://www.npmjs.com/package/file-saver) —  для сохранения сгенерированных штрих-кодов.
+- [jsbarcode](https://www.npmjs.com/package/jsbarcode) — для генерации штрих-кодов.
+- [jszip](https://www.npmjs.com/package/jszip) — для создания архивов.
+- [maska](https://www.npmjs.com/package/maska) — для валидации полей ввода.
 ___
 ### По любым вопросам: [Telegram](https://t.me/apocalypsecore)
+
