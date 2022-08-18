@@ -1,6 +1,6 @@
 # Генератор штрих-кодов
 > Приложение для генерации штрих-кодов в различных форматах с возможностью кастомизации и системой экспорта
-### [Перейти к приложению](https://barcodegenerator.web.app/) ###
+### [Перейти к приложению](https://barcodegen.web.app/) ###
 ![Barcode](https://raw.githubusercontent.com/post-apocalypse/barcode-gen-app/master/src/assets/img/qr.webp?raw=true, 'Barcode')
 
 ## Доступные форматы
@@ -12,19 +12,11 @@
 - Pharmacode — Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.
 
 ## Примеры штрих-кодов
-#### Наведите курсор на изображение для просмотра наименования формата 
-
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/ean13.webp?raw=true, 'EAN 13')
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/ean8.webp?raw=true, 'EAN 8')
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/code128.webp?raw=true, 'CODE 128')
-
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/itf14.webp?raw=true, 'ITF-14')
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/msi.webp?raw=true, 'MSI')
-![Barcode](https://github.com/post-apocalypse/barcode-gen-app/blob/master/src/assets/img/barcode-examples/pharmacode.webp?raw=true, 'Pharmacode')
+![examples](https://user-images.githubusercontent.com/106645309/185174398-6ed9b96f-746d-4ac9-97db-e88234663c33.png)
 
 ## Варианты экспорта
 1. PNG — Растровый формат хранения графической информации, использующий сжатие без потерь по алгоритму Deflate.
 2. JPG — Один из популярных растровых графических форматов, применяемый для хранения фотографий и подобных им изображений.
-3. SVG — Язык разметки масштабируемой векторной графики, созданный Консорциумом Всемирной паутины (W3C) и входящий в подмножество расширяемого языка разметки XML, предназначен для описания двумерной векторной и смешанной векторно/растровой графики в формате XML.
+3. SVG — Язык разметки масштабируемой векторной графики.
 ___
 ### По любым вопросам: [Telegram](https://t.me/apocalypsecore)
