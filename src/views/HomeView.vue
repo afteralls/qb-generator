@@ -17,7 +17,7 @@
         </a>
         <a class="_link" href="https://github.com/post-apocalypse/barcode-gen-app">
           <div class="_img-wrapper"><img src="../assets/img/github.webp" alt="Add"></div>
-          <h3>Sourse</h3>
+          <h3>Source</h3>
         </a>
       </div>
     </div>

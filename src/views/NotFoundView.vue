@@ -2,8 +2,8 @@
   <div class="not-found">
     <img src="../assets/img/barcode.webp" alt="Штрих-код">
     <div class="not-found__info">
-      <h1>Oops... It seems you are lost</h1>
-      <p>The page you were trying to find was not found</p>
+      <h1>Oops... It seems you're lost</h1>
+      <p>The page you were trying to find wasn't found</p>
       <router-link class="_link" style="max-width: 250px;" to="/">
         <div class="_img-wrapper"><img src="../assets/img/arrow-left.webp" alt="To Home"></div>
         <h3>Go to Main Page</h3>

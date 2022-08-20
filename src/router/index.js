@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/:notFound(.*)',
-    name: 'Oops... It seems you are lost',
+    name: "Oops... It seems you're lost",
     component: NotFoundView
   }
 ]
