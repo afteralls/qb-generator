@@ -2,22 +2,22 @@
   <div class="main-page">
     <img src="../assets/img/barcode.webp" alt="Штрих-код">
     <div class="main-page__text">
-      <h1>Генератор штрих-кодов</h1>
-      <p>Приложение для генерации штрих-кодов в различных форматах</p>
+      <h1>Barcode Generator</h1>
+      <p>Аpplication for generating your own barcodes</p>
     </div>
     <button
       class="_btn"
       @click.prevent="$router.push('/generator')"
-    ><h3>Перейти к Генератору</h3></button>
+    ><h3>Go to Generator</h3></button>
     <div style="display: flex; gap: 15px;">
       <div class="main-page__row">
         <a class="_link" href="https://t.me/apocalypsecore">
           <div class="_img-wrapper"><img src="../assets/img/telegram.webp" alt="Telegram"></div>
-          <h3>Связаться</h3>
+          <h3>Text me</h3>
         </a>
         <a class="_link" href="https://github.com/post-apocalypse/barcode-gen-app">
           <div class="_img-wrapper"><img src="../assets/img/github.webp" alt="Add"></div>
-          <h3>Исходный код</h3>
+          <h3>Sourse</h3>
         </a>
       </div>
     </div>

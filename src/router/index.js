@@ -6,18 +6,18 @@ import NotFoundView from '../views/NotFoundView'
 const routes = [
   {
     path: '/home',
-    name: 'Генератор штрих-кодов',
+    name: 'Home',
     component: HomeView,
     alias: '/'
   },
   {
     path: '/generator',
-    name: 'Генератор',
+    name: 'Generator',
     component: GeneratorView
   },
   {
     path: '/:notFound(.*)',
-    name: 'Уп-с... Кажется, вы потерялись',
+    name: 'Oops... It seems you are lost',
     component: NotFoundView
   }
 ]

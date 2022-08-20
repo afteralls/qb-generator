@@ -2,20 +2,20 @@
   <div class="layout__item">
     <div class="layout__info-wrapper" style="text-align: center">
       <div class="layout__user-sec">
-        <h3>Почти готово!</h3>
-        <p>Осталось только сгенерировать все штрих-коды...</p>
+        <h3>Almost done!</h3>
+        <p>It remains only to generate all the barcodes...</p>
         <button
           class="_btn"
           @click.prevent="$emit('gen-graphics')"
           :disabled="!inputLengthHandler"
-        ><h3>Сгенерировать</h3></button>
+        ><h3>Generate</h3></button>
       </div>
       <Transition name="tabs" mode="out-in">
         <div v-if="generated" class="layout__info-wrapper">
-          <p>В окне {{ currentWidth <= 900 ? 'снизу' : 'справа' }} находятся сгенерированные штрих-коды. Если вас что-то не устраивает, то вы можете изменить введённые ранее данные и повторить генерацию</p>
+          <p>In the window {{ currentWidth <= 900 ? 'below' : 'on the right' }} are the generated barcodes. If you are not satisfied with something, then you can change the previously entered data and repeat the generation</p>
           <div class="_row">
             <div class="_column">
-              <p>В каком формате экспортировать?</p>
+              <p>Export format?</p>
               <div class="_row" style="flex-direction: row;">
                 <input v-model="exportFormat" id="png" value="png" type="radio" name="exportFormat">
                 <label data-radio for="png">PNG</label>
@@ -26,7 +26,7 @@
               </div>
             </div>
             <div class="_column" :style="`width: ${ currentWidth <= 600 ? '100%' : 'auto' }`">
-              <p>Как будет называться архив?</p>
+              <p>What will archive be called?</p>
               <input type="text" v-model="zipName" placeholder="Название архива">
             </div>
           </div>
@@ -35,7 +35,7 @@
               class="_btn"
               style="width: 100%"
               @click.prevent="exportFormat !== 'svg' ? exportHandler() : getSvgs()"
-            ><h3>Экспортировать в графическом формате</h3></button>
+            ><h3>Export</h3></button>
           </div>
         </div>
       </Transition>

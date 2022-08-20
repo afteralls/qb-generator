@@ -1,8 +1,8 @@
 <template>
 <div class="container">
-  <router-link class="_link" style="max-width: 200px;" to="/">
+  <router-link class="_link" style="max-width: 250px;" to="/">
     <div class="_img-wrapper"><img src="../assets/img/arrow-left.webp" alt="To Home"></div>
-    <h3>На Главную</h3>
+    <h3>Go to Main Page</h3>
   </router-link>
   <div class="layout">
     <app-notification />
@@ -13,35 +13,35 @@
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 1}"
         >
           <div v-if="sIdx === 1" class="_step">#1</div>
-          <h3>Формат</h3>
+          <h3>Format</h3>
         </div>
         <div
           @click.prevent="sIdx = 2, generate(300)"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 2}"
         >
           <div v-if="sIdx === 2" class="_step">#2</div>
-          <h3>{{ currentWidth <= 500 ? 'Контент' : 'Содержание' }}</h3>
+          <h3>Content</h3>
         </div>
         <div
           @click.prevent="sIdx = 3"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 3}"
         >
           <div v-if="sIdx === 3" class="_step">#3</div>
-          <h3>{{ currentWidth <= 500 ? 'Кол-во' : 'Количество' }}</h3>
+          <h3>Quantity</h3>
         </div>
         <div
           @click.prevent="sIdx = 4"
           :class="{'layout__tab': true, 'layout__tab-active': sIdx === 4}"
         >
           <div v-if="sIdx === 4" class="_step">#4</div>
-          <h3>{{ currentWidth <= 400 ? 'Ген-ция' : 'Генерация' }}</h3>
+          <h3>Export</h3>
         </div>
       </div>
       <div class="layout__tab-content">
         <Transition name="tabs" mode="out-in">
           <div v-if="sIdx === 1" class="layout__item">
             <div class="layout__user-sec">
-              <h3>Выберите стандарт штрих-кода</h3>
+              <h3>Select the barcode type</h3>
               <div class="format__wrapper">
                 <select v-model="formatName">
                   <option value="ean13">EAN 13</option>
@@ -60,7 +60,7 @@
           </div>
           <div v-else-if="sIdx === 2" class="layout__item">
             <div class="layout__user-sec">
-              <h3>Введите содержимое штрих-кода</h3>
+              <h3>Enter contents of the barcode</h3>
               <div v-if="!formatNameHandler" class="_input-wrapper">
                 <input
                   class="_text"
@@ -111,14 +111,14 @@
                 :inputLengthHandler="inputLengthHandler"
               />
               <div v-else class="layout__info-wrapper">
-                <h3>Расширенные настройки</h3>
+                <h3>Advanced Settings</h3>
                 <div class="layout__info-wrapper-row">
                   <div class="layout__live-example">
                     <table id="table">
-                      <tr><th>Пример штрих-кода</th></tr>
+                      <tr><th>Barcode example</th></tr>
                       <tr><td>
                         <div class="_img-wrapper">
-                          <p v-if="flags.wrongBarcode">Проверьте корректность содержимого</p>
+                          <p v-if="flags.wrongBarcode">Check the correctness of the content</p>
                           <img v-else id="example">
                         </div>
                       </td></tr>
@@ -126,7 +126,7 @@
                   </div>
                   <div class="layout__settings">
                     <div class="_row" style="flex-direction: row;">
-                      <p>Цвет фона</p>
+                      <p>Background color</p>
                       <input
                         style="width: 60%"
                         type="text"
@@ -140,16 +140,16 @@
                       id="addWhiteBack"
                       type="checkbox"
                     >
-                    <label for="addWhiteBack">Сделать фон прозрачным</label>
+                    <label for="addWhiteBack">Make the background transparent</label>
                     <input
                       v-model="exampleFormat.showText"
                       type="checkbox"
                       id="showTxt"
                       value="#ffffff00"
                     >
-                    <label for="showTxt">Показать текст/код</label>
+                    <label for="showTxt">Show text/code</label>
                     <div class="_row" style="flex-direction: row;">
-                      <p>Цвет штрих-кода</p>
+                      <p>Barcode color</p>
                       <input
                         style="width: 45%"
                         v-model="exampleFormat.lineColor"
@@ -162,10 +162,10 @@
                 <button
                   @click.prevent="toDefault"
                   class="_btn"
-                ><h3>Отключить расширенные настройки</h3></button>
+                ><h3>Disable Advanced Settings</h3></button>
                 <div class="_small-text">
                   <p>*&nbsp;</p>
-                  <small>При отключении расширенных настроек все выбранные Вами параметры будут сброшены</small>
+                  <small>If you disable the advanced settings, all the settings you have selected will be reset</small>
                 </div>
               </div>
             </Transition>
@@ -177,13 +177,13 @@
                   class="_column"
                   :style="`width: ${currentWidth <= 600 ? '100%' : '70%'}`"
                 >
-                  <h3>Какое количество штрих-кодов нужно?</h3>
+                  <h3>How many barcodes do you need?</h3>
                   <input
                     type="text"
                     v-maska="'#*'"
                     class="_text"
                     maxlength="4"
-                    placeholder="Количество"
+                    placeholder="Quantity"
                     v-model="count"
                   >
                 </div>
@@ -192,19 +192,19 @@
                   v-if="formatName !== 'code128'"
                   :style="`width: ${currentWidth <= 600 ? '100%' : '25%'}`"
                 >
-                  <h3>С шагом...</h3>
+                  <h3>With step...</h3>
                   <input
                     type="text"
                     class="_text"
                     v-maska="'#*'"
                     maxlength="3"
-                    placeholder="Шаг"
+                    placeholder="Step"
                     v-model="iter"
                   >
                 </div>
               </div>
               <div class="_small-text">
-                <p>*&nbsp;</p><small>По умолчанию значения равны 1</small>
+                <p>*&nbsp;</p><small>By default, the values are 1</small>
               </div>
             </div>
             <app-count-section-info></app-count-section-info>
@@ -252,12 +252,12 @@ export default {
     const beforeGenerate = ref(null || 1)
     const formats = reactive({
       ean13: {
-        desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
+        desc: 'The European Article Number is a standard to encode product numbers. The EAN is a special case of a Global Trade Item Number',
         info: [
-          '1-я группа (2-3 цифры) – код страны-производителя товара;',
-          '2-я группа (4-6 цифр) – это регистрационный номер компании;',
-          '3-я группа (3-5 цифр) – порядковый номер продукта;',
-          'Последняя цифра — контрольная. Вычисляется автоматически.'
+          'Country-specific part: 1-3 digits',
+          'Company part',
+          'Article number: 4-5 digits',
+          'Checksum digit'
         ],
         settings: {
           maxlength: {
@@ -267,18 +267,18 @@ export default {
           },
           correctLength: 12,
           placeholder: {
-            first: 'Код страны (1-3)',
-            second: 'Код производителя (4-6)',
-            third: 'Код товара (5)'
+            first: '1-3 digits',
+            second: '4-6 digits',
+            third: '3-5 digits'
           }
         }
       },
       ean8: {
-        desc: 'Был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки.',
+        desc: 'The normal length of an EAN is 13 digits. There is also a shorter version called EAN-8, for small packages, where the full 13-digit number would take too much space on the package',
         info: [
-          '1-я группа (3 цифры) – код страны-производителя товара;',
-          '2-я группа (4 цифры) – порядковый номер продукта;',
-          'Последняя цифра — контрольная. Вычисляется автоматически.'
+          'Country-specific part: 2-3 digits',
+          'Article number: 4-5 digits',
+          'Checksum digit'
         ],
         settings: {
           maxlength: {
@@ -287,18 +287,18 @@ export default {
           },
           correctLength: 7,
           placeholder: {
-            first: 'Код страны (3 симв.)',
-            second: 'Код товара (4 симв.)'
+            first: '2-3 digits',
+            second: '4-5 digits'
           }
         }
       },
       code128: {
-        desc: 'Штриховой код Code 128 включает в себя 107 символов, из которых 103 символа данных, 3 стартовых и 1 остановочный (стоп) символ.',
+        desc: "is a high-density linear barcode symbology defined in ISO/IEC. It's used for alphanumeric or numeric-only barcodes.",
         info: [
-          'Стартовый символ (Start);',
-          'Кодированная информация;',
-          'Проверочный символ (контрольный знак)',
-          'Остановочный (Stop) символ.'
+          'Start symbol',
+          'Encoded data',
+          'Check symbol',
+          'Stop symbol'
         ],
         settings: {
           maxlength: {
@@ -306,16 +306,16 @@ export default {
           },
           correctLength: 1,
           placeholder: {
-            text: 'Текст (1-30 симв.)'
+            text: 'Text (1-30)'
           }
         }
       },
       itf14: {
-        desc: 'Штрих код ITF-14 разработан специально для транспортной упаковки. Он создаётся на основе кодов EAN-8 или EAN-13 и дополнительно несёт в себе один символ «тип упаковки», которым кодируется вариант упаковки.',
+        desc: 'ITF-14 is the GS1 implementation of an Interleaved 2 of 5 (ITF) bar code to encode a Global Trade Item Number. ITF-14 symbols are generally used on packaging levels of a product, such as a case box of 24 cans of soup. The ITF-14 will always encode 14 digits.',
         info: [
-          'Первая цифра показывает тип упаковки;',
-          'Группа далее (12 цифр) – код стандарта EAN 13;',
-          'Последняя цифра — контрольная. Вычисляется автоматически.'
+          'Packaging indicator',
+          'The next 12 digits are representing the product number',
+          'Checksum digit'
         ],
         settings: {
           maxlength: {
@@ -324,17 +324,15 @@ export default {
           },
           correctLength: 13,
           placeholder: {
-            first: 'Тип упаковки (1 симв.)',
-            second: 'Код стандарта EAN 13 (12 симв.)'
+            first: 'Packaging indicator (1)',
+            second: 'Product number (12)'
           }
         }
       },
       msi: {
-        desc: 'Это непрерывная символика, которая не поддается самоконтролю. MSI используется в основном для управления запасами, маркировки контейнеров и полок на складах.',
+        desc: 'The code can display only the number 0-9 and has no fixed length. Today this type of code is outdated and is no longer used. Because of this most barcode scanners can not recognize this type of code',
         info: [
-          'Представляет собой только цифры 0–9;',
-          'Не поддерживает буквы и символы;',
-          'Каждая цифра преобразуется в 4 двоично-десятичный код биты. Затем добавляется 1 бит и два 0 бита.'
+          'Can display only the number 0-9'
         ],
         settings: {
           maxlength: {
@@ -342,15 +340,15 @@ export default {
           },
           correctLength: 1,
           placeholder: {
-            text: 'Числа (1-16 симв.)'
+            text: 'Digits (1-16)'
           }
         }
       },
       pharmacode: {
-        desc: 'Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.',
+        desc: 'Pharmaceutical Binary Code is a barcode standard, used in the pharmaceutical industry as a packing control system. It is designed to be readable despite printing errors',
         info: [
-          'Может представляться только одним целым числом от 1 до 131 070;',
-          'Минимальная длина штрихкода — 1 узкая полоса и максимальная — 16 широких.'
+          'Pharmacode can represent only a single integer from 3 to 131 070',
+          'The minimum barcode is 2 bars and the maximum 16'
         ],
         settings: {
           maxlength: {
@@ -358,7 +356,7 @@ export default {
           },
           correctLength: 1,
           placeholder: {
-            text: 'Числа (1-6 симв.)'
+            text: 'Digits (1-6)'
           }
         }
       }
@@ -437,19 +435,19 @@ export default {
         if (formatNameHandler.value) {
           content.value = data.value.prefix + data.value.corpCode + data.value.serialNumber
           if (!value[i].match(/[0-9]/) && value[i] !== '') {
-            store.dispatch('setNotification', 'Доступен только ввод чисел')
+            store.dispatch('setNotification', 'Only the input of numbers is available')
           }
           generate()
         } else if (formatName.value === 'code128') {
           content.value = data.value.text
           if (!value[3].match(/[a-zA-Z0-9]/) && value[3] !== '') {
-            store.dispatch('setNotification', 'Доступен только ввод чисел и латинских символов')
+            store.dispatch('setNotification', 'Only the input of numbers and Latin characters is available')
           }
           generate()
         } else {
           content.value = data.value.text
           if (!value[i].match(/[0-9]/) && value[i] !== '') {
-            store.dispatch('setNotification', 'Доступен только ввод чисел')
+            store.dispatch('setNotification', 'Only the input of numbers is available')
           }
           generate()
         }

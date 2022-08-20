@@ -1,10 +1,10 @@
 <template>
   <div class="layout__info-wrapper">
-    <h3>Зачем это нужно?</h3>
+    <h3>Why is this necessary?</h3>
     <div class="_mark">
-      <p>Для случаев, когда необходимо распечатать сотни или тысячи штрих-кодов. На основе идентификационного номера, указанного ранее, автоматически сгенерируются последующие штрих-коды в зависимости от указанного количества.</p>
+      <p>For cases when it is necessary to print hundreds or thousands of barcodes. Based on the identification number specified earlier, subsequent barcodes are automatically generated depending on the specified quantity</p>
     </div>
-    <h3>Пример генерации 100 штрих-кодов с шагом 1</h3>
+    <h3>Example of generating 100 barcodes in steps of 1</h3>
     <div class="_row" style="flex-direction: row;">
       <div class="_img-layout"><img src="../assets/img/ex-1.webp" alt="Firts"></div>
       <div class="_img-layout">

@@ -2,11 +2,11 @@
   <div class="not-found">
     <img src="../assets/img/barcode.webp" alt="Штрих-код">
     <div class="not-found__info">
-      <h1>Уп-с... Кажется, вы потерялись</h1>
-      <p>Страница, которую вы пытались найти, не найдена</p>
-      <router-link class="_link" style="max-width: 200px;" to="/">
+      <h1>Oops... It seems you are lost</h1>
+      <p>The page you were trying to find was not found</p>
+      <router-link class="_link" style="max-width: 250px;" to="/">
         <div class="_img-wrapper"><img src="../assets/img/arrow-left.webp" alt="To Home"></div>
-        <h3>На Главную</h3>
+        <h3>Go to Main Page</h3>
       </router-link>
     </div>
   </div>
