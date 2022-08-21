@@ -1,33 +1,32 @@
-# Генератор штрих-кодов
-> Приложение для генерации штрих-кодов в различных форматах с возможностью кастомизации и системой экспорта
-### [Перейти к приложению](https://barcodegen.web.app/) ###
+# Barcode Generator
+> Аpplication for generating barcodes in various formats with the possibility of customization and export system
+### [Go to App](https://barcodegen.web.app/) ###
 ![Barcode](https://raw.githubusercontent.com/post-apocalypse/barcode-gen-app/master/src/assets/img/qr.webp?raw=true, 'Barcode')
 
-## Доступные форматы
-- EAN 13 — European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.
-- EAN 8 — То же, что и формат выше, но был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим;
-- CODE 128 — данный штриховой код включает в себя 107 символов, из которых 103 символа данных, 3 стартовых и 1 остановочный (стоп) символ.
-- ITF-14 — Штрих код ITF-14 разработан специально для транспортной упаковки. Он создаётся на основе кодов EAN-8 или EAN-13 и дополнительно несёт в себе один символ «тип упаковки», которым кодируется вариант упаковки.
-- MSI — Это непрерывная символика, которая не поддается самоконтролю. MSI используется в основном для управления запасами, маркировки контейнеров и полок на складах.
-- Pharmacode — Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.
+## Available formats
+- EAN 13: The European Article Number is a standard to encode product numbers. The EAN is a special case of a Global Trade Item Number.
+- EAN 8: The same as the format above, but was introduced for use on small packages where the EAN-13 barcode would be too large.
+- CODE 128 is a high-density linear barcode symbology defined in ISO/IEC. It's used for alphanumeric or numeric-only barcodes.
+- ITF-14 is the GS1 implementation of an Interleaved 2 of 5 (ITF) bar code to encode a Global Trade Item Number. ITF-14 symbols are generally used on packaging levels of a product, such as a case box of 24 cans of soup. The ITF-14 will always encode 14 digits.
+- MSI — The code can display only the number 0-9 and has no fixed length. Today this type of code is outdated and is no longer used. Because of this most barcode scanners can not recognize this type of code.
+- Pharmacode: Pharmaceutical Binary Code is a barcode standard, used in the pharmaceutical industry as a packing control system. It is designed to be readable despite printing errors.
 
-## Примеры штрих-кодов
+## Examples of barcodes
 ![Примеры](https://user-images.githubusercontent.com/106645309/185174398-6ed9b96f-746d-4ac9-97db-e88234663c33.png)
 
-## Варианты экспорта
-1. PNG — Растровый формат хранения графической информации, использующий сжатие без потерь по алгоритму Deflate.
-2. JPG — Один из популярных растровых графических форматов, применяемый для хранения фотографий и подобных им изображений.
-3. SVG — Язык разметки масштабируемой векторной графики.
+## Export options
+1. PNG is a raster-graphics file format that supports lossless data compression.
+2. JPG is a commonly used method of lossy compression for digital images, particularly for those images produced by digital photography. The degree of compression can be adjusted, allowing a selectable tradeoff between storage size and image quality.
+3. SVG is an XML-based vector image format for defining two-dimensional graphics, having support for interactivity and animation.
 
-## Демо
-[Barcode Generator](https://user-images.githubusercontent.com/106645309/185414250-435b70fa-e9f6-40b8-bcb8-a7bbb90b3bf0.webm)
+## Demo
+[Barcode Generator](https://user-images.githubusercontent.com/106645309/185779984-e95abb00-842d-4cdf-a416-b68a4ef6b99c.webm)
 
-## Используемые библиотеки
-Данное приложение написано на [Vue](https://www.npmjs.com/package/vue) совместно с [Vuex](https://www.npmjs.com/package/vuex) и [Vue Router](https://www.npmjs.com/package/vue-router) из экосистемы фреймворка.
-- [file-saver](https://www.npmjs.com/package/file-saver) —  для сохранения сгенерированных штрих-кодов.
-- [jsbarcode](https://www.npmjs.com/package/jsbarcode) — для генерации штрих-кодов.
-- [jszip](https://www.npmjs.com/package/jszip) — для создания архивов.
-- [maska](https://www.npmjs.com/package/maska) — для валидации полей ввода.
+## Libraries and plugins used in this project
+This application is written in [Vue](https://www.npmjs.com/package/vue) together with [Vuex](https://www.npmjs.com/package/vuex) and [Vue Router](https://www.npmjs.com/package/vue-router) from the framework ecosystem.
+- [file-saver](https://www.npmjs.com/package/file-saver) for saving generated barcodes.
+- [jsbarcode](https://www.npmjs.com/package/jsbarcode) for generating barcodes.
+- [jszip](https://www.npmjs.com/package/jszip) for creating archives.
+- [maska](https://www.npmjs.com/package/maska) for validating input fields.
 ___
-### По любым вопросам: [Telegram](https://t.me/apocalypsecore)
-
+### Have a question? Text me: [Telegram](https://t.me/apocalypsecore)
