@@ -3,14 +3,26 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <router-view v-slot="{ Component }">
-    <Transition name="route" mode="out-in">
-      <component :is="Component" />
-    </Transition>
-  </router-view>
+  <div class="nav">
+    <nav></nav>
+  </div>
+  <div class="container">
+    <router-view v-slot="{ Component }">
+      <Transition name="route" mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </router-view>
+  </div>
 </template>
 
 <style lang="scss">
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  // padding: $space;
+  font-weight: normal;
+}
+
 .route {
   &-enter-from {
     opacity: 0;
