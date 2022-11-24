@@ -10,13 +10,14 @@ body {
 }
 
 h1, h2, h3, h4, p {
-  line-height: 1.1;
+  line-height: 1;
   margin: 0;
   padding: 0;
 }
 
 p {
   font-family: 'Comfortaa', sans-serif;
+  line-height: 1.1;
 }
 
 ::selection {
@@ -32,6 +33,7 @@ p {
 ._wrapper {
   margin: 100px auto 0 auto;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: var(--space);

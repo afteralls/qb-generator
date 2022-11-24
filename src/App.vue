@@ -15,10 +15,6 @@ import TheNavbar from '@/components/TheNavbar.vue'
 </template>
 
 <style lang="scss">
-.light {
-
-}
-
 .route {
   &-enter-from {
     opacity: 0;

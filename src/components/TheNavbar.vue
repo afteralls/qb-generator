@@ -44,11 +44,9 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
   box-sizing: border-box;
   top: 0;
   width: 100%;
-  margin: 0 auto;
   z-index: 10;
   background-color: var(--tp-c);
   backdrop-filter: blur(8px);
-  padding: var(--space);
 
   svg {
     height: 1.5rem;
@@ -60,6 +58,7 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
   display: flex;
   justify-content: space-between;
   gap: var(--space);
+  padding: var(--space);
 
   &__settings {
     svg {
