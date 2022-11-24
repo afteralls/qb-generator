@@ -1,12 +1,11 @@
 <script setup>
 import { RouterView } from 'vue-router'
+import TheNavbar from '@/components/TheNavbar.vue'
 </script>
 
 <template>
-  <div class="nav">
-    <nav></nav>
-  </div>
-  <div class="container">
+  <TheNavbar />
+  <div class="_container">
     <router-view v-slot="{ Component }">
       <Transition name="route" mode="out-in">
         <component :is="Component" />
@@ -16,11 +15,8 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style lang="scss">
-.container {
-  max-width: 1280px;
-  margin: 0 auto;
-  // padding: $space;
-  font-weight: normal;
+.light {
+
 }
 
 .route {
