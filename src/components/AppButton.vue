@@ -1,9 +1,9 @@
 <template>
-  <div class="btn">
-    <router-link to="/generator">
+  <router-link to="/generator">
+    <div class="btn">
       <slot></slot>
-    </router-link>
-  </div>
+    </div>
+  </router-link>
 </template>
 
 <style lang="scss">
@@ -14,14 +14,14 @@
   border-radius: calc(var(--br-rad) * 2);
   transition: var(--transition);
   cursor: pointer;
+
+  &:hover {
+    background-color: var(--accent-c-h);
+  }
 }
 
 a, a:visited {
   text-decoration: none;
   color: var(--dark-txt-c);
-}
-
-.btn:hover {
-  background-color: var(--accent-c-h);
 }
 </style>

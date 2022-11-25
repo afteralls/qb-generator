@@ -31,14 +31,14 @@ p {
 }
 
 ._wrapper {
-  margin: 100px auto 0 auto;
+  margin: 6rem auto 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: var(--space);
   box-sizing: border-box;
-  gap: var(--space);
+  gap: calc(var(--space) * 3);
 }
 
 ._column {

@@ -9,13 +9,13 @@
       </AppButton>
     </div>
     <div class="logo-wrapper">
-      <BarcodeIcon />
+      <LogoIcon />
     </div>
   </section>
 </template>
 
 <script setup>
-import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
+import LogoIcon from '@/assets/svg/LogoIcon.vue'
 import AppButton from '@/components/AppButton.vue';
 </script>
 
