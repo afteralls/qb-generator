@@ -1,5 +1,5 @@
 <script setup>
-import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
+import LogoIcon from '@/assets/svg/LogoIcon.vue'
 import TelegramIcon from '@/assets/svg/TelegramIcon.vue'
 import GitHubIcon from '@/assets/svg/GitHubIcon.vue'
 import TranslateIcon from '@/assets/svg/TranslateIcon.vue'
@@ -11,7 +11,7 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
     <div class="_container">
       <div class="nav">
         <div class="nav__logo _row">
-          <BarcodeIcon />
+          <LogoIcon />
           <h2>Barcode Generator</h2>
         </div>
         <div class="nav__settings _row">
@@ -24,13 +24,17 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
           </div>
           <div class="br"></div>
           <div class="nav__contacts _row">
-            <GitHubIcon />
-            <TelegramIcon />
+            <a href="https://github.com/post-apocalypse"><GitHubIcon /></a>
+            <a href="https://t.me/afterallspace"><TelegramIcon /></a>
           </div>
           <div class="br"></div>
           <div class="nav__auth _row">
-            <h4 class="nav__el">Log in</h4>
-            <h4 class="nav__el">Sign up</h4>
+            <router-link to="/login">
+              <h4 class="nav__el">Log in</h4>
+            </router-link>
+            <router-link to="/login">
+              <h4 class="nav__el">Sign up</h4>
+            </router-link>
           </div>
         </div>
       </div>
@@ -73,6 +77,7 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
   }
 
   &__el {
+    color: var(--txt-c);
     transition: var(--transition);
     cursor: pointer;
   }
