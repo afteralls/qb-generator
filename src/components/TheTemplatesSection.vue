@@ -36,15 +36,8 @@ const templates = ref([])
   padding: 0 calc(var(--space) * 2.5);
 
   svg {
-    fill: var(--txt-c);
     width: 50px;
     height: auto;
-    transition: all 0.5s ease;
-    cursor: pointer;
-  }
-
-  svg:hover {
-    fill: var(--txt-c-h);
   }
 
   mask-image: linear-gradient(

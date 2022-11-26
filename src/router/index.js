@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import LibraryView from '@/views/LibraryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,6 +17,11 @@ const router = createRouter({
       path: '/generator',
       name: 'Generator',
       component: GeneratorView
+    },
+    {
+      path: '/library',
+      name: 'Library',
+      component: LibraryView
     },
     {
       path: '/:notFound(.*)',

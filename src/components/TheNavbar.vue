@@ -66,13 +66,7 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
 
   &__settings {
     svg {
-      fill: var(--txt-c);
-      transition: all 0.5s ease;
       cursor: pointer;
-    }
-
-    svg:hover {
-      fill: var(--txt-c-h);
     }
   }
 

@@ -20,8 +20,21 @@ p {
   line-height: 1.1;
 }
 
+svg {
+  fill: var(--txt-c);
+  transition: all 0.5s ease;
+}
+
+svg:hover {
+  fill: var(--txt-c-h);
+}
+
 ::selection {
   background-color: #4f13af33;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 ._container {

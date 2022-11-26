@@ -29,7 +29,7 @@ import AppButton from '@/components/AppButton.vue';
 }
 
 .logo-wrapper {
-  filter: drop-shadow(0 0 10rem #84dbff);
+  filter: drop-shadow(0 0 10rem var(--circle-c));
 
   svg {
     width: 100%;

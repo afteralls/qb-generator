@@ -4,7 +4,7 @@
     <TheTemplatesSection />
     <TheLibrarySection />
     <div class="madeby">
-      <h4>Made with</h4><HeartIcon /><h4>by Daniil Sukharnikov</h4>
+      <h4>Made with</h4><HeartIcon /><h4>by <a href="https://t.me/afterallspace">Daniil Sukharnikov</a></h4>
     </div>
   </div>
 </template>
@@ -26,6 +26,15 @@ import HeartIcon from '@/assets/svg/HeartIcon.vue'
   svg {
     fill: var(--txt-c);
     fill: red;
+  }
+
+  a {
+    color: var(--txt-c);
+    transition: var(--transition);
+  }
+
+  a:hover {
+    color: var(--accent-c);
   }
 }
 </style>

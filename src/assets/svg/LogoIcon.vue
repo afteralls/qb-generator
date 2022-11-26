@@ -1,6 +1,5 @@
 <template>
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-    viewBox="0 0 505 505" style="enable-background:new 0 0 505 505;" xml:space="preserve">
+  <svg version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 505 505" style="enable-background:new 0 0 505 505;" xml:space="preserve">
   <circle style="fill:#84DBFF;" cx="252.5" cy="252.5" r="252.5"/>
   <rect x="123.1" y="95.5" style="fill:#FFFFFF;" width="258.8" height="186.6"/>
   <g>
