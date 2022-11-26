@@ -4,7 +4,7 @@
       <h1>Barcode Generator</h1>
       <h2>Application for generating your own barcodes</h2>
       <p>Create Qr and Barcodes in a couple of clicks in your own design,<br>use the desired standard and export in the desired format.<br>Log in to the system to save templates and use them at any time</p>
-      <AppButton>
+      <AppButton :page="'/generator'">
         <h3>Go to Generator</h3>
       </AppButton>
     </div>

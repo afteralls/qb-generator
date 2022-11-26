@@ -32,7 +32,7 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
             <router-link to="/login">
               <h4 class="nav__el">Log in</h4>
             </router-link>
-            <router-link to="/login">
+            <router-link to="/signup">
               <h4 class="nav__el">Sign up</h4>
             </router-link>
           </div>

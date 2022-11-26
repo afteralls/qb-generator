@@ -1,5 +1,11 @@
+<script setup>
+import { defineProps } from 'vue'
+
+const props = defineProps(['page'])
+</script>
+
 <template>
-  <router-link to="/generator">
+  <router-link :to="props.page">
     <div class="btn">
       <slot></slot>
     </div>
