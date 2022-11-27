@@ -20,6 +20,11 @@ p {
   line-height: 1.1;
 }
 
+a, a:visited {
+  text-decoration: none;
+  color: var(--txt-c);
+}
+
 svg {
   fill: var(--txt-c);
   transition: all 0.5s ease;

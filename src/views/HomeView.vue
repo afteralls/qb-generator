@@ -4,7 +4,9 @@
     <TheTemplatesSection />
     <TheLibrarySection />
     <div class="madeby">
-      <h4>Made with</h4><HeartIcon /><h4>by <a href="https://t.me/afterallspace">Daniil Sukharnikov</a></h4>
+      <h4>Made with</h4>
+      <HeartIcon />
+      <h4>by <a href="https://t.me/afterallspace">Daniil Sukharnikov</a></h4>
     </div>
   </div>
 </template>

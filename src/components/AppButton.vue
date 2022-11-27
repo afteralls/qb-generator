@@ -1,11 +1,9 @@
 <script setup>
-import { defineProps } from 'vue'
-
-const props = defineProps(['page'])
+defineProps(['page'])
 </script>
 
 <template>
-  <router-link :to="props.page">
+  <router-link :to="page">
     <div class="btn">
       <slot></slot>
     </div>
@@ -20,14 +18,10 @@ const props = defineProps(['page'])
   border-radius: calc(var(--br-rad) * 2);
   transition: var(--transition);
   cursor: pointer;
+  color: var(--dark-txt-c);
 
   &:hover {
     background-color: var(--accent-c-h);
   }
-}
-
-a, a:visited {
-  text-decoration: none;
-  color: var(--dark-txt-c);
 }
 </style>

@@ -1,19 +1,22 @@
 <script setup>
+import { useRoute } from 'vue-router'
 import LogoIcon from '@/assets/svg/LogoIcon.vue'
 import TelegramIcon from '@/assets/svg/TelegramIcon.vue'
 import GitHubIcon from '@/assets/svg/GitHubIcon.vue'
 import TranslateIcon from '@/assets/svg/TranslateIcon.vue'
 import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
+import BackArrowIcon from '@/assets/svg/BackArrowIcon.vue'
+const route = useRoute()
 </script>
 
 <template>
   <nav class="nav-wrapper">
     <div class="_container">
       <div class="nav">
-        <div class="nav__logo _row">
+        <router-link to="/" class="nav__logo _row">
           <LogoIcon />
           <h2>Barcode Generator</h2>
-        </div>
+        </router-link>
         <div class="nav__settings _row">
           <div class="nav__lang _row">
             <TranslateIcon />
@@ -64,19 +67,26 @@ import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
   gap: var(--space);
   padding: var(--space);
 
+  &__logo {
+    a {
+      display: flex;
+      align-items: center;
+    }
+  }
+
   &__settings {
     svg {
       cursor: pointer;
     }
   }
 
-  &__el {
+  &__el, &__logo {
     color: var(--txt-c);
     transition: var(--transition);
     cursor: pointer;
   }
 
-  &__el:hover {
+  &__el:hover, &__logo:hover {
     color: var(--txt-c-h);
   }
 }
