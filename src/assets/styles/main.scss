@@ -34,6 +34,22 @@ svg:hover {
   fill: var(--txt-c-h);
 }
 
+input[type="text"] {
+  border-radius: var(--br-rad);
+  outline: none;
+  padding: var(--space);
+  border: none;
+  color: var(--txt-c);
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--wrapper-c);
+  transition: var(--transition);
+
+  &:hover {
+    background-color: var(--wrapper-c-h);
+  }
+}
+
 ::selection {
   background-color: #4f13af33;
 }

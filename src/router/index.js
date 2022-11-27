@@ -3,6 +3,8 @@ import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import LibraryView from '@/views/LibraryView.vue'
+import AuthView from '@/views/AuthView.vue'
+import RegView from '@/views/RegView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +21,16 @@ const router = createRouter({
       component: GeneratorView
     },
     {
+      path: '/login',
+      name: 'Authorization',
+      component: AuthView
+    },
+    {
+      path: '/signup',
+      name: 'Registration',
+      component: RegView
+    },
+    {
       path: '/library',
       name: 'Library',
       component: LibraryView
@@ -32,7 +44,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
-  document.title = to.name; next()
+  document.title = to.name
+  next()
+  setTimeout(() => {
+    window.scrollTo(0,0)
+  }, 250)
 })
 
 export default router
