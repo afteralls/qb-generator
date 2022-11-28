@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
-import NotFoundView from '@/views/NotFoundView.vue'
-import LibraryView from '@/views/LibraryView.vue'
-import AuthView from '@/views/AuthView.vue'
-import RegView from '@/views/RegView.vue'
+import { useDataStore } from '@/stores/dataStore.js'
+
+const RegView = () => import('@/views/RegView.vue')
+const AuthView = () => import('@/views/AuthView.vue')
+const LibraryView = () => import('@/views/LibraryView.vue')
+const NotFoundView = () => import('@/views/NotFoundView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,10 +46,13 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
+  const { set, generateBarcode } = useDataStore()
   document.title = to.name
   next()
   setTimeout(() => {
     window.scrollTo(0,0)
+    if (to.path === '/generator')
+      if (set.flag) generateBarcode('#example')
   }, 250)
 })
 

@@ -1,5 +1,5 @@
 <script setup>
-import AppButton from './AppButton.vue'
+import AppButton from './AppLinkButton.vue'
 import QrIcon from '@/assets/svg/QrIcon.vue'
 </script>
 

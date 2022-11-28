@@ -1,7 +1,7 @@
 <template>
   <div class="_wrapper">
     <div class="examples">
-      <AppExample v-for="format in data.formats">
+      <AppExample v-for="format in formats">
         <template #img><img :src="getImageUrl(format.import)" alt="Barcode example"></template>
         <template #name><h1>{{ format.name }}</h1></template>
         <template #desc><p>{{ format.desc }}</p></template>
@@ -15,7 +15,7 @@
 import AppExample from '@/components/AppExample.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 
-const data = useDataStore()
+const { formats } = useDataStore()
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>
 

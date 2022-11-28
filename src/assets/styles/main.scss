@@ -34,7 +34,7 @@ svg:hover {
   fill: var(--txt-c-h);
 }
 
-input[type="text"] {
+input[type="text"], input[type="number"] {
   border-radius: var(--br-rad);
   outline: none;
   padding: var(--space);

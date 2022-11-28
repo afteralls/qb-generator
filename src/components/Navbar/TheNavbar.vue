@@ -3,7 +3,7 @@ import LogoIcon from '@/assets/svg/LogoIcon.vue'
 import TelegramIcon from '@/assets/svg/TelegramIcon.vue'
 import GitHubIcon from '@/assets/svg/GitHubIcon.vue'
 import TranslateIcon from '@/assets/svg/TranslateIcon.vue'
-import TheThemeSwitcher from '@/components/TheThemeSwitcher.vue'
+import TheThemeSwitcher from './TheThemeSwitcher.vue'
 </script>
 
 <template>

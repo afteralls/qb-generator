@@ -1,4 +1,6 @@
 import { defineStore } from 'pinia'
+import { computed, reactive, ref, watch } from 'vue'
+import JsBarcode from 'jsbarcode'
 
 export const useDataStore = defineStore('data', () => {
   const formats = [
@@ -11,8 +13,11 @@ export const useDataStore = defineStore('data', () => {
         'Article number: 4-5 digits',
         'Checksum digit'
       ],
-      correctLength: 12,
-      import: 'ean13',
+      corLength: 12,
+      placeholder: 'Digits (12)',
+      max: 12,
+      codeName: 'ean13',
+      import: 'ean13'
     },
     {
       name: 'EAN 8',
@@ -22,7 +27,10 @@ export const useDataStore = defineStore('data', () => {
         'Article number: 4-5 digits',
         'Checksum digit'
       ],
-      correctLength: 7,
+      corLength: 7,
+      placeholder: 'Digits (7)',
+      max: 7,
+      codeName: 'ean8',
       import: 'ean8'
     },
     {
@@ -34,7 +42,10 @@ export const useDataStore = defineStore('data', () => {
         'Check symbol',
         'Stop symbol'
       ],
-      correctLength: 1,
+      corLength: 1,
+      placeholder: 'Text (50)',
+      max: 50,
+      codeName: 'code128',
       import: 'code128'
     },
     {
@@ -45,7 +56,10 @@ export const useDataStore = defineStore('data', () => {
         'The next 12 digits are representing the product number',
         'Checksum digit'
       ],
-      correctLength: 13,
+      corLength: 13,
+      placeholder: 'Digits (13)',
+      max: 13,
+      codeName: 'itf14',
       import: 'itf14'
     },
     {
@@ -54,7 +68,10 @@ export const useDataStore = defineStore('data', () => {
       info: [
         'Can display only the number 0-9'
       ],
-      correctLength: 1,
+      corLength: 1,
+      placeholder: 'Digits (50)',
+      max: 50,
+      codeName: 'msi',
       import: 'msicode'
     },
     {
@@ -64,10 +81,63 @@ export const useDataStore = defineStore('data', () => {
         'Pharmacode can represent only a single integer from 3 to 131 070',
         'The minimum barcode is 2 bars and the maximum 16'
       ],
-      correctLength: 1,
+      corLength: 1,
+      placeholder: 'Digits (3 — 131 070)',
+      max: 6,
+      codeName: 'pharmacode',
       import: 'pharmacode'
     }
   ]
 
-  return { formats }
+  const set = reactive({
+    format: 'EAN 13',
+    content: '',
+    bgColor: 'transparent',
+    codeColor: '#000000',
+    showData: true,
+    curFormat: formats[0],
+    flag: false,
+    quantity: null || 1
+  })
+
+  const corLengthHandler = computed(() => {
+    return ['ean13', 'ean8', 'itf14'].includes(set.curFormat.codeName)
+      ? set.content.length === set.curFormat.corLength
+      : set.content.length >= set.curFormat.corLength
+  })
+
+  watch(() => set.format, newV => {
+    formats.map((format, idx) => {
+      if (format.name === newV) {
+        set.curFormat = formats[idx]
+        set.content = ''
+      }
+    })
+  })
+
+  watch(() => [set.content, set.codeColor, set.bgColor, set.showData], () => {
+    if (corLengthHandler.value) {
+      set.flag = true
+      generateBarcode('#example')
+    } else {
+      set.flag = false
+    }
+  })
+
+  const generateBarcode = selector => {
+    try {
+      setTimeout(() => {
+        JsBarcode(selector, set.content, {
+          format: set.curFormat.codeName,
+          background: set.bgColor,
+          lineColor: set.codeColor,
+          displayValue: set.showData
+        })
+      }, 1)
+    } catch (e) {
+     console.trace(e.stack)
+    }
+  }
+
+  return { set, formats, generateBarcode }
 })

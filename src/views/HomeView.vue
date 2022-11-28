@@ -12,9 +12,9 @@
 </template>
 
 <script setup>
-import TheHomeSection from '@/components/TheHomeSection.vue'
-import TheTemplatesSection from '@/components/TheTemplatesSection.vue'
-import TheLibrarySection from '@/components/TheLibrarySection.vue'
+import TheHomeSection from '@/components/HomeView/TheHomeSection.vue'
+import TheTemplatesSection from '@/components/HomeView/TheTemplatesSection.vue'
+import TheLibrarySection from '@/components/HomeView/TheLibrarySection.vue'
 import HeartIcon from '@/assets/svg/HeartIcon.vue'
 </script>
 

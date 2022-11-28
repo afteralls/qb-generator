@@ -16,7 +16,7 @@
 
 <script setup>
 import LogoIcon from '@/assets/svg/LogoIcon.vue'
-import AppButton from '@/components/AppButton.vue';
+import AppButton from './AppLinkButton.vue';
 </script>
 
 <style lang="scss">
