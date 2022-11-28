@@ -1,12 +1,12 @@
 <template>
   <div @click="open = !open" class="select">
     <ArrowIcon :class="{ select__arrow: true, rotate: open }" />
-    <div class="select__selected"><small>{{ set.format }}</small></div>
+    <div class="select__selected"><small>{{ selectOptions.model }}</small></div>
     <Transition name="route">
       <div v-show="open" class="select__items">
         <div class="select__item"
-          v-for="format of formats" :key="format" @click="set.format = format.name, !open">
-          <small>{{ format.name }}</small>
+          v-for="item of data" :key="item" @click="$emit('updateData', item), !open">
+          <small>{{ item }}</small>
         </div>
       </div>
     </Transition>
@@ -14,12 +14,11 @@
 </template>
 
 <script setup>
-import { useDataStore } from '@/stores/dataStore.js'
-import ArrowIcon from '../../assets/svg/ArrowIcon.vue'
-import { ref } from 'vue'
-
-const { set, formats } = useDataStore()
+import ArrowIcon from '@/assets/svg/ArrowIcon.vue'
+import { ref, computed } from 'vue'
+const props = defineProps(['selectOptions'])
 const open = ref(false)
+const data = computed(() => props.selectOptions.items.map(item => item.name))
 </script>
 
 <style lang="scss">

@@ -15,6 +15,17 @@ h1, h2, h3, h4, p {
   padding: 0;
 }
 
+th, td {
+  background: #3f3f3f33;
+  border-spacing: none;
+}
+
+th {
+  border: 1px solid #3f3f3f77;
+  text-align: center;
+  padding: 5px;
+}
+
 p {
   font-family: 'Comfortaa', sans-serif;
   line-height: 1.1;
@@ -87,4 +98,24 @@ input[type="text"], input[type="number"] {
   justify-content: center;
   align-items: center;
   gap: var(--space);
+}
+
+._btn {
+  text-align: center;
+  background-color: var(--accent-c);
+  padding: var(--space);
+  border-radius: calc(var(--br-rad) * 2);
+  transition: var(--transition);
+  cursor: pointer;
+  color: var(--dark-txt-c) !important;
+
+  &:hover {
+    background-color: var(--accent-c-h);
+  }
+}
+
+._svg-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

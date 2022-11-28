@@ -3,7 +3,7 @@ import { computed, reactive, ref, watch } from 'vue'
 import JsBarcode from 'jsbarcode'
 
 export const useDataStore = defineStore('data', () => {
-  const formats = [
+  const standarts = [
     {
       name: 'EAN 13',
       desc: 'The European Article Number is a standard to encode product numbers. The EAN is a special case of a Global Trade Item Number',
@@ -89,27 +89,35 @@ export const useDataStore = defineStore('data', () => {
     }
   ]
 
+  const formats = [
+    { name: 'SVG' },
+    { name: 'JPG' },
+    { name: 'PNG' }
+  ]
+
   const set = reactive({
-    format: 'EAN 13',
+    standart: 'EAN 13',
     content: '',
     bgColor: 'transparent',
     codeColor: '#000000',
     showData: true,
-    curFormat: formats[0],
+    curStandart: standarts[0],
     flag: false,
-    quantity: null || 1
+    quantity: '',
+    exportFormat: 'SVG',
+    exportPackName: ''
   })
 
   const corLengthHandler = computed(() => {
-    return ['ean13', 'ean8', 'itf14'].includes(set.curFormat.codeName)
-      ? set.content.length === set.curFormat.corLength
-      : set.content.length >= set.curFormat.corLength
+    return ['ean13', 'ean8', 'itf14'].includes(set.curStandart.codeName)
+      ? set.content.length === set.curStandart.corLength
+      : set.content.length >= set.curStandart.corLength
   })
 
-  watch(() => set.format, newV => {
-    formats.map((format, idx) => {
-      if (format.name === newV) {
-        set.curFormat = formats[idx]
+  watch(() => set.standart, newV => {
+    standarts.map((standart, idx) => {
+      if (standart.name === newV) {
+        set.curStandart = standarts[idx]
         set.content = ''
       }
     })
@@ -128,7 +136,7 @@ export const useDataStore = defineStore('data', () => {
     try {
       setTimeout(() => {
         JsBarcode(selector, set.content, {
-          format: set.curFormat.codeName,
+          format: set.curStandart.codeName,
           background: set.bgColor,
           lineColor: set.codeColor,
           displayValue: set.showData
@@ -139,5 +147,5 @@ export const useDataStore = defineStore('data', () => {
     }
   }
 
-  return { set, formats, generateBarcode }
+  return { set, standarts, formats, generateBarcode }
 })

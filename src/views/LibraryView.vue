@@ -1,21 +1,21 @@
 <template>
   <div class="_wrapper">
     <div class="examples">
-      <AppExample v-for="format in formats">
-        <template #img><img :src="getImageUrl(format.import)" alt="Barcode example"></template>
-        <template #name><h1>{{ format.name }}</h1></template>
-        <template #desc><p>{{ format.desc }}</p></template>
-        <template #structure><ol><li v-for="item in format.info"><p>{{ item }}</p></li></ol></template>
+      <AppExample v-for="standart in standarts">
+        <template #img><img :src="getImageUrl(standart.import)" alt="Barcode example"></template>
+        <template #name><h1>{{ standart.name }}</h1></template>
+        <template #desc><p>{{ standart.desc }}</p></template>
+        <template #structure><ol><li v-for="item in standart.info"><p>{{ item }}</p></li></ol></template>
       </AppExample>
     </div>
   </div>
 </template>
 
 <script setup>
-import AppExample from '@/components/AppExample.vue'
+import AppExample from '@/components/LibraryView/AppExample.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 
-const { formats } = useDataStore()
+const { standarts } = useDataStore()
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>
 

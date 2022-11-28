@@ -4,9 +4,9 @@
       <h1>Barcode Generator</h1>
       <h2>Application for generating your own barcodes</h2>
       <p>Create Qr and Barcodes in a couple of clicks in your own design,<br>use the desired standard and export in the desired format.<br>Log in to the system to save templates and use them at any time</p>
-      <AppButton :page="'/generator'">
+      <router-link class="_btn" to="/generator">
         <h3>Go to Generator</h3>
-      </AppButton>
+      </router-link>
     </div>
     <div class="logo-wrapper">
       <LogoIcon />
@@ -16,7 +16,6 @@
 
 <script setup>
 import LogoIcon from '@/assets/svg/LogoIcon.vue'
-import AppButton from './AppLinkButton.vue';
 </script>
 
 <style lang="scss">

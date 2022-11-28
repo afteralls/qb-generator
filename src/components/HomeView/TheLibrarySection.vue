@@ -1,5 +1,4 @@
 <script setup>
-import AppButton from './AppLinkButton.vue'
 import QrIcon from '@/assets/svg/QrIcon.vue'
 </script>
 
@@ -8,9 +7,9 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
     <div class="library__info">
       <h1>Not sure which barcode format you need?</h1>
       <p>You can see the formats available for generation<br />and choose the one that suits your needs best</p>
-      <AppButton :page="'/library'">
+      <router-link class="_btn" to="/library">
         <h3>Learn more</h3>
-      </AppButton>
+      </router-link>
     </div>
     <QrIcon />
   </section>

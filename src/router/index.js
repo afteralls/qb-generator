@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
+import LibraryView from '@/views/LibraryView.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 
 const RegView = () => import('@/views/RegView.vue')
 const AuthView = () => import('@/views/AuthView.vue')
-const LibraryView = () => import('@/views/LibraryView.vue')
 const NotFoundView = () => import('@/views/NotFoundView.vue')
 
 const router = createRouter({
