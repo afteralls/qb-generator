@@ -20,7 +20,10 @@
         </div>
       </div>
     </div>
-    <button @click="generate" :disabled="!set.exampleFlag" class="_btn btn-settings" style="flex: 1 1;">
+    <button
+      @click="generate"
+      :class="{'btn-settings': true, _btn: true, disabled: !set.isCorrect }"
+    >
       <GenerateIcon style="height: 25px; fill: #ffffff99" />
       <small>Generate</small>
     </button>
@@ -37,17 +40,20 @@
         >
         <button
           @click="set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
-          :disabled="!set.generateFlag"
-          class="merge__btn"
+          :class="{merge__btn: true, disabled: !set.isCorrect || !set.generated }"
         >
           <small>Download</small>
         </button>
       </div>
     </div>
-    <button @click="getSvgs" :disabled="!set.generateFlag" class="btn-settings temp-btn">
+    <button
+      @click="isOpen = true"
+      :class="{'btn-settings': true, 'temp-btn': true, disabled: !set.isCorrect }"
+    >
       <CreateIcon />
       <small>Save Template</small>
     </button>
+    <AppModal :isOpen="isOpen" @close-modal="isOpen = false" />
   </div>
 </template>
 
@@ -55,12 +61,14 @@
 import CheckIcon from '@/assets/svg/CheckIcon.vue'
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import GenerateIcon from '@/assets/svg/GenerateIcon.vue'
+import AppModal from './AppModal.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { reactive, computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const { set, generate } = useDataStore()
+const isOpen = ref(false)
 const quantityFlag = computed(() => set.quantity === '1' || set.quantity === '')
 
 const getZip = folder => {
@@ -134,7 +142,7 @@ button {
 }
 
 .btn-settings {
-  width: 100%;
+  flex: 1 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,5 +183,11 @@ button {
       background-color: var(--accent-c-h);
     }
   }
+}
+
+.disabled {
+  filter: contrast(0.5);
+  cursor: default;
+  pointer-events: none;
 }
 </style>

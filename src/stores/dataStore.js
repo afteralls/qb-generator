@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { computed, reactive, ref, watch } from 'vue'
+import { computed, reactive, watch } from 'vue'
 import JsBarcode from 'jsbarcode'
 
 export const useDataStore = defineStore('data', () => {
@@ -89,12 +89,6 @@ export const useDataStore = defineStore('data', () => {
     }
   ]
 
-  const formats = [
-    { name: 'SVG' },
-    { name: 'JPG' },
-    { name: 'PNG' }
-  ]
-
   const set = reactive({
     standart: 'EAN 13',
     content: '',
@@ -102,11 +96,11 @@ export const useDataStore = defineStore('data', () => {
     codeColor: '#000000',
     showData: true,
     curStandart: standarts[0],
-    exampleFlag: false,
+    isCorrect: false,
     quantity: '',
     exportFormat: 'svg',
     exportName: '',
-    generateFlag: false,
+    generated: false,
     beforeQuanSet: null
   })
 
@@ -125,12 +119,13 @@ export const useDataStore = defineStore('data', () => {
     })
   })
 
-  watch(() => [set.content, set.codeColor, set.bgColor, set.showData], () => {
+  watch(() => [set.content, set.codeColor, set.bgColor, set.showData, set.quantity], () => {
     if (corLengthHandler.value) {
-      set.exampleFlag = true
+      set.isCorrect = true
+      set.generated = false
       generateBarcode('#example', set.content)
     } else {
-      set.exampleFlag = false
+      set.isCorrect = false
     }
   })
 
@@ -160,14 +155,14 @@ export const useDataStore = defineStore('data', () => {
         generateBarcode(`[data-num="${i + 1}"]`, curContent)
       }
     }, 1)
-    set.generateFlag = true
+    set.generated = true
   }
 
   const setDefaultSet = () => {
     set.content = '',
-    set.exampleFlag = false,
-    set.generateFlag = false
+    set.isCorrect = false,
+    set.generated = false
   }
 
-  return { set, standarts, formats, generateBarcode, generate, setDefaultSet }
+  return { set, standarts, generateBarcode, generate, setDefaultSet }
 })

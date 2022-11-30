@@ -1,9 +1,9 @@
 <template>
   <section class="templates">
-    <div class="templates__wrapper">
-      <div class="tp-wrapper">
+    <div class="templates__container">
+      <div class="templates__wrapper">
         <router-link to="/generator">
-          <div class="template">
+          <div class="_template">
             <CreateIcon />
             <h3>Create a new template</h3>
           </div>
@@ -11,7 +11,7 @@
         <div v-for="template in templates" class="template">
           <h3>{{ template.name }}</h3>
         </div>
-        <div v-if="!templates.value" class="template__tip">
+        <div v-if="!templates.value" class="templates__tip">
           <InfoIcon />
           <h3>The templates you create will appear in this section, try creating the first one!</h3>
           <p>Just generate several types of Qr or barcodes and the system will prompt you to save the settings</p>
@@ -56,34 +56,14 @@ const templates = ref([])
     transparent
   );
 
-  &__wrapper {
+  &__container {
     display: inline-block;
   }
-}
 
-.tp-wrapper {
-  display: flex;
-  width: 100%;
-  gap: var(--space);
-}
-
-.template {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: var(--space);
-  background-color: var(--wrapper-c);
-  border-radius: var(--br-rad);
-  padding: var(--space);
-  height: 250px;
-  min-width: 250px;
-  transition: var(--transition);
-  cursor: pointer;
-  color: var(--txt-c);
-
-  &:hover {
-    background-color: var(--wrapper-c-h);
+  &__wrapper {
+    display: flex;
+    width: 100%;
+    gap: var(--space);
   }
 
   &__tip {

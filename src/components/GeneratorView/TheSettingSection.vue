@@ -32,7 +32,7 @@
       <div class="_column">
         <small>Example</small>
         <div class="settings__example">
-          <div v-if="set.exampleFlag" class="_svg-wrapper"><svg id="example"></svg></div>
+          <div v-if="set.isCorrect" class="_svg-wrapper"><svg id="example"></svg></div>
           <h3 v-else>Enter valid content</h3>
         </div>
       </div>

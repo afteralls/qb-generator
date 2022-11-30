@@ -113,6 +113,26 @@ label::before {
   gap: calc(var(--space) * 3);
 }
 
+._template {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: var(--space);
+  background-color: var(--wrapper-c);
+  border-radius: var(--br-rad);
+  padding: var(--space);
+  height: var(--template-size);
+  min-width: var(--template-size);
+  transition: var(--transition);
+  cursor: pointer;
+  color: var(--txt-c);
+
+  &:hover {
+    background-color: var(--wrapper-c-h);
+  }
+}
+
 ._column {
   display: flex;
   flex-direction: column;

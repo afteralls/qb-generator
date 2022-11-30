@@ -2,7 +2,7 @@
   <section class="preview">
     <small>Preview</small>
     <div class="preview__wrapper">
-      <div v-if="!set.generateFlag" class="preview__tip">
+      <div v-if="!set.generated" class="preview__tip">
         <InfoIcon />
         <h3>This window is a preview for your barcodes, but you haven't generated them yet...</h3>
       </div>
