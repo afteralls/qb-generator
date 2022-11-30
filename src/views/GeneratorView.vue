@@ -17,11 +17,6 @@ import ThePreviewSection from '@/components/GeneratorView/ThePreviewSection.vue'
   display: flex;
   width: 100%;
   justify-content: space-around;
-  gap: var(--space);
-
-  small {
-    color: var(--txt-c-h);
-    text-transform: uppercase;
-  }
+  gap: calc(var(--space) * 2);
 }
 </style>

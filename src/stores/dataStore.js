@@ -102,10 +102,12 @@ export const useDataStore = defineStore('data', () => {
     codeColor: '#000000',
     showData: true,
     curStandart: standarts[0],
-    flag: false,
+    exampleFlag: false,
     quantity: '',
-    exportFormat: 'SVG',
-    exportPackName: ''
+    exportFormat: 'svg',
+    exportPackName: '',
+    generateFlag: false,
+    beforeQuanSet: null
   })
 
   const corLengthHandler = computed(() => {
@@ -125,17 +127,17 @@ export const useDataStore = defineStore('data', () => {
 
   watch(() => [set.content, set.codeColor, set.bgColor, set.showData], () => {
     if (corLengthHandler.value) {
-      set.flag = true
-      generateBarcode('#example')
+      set.exampleFlag = true
+      generateBarcode('#example', set.content)
     } else {
-      set.flag = false
+      set.exampleFlag = false
     }
   })
 
-  const generateBarcode = selector => {
+  const generateBarcode = (selector, content) => {
     try {
       setTimeout(() => {
-        JsBarcode(selector, set.content, {
+        JsBarcode(selector, content, {
           format: set.curStandart.codeName,
           background: set.bgColor,
           lineColor: set.codeColor,
@@ -147,5 +149,25 @@ export const useDataStore = defineStore('data', () => {
     }
   }
 
-  return { set, standarts, formats, generateBarcode }
+  const generate = () => {
+    set.beforeQuanSet = +set.quantity || 1
+    let curContent = ''
+    setTimeout(() => {
+      for (let i = 0, j = 0; i < set.beforeQuanSet; i++, j++) {
+        set.curStandart.codeName !== 'code128'
+          ? curContent = +set.content + j
+          : curContent = set.content
+        generateBarcode(`[data-num="${i + 1}"]`, curContent)
+      }
+    }, 1)
+    set.generateFlag = true
+  }
+
+  const setDefaultSet = () => {
+    set.content = '',
+    set.exampleFlag = false,
+    set.generateFlag = false
+  }
+
+  return { set, standarts, formats, generateBarcode, generate, setDefaultSet }
 })

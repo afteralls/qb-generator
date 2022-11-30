@@ -1,33 +1,49 @@
 <template>
   <div class="settings">
-    <div class="_column">
-      <small>Content</small>
-      <div class="settings__input-wp">
+    <div class="settings__row">
+      <div class="_column">
+        <small>Content</small>
+        <div class="settings__input-wp">
+          <input
+            :placeholder="set.curStandart.placeholder"
+            type="text"
+            v-model="set.content"
+            :maxlength="set.curStandart.max"
+          >
+          <AppSelect
+            :select-options="{ model: set.standart, items: standarts}"
+            @update-data="(standart) => set.standart = standart"
+            class="settings__select"
+          />
+        </div>
+      </div>
+      <div class="_column">
+      <small>Quantity</small>
         <input
-          :placeholder="set.curStandart.placeholder"
+          placeholder="Digits (2000)"
           type="text"
-          v-model="set.content"
-          :maxlength="set.curStandart.max"
+          v-model="set.quantity"
+          maxlength="4"
+          class="adaptive"
         >
-        <AppSelect
-          :select-options="{ model: set.standart, items: standarts}"
-          @update-data="(standart) => set.standart = standart"
-          class="settings__select"
-        />
       </div>
     </div>
     <div class="settings__row">
       <div class="_column">
         <small>Example</small>
         <div class="settings__example">
-          <div v-if="set.flag" class="_svg-wrapper"><svg id="example"></svg></div>
+          <div v-if="set.exampleFlag" class="_svg-wrapper"><svg id="example"></svg></div>
           <h3 v-else>Enter valid content</h3>
         </div>
       </div>
       <div class="_column">
-        <div class="_column short">
+        <div class="_column">
           <small>Background color</small>
-          <input type="text" placeholder="'#ffffff' or 'transparent'" v-model="set.bgColor">
+          <input
+            type="text"
+            placeholder="'#ffffff' or 'transparent'"
+            v-model="set.bgColor"
+          >
         </div>
         <div class="cb-wrapper">
           <Transition name="route"><CheckIcon v-if="set.showData" /></Transition>
@@ -39,40 +55,17 @@
           >
           <label for="showTxt"><small>Show text / code</small></label>
         </div>
-        <div class="_column short">
+        <div class="_column">
           <small>Code color</small>
-          <input type="text" placeholder="'#000000' or 'black'" v-model="set.codeColor">
+          <input
+            type="text"
+            placeholder="'#000000' or 'black'"
+            v-model="set.codeColor"
+          >
         </div>
       </div>
     </div>
-    <div class="_column">
-      <small>Quantity</small>
-      <input
-        placeholder="Digits (1 — 2000)"
-        type="text"
-        v-model="set.quantity"
-        maxlength="4"
-      >
-    </div>
-    <div class="_column">
-      <small>Export Settings</small>
-      <div class="settings__input-wp short">
-        <input
-          placeholder="Archive Name"
-          type="text"
-          v-model="set.exportPackName"
-          maxlength="15"
-        >
-        <AppSelect
-          :select-options="{ model: set.exportFormat, items: formats}"
-          @update-data="(format) => set.exportFormat = format"
-          class="settings__select"
-        />
-      </div>
-    </div>
-    <div class="_btn">
-      <h3>Generate</h3>
-    </div>
+    <TheExportSection />
   </div>
 </template>
 
@@ -80,10 +73,11 @@
 import CheckIcon from '@/assets/svg/CheckIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 import AppSelect from '@/components/GeneratorView/AppSelect.vue'
-const { set, standarts, formats } = useDataStore()
+import TheExportSection from '@/components/GeneratorView/TheExportSection.vue'
+const { set, standarts } = useDataStore()
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .settings {
   display: flex;
   flex-direction: column;
@@ -92,6 +86,7 @@ const { set, standarts, formats } = useDataStore()
 
   &__row {
     display: flex;
+    width: 100%;
     gap: calc(var(--space) * 2);
   }
 
@@ -102,13 +97,14 @@ const { set, standarts, formats } = useDataStore()
     border-radius: var(--br-rad);
     background-color: var(--wrapper-c);
     width: 15rem;
-    flex: 1 1;
+    height: 12.875rem;
     transition: var(--transition);
 
     svg {
       border-radius: var(--br-rad);
       max-width: 100%;
       height: auto;
+      max-height: 10.875rem;
       margin: var(--space);
     }
   }
@@ -118,15 +114,15 @@ const { set, standarts, formats } = useDataStore()
     z-index: 5;
 
     input {
-      width: 200px;
+      width: 10rem;
       padding-right: 10rem !important;
     }
   }
 
   &__select {
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 0.3125rem;
+    top: 0.3125rem;
   }
 
   &__standart {
@@ -155,33 +151,9 @@ const { set, standarts, formats } = useDataStore()
     z-index: 1;
     pointer-events: none;
   }
-
-  input[type="checkbox"] {
-    display: none;
-  }
-
-  label {
-    cursor: pointer;
-    position: relative;
-    transition: var(--transition);
-  }
-
-  label::before {
-    content: '';
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    vertical-align: middle;
-    margin-right: var(--space);
-    border-radius: var(--br-rad);
-    background-color: var(--wrapper-c);
-    cursor: pointer;
-  }
 }
 
-.short {
-  input {
-    width: 12.5rem;
-  }
+.adaptive {
+  width: 120px;
 }
 </style>

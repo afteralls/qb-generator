@@ -16,19 +16,24 @@ h1, h2, h3, h4, p {
 }
 
 th, td {
-  background: #3f3f3f33;
+  background: var(--wrapper-c-h);
   border-spacing: none;
+  text-align: center;
+  padding: var(--space);
 }
 
 th {
-  border: 1px solid #3f3f3f77;
   text-align: center;
-  padding: 5px;
 }
 
 p {
   font-family: 'Comfortaa', sans-serif;
   line-height: 1.1;
+}
+
+small {
+  color: var(--txt-c-h);
+  text-transform: uppercase;
 }
 
 a, a:visited {
@@ -45,7 +50,7 @@ svg:hover {
   fill: var(--txt-c-h);
 }
 
-input[type="text"], input[type="number"] {
+input[type="text"] {
   border-radius: var(--br-rad);
   outline: none;
   padding: var(--space);
@@ -59,6 +64,28 @@ input[type="text"], input[type="number"] {
   &:hover {
     background-color: var(--wrapper-c-h);
   }
+}
+
+input[type="checkbox"], input[type="radio"] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+label::before {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: var(--space);
+  border-radius: var(--br-rad);
+  background-color: var(--wrapper-c);
+  cursor: pointer;
 }
 
 ::selection {
@@ -107,7 +134,11 @@ input[type="text"], input[type="number"] {
   border-radius: calc(var(--br-rad) * 2);
   transition: var(--transition);
   cursor: pointer;
-  color: var(--dark-txt-c) !important;
+  box-sizing: border-box;
+
+  small {
+    color: var(--dark-txt-c-h) !important;
+  }
 
   &:hover {
     background-color: var(--accent-c-h);

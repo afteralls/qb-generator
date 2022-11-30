@@ -47,6 +47,7 @@ const templates = ref([])
     rgba(0, 0, 0, 1) 93%,
     transparent
   );
+
   -webkit-mask-image: linear-gradient(
     to right,
     transparent,

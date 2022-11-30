@@ -46,13 +46,12 @@ const router = createRouter({
 })
 
 router.beforeEach((to, _, next) => {
-  const { set, generateBarcode } = useDataStore()
+  const { setDefaultSet } = useDataStore()
   document.title = to.name
   next()
   setTimeout(() => {
     window.scrollTo(0,0)
-    if (to.path === '/generator')
-      if (set.flag) generateBarcode('#example')
+    setDefaultSet()
   }, 250)
 })
 

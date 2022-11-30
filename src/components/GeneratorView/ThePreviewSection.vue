@@ -2,25 +2,28 @@
   <section class="preview">
     <small>Preview</small>
     <div class="preview__wrapper">
-      <div v-if="!previews.value" class="preview__tip">
+      <div v-if="!set.generateFlag" class="preview__tip">
         <InfoIcon />
         <h3>This window is a preview for your barcodes, but you haven't generated them yet...</h3>
       </div>
-      <table v-else id="table">
+      <table v-else class="preview__table">
         <tr><th>№</th><th>Barcode</th></tr>
-        <tr v-for="(num, idx) in beforeGenerate" :key="num">
+        <tr v-for="(num, idx) in parseInt(set.beforeQuanSet)" :key="num">
           <td>{{ idx + 1 }}</td>
-          <td><div class="_img-wrapper"><svg :data-num="idx + 1"></svg></div></td>
+          <td><div class="canvas-wrapper"><svg :data-num="idx + 1"></svg></div></td>
         </tr>
       </table>
-      <div class="_space"></div>
+      <div class="space"></div>
     </div>
   </section>
 </template>
 
 <script setup>
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
+import { useDataStore } from '@/stores/dataStore.js'
 import { ref } from 'vue'
+
+const { set } = useDataStore()
 const previews = ref([])
 </script>
 
@@ -31,19 +34,47 @@ const previews = ref([])
   width: 21rem;
   gap: var(--space);
 
+  table {
+    display: block;
+    border-spacing: none;
+    border-radius: var(--br-rad);
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  th:nth-child(1) {
+    border-radius: var(--br-rad) 0 0 0;
+  }
+  
+  th:nth-child(2) {
+    border-radius: 0 var(--br-rad) 0 0;
+    width: 100%;
+  }
+  
+  tr:last-child td:nth-child(1) {
+    border-radius: 0 0 0 var(--br-rad);
+  }
+  
+  tr:last-child td:nth-child(2) {
+    border-radius: 0 0 var(--br-rad) 0;
+  }
+
   &__wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    overflow-y: scroll;
+    height: 100%;
+    max-height: 39.6rem;
+    box-sizing: border-box;
     border-radius: var(--br-rad);
     padding: var(--space);
-    background-color: var(--wrapper-c);
-    flex: 1 1;
+    background: linear-gradient(210deg, var(--accent-c), var(--wrapper-c) 50%);
   }
 
   &__tip {
     display: flex;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -51,9 +82,18 @@ const previews = ref([])
     gap: var(--space);
   }
 
+  &__table {
+    display: block;
+  }
+
   svg {
     width: 50px;
     height: auto;
+    max-height: 10rem;
   }
+}
+
+.space {
+  height: 1px;
 }
 </style>

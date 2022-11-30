@@ -42,7 +42,7 @@ const data = computed(() => props.selectOptions.items.map(item => item.name))
     z-index: 1;
     position: absolute;
     right: 0;
-    top: calc(50% - 19px);
+    top: calc(50% - 1.1875rem);
     transition: var(--transition);
     fill: var(--txt-c-h);
     height: 100%;
