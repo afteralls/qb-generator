@@ -105,7 +105,7 @@ export const useDataStore = defineStore('data', () => {
     exampleFlag: false,
     quantity: '',
     exportFormat: 'svg',
-    exportPackName: '',
+    exportName: '',
     generateFlag: false,
     beforeQuanSet: null
   })

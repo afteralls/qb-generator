@@ -21,10 +21,8 @@
 <script setup>
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
-import { ref } from 'vue'
 
 const { set } = useDataStore()
-const previews = ref([])
 </script>
 
 <style scoped lang="scss">
@@ -65,7 +63,7 @@ const previews = ref([])
   &__wrapper {
     overflow-y: scroll;
     height: 100%;
-    max-height: 39.6rem;
+    max-height: 33.75rem;
     box-sizing: border-box;
     border-radius: var(--br-rad);
     padding: var(--space);

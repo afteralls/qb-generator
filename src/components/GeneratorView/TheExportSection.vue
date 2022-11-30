@@ -27,12 +27,12 @@
   </div>
   <div class="export__row">
     <div class="_column">
-      <small>Archive Name (.zip)</small>
+      <small>{{ quantityFlag ? 'File Name' : 'Archive Name (.zip)' }}</small>
       <div class="merge__wrapper">
         <input
-          placeholder="my-collection (etc.)"
+          :placeholder="quantityFlag ? 'barcode-one' : 'my-collection (etc.)'"
           type="text"
-          v-model="set.exportPackName"
+          v-model="set.exportName"
           maxlength="15"
         >
         <button
@@ -58,14 +58,14 @@ import GenerateIcon from '@/assets/svg/GenerateIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
+import { reactive, computed } from 'vue'
 
 const { set, generate } = useDataStore()
-const files = []
+const quantityFlag = computed(() => set.quantity === '1' || set.quantity === '')
 
 const getZip = folder => {
-  console.log(folder)
   folder.generateAsync({ type: 'blob' }).then(content => {
-    saveAs(content, `${set.exportPackName}.zip`)
+    saveAs(content, `${set.exportName}.zip`)
   })
 }
 
@@ -89,10 +89,11 @@ const getGraphics = () => {
       URL.revokeObjectURL(url)
 
       canvas.toBlob(blob => {
-        zip.file(`Barcode-${i}.${set.exportFormat}`, blob, { base64: true })
-
-        if (set.quantity <= i) {
-          getZip(zip)
+        if (quantityFlag.value) {
+          saveAs(blob, `${set.exportName}.${set.exportFormat}`)
+        } else {
+          zip.file(`Barcode-${i}.${set.exportFormat}`, blob, { base64: true })
+          if (set.quantity <= i) { getZip(zip) }
         }
       }, `image/${set.exportFormat}`)
     }
@@ -102,12 +103,15 @@ const getGraphics = () => {
 
 const getSvgs = () => {
   const zip = new JSZip()
-  for (let i = 1; i <= set.quantity; i++) {
-    zip.file(`Barcode-${i}.svg`, new Blob([document.querySelector(`[data-num="${i}"]`).outerHTML], { type: 'image/svg+xml' }))
+  if (quantityFlag.value) {
+    const blob = new Blob([document.querySelector(`[data-num="1"]`).outerHTML], { type: 'image/svg+xml' })
+    saveAs(blob, `${set.exportName}.svg`)
+  } else {
+    for (let i = 1; i <= set.quantity; i++) {
+      zip.file(`Barcode-${i}.svg`, new Blob([document.querySelector(`[data-num="${i}"]`).outerHTML], { type: 'image/svg+xml' }))
+    }
+    getZip(zip)
   }
-
-  console.log(zip);
-  getZip(zip)
 }
 </script>
 
@@ -120,6 +124,7 @@ button {
   border-radius: var(--br-rad);
   transition: var(--transition);
 }
+
 .export__row {
   display: flex;
   width: 100%;
