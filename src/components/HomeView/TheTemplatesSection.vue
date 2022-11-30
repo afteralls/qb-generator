@@ -3,7 +3,7 @@
     <div class="templates__container">
       <div class="templates__wrapper">
         <router-link to="/generator">
-          <div class="_template">
+          <div class="templates__new">
             <CreateIcon />
             <h3>Create a new template</h3>
           </div>
@@ -24,8 +24,6 @@
 <script setup>
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
-import { ref } from 'vue'
-const templates = ref([])
 </script>
 
 <style lang="scss">
@@ -64,6 +62,26 @@ const templates = ref([])
     display: flex;
     width: 100%;
     gap: var(--space);
+  }
+
+  &__new {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: var(--space);
+    background-color: var(--wrapper-c);
+    border-radius: var(--br-rad);
+    padding: var(--space);
+    height: var(--template-size);
+    min-width: var(--template-size);
+    transition: var(--transition);
+    cursor: pointer;
+    color: var(--txt-c);
+
+    &:hover {
+      background-color: var(--wrapper-c-h);
+    }
   }
 
   &__tip {

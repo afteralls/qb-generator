@@ -22,7 +22,7 @@
     </div>
     <button
       @click="generate"
-      :class="{'btn-settings': true, _btn: true, disabled: !set.isCorrect }"
+      :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }"
     >
       <GenerateIcon style="height: 25px; fill: #ffffff99" />
       <small>Generate</small>
@@ -40,7 +40,7 @@
         >
         <button
           @click="set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
-          :class="{merge__btn: true, disabled: !set.isCorrect || !set.generated }"
+          :class="{merge__btn: true, _disabled: !set.isCorrect || !set.generated }"
         >
           <small>Download</small>
         </button>
@@ -48,12 +48,12 @@
     </div>
     <button
       @click="isOpen = true"
-      :class="{'btn-settings': true, 'temp-btn': true, disabled: !set.isCorrect }"
+      :class="{'btn-settings': true, 'temp-btn': true, _disabled: !set.isCorrect }"
     >
       <CreateIcon />
       <small>Save Template</small>
     </button>
-    <AppModal :isOpen="isOpen" @close-modal="isOpen = false" />
+    <TheTemplateModal :isOpen="isOpen" @close-modal="isOpen = false" :templateStandart="set.standart" />
   </div>
 </template>
 
@@ -61,7 +61,7 @@
 import CheckIcon from '@/assets/svg/CheckIcon.vue'
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import GenerateIcon from '@/assets/svg/GenerateIcon.vue'
-import AppModal from './AppModal.vue'
+import TheTemplateModal from './TheTemplateModal.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
@@ -183,11 +183,5 @@ button {
       background-color: var(--accent-c-h);
     }
   }
-}
-
-.disabled {
-  filter: contrast(0.5);
-  cursor: default;
-  pointer-events: none;
 }
 </style>

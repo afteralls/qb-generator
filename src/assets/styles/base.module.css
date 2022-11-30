@@ -10,7 +10,6 @@
   --dark-bg-c: #242424;
   --dark-wrapper-c: #2f2f2f;
   --dark-wrapper-c-h: rgba(68, 68, 68, 0.7);
-  --dark-modal-bg-c: rgba(68, 68, 68, 0.9);
   --dark-bg-c-tp: rgba(36, 36, 36, 0.7);
   --dark-txt-c: rgba(255, 255, 255, 0.8);
   --dark-txt-c-h: rgba(255, 255, 255, 0.6);
@@ -19,7 +18,6 @@
   --light-bg-c: #ffffff;
   --light-wrapper-c: #f1f1f1;
   --light-wrapper-c-h: rgba(218, 218, 218, 0.7);
-  --light-modal-bg-c: rgba(218, 218, 218, 0.9);
   --light-bg-c-tp: rgba(255, 255, 255, 0.7);
   --light-txt-c: rgba(0, 0, 0, 0.8);
   --light-txt-c-h: rgba(0, 0, 0, 0.6);
@@ -37,7 +35,6 @@ body.dark {
   --tp-c: var(--dark-bg-c-tp);
   --txt-c: var(--dark-txt-c);
   --txt-c-h: var(--dark-txt-c-h);
-  --modal-bg-c: var(--dark-modal-bg-c);
 }
 
 body.light {
@@ -47,5 +44,4 @@ body.light {
   --tp-c: var(--light-bg-c-tp);
   --txt-c: var(--light-txt-c);
   --txt-c-h: var(--light-txt-c-h);
-  --modal-bg-c: var(--light-modal-bg-c);
 }
