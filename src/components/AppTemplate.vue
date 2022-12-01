@@ -1,15 +1,16 @@
 <template>
   <div class="template">
-    <div class="template__code-icon">
+    <div class="_column">
       <QrIcon v-if="templateStandart === 'qr'" />
       <BarcodeIcon v-else />
-    </div>
-    <small>Name</small>
-    <h3 v-if="templateName === ''">Main Template</h3>
-    <slot name="codename"></slot>
-    <div v-if="templateDesc" class="_column">
+      <small>Name</small>
+      <slot name="codename"></slot>
       <small>Description</small>
       <slot name="desc"></slot>
+    </div>
+    <div class="_row">
+      <small>Date</small>
+      <slot name="date"></slot>
     </div>
   </div>
 </template>
@@ -17,13 +18,13 @@
 <script setup>
 import QrIcon from '@/assets/svg/QrIcon.vue'
 import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
-defineProps(['templateStandart', 'templateName', 'templateDesc'])
+defineProps(['templateStandart'])
 </script>
 
 <style lang="scss">
 .template {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
   flex-direction: column;
   gap: var(--space);
@@ -36,13 +37,10 @@ defineProps(['templateStandart', 'templateName', 'templateDesc'])
   transition: var(--transition);
   cursor: pointer;
   color: var(--txt-c);
-  word-wrap: break-word;
 
-  &__code-icon {
-    svg {
-      width: 5rem;
-      height: auto;
-    }
+  svg {
+    width: 5rem !important;
+    height: auto;
   }
 
   &:hover {

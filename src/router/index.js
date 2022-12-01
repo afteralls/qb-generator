@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
 import LibraryView from '@/views/LibraryView.vue'
-import { useDataStore } from '@/stores/dataStore.js'
 
 const RegView = () => import('@/views/RegView.vue')
 const AuthView = () => import('@/views/AuthView.vue')
@@ -45,14 +44,14 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, _, next) => {
-  const { setDefaultSet } = useDataStore()
+router.beforeEach((to, from, next) => {
   document.title = to.name
   next()
-  setTimeout(() => {
-    window.scrollTo(0,0)
-    setDefaultSet()
-  }, 250)
+  if(from.name !== to.name) {
+    setTimeout(() => {
+      window.scrollTo(0,0)
+    }, 250)
+  }
 })
 
 export default router

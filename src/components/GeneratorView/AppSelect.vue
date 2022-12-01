@@ -16,9 +16,17 @@
 <script setup>
 import ArrowIcon from '@/assets/svg/ArrowIcon.vue'
 import { ref, computed } from 'vue'
+import { useEventListener } from '@vueuse/core'
+
 const props = defineProps(['selectOptions'])
 const open = ref(false)
 const data = computed(() => props.selectOptions.items.map(item => item.name))
+
+useEventListener(document, 'click', (evt) => {
+  if (evt.target.classList[0] !== 'select') {
+    open.value = false;
+  }
+})
 </script>
 
 <style lang="scss">
@@ -36,6 +44,7 @@ const data = computed(() => props.selectOptions.items.map(item => item.name))
     color: var(--txt-c);
     user-select: none;
     transition: var(--transition);
+    pointer-events: none;
   }
 
   &__arrow {
@@ -46,6 +55,7 @@ const data = computed(() => props.selectOptions.items.map(item => item.name))
     transition: var(--transition);
     fill: var(--txt-c-h);
     height: 100%;
+    pointer-events: none;
   }
 
   &__items {

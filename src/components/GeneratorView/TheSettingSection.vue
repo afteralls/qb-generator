@@ -28,11 +28,13 @@
         >
       </div>
     </div>
-    <div class="settings__row">
+    <div v-if="set.standart !== 'qr'" class="settings__row">
       <div class="_column">
         <small>Example</small>
         <div class="settings__example">
-          <div v-if="set.isCorrect" class="_svg-wrapper"><svg id="example"></svg></div>
+          <div v-if="set.isCorrect" class="_svg-wrapper">
+            <svg id="example"></svg>
+          </div>
           <h3 v-else>Enter valid content</h3>
         </div>
       </div>
@@ -65,6 +67,7 @@
         </div>
       </div>
     </div>
+    <div class="setting__qr"></div>
     <TheExportSection />
   </div>
 </template>
@@ -74,7 +77,27 @@ import CheckIcon from '@/assets/svg/CheckIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 import AppSelect from '@/components/GeneratorView/AppSelect.vue'
 import TheExportSection from '@/components/GeneratorView/TheExportSection.vue'
-const { set, standarts } = useDataStore()
+import { onMounted } from 'vue'
+import { useUrlSearchParams } from '@vueuse/core'
+
+const { set, standarts, generateBarcode, corLengthHandler } = useDataStore()
+
+onMounted(() => {
+  const params = useUrlSearchParams('history')
+    setTimeout(() => {
+      set.standart = params.standart || 'EAN 13'
+    }, 50)
+    setTimeout(() => {
+      set.content = params.content || ''
+      set.codeColor = params.codeColor || '#000000'
+      set.bgColor = params.bgColor || 'transparent'
+      set.showData = params.showData || true
+      set.quantity = params.quantity || ''
+      if (corLengthHandler) {
+        generateBarcode('#example', set.content)
+      }
+    }, 51)
+})
 </script>
 
 <style lang="scss">

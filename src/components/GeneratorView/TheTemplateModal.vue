@@ -3,24 +3,24 @@
     <Transition name="route">
       <div v-if="isOpen" class="modal">
         <div class="modal__window">
-          <AppTemplate
-            :templateName="templateName"
-            :templateDesc="templateDesc"
-            :templateStandart="templateStandart"
-          >
-            <template #codename><h3>{{ templateName }}</h3></template>
-            <template #desc><p>{{ templateDesc }}</p></template>
-          </AppTemplate>
+          <div class="modal__template">
+            <QrIcon v-if="templateStandart === 'qr'" />
+            <BarcodeIcon v-else />
+            <small>Name</small>
+            <h3>{{ templateName ? templateName : 'Example Name' }}</h3>
+            <small>Description</small>
+            <p>{{ templateDesc ? templateDesc : 'Example Description' }}</p>
+          </div>
           <div class="modal__column">
             <div class="_column">
               <small>Template Name</small>
-              <input type="text" maxlength="20" placeholder="Name (20)" v-model="templateName">
+              <input type="text" maxlength="12" placeholder="Name (12)" v-model="templateName">
             </div>
             <div class="_column">
               <small>Template Description</small>
               <input
                 type="text"
-                maxlength="20"
+                maxlength="15"
                 placeholder="Important info (or not...)"
                 v-model="templateDesc"
               >
@@ -39,29 +39,31 @@
 </template>
 
 <script setup>
-import AppTemplate from '@/components/AppTemplate.vue'
 import { ref } from 'vue'
+import QrIcon from '@/assets/svg/QrIcon.vue'
+import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
 import { useMainStore } from '@/stores/mainStore.js'
 import { useDataStore } from '@/stores/dataStore.js'
+import { useRouter } from 'vue-router'
 
 defineProps(['isOpen', 'templateStandart'])
-defineEmits(['closeModal'])
+const emit = defineEmits(['closeModal'])
 
-const { state } = useMainStore()
+const { templates } = useMainStore()
 const { set } = useDataStore()
 const templateName = ref('')
 const templateDesc = ref('')
+const router = useRouter()
 
 const saveTemplate = () => {
-  state.push({
-    templateName,
-    templateDesc,
-    content: set.content,
+  templates.push({
+    templateName: templateName.value,
+    templateDesc: templateDesc.value,
     standart: set.standart,
-    quantity: set.quantity,
-    bgColor: set.bgColor,
-    showData: set.showData,
+    path: router.options.history.state.current,
+    date: new Date().toLocaleDateString()
   })
+  emit('closeModal')
 }
 </script>
 
@@ -91,6 +93,32 @@ const saveTemplate = () => {
     display: flex;
     flex-direction: column;
     gap: calc(var(--space) * 2);
+  }
+
+  &__template {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space);
+    background-color: var(--wrapper-c);
+    border-radius: var(--br-rad);
+    padding: var(--space);
+    height: var(--template-size);
+    min-width: var(--template-size);
+    max-width: var(--template-size);
+    transition: var(--transition);
+    cursor: pointer;
+    color: var(--txt-c);
+
+    svg {
+      width: 6rem;
+      height: auto;
+    }
+
+    &:hover {
+      background-color: var(--wrapper-c-h);
+    }
   }
 }
 

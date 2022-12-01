@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, reactive, watch } from 'vue'
 import JsBarcode from 'jsbarcode'
+import { useRouter } from 'vue-router'
 
 export const useDataStore = defineStore('data', () => {
   const standarts = [
@@ -104,6 +105,8 @@ export const useDataStore = defineStore('data', () => {
     beforeQuanSet: null
   })
 
+  const router = useRouter()
+
   const corLengthHandler = computed(() => {
     return ['ean13', 'ean8', 'itf14'].includes(set.curStandart.codeName)
       ? set.content.length === set.curStandart.corLength
@@ -119,7 +122,18 @@ export const useDataStore = defineStore('data', () => {
     })
   })
 
-  watch(() => [set.content, set.codeColor, set.bgColor, set.showData, set.quantity], () => {
+  watch(() => [set.standart, set.content, set.codeColor, set.bgColor, set.showData, set.quantity], () => {
+    router.push({
+      path: '/generator',
+      query: {
+        standart: set.standart,
+        content: set.content,
+        codeColor: set.codeColor,
+        bgColor: set.bgColor,
+        showData: set.showData,
+        quantity: set.quantity
+      }
+    })
     if (corLengthHandler.value) {
       set.isCorrect = true
       set.generated = false
@@ -158,11 +172,5 @@ export const useDataStore = defineStore('data', () => {
     set.generated = true
   }
 
-  const setDefaultSet = () => {
-    set.content = '',
-    set.isCorrect = false,
-    set.generated = false
-  }
-
-  return { set, standarts, generateBarcode, generate, setDefaultSet }
+  return { set, standarts, generateBarcode, generate, corLengthHandler }
 })

@@ -2,16 +2,18 @@
   <section class="templates">
     <div class="templates__container">
       <div class="templates__wrapper">
-        <router-link to="/generator">
-          <div class="templates__new">
-            <CreateIcon />
-            <h3>Create a new template</h3>
-          </div>
+        <router-link to="/generator" class="templates__new">
+          <CreateIcon />
+          <h3>Create a new template</h3>
         </router-link>
-        <div v-for="template in templates" class="template">
-          <h3>{{ template.name }}</h3>
-        </div>
-        <div v-if="!templates.value" class="templates__tip">
+        <router-link  :to="template.path" v-for="template in templates">
+          <AppTemplate :templateStandart="template.templateStandart">
+            <template #codename><h3>{{ template.templateName }}</h3></template>
+            <template #desc><p>{{ template.templateDesc }}</p></template>
+            <template #date><small>{{ template.date }}</small></template>
+          </AppTemplate>
+        </router-link>
+        <div v-if="!templates.length" class="templates__tip">
           <InfoIcon />
           <h3>The templates you create will appear in this section, try creating the first one!</h3>
           <p>Just generate several types of Qr or barcodes and the system will prompt you to save the settings</p>
@@ -22,8 +24,12 @@
 </template>
 
 <script setup>
+import AppTemplate from '../AppTemplate.vue';
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
+import { useMainStore } from '@/stores/mainStore.js'
+
+const { templates } = useMainStore()
 </script>
 
 <style lang="scss">
@@ -31,7 +37,7 @@ import InfoIcon from '@/assets/svg/InfoIcon.vue'
   overflow-x: scroll;
   width: 100%;
   max-width: 100%;
-  padding: 0 calc(var(--space) * 2.5);
+  padding: 0 var(--space);
 
   svg {
     width: 50px;
