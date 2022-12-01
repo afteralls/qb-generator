@@ -1,8 +1,7 @@
 <template>
   <div class="template">
     <div class="_column">
-      <QrIcon v-if="templateStandart === 'qr'" />
-      <BarcodeIcon v-else />
+      <BarcodeIcon />
       <small>Name</small>
       <slot name="codename"></slot>
       <small>Description</small>
@@ -16,12 +15,10 @@
 </template>
 
 <script setup>
-import QrIcon from '@/assets/svg/QrIcon.vue'
 import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
-defineProps(['templateStandart'])
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .template {
   display: flex;
   justify-content: space-between;

@@ -19,7 +19,7 @@ const { standarts } = useDataStore()
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .examples {
   display: flex;
   justify-content: center;

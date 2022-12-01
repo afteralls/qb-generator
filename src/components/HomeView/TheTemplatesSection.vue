@@ -16,7 +16,7 @@
         <div v-if="!templates.length" class="templates__tip">
           <InfoIcon />
           <h3>The templates you create will appear in this section, try creating the first one!</h3>
-          <p>Just generate several types of Qr or barcodes and the system will prompt you to save the settings</p>
+          <p>Just generate several types of barcodes and the system will prompt you to save the settings</p>
         </div>
       </div>
     </div>
@@ -27,12 +27,12 @@
 import AppTemplate from '../AppTemplate.vue';
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
-import { useMainStore } from '@/stores/mainStore.js'
+import { useDataStore } from '@/stores/dataStore.js'
 
-const { templates } = useMainStore()
+const { templates } = useDataStore()
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .templates {
   overflow-x: scroll;
   width: 100%;

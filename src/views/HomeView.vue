@@ -18,7 +18,7 @@ import TheLibrarySection from '@/components/HomeView/TheLibrarySection.vue'
 import HeartIcon from '@/assets/svg/HeartIcon.vue'
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .madeby {
   display: flex;
   justify-content: center;

@@ -2,7 +2,7 @@
   <div @click="open = !open" class="select">
     <ArrowIcon :class="{ select__arrow: true, rotate: open }" />
     <div class="select__selected"><small>{{ selectOptions.model }}</small></div>
-    <Transition name="route">
+    <Transition name="main">
       <div v-show="open" class="select__items">
         <div class="select__item"
           v-for="item of data" :key="item" @click="$emit('updateData', item), !open">

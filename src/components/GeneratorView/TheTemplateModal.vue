@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <Transition name="route">
+    <Transition name="main">
       <div v-if="isOpen" class="modal">
         <div class="modal__window">
           <div class="modal__template">
@@ -42,15 +42,13 @@
 import { ref } from 'vue'
 import QrIcon from '@/assets/svg/QrIcon.vue'
 import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
-import { useMainStore } from '@/stores/mainStore.js'
 import { useDataStore } from '@/stores/dataStore.js'
 import { useRouter } from 'vue-router'
 
 defineProps(['isOpen', 'templateStandart'])
 const emit = defineEmits(['closeModal'])
 
-const { templates } = useMainStore()
-const { set } = useDataStore()
+const { set, templates } = useDataStore()
 const templateName = ref('')
 const templateDesc = ref('')
 const router = useRouter()

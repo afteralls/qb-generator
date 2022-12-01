@@ -7,7 +7,7 @@ import TheNavbar from '@/components/Navbar/TheNavbar.vue'
   <TheNavbar />
   <div class="_container">
     <router-view v-slot="{ Component }">
-      <Transition name="route" mode="out-in">
+      <Transition name="main" mode="out-in">
         <component :is="Component" />
       </Transition>
     </router-view>
@@ -15,7 +15,7 @@ import TheNavbar from '@/components/Navbar/TheNavbar.vue'
 </template>
 
 <style lang="scss">
-.route {
+.main {
   &-enter-from {
     opacity: 0;
   }

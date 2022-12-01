@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import { computed, reactive, watch } from 'vue'
 import JsBarcode from 'jsbarcode'
 import { useRouter } from 'vue-router'
+import { useStorage } from '@vueuse/core'
 
 export const useDataStore = defineStore('data', () => {
   const standarts = [
@@ -106,6 +107,7 @@ export const useDataStore = defineStore('data', () => {
   })
 
   const router = useRouter()
+  const templates = useStorage('templates', [])
 
   const corLengthHandler = computed(() => {
     return ['ean13', 'ean8', 'itf14'].includes(set.curStandart.codeName)
@@ -117,7 +119,7 @@ export const useDataStore = defineStore('data', () => {
     standarts.map((standart, idx) => {
       if (standart.name === newV) {
         set.curStandart = standarts[idx]
-        set.content = ''
+        set.content = null
       }
     })
   })
@@ -153,12 +155,10 @@ export const useDataStore = defineStore('data', () => {
           displayValue: set.showData
         })
       }, 1)
-    } catch (e) {
-     console.trace(e.stack)
-    }
+    } catch (e) { }
   }
 
-  const generate = () => {
+  const generateHandler = () => {
     set.beforeQuanSet = +set.quantity || 1
     let curContent = ''
     setTimeout(() => {
@@ -172,5 +172,5 @@ export const useDataStore = defineStore('data', () => {
     set.generated = true
   }
 
-  return { set, standarts, generateBarcode, generate, corLengthHandler }
+  return { set, standarts, generateBarcode, generateHandler, corLengthHandler, templates }
 })

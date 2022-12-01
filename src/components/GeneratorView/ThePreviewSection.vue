@@ -8,9 +8,9 @@
       </div>
       <table v-else class="preview__table">
         <tr><th>№</th><th>Barcode</th></tr>
-        <tr v-for="(num, idx) in parseInt(set.beforeQuanSet)" :key="num">
+        <tr v-for="(num, idx) in +set.beforeQuanSet" :key="num">
           <td>{{ idx + 1 }}</td>
-          <td><div class="canvas-wrapper"><svg :data-num="idx + 1"></svg></div></td>
+          <td><div class="_svg-wrapper"><svg :data-num="idx + 1"></svg></div></td>
         </tr>
       </table>
       <div class="space"></div>

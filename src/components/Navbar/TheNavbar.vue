@@ -27,22 +27,13 @@ import TheThemeSwitcher from './TheThemeSwitcher.vue'
             <a href="https://github.com/post-apocalypse"><GitHubIcon /></a>
             <a href="https://t.me/afterallspace"><TelegramIcon /></a>
           </div>
-          <div class="br"></div>
-          <div class="nav__auth _row">
-            <router-link to="/login">
-              <h4 class="nav__el">Log in</h4>
-            </router-link>
-            <router-link to="/signup">
-              <h4 class="nav__el">Sign up</h4>
-            </router-link>
-          </div>
         </div>
       </div>
     </div>
   </nav>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .nav-wrapper {
   position: fixed;
   box-sizing: border-box;

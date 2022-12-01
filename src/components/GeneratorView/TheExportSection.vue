@@ -3,27 +3,14 @@
     <div class="_column">
       <small>Export Format</small>
       <div class="_row">
-        <div class="cb-wrapper">
-          <Transition name="route"><CheckIcon v-if="set.exportFormat === 'png'" /></Transition>
-          <input v-model="set.exportFormat" id="png" type="radio" value="png">
-          <label data-radio for="png">PNG</label>
-        </div>
-        <div class="cb-wrapper">
-          <Transition name="route"><CheckIcon v-if="set.exportFormat === 'jpg'" /></Transition>
-          <input v-model="set.exportFormat" id="jpg" type="radio" value="jpg">
-          <label data-radio for="jpg">JPG</label>
-        </div>
-        <div class="cb-wrapper">
-          <Transition name="route"><CheckIcon v-if="set.exportFormat === 'svg'" /></Transition>
-          <input v-model="set.exportFormat" id="svg" type="radio" value="svg">
-          <label data-radio for="svg">SVG</label>
+        <div v-for="(format, idx) in exportFormats" class="cb-wrapper">
+          <Transition name="main"><CheckIcon v-if="set.exportFormat === format[idx]" /></Transition>
+          <input v-model="set.exportFormat" :id="format[idx]" type="radio" :value="format[idx]">
+          <label data-radio :for="format[idx]">{{ format[idx].toUpperCase() }}</label>
         </div>
       </div>
     </div>
-    <button
-      @click="generate"
-      :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }"
-    >
+    <button @click="generate" :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }">
       <GenerateIcon style="height: 25px; fill: #ffffff99" />
       <small>Generate</small>
     </button>
@@ -70,6 +57,8 @@ import { computed, ref } from 'vue'
 const { set, generate } = useDataStore()
 const isOpen = ref(false)
 const quantityFlag = computed(() => set.quantity === '1' || set.quantity === '')
+
+const exportFormats = ['png', 'jpg', 'svg']
 
 const getZip = folder => {
   folder.generateAsync({ type: 'blob' }).then(content => {

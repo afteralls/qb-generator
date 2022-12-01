@@ -2,9 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
 import LibraryView from '@/views/LibraryView.vue'
-
-const RegView = () => import('@/views/RegView.vue')
-const AuthView = () => import('@/views/AuthView.vue')
 const NotFoundView = () => import('@/views/NotFoundView.vue')
 
 const router = createRouter({
@@ -20,16 +17,6 @@ const router = createRouter({
       path: '/generator',
       name: 'Generator',
       component: GeneratorView
-    },
-    {
-      path: '/login',
-      name: 'Authorization',
-      component: AuthView
-    },
-    {
-      path: '/signup',
-      name: 'Registration',
-      component: RegView
     },
     {
       path: '/library',

@@ -13,7 +13,7 @@
 import AppButton from '@/components/AppButton.vue'
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .not-found {
   display: flex;
   justify-content: center;

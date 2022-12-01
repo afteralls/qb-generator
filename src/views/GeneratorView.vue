@@ -12,7 +12,7 @@ import TheSettingSection from '@/components/GeneratorView/TheSettingSection.vue'
 import ThePreviewSection from '@/components/GeneratorView/ThePreviewSection.vue'
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .generator-wrapper {
   display: flex;
   width: 100%;

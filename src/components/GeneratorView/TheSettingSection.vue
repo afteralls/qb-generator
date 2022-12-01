@@ -28,7 +28,7 @@
         >
       </div>
     </div>
-    <div v-if="set.standart !== 'qr'" class="settings__row">
+    <div class="settings__row">
       <div class="_column">
         <small>Example</small>
         <div class="settings__example">
@@ -41,33 +41,19 @@
       <div class="_column">
         <div class="_column">
           <small>Background color</small>
-          <input
-            type="text"
-            placeholder="'#ffffff' or 'transparent'"
-            v-model="set.bgColor"
-          >
+          <input type="text" placeholder="'#ffffff' or 'transparent'" v-model="set.bgColor">
         </div>
         <div class="cb-wrapper">
-          <Transition name="route"><CheckIcon v-if="set.showData" /></Transition>
-          <input
-            @click="set.showData = !set.showData"
-            v-model="set.showData"
-            type="checkbox"
-            id="showTxt"
-          >
-          <label for="showTxt"><small>Show text / code</small></label>
+          <Transition name="main"><CheckIcon v-if="set.showData" /></Transition>
+          <input @click="set.showData = !set.showData" v-model="set.showData" type="checkbox" id="st">
+          <label for="st"><small>Show text / code</small></label>
         </div>
         <div class="_column">
           <small>Code color</small>
-          <input
-            type="text"
-            placeholder="'#000000' or 'black'"
-            v-model="set.codeColor"
-          >
+          <input type="text" placeholder="'#000000' or 'black'" v-model="set.codeColor">
         </div>
       </div>
     </div>
-    <div class="setting__qr"></div>
     <TheExportSection />
   </div>
 </template>
@@ -100,7 +86,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .settings {
   display: flex;
   flex-direction: column;
@@ -130,6 +116,14 @@ onMounted(() => {
       max-height: 10.875rem;
       margin: var(--space);
     }
+  }
+
+  &__qr-section {
+    display: flex;
+    width: 100%;
+    border-radius: var(--br-rad);
+    background-color: var(--wrapper-c);
+    flex: 1 1;
   }
 
   &__input-wp {

@@ -15,7 +15,7 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
   </section>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .library {
   display: flex;
   justify-content: flex-end;
