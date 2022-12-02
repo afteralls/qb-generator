@@ -7,9 +7,9 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
     <div class="library__info">
       <h1>Not sure which barcode format you need?</h1>
       <p>You can see the formats available for generation<br />and choose the one that suits your needs best</p>
-      <router-link class="_btn" to="/library">
+      <RouterLink class="_btn" to="/library">
         <small>Learn more</small>
-      </router-link>
+      </RouterLink>
     </div>
     <QrIcon />
   </section>

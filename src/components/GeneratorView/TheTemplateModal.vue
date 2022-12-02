@@ -4,8 +4,7 @@
       <div v-if="isOpen" class="modal">
         <div class="modal__window">
           <div class="modal__template">
-            <QrIcon v-if="templateStandart === 'qr'" />
-            <BarcodeIcon v-else />
+            <BarcodeIcon />
             <small>Name</small>
             <h3>{{ templateName ? templateName : 'Example Name' }}</h3>
             <small>Description</small>
@@ -40,12 +39,11 @@
 
 <script setup>
 import { ref } from 'vue'
-import QrIcon from '@/assets/svg/QrIcon.vue'
 import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
 import { useRouter } from 'vue-router'
 
-defineProps(['isOpen', 'templateStandart'])
+defineProps(['isOpen'])
 const emit = defineEmits(['closeModal'])
 
 const { set, templates } = useDataStore()
@@ -55,10 +53,11 @@ const router = useRouter()
 
 const saveTemplate = () => {
   templates.push({
-    templateName: templateName.value,
-    templateDesc: templateDesc.value,
+    name: templateName.value,
+    desc: templateDesc.value,
     standart: set.standart,
-    path: router.options.history.state.current,
+    href: window.location.href,
+    path: router.options.history.location,
     date: new Date().toLocaleDateString()
   })
   emit('closeModal')

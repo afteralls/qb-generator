@@ -10,10 +10,10 @@ import TheThemeSwitcher from './TheThemeSwitcher.vue'
   <nav class="nav-wrapper">
     <div class="_container">
       <div class="nav">
-        <router-link to="/" class="nav__logo _row">
+        <RouterLink to="/" class="nav__logo _row">
           <LogoIcon />
           <h2>Barcode Generator</h2>
-        </router-link>
+        </RouterLink>
         <div class="nav__settings _row">
           <div class="nav__lang _row">
             <TranslateIcon />

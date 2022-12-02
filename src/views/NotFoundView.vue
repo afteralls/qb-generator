@@ -2,16 +2,12 @@
   <div class="_wrapper">
     <div class="not-found">
       <h1>Seems like you weren't<br />supposed to be here</h1>
-      <AppButton :page="'/'">
+      <RouterLink to="/" class="_btn">
         <h3>Go to Home</h3>
-      </AppButton>
+      </RouterLink>
     </div>
   </div>
 </template>
-
-<script setup>
-import AppButton from '@/components/AppButton.vue'
-</script>
 
 <style scoped lang="scss">
 .not-found {

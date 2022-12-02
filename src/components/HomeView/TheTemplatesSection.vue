@@ -2,17 +2,17 @@
   <section class="templates">
     <div class="templates__container">
       <div class="templates__wrapper">
-        <router-link to="/generator" class="templates__new">
+        <RouterLink to="/generator" class="templates__new">
           <CreateIcon />
           <h3>Create a new template</h3>
-        </router-link>
-        <router-link  :to="template.path" v-for="template in templates">
-          <AppTemplate :templateStandart="template.templateStandart">
-            <template #codename><h3>{{ template.templateName }}</h3></template>
-            <template #desc><p>{{ template.templateDesc }}</p></template>
-            <template #date><small>{{ template.date }}</small></template>
+        </RouterLink>
+        <RouterLink v-for="(temp, idx) in templates" :to="temp.path">
+          <AppTemplate :idx="idx" :link="temp.href" @del-temp="(idx) => templates.splice(idx, 1)">
+            <template #codename><h3>{{ temp.name }}</h3></template>
+            <template #desc><p>{{ temp.desc ? temp.desc : 'No description' }}</p></template>
+            <template #date><small>{{ temp.date }}</small></template>
           </AppTemplate>
-        </router-link>
+        </RouterLink>
         <div v-if="!templates.length" class="templates__tip">
           <InfoIcon />
           <h3>The templates you create will appear in this section, try creating the first one!</h3>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import AppTemplate from '../AppTemplate.vue';
+import AppTemplate from '../AppTemplate.vue'
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'

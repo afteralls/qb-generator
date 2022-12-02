@@ -4,9 +4,9 @@
       <h1>Barcode Generator</h1>
       <h2>Application for generating your own barcodes</h2>
       <p>Create Barcodes in a couple of clicks in your own design,<br>use the desired standard and export in the desired format.<br>Save templates, share and use them at any time</p>
-      <router-link class="_btn" to="/generator">
+      <RouterLink class="_btn" to="/generator">
         <small>Go to Generator</small>
-      </router-link>
+      </RouterLink>
     </div>
     <div class="logo-wrapper">
       <LogoIcon />

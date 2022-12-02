@@ -119,7 +119,7 @@ export const useDataStore = defineStore('data', () => {
     standarts.map((standart, idx) => {
       if (standart.name === newV) {
         set.curStandart = standarts[idx]
-        set.content = null
+        set.content = ''
       }
     })
   })

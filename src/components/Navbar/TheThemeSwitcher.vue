@@ -9,7 +9,7 @@ const isDark = useDark({
 </script>
 
 <template>
-  <h4>Dark Mode</h4>
+  <small>Dark Mode</small>
   <div class="switch">
     <input id="switch" class="switch__input" name="switch" type="checkbox" v-model="isDark">
     <label class="switch__toggler" for="switch"></label>

@@ -3,14 +3,17 @@
     <div class="_column">
       <small>Export Format</small>
       <div class="_row">
-        <div v-for="(format, idx) in exportFormats" class="cb-wrapper">
-          <Transition name="main"><CheckIcon v-if="set.exportFormat === format[idx]" /></Transition>
-          <input v-model="set.exportFormat" :id="format[idx]" type="radio" :value="format[idx]">
-          <label data-radio :for="format[idx]">{{ format[idx].toUpperCase() }}</label>
+        <div v-for="format in exportFormats" class="_cb-wrapper">
+          <Transition name="main"><CheckIcon v-if="set.exportFormat === format.name" /></Transition>
+          <input v-model="set.exportFormat" :id="format.name" type="radio" :value="format.name">
+          <label data-radio :for="format.name">{{ format.name.toUpperCase() }}</label>
         </div>
       </div>
     </div>
-    <button @click="generate" :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }">
+    <button
+      @click="generateHandler"
+      :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }"
+    >
       <GenerateIcon style="height: 25px; fill: #ffffff99" />
       <small>Generate</small>
     </button>
@@ -40,7 +43,7 @@
       <CreateIcon />
       <small>Save Template</small>
     </button>
-    <TheTemplateModal :isOpen="isOpen" @close-modal="isOpen = false" :templateStandart="set.standart" />
+    <TheTemplateModal :isOpen="isOpen" @close-modal="isOpen = false" />
   </div>
 </template>
 
@@ -54,11 +57,11 @@ import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 import { computed, ref } from 'vue'
 
-const { set, generate } = useDataStore()
+const { set, generateHandler } = useDataStore()
 const isOpen = ref(false)
 const quantityFlag = computed(() => set.quantity === '1' || set.quantity === '')
 
-const exportFormats = ['png', 'jpg', 'svg']
+const exportFormats = [{ name: 'png'}, { name: 'jpg' }, { name: 'svg' }]
 
 const getZip = folder => {
   folder.generateAsync({ type: 'blob' }).then(content => {

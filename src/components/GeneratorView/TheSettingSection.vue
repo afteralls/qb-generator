@@ -11,7 +11,7 @@
             :maxlength="set.curStandart.max"
           >
           <AppSelect
-            :select-options="{ model: set.standart, items: standarts}"
+            :select-options="{ model: set.standart, items: standarts }"
             @update-data="(standart) => set.standart = standart"
             class="settings__select"
           />
@@ -43,7 +43,7 @@
           <small>Background color</small>
           <input type="text" placeholder="'#ffffff' or 'transparent'" v-model="set.bgColor">
         </div>
-        <div class="cb-wrapper">
+        <div class="_cb-wrapper">
           <Transition name="main"><CheckIcon v-if="set.showData" /></Transition>
           <input @click="set.showData = !set.showData" v-model="set.showData" type="checkbox" id="st">
           <label for="st"><small>Show text / code</small></label>
@@ -154,19 +154,6 @@ onMounted(() => {
     &:hover {
       background-color: var(--wrapper-c-h);
     }
-  }
-}
-
-.cb-wrapper {
-  position: relative;
-
-  svg {
-    width: 50px;
-    height: auto;
-    position: absolute;
-    bottom: 0px;
-    z-index: 1;
-    pointer-events: none;
   }
 }
 
