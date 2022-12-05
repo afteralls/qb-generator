@@ -1,5 +1,5 @@
 @import './base.module.css';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* Global Styles */
 
@@ -24,13 +24,8 @@ body, input {
   }
 }
 
-body {
-  background-color: var(--bg-c);
-}
-
-a, a:visited {
-  color: var(--txt-c);
-}
+body { background-color: var(--bg-c); }
+a, a:visited { color: var(--txt-c); }
 
 svg {
   fill: var(--txt-c);
@@ -58,9 +53,7 @@ input[type="text"] {
   }
 }
 
-input[type="checkbox"], input[type="radio"] {
-  display: none;
-}
+input[type="checkbox"], input[type="radio"] { display: none; }
 
 label {
   cursor: pointer;
@@ -82,13 +75,8 @@ label {
 
 /* Pseudo-Elements */
 
-::selection {
-  background-color: #4f13af33;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
+::selection { background-color: #4f13af33; }
+::-webkit-scrollbar { display: none; }
 
 /* Global Classes */
 

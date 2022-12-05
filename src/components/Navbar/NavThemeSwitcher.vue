@@ -1,3 +1,13 @@
+<template>
+  <div class="_row">
+    <small>{{ $i18n('nav.darkMode') }}</small>
+    <div class="switch">
+      <input id="switch" class="switch__input" name="switch" type="checkbox" v-model="isDark">
+      <label class="switch__toggler" for="switch"></label>
+    </div>
+  </div>
+</template>
+
 <script setup>
 import { useDark } from '@vueuse/core'
 const isDark = useDark({
@@ -7,14 +17,6 @@ const isDark = useDark({
   valueLight: 'light',
 })
 </script>
-
-<template>
-  <small>{{ $i18n('nav.darkMode') }}</small>
-  <div class="switch">
-    <input id="switch" class="switch__input" name="switch" type="checkbox" v-model="isDark">
-    <label class="switch__toggler" for="switch"></label>
-  </div>
-</template>
 
 <style scoped lang="scss">
 .switch {
@@ -31,7 +33,6 @@ const isDark = useDark({
 
   &__toggler {
     display: flex;
-    position: relative;
     width: 46px;
     height: 22px;
     background-color: #f1f1f1;
@@ -41,9 +42,6 @@ const isDark = useDark({
 
     &::before {
       content: '';
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: absolute;
       top: 2px;
       left: 2px;
