@@ -26,19 +26,12 @@ import HeartIcon from '@/assets/svg/HeartIcon.vue'
   gap: 5px;
   flex-wrap: wrap;
 
-
   svg {
     fill: var(--txt-c);
     fill: red;
   }
 
-  a {
-    color: var(--txt-c);
-    transition: var(--transition);
-  }
-
-  a:hover {
-    color: var(--accent-c);
-  }
+  a { transition: var(--transition); }
+  a:hover { color: var(--accent-c); }
 }
 </style>

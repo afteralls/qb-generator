@@ -1,12 +1,12 @@
 <template>
-  <div class="_wrapper">
-    <div class="not-found">
-      <h1>Seems like you weren't<br />supposed to be here</h1>
-      <RouterLink to="/" class="_btn">
-        <h3>Go to Home</h3>
-      </RouterLink>
-    </div>
+<div class="_wrapper">
+  <div class="not-found">
+    <h1>Seems like you weren't<br />supposed to be here</h1>
+    <RouterLink to="/" class="_btn">
+      <h3>Go to Home</h3>
+    </RouterLink>
   </div>
+</div>
 </template>
 
 <style scoped lang="scss">

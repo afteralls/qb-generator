@@ -1,17 +1,17 @@
 <template>
-  <NavMenuIcon @click="isActive = !isActive" :class="{ 'active': isActive }" />
-  <Transition name="main">
-    <div v-show="isActive" class="menu-wrapper">
-      <div class="menu">
-        <slot name="theme"></slot>
-        <div class="_row">
-          <slot name="translation"></slot>
-          <div class="_br"></div>
-          <slot name="contacts"></slot>
-        </div>
+<NavMenuIcon @click="isActive = !isActive" :class="{ 'active': isActive }" />
+<Transition name="main">
+  <div v-show="isActive" class="menu-wrapper">
+    <div class="menu">
+      <slot name="theme"></slot>
+      <div class="_row">
+        <slot name="translation"></slot>
+        <div class="_br"></div>
+        <slot name="contacts"></slot>
       </div>
     </div>
-  </Transition>
+  </div>
+</Transition>
 </template>
 
 <script setup>

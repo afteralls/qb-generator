@@ -5,12 +5,12 @@ import TheNavbar from '@/components/Navbar/TheNavbar.vue'
 
 <template>
   <TheNavbar />
-  <div id="menu" class="_container">
-    <router-view v-slot="{ Component }">
+  <div class="_container">
+    <RouterView v-slot="{ Component }">
       <Transition name="main" mode="out-in">
         <component :is="Component" />
       </Transition>
-    </router-view>
+    </RouterView>
   </div>
 </template>
 

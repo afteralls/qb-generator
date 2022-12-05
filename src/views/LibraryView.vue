@@ -1,14 +1,16 @@
 <template>
-  <div class="_wrapper">
-    <div class="examples">
-      <AppExample v-for="standart in curLangStandarts">
-        <template #img><img :src="getImageUrl(standart.import)" alt="Barcode example"></template>
-        <template #name><h1>{{ standart.name }}</h1></template>
-        <template #desc><p>{{ standart.desc }}</p></template>
-        <template #structure><ol><li v-for="item in standart.info"><p>{{ item }}</p></li></ol></template>
-      </AppExample>
-    </div>
-  </div>
+<div class="_wrapper">
+  <section class="examples">
+    <AppExample v-for="standart in curLangStandarts">
+      <template #img><img :src="getImageUrl(standart.import)" alt="Barcode example"></template>
+      <template #name><h1>{{ standart.name }}</h1></template>
+      <template #desc><p>{{ standart.desc }}</p></template>
+      <template #structure>
+        <ol><li v-for="item in standart.info"><p>{{ item }}</p></li></ol>
+      </template>
+    </AppExample>
+  </section>
+</div>
 </template>
 
 <script setup>
@@ -17,7 +19,8 @@ import { ru, en } from '@/languages/langData.js'
 import AppExample from '@/components/LibraryView/AppExample.vue'
 
 const lang = inject('currentLang')
-const curLangStandarts = computed(() => lang.value === 'ru' ? ru.library.standarts : en.library.standarts)
+const curLangStandarts = computed(() => 
+  lang.value === 'ru' ? ru.library.standarts : en.library.standarts)
 
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>

@@ -1,11 +1,11 @@
 <template>
-  <div class="_row">
-    <small>{{ $i18n('nav.darkMode') }}</small>
-    <div class="switch">
-      <input id="switch" class="switch__input" name="switch" type="checkbox" v-model="isDark">
-      <label class="switch__toggler" for="switch"></label>
-    </div>
+<div class="_row">
+  <small>{{ $i18n('nav.darkMode') }}</small>
+  <div class="switch">
+    <input id="switch" class="switch__input" name="switch" type="checkbox" v-model="isDark">
+    <label class="switch__toggler" for="switch"></label>
   </div>
+</div>
 </template>
 
 <script setup>

@@ -77,7 +77,7 @@ export const useDataStore = defineStore('data', () => {
     })
   })
 
-  watch(() => [set.standart, set.content, set.codeColor, set.bgColor, set.showData, set.quantity], () => {
+  watch(() => [set.standart, set.content, set.codeColor, set.bgColor,set.showData, set.quantity], () => {
     router.push({
       path: '/generator',
       query: {
@@ -93,9 +93,7 @@ export const useDataStore = defineStore('data', () => {
       set.isCorrect = true
       set.generated = false
       generateBarcode('#example', set.content)
-    } else {
-      set.isCorrect = false
-    }
+    } else { set.isCorrect = false }
   })
 
   const generateBarcode = (selector, content) => {

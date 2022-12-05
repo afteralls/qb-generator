@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
-import LibraryView from '@/views/LibraryView.vue'
+const LibraryView = () => import('@/views/LibraryView.vue')
 const NotFoundView = () => import('@/views/NotFoundView.vue')
 
 const router = createRouter({
@@ -35,9 +35,7 @@ router.beforeEach((to, from, next) => {
   document.title = to.name
   next()
   if(from.name !== to.name) {
-    setTimeout(() => {
-      window.scrollTo(0,0)
-    }, 250)
+    setTimeout(() => { window.scrollTo(0,0) }, 250)
   }
 })
 
