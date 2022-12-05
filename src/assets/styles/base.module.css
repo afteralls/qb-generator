@@ -4,7 +4,8 @@
   --accent-c-h: rgba(80, 41, 131, 0.7);
   --circle-c: rgb(132, 219, 255);
   --circle-c-tp: rgba(132, 219, 255, 0.7);
-  --template-size: 15.625rem;
+  --template-size: 250px;
+  --template-size-mob: 150px;
 
   /* --darkTheme */
   --dark-bg-c: #242424;
@@ -27,11 +28,6 @@
   --transition: all 0.5s ease;
   --br-rad: var(--space);
 
-  /* Media */
-  --lg: 1200px;
-  --lg-m: 1000px;
-  --md: 900px;
-  --md-m: 900px;
 }
 
 body.dark {

@@ -1,5 +1,5 @@
 <template>
-  <nav ref="navSize" class="nav-wrapper">
+  <nav class="nav-wrapper">
     <div class="_container">
       <div class="nav">
         <RouterLink to="/" class="nav__logo _row">
@@ -22,7 +22,7 @@
         </div>
         <TheMenuIconButton
           v-else
-          class="nav__menu-icon"
+          class="nav__menu-icon _svg-wrapper"
           @click.prevent="isMenuActive = !isMenuActive"
           :is-menu-active="isMenuActive"
         />
@@ -74,16 +74,6 @@ const change = () => { changeLang() }
   z-index: 10;
   background-color: var(--tp-c);
   backdrop-filter: blur(8px);
-
-  h3 {
-    text-transform: uppercase;
-    color: var(--)
-  }
-
-  svg {
-    height: 1.5rem;
-    width: auto;
-  }
 }
 
 .nav {
@@ -91,12 +81,19 @@ const change = () => { changeLang() }
   justify-content: space-between;
   gap: var(--space);
   padding: var(--space);
+  line-height: 0;
 
-  &__logo {
-    a {
-      display: flex;
-      align-items: center;
-    }
+  h3 {
+    text-transform: uppercase;
+    color: var(--txt-c);
+    transition: var(--transition);
+
+    &:hover { color: var(--txt-c-h); }
+  }
+
+  svg {
+    height: 24px;
+    width: auto;
   }
 
   &__settings {

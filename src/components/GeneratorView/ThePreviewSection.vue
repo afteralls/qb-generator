@@ -52,6 +52,13 @@ const { set } = useDataStore()
       height: auto;
     }
 
+    th, td {
+      background: var(--wrapper-c-h);
+      border-spacing: none;
+      text-align: center;
+      padding: var(--space);
+    }
+
     @media (max-width: 900px) {
       max-width: 300px;
       margin: 0 auto;
