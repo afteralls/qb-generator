@@ -1,7 +1,7 @@
 <template>
   <div class="_wrapper">
     <div class="examples">
-      <AppExample v-for="standart in standarts">
+      <AppExample v-for="standart in curLangStandarts">
         <template #img><img :src="getImageUrl(standart.import)" alt="Barcode example"></template>
         <template #name><h1>{{ standart.name }}</h1></template>
         <template #desc><p>{{ standart.desc }}</p></template>
@@ -12,10 +12,13 @@
 </template>
 
 <script setup>
-import { inject } from 'vue'
+import { inject, computed } from 'vue'
+import { ru, en } from '@/languages/langData.js'
 import AppExample from '@/components/LibraryView/AppExample.vue'
 
-const standarts = inject('standarts')
+const lang = inject('currentLang')
+const curLangStandarts = computed(() => lang.value === 'ru' ? ru.library.standarts : en.library.standarts)
+
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>
 

@@ -14,6 +14,6 @@ export default {
     app.config.globalProperties.$i18n = key =>
       key.split('.').reduce((o, i) => o[i], options[currentLang.value])
     app.provide('i18n', changeLang)
-    app.provide('standarts', options[currentLang.value].library.standarts)
+    app.provide('currentLang', currentLang)
   }
 }

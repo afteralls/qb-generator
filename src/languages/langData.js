@@ -88,10 +88,7 @@ export const en = {
           'Article number: 4-5 digits',
           'Checksum digit'
         ],
-        corLength: 12,
         placeholder: 'Digits (12)',
-        max: 12,
-        codeName: 'ean13',
         import: 'ean13'
       },
       ean8: {
@@ -102,10 +99,7 @@ export const en = {
           'Article number: 4-5 digits',
           'Checksum digit'
         ],
-        corLength: 7,
         placeholder: 'Digits (7)',
-        max: 7,
-        codeName: 'ean8',
         import: 'ean8'
       },
       code128: {
@@ -117,10 +111,7 @@ export const en = {
           'Check symbol',
           'Stop symbol'
         ],
-        corLength: 1,
         placeholder: 'Text (50)',
-        max: 50,
-        codeName: 'code128',
         import: 'code128'
       },
       itf14: {
@@ -131,10 +122,7 @@ export const en = {
           'The next 12 digits are representing the product number',
           'Checksum digit'
         ],
-        corLength: 13,
         placeholder: 'Digits (13)',
-        max: 13,
-        codeName: 'itf14',
         import: 'itf14'
       },
       msi: {
@@ -143,10 +131,7 @@ export const en = {
         info: [
           'Can display only the number 0-9'
         ],
-        corLength: 1,
         placeholder: 'Digits (50)',
-        max: 50,
-        codeName: 'msi',
         import: 'msicode'
       },
       pharmacode: {
@@ -156,10 +141,7 @@ export const en = {
           'Pharmacode can represent only a single integer from 3 to 131 070',
           'The minimum barcode is 2 bars and the maximum 16'
         ],
-        corLength: 1,
         placeholder: 'Digits (3 — 131 070)',
-        max: 6,
-        codeName: 'pharmacode',
         import: 'pharmacode'
       }
     }

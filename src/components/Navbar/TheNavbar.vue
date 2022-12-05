@@ -54,7 +54,6 @@ import TheThemeSwitcher from './TheThemeSwitcher.vue'
 import TheMenuIconButton from './TheMenuButton.vue'
 import { useResizeObserver } from '@vueuse/core'
 import TheMenu from './TheMenu.vue'
-import { useRouter } from 'vue-router'
 import { inject, ref, onMounted } from 'vue'
 
 const isMenuActive = ref(false)
@@ -62,9 +61,8 @@ const navSize = ref(null)
 const width = ref(null)
 useResizeObserver(navSize, entries => { width.value = entries[0].contentRect.width })
 onMounted(() => { width.value = window.window.innerWidth })
-const router = useRouter()
 const changeLang = inject('i18n')
-const change = () => { router.go(router.options.history.location); changeLang() }
+const change = () => { changeLang() }
 </script>
 
 <style scoped lang="scss">
