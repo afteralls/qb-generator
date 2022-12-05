@@ -24,6 +24,8 @@ import HeartIcon from '@/assets/svg/HeartIcon.vue'
   justify-content: center;
   align-items: center;
   gap: 5px;
+  flex-wrap: wrap;
+
 
   svg {
     fill: var(--txt-c);

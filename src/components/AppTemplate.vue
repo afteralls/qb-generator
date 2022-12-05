@@ -8,13 +8,13 @@
           <div @click.prevent="copyLink" class="template__action share"><ShareIcon /></div>
         </div>
       </div>
-      <small>Name</small>
+      <small>{{ $i18n('home.tempSec.template.name') }}</small>
       <slot name="codename"></slot>
-      <small>Description</small>
+      <small>{{ $i18n('home.tempSec.template.desc') }}</small>
       <slot name="desc"></slot>
     </div>
     <div class="_row">
-      <small>Date</small>
+      <small>{{ $i18n('home.tempSec.template.date') }}</small>
       <slot name="date"></slot>
     </div>
   </div>
@@ -45,6 +45,11 @@ const copyLink = () => { navigator.clipboard.writeText(props.link) };
   transition: var(--transition);
   cursor: pointer;
   color: var(--txt-c);
+
+  @media (max-width: 750px) {
+    height: calc(var(--template-size) / 1.2);
+    min-width: calc(var(--template-size) / 1.2);
+  }
 
   & ._column {
     width: 100%;

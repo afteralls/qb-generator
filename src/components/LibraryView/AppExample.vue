@@ -5,11 +5,11 @@
     </div>
     <slot name="name"></slot>
     <div class="example__section">
-      <small>Description</small>
+      <small>{{ $i18n('library.desc') }}</small>
       <slot name="desc"></slot>
     </div>
     <div class="example__section">
-      <small>Structure</small>
+      <small>{{ $i18n('library.structure') }}</small>
       <slot name="structure"></slot>
     </div>
   </div>
@@ -29,17 +29,22 @@
   gap: var(--space);
   padding: var(--space);
 
+  @media (max-width: 900px) {
+    width: 300px;
+  }
+
+  @media (max-width: 500px) {
+    width: 100%;
+    min-height: auto;
+  }
+
   &__img-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: var(--wrapper-c-h);
     border-radius: var(--br-rad);
-
-    img {
-      height: 200px;
-      width: 100%;
-    }
   }
 
   &__section {

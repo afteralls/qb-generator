@@ -5,7 +5,7 @@ import TheNavbar from '@/components/Navbar/TheNavbar.vue'
 
 <template>
   <TheNavbar />
-  <div class="_container">
+  <div id="menu" class="_container">
     <router-view v-slot="{ Component }">
       <Transition name="main" mode="out-in">
         <component :is="Component" />

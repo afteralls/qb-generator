@@ -1,12 +1,24 @@
 @import './base.module.css';
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Montserrat:wght@700&display=swap');
 
+* {
+  outline: none;
+  &:hover {
+    outline: none;
+  }
+}
+
 body {
   background-color: var(--bg-c);
   margin: 0; padding: 0;
+  font-size: 16px;
   box-sizing: border-box;
   font-family: 'Montserrat', sans-serif;
   color: var(--txt-c);
+
+  @media (max-width: 900px) {
+    font-size: 14px;
+  }
 }
 
 h1, h2, h3, h4, p {
@@ -56,6 +68,10 @@ input[type="text"] {
   font-family: 'Montserrat', sans-serif;
   background-color: var(--wrapper-c);
   transition: var(--transition);
+
+  @media (max-width: 900px) {
+    font-size: 14px;
+  }
 
   &:hover {
     background-color: var(--wrapper-c-h);

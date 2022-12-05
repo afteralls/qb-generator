@@ -4,19 +4,19 @@
       <div class="templates__wrapper">
         <RouterLink to="/generator" class="templates__new">
           <CreateIcon />
-          <h3>Create a new template</h3>
+          <h3>{{ $i18n('home.tempSec.create') }}</h3>
         </RouterLink>
         <RouterLink v-for="(temp, idx) in templates" :to="temp.path">
           <AppTemplate :idx="idx" :link="temp.href" @del-temp="(idx) => templates.splice(idx, 1)">
             <template #codename><h3>{{ temp.name }}</h3></template>
-            <template #desc><p>{{ temp.desc ? temp.desc : 'No description' }}</p></template>
+            <template #desc><p>{{ temp.desc ? temp.desc : $i18n('home.tempSec.noDesc') }}</p></template>
             <template #date><small>{{ temp.date }}</small></template>
           </AppTemplate>
         </RouterLink>
         <div v-if="!templates.length" class="templates__tip">
           <InfoIcon />
-          <h3>The templates you create will appear in this section, try creating the first one!</h3>
-          <p>Just generate several types of barcodes and the system will prompt you to save the settings</p>
+          <h3>{{ $i18n('home.tempSec.tip.title') }}</h3>
+          <p>{{ $i18n('home.tempSec.tip.desc') }}</p>
         </div>
       </div>
     </div>
@@ -88,6 +88,12 @@ const { templates } = useDataStore()
     &:hover {
       background-color: var(--wrapper-c-h);
     }
+
+    
+    @media (max-width: 750px) {
+      height: calc(var(--template-size) / 1.2);
+      min-width: calc(var(--template-size) / 1.2);
+    }
   }
 
   &__tip {
@@ -97,6 +103,7 @@ const { templates } = useDataStore()
     flex-direction: column;
     gap: var(--space);
     max-width: 350px;
+    min-width: 350px;
   }
 }
 </style>

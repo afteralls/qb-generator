@@ -5,10 +5,10 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
 <template>
   <section class="library">
     <div class="library__info">
-      <h1>Not sure which barcode format you need?</h1>
-      <p>You can see the formats available for generation<br />and choose the one that suits your needs best</p>
+      <h1>{{ $i18n('home.libSec.title') }}</h1>
+      <p>{{ $i18n('home.libSec.desc.one') }}<br />{{ $i18n('home.libSec.desc.two') }}</p>
       <RouterLink class="_btn" to="/library">
-        <small>Learn more</small>
+        <small>{{ $i18n('home.libSec.btn') }}</small>
       </RouterLink>
     </div>
     <QrIcon />
@@ -33,12 +33,28 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
     height: auto;
   }
 
+  @media (max-width: 750px) {
+    flex-direction: column;
+    background: linear-gradient(0deg, transparent 30%, var(--circle-c-tp));
+
+    svg {
+      width: 150px;
+      height: auto;
+    }
+  }
+
   &__info {
     display: flex;
     align-items: flex-end;
     flex-direction: column;
     text-align: right;
     gap: var(--space);
+
+    @media (max-width: 750px) {
+      order: 2;
+      text-align: center;
+      align-items: center;
+    }
   }
 }
 </style>

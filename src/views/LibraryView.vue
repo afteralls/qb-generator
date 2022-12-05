@@ -12,10 +12,10 @@
 </template>
 
 <script setup>
+import { inject } from 'vue'
 import AppExample from '@/components/LibraryView/AppExample.vue'
-import { useDataStore } from '@/stores/dataStore.js'
 
-const { standarts } = useDataStore()
+const standarts = inject('standarts')
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>
 
@@ -31,6 +31,14 @@ const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import
   ol {
     margin: 0;
     padding-left: 20px;
+  }
+
+  @media (max-width: 500px) {
+    img {
+      max-width: 100%;
+      width: 100%;
+      max-height: 150px;
+    }
   }
 }
 </style>

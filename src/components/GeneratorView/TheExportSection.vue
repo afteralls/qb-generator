@@ -1,7 +1,7 @@
 <template>
   <div class="export__row">
     <div class="_column">
-      <small>Export Format</small>
+      <small>{{ $i18n('generator.settings.export.name') }}</small>
       <div class="_row">
         <div v-for="format in exportFormats" class="_cb-wrapper">
           <Transition name="main"><CheckIcon v-if="set.exportFormat === format.name" /></Transition>
@@ -15,12 +15,12 @@
       :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }"
     >
       <GenerateIcon style="height: 25px; fill: #ffffff99" />
-      <small>Generate</small>
+      <small>{{ $i18n('generator.settings.export.generate') }}</small>
     </button>
   </div>
   <div class="export__row">
     <div class="_column">
-      <small>{{ quantityFlag ? 'File Name' : 'Archive Name (.zip)' }}</small>
+      <small>{{ quantityFlag ? $i18n('generator.settings.export.fileName') : $i18n('generator.settings.export.arcName') }}</small>
       <div class="merge__wrapper">
         <input
           :placeholder="quantityFlag ? 'barcode-one' : 'my-collection (etc.)'"
@@ -32,7 +32,7 @@
           @click="set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
           :class="{merge__btn: true, _disabled: !set.isCorrect || !set.generated }"
         >
-          <small>Download</small>
+          <small>{{ $i18n('generator.settings.export.downloadBtn') }}</small>
         </button>
       </div>
     </div>
@@ -41,7 +41,7 @@
       :class="{'btn-settings': true, 'temp-btn': true, _disabled: !set.isCorrect }"
     >
       <CreateIcon />
-      <small>Save Template</small>
+      <small>{{ $i18n('generator.settings.export.saveTempBtn') }}</small>
     </button>
     <TheTemplateModal :isOpen="isOpen" @close-modal="isOpen = false" />
   </div>
@@ -131,6 +131,16 @@ button {
   justify-content: flex-start;
   align-items: flex-end;
   gap: calc(var(--space) * 2);
+
+  @media (max-width: 575px) {
+    gap: var(--space);
+    flex-direction: column;
+    width: 100%;
+
+    & ._column {
+      width: 100%;
+    }
+  }
 }
 
 .btn-settings {
@@ -138,9 +148,15 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 51px;
   gap: calc(var(--space) / 2);
+  height: 51px;
   padding: 0;
+
+  @media (max-width: 575px) {
+    width: 100%;
+    padding: var(--space);
+    max-height: 50px;
+  }
 }
 
 .temp-btn {
@@ -159,6 +175,15 @@ button {
       box-sizing: border-box;
       width: 310px;
     }
+
+    @media (max-width: 575px) {
+      width: 100%;
+
+      input {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
   }
 
   &__btn {
@@ -167,12 +192,17 @@ button {
     top: 0;
     background-color: var(--accent-c);
     padding: var(--space);
+    max-height: 51px;
     cursor: pointer;
 
     small { color: var(--dark-txt-c-h); }
 
     &:hover {
       background-color: var(--accent-c-h);
+    }
+
+    @media (max-width: 575px) {
+      max-height: 50px;
     }
   }
 }

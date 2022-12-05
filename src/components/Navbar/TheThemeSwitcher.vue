@@ -9,7 +9,7 @@ const isDark = useDark({
 </script>
 
 <template>
-  <small>Dark Mode</small>
+  <small>{{ $i18n('nav.darkMode') }}</small>
   <div class="switch">
     <input id="switch" class="switch__input" name="switch" type="checkbox" v-model="isDark">
     <label class="switch__toggler" for="switch"></label>

@@ -18,5 +18,11 @@ import ThePreviewSection from '@/components/GeneratorView/ThePreviewSection.vue'
   width: 100%;
   justify-content: space-around;
   gap: calc(var(--space) * 2);
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
   <section class="preview">
-    <small>Preview</small>
+    <small>{{ $i18n('generator.preview.prev') }}</small>
     <div class="preview__wrapper">
       <div v-if="!set.generated" class="preview__tip">
         <InfoIcon />
-        <h3>This window is a preview for your barcodes, but you haven't generated them yet...</h3>
+        <h3>{{ $i18n('generator.preview.info') }}</h3>
       </div>
       <table v-else class="preview__table">
-        <tr><th>№</th><th>Barcode</th></tr>
+        <tr><th>№</th><th>{{ $i18n('generator.preview.code') }}</th></tr>
         <tr v-for="(num, idx) in +set.beforeQuanSet" :key="num">
           <td>{{ idx + 1 }}</td>
           <td><div class="_svg-wrapper"><svg :data-num="idx + 1"></svg></div></td>
@@ -29,8 +29,18 @@ const { set } = useDataStore()
 .preview {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 21rem;
   gap: var(--space);
+
+  @media (max-width: 900px) {
+    width: 100%;
+    max-width: 521px;
+  }
+
+  @media (max-width: 575px) {
+    max-width: 359px;
+  }
 
   table {
     display: block;
@@ -40,6 +50,11 @@ const { set } = useDataStore()
     svg {
       width: 100%;
       height: auto;
+    }
+
+    @media (max-width: 900px) {
+      max-width: 300px;
+      margin: 0 auto;
     }
   }
 

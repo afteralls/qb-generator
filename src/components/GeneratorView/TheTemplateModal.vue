@@ -5,30 +5,30 @@
         <div class="modal__window">
           <div class="modal__template">
             <BarcodeIcon />
-            <small>Name</small>
-            <h3>{{ templateName ? templateName : 'Example Name' }}</h3>
-            <small>Description</small>
-            <p>{{ templateDesc ? templateDesc : 'Example Description' }}</p>
+            <small>{{ $i18n('generator.modal.name') }}</small>
+            <h3>{{ templateName ? templateName : $i18n('generator.modal.exName') }}</h3>
+            <small>{{ $i18n('generator.modal.desc') }}</small>
+            <p>{{ templateDesc ? templateDesc : $i18n('generator.modal.exDesc') }}</p>
           </div>
           <div class="modal__column">
             <div class="_column">
-              <small>Template Name</small>
-              <input type="text" maxlength="12" placeholder="Name (12)" v-model="templateName">
+              <small>{{ $i18n('generator.modal.tempName') }}</small>
+              <input type="text" maxlength="12" :placeholder="$i18n('generator.modal.tempName_ph')" v-model="templateName">
             </div>
             <div class="_column">
-              <small>Template Description</small>
+              <small>{{ $i18n('generator.modal.tempDesc') }}</small>
               <input
                 type="text"
                 maxlength="15"
-                placeholder="Important info (or not...)"
+                :placeholder="$i18n('generator.modal.temDesc_ph')"
                 v-model="templateDesc"
               >
             </div>
             <div class="_row">
               <div 
                 :class="{_btn: true, 'save-btn': true, _disabled: templateName === ''}" @click="saveTemplate"
-              ><small>Save</small></div>
-              <div class="_btn" @click="$emit('closeModal')"><small>Cancel</small></div>
+              ><small>{{ $i18n('generator.modal.saveBtn') }}</small></div>
+              <div class="_btn" @click="$emit('closeModal')"><small>{{ $i18n('generator.modal.cancelBtn') }}</small></div>
             </div>
           </div>
         </div>
@@ -84,12 +84,25 @@ const saveTemplate = () => {
     backdrop-filter: blur(8px);
     padding: var(--space);
     border-radius: var(--br-rad);
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+
+      input {
+        box-sizing: border-box;
+        width: 100%;
+      }
+    }
   }
 
   &__column {
     display: flex;
     flex-direction: column;
     gap: calc(var(--space) * 2);
+
+    @media (max-width: 900px) {
+      gap: var(--space);
+    }
   }
 
   &__template {
