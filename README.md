@@ -1,6 +1,6 @@
 # Barcode Generator
 > Аpplication for generating barcodes in various formats with the possibility of customization and export system
-### [Go to App](https://generator-space.web.app) ###
+### 👉 [Go to App](https://generator-space.web.app) ###
 ![Barcode](https://raw.githubusercontent.com/post-apocalypse/barcode-gen-app/master/src/assets/img/qr.webp?raw=true, 'Barcode')
 
 ## Available formats
@@ -20,6 +20,7 @@
 3. SVG is an XML-based vector image format for defining two-dimensional graphics, having support for interactivity and animation.
 
 ## Stack
-This app made with [Vue](https://github.com/vuejs) together with [Pinia](https://github.com/vuejs/pinia), [Vue Router](https://github.com/vuejs/router) and [VueUse](https://github.com/vueuse) from the framework ecosystem.
+This app made with [Vue](https://github.com/vuejs) together with [Pinia](https://github.com/vuejs/pinia), [Vue Router](https://github.com/vuejs/router) and [VueUse](https://github.com/vueuse) from the framework ecosystem
+- Based on the open source library [JsBarcode](https://github.com/lindell/JsBarcode)
 ___
 ### Have a question? Text me: [Telegram](https://t.me/afterallspace)
