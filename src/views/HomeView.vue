@@ -4,9 +4,9 @@
     <TheTemplatesSection />
     <TheLibrarySection />
     <div class="madeby">
-      <h4>Made with</h4>
+      <small>Made with</small>
       <HeartIcon />
-      <h4>by <a href="https://t.me/afterallspace">Daniil Sukharnikov</a></h4>
+      <small>by <a href="https://t.me/afterallspace" :title="$i18n('home.madeByLinkTitle')">Daniil Sukharnikov</a></small>
     </div>
   </div>
 </template>

@@ -3,8 +3,8 @@
     <div class="_column headers">
       <h1>{{ $i18n('home.homeSec.title') }}</h1>
       <h2>{{ $i18n('home.homeSec.subTitle') }}</h2>
-      <p>{{ $i18n('home.homeSec.desc.one') }}<br />{{ $i18n('home.homeSec.desc.two') }}<br />{{ $i18n('home.homeSec.desc.three') }}</p>
-      <RouterLink class="_btn" to="/generator">
+      <p>{{ $i18n('home.homeSec.desc.one') }}<br class="home__hidden" />{{ $i18n('home.homeSec.desc.two') }}<br class="home__hidden" />{{ $i18n('home.homeSec.desc.three') }}</p>
+      <RouterLink class="_btn" to="/generator" :title="$i18n('home.homeSec.linkTitle')">
         <small>{{ $i18n('home.homeSec.btn') }}</small>
       </RouterLink>
     </div>
@@ -25,6 +25,12 @@ import LogoIcon from '@/assets/svg/LogoIcon.vue'
   justify-content: space-between;
   align-items: center;
   gap: var(--space);
+
+  &__hidden {
+    @media (max-width: 575px) {
+      display: none;
+    }
+  }
 
   @media (max-width: 900px) {
     flex-direction: column;

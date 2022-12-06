@@ -2,7 +2,12 @@ export const en = {
   nav: {
     name: 'Barcode Generator',
     name_sh: 'Barcode Generator',
-    darkMode: 'Dark Mode'
+    darkMode: 'Dark Mode',
+    linkTitles: {
+      git: 'My page on GitHub',
+      telegram: 'My Telegram account',
+      home: 'Go to home page'
+    }
   },
   home: {
     homeSec: {
@@ -10,10 +15,11 @@ export const en = {
       subTitle: 'Application for generating your own barcodes',
       desc: {
         one: 'Create Barcodes in a couple of clicks in your own design,',
-        two: 'use the desired standard and export in the desired format.',
-        three: 'Save templates, share and use them at any time'
+        two: ' use the desired standard and export in the desired format.',
+        three: ' Save templates, share and use them at any time'
       },
-      btn: 'Go to Generator'
+      btn: 'Go to Generator',
+      linkTitle: 'Go to Barcode Generator'
     },
     tempSec: {
       create: 'Create a new template',
@@ -26,6 +32,10 @@ export const en = {
         name: 'Name',
         desc: 'Description',
         date: 'Date'
+      },
+      linkTitles: {
+        new: 'Create a new template',
+        temp: 'Go to template'
       }
     },
     libSec: {
@@ -34,8 +44,10 @@ export const en = {
         one: 'You can see the formats available for generation',
         two: 'and choose the one that suits your needs best'
       },
-      btn: 'Learn more'
-    }
+      btn: 'Learn more',
+      linkTitle: 'Learn more about barcode standards'
+    },
+    madeByLinkTitle: 'My Telegram account'
   },
   generator: {
     settings: {
@@ -146,6 +158,12 @@ export const en = {
         import: 'pharmacode'
       }
     }
+  },
+  notfound: {
+    one: "Seems like you weren't",
+    two: 'supposed to be here...',
+    btn: 'Go to Home',
+    linkTitle: 'Go to Home page'
   }
 }
 
@@ -153,7 +171,12 @@ export const ru = {
   nav: {
     name: 'Генератор штрих-кодов',
     name_sh: 'Barcode Generator',
-    darkMode: 'Тёмная тема'
+    darkMode: 'Тёмная тема',
+    linkTitles: {
+      git: 'Моя страница на GitHub',
+      telegram: 'Мой Telegram аккаунт',
+      home: 'Вернуться на главную'
+    }
   },
   home: {
     homeSec: {
@@ -161,10 +184,11 @@ export const ru = {
       subTitle: 'Приложение для генерации ваших собственных штрих-кодов',
       desc: {
         one: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне,',
-        two: 'используйте необходимый стандарт и экспортируйте в удобном формате',
-        three: 'Сохраняйте шаблоны, делитесь и используйте их  в любое время'
+        two: ' используйте необходимый стандарт и экспортируйте в удобном формате.',
+        three: ' Сохраняйте шаблоны, делитесь и используйте их  в любое время'
       },
-      btn: 'Перейти к Генератору'
+      btn: 'Перейти к Генератору',
+      linkTitle: 'Перейти к Генератору Штрих-кодов'
     },
     tempSec: {
       create: 'Создать новый шаблон',
@@ -177,6 +201,10 @@ export const ru = {
         name: 'Название',
         desc: 'Описание',
         date: 'Дата'
+      },
+      linkTitles: {
+        new: 'Создать новый шаблон',
+        temp: 'Перейти к шаблону'
       }
     },
     libSec: {
@@ -185,8 +213,10 @@ export const ru = {
         one: 'Вы можете просмотреть доступные стандарты для генерации',
         two: 'и выбрать наиболее подходящий под ваши нужды'
       },
-      btn: 'Подробнее'
-    }
+      btn: 'Подробнее',
+      linkTitle: 'Узнайте больше о стандартах штрих-кодов'
+    },
+    madeByLinkTitle: 'Мой Telegram аккаунт'
   },
   generator: {
     settings: {
@@ -299,5 +329,11 @@ export const ru = {
         import: 'pharmacode'
       }
     }
+  },
+  notfound: {
+    one: 'Кажется, что вас',
+    two: 'здесь быть не должно...',
+    btn: 'На главную',
+    linkTitle: 'Перейти на главную страницу'
   }
 }

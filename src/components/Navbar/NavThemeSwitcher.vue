@@ -10,12 +10,21 @@
 
 <script setup>
 import { useDark } from '@vueuse/core'
+import { watch, onMounted, computed } from 'vue'
+
 const isDark = useDark({
   selector: 'body',
   attribute: 'class',
   valueDark: 'dark',
-  valueLight: 'light',
+  valueLight: 'light'
 })
+
+const currentColor = computed(() => isDark.value ? '#242424' : '#ffffff')
+const docMeta = () =>
+  document.querySelector('meta[name="theme-color"]').setAttribute('content', currentColor.value)
+
+  watch(isDark, () => { docMeta() })
+onMounted(() => { docMeta() })
 </script>
 
 <style scoped lang="scss">

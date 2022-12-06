@@ -1,9 +1,9 @@
 <template>
 <div class="_wrapper">
   <div class="not-found">
-    <h1>Seems like you weren't<br />supposed to be here</h1>
-    <RouterLink to="/" class="_btn">
-      <h3>Go to Home</h3>
+    <h1>{{ $i18n('notfound.one') }}<br />{{ $i18n('notfound.two') }}</h1>
+    <RouterLink to="/" :title="$i18n('notfound.linkTitle')" class="_btn">
+      <small>{{ $i18n('notfound.btn') }}</small>
     </RouterLink>
   </div>
 </div>

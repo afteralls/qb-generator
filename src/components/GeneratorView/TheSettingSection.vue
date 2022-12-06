@@ -24,7 +24,7 @@
           :placeholder="$i18n('generator.settings.quan_plh')"
           type="text"
           v-model="set.quantity"
-          maxlength="4"
+          maxlength="3"
           class="adaptive"
         >
       </div>

@@ -2,11 +2,15 @@
   <section class="templates">
     <div class="templates__container">
       <div class="templates__wrapper">
-        <RouterLink to="/generator" class="templates__new">
+        <RouterLink to="/generator" class="templates__new" :title="$i18n('home.tempSec.linkTitles.new')">
           <CreateIcon />
           <h3>{{ $i18n('home.tempSec.create') }}</h3>
         </RouterLink>
-        <RouterLink v-for="(temp, idx) in templates" :to="temp.path">
+        <RouterLink
+          v-for="(temp, idx) in templates"
+          :to="temp.path"
+          :title="$i18n('home.tempSec.linkTitles.temp')"
+        >
           <TheTemplate :idx="idx" :link="temp.href" @del-temp="(idx) => templates.splice(idx, 1)">
             <template #codename><h3>{{ temp.name }}</h3></template>
             <template #desc><p>{{ temp.desc ? temp.desc : $i18n('home.tempSec.noDesc') }}</p></template>

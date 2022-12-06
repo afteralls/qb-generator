@@ -1,6 +1,6 @@
 <template>
-<a href="https://github.com/post-apocalypse"><GitHubIcon /></a>
-<a href="https://t.me/afterallspace"><TelegramIcon /></a>
+<a href="https://github.com/post-apocalypse" :title="$i18n('nav.linkTitles.git')"><GitHubIcon /></a>
+<a href="https://t.me/afterallspace" :title="$i18n('nav.linkTitles.telegram')"><TelegramIcon /></a>
 </template>
 
 <script setup>

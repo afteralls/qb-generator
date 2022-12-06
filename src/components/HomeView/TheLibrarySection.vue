@@ -7,7 +7,7 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
     <div class="library__info">
       <h1>{{ $i18n('home.libSec.title') }}</h1>
       <p>{{ $i18n('home.libSec.desc.one') }}<br />{{ $i18n('home.libSec.desc.two') }}</p>
-      <RouterLink class="_btn" to="/library">
+      <RouterLink class="_btn" to="/library" :title="$i18n('home.libSec.linkTitle')">
         <small>{{ $i18n('home.libSec.btn') }}</small>
       </RouterLink>
     </div>

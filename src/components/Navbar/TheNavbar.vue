@@ -2,7 +2,7 @@
 <nav ref="navSize" class="nav-wrapper">
   <div class="_container">
     <div class="nav">
-      <RouterLink to="/" class="_row">
+      <RouterLink to="/" class="_row" :title="$i18n('nav.linkTitles.home')">
         <LogoIcon />
         <h3>{{ width > 375 ? $i18n('nav.name') : $i18n('nav.name_sh') }}</h3>
       </RouterLink>
