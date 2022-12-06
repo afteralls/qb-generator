@@ -3,7 +3,7 @@
     <div class="_column headers">
       <h1>{{ $i18n('home.homeSec.title') }}</h1>
       <h2>{{ $i18n('home.homeSec.subTitle') }}</h2>
-      <p>{{ $i18n('home.homeSec.desc.one') }}<br>{{ $i18n('home.homeSec.desc.two') }}<br>{{ $i18n('home.homeSec.desc.three') }}</p>
+      <p>{{ $i18n('home.homeSec.desc.one') }}<br />{{ $i18n('home.homeSec.desc.two') }}<br />{{ $i18n('home.homeSec.desc.three') }}</p>
       <RouterLink class="_btn" to="/generator">
         <small>{{ $i18n('home.homeSec.btn') }}</small>
       </RouterLink>
@@ -33,6 +33,10 @@ import LogoIcon from '@/assets/svg/LogoIcon.vue'
 
 .logo-wrapper {
   filter: drop-shadow(0 0 10rem var(--circle-c));
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   svg {
     width: 100%;
@@ -65,6 +69,12 @@ import LogoIcon from '@/assets/svg/LogoIcon.vue'
 
     h1 { font-size: 2.5rem; }
     h2 { font-size: 1.5rem; }
+    p { font-size: 1rem; }
+  }
+
+  @media (max-width: 575px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.2rem; }
     p { font-size: 1rem; }
   }
 }

@@ -17,7 +17,14 @@
 <script setup>
 import { ref } from 'vue'
 import NavMenuIcon from './NavMenuIcon.vue'
+import { useEventListener } from '@vueuse/core'
+
 const isActive = ref(false)
+useEventListener(document, 'click', (evt) => {
+  if (!evt.target.closest(['.menu-icon', '.menu-wrapper'])) {
+    isActive.value = false
+}
+})
 </script>
 
 <style scoped lang="scss">

@@ -7,11 +7,11 @@
           <h3>{{ $i18n('home.tempSec.create') }}</h3>
         </RouterLink>
         <RouterLink v-for="(temp, idx) in templates" :to="temp.path">
-          <AppTemplate :idx="idx" :link="temp.href" @del-temp="(idx) => templates.splice(idx, 1)">
+          <TheTemplate :idx="idx" :link="temp.href" @del-temp="(idx) => templates.splice(idx, 1)">
             <template #codename><h3>{{ temp.name }}</h3></template>
             <template #desc><p>{{ temp.desc ? temp.desc : $i18n('home.tempSec.noDesc') }}</p></template>
             <template #date><small>{{ temp.date }}</small></template>
-          </AppTemplate>
+          </TheTemplate>
         </RouterLink>
         <div v-if="!templates.length" class="templates__tip">
           <InfoIcon />
@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import AppTemplate from '../AppTemplate.vue'
+import TheTemplate from './TheTemplate.vue'
 import CreateIcon from '@/assets/svg/CreateIcon.vue'
 import InfoIcon from '@/assets/svg/InfoIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
@@ -60,9 +60,7 @@ const { templates } = useDataStore()
     transparent
   );
 
-  &__container {
-    display: inline-block;
-  }
+  &__container { display: inline-block; }
 
   &__wrapper {
     display: flex;
@@ -84,15 +82,15 @@ const { templates } = useDataStore()
     transition: var(--transition);
     cursor: pointer;
     color: var(--txt-c);
+    text-align: center;
 
     &:hover {
       background-color: var(--wrapper-c-h);
     }
 
-    
     @media (max-width: 750px) {
-      height: calc(var(--template-size) / 1.2);
-      min-width: calc(var(--template-size) / 1.2);
+      height: calc(var(--template-size) / 1.1);
+      min-width: calc(var(--template-size) / 1.1);
     }
   }
 

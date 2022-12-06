@@ -80,7 +80,7 @@ const saveTemplate = () => {
   &__window {
     display: flex;
     gap: var(--space);
-    background-color: var(--wrapper-c-h);
+    background-color: var(--bg-c);
     backdrop-filter: blur(8px);
     padding: var(--space);
     border-radius: var(--br-rad);

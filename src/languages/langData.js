@@ -1,6 +1,7 @@
 export const en = {
   nav: {
     name: 'Barcode Generator',
+    name_sh: 'Barcode Generator',
     darkMode: 'Dark Mode'
   },
   home: {
@@ -54,7 +55,7 @@ export const en = {
         fileName: 'File Name',
         arcName: 'Archive Name (.zip)',
         downloadBtn: 'Download',
-        saveTempBtn: 'Save Template'
+        saveTempBtn: 'Save'
       }
     },
     preview: {
@@ -151,6 +152,7 @@ export const en = {
 export const ru = {
   nav: {
     name: 'Генератор штрих-кодов',
+    name_sh: 'Barcode Generator',
     darkMode: 'Тёмная тема'
   },
   home: {

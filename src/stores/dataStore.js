@@ -77,7 +77,10 @@ export const useDataStore = defineStore('data', () => {
     })
   })
 
-  watch(() => [set.standart, set.content, set.codeColor, set.bgColor,set.showData, set.quantity], () => {
+  const currentRegEx = computed(() => 
+    set.standart === 'CODE 128' ? /[А-я/\W|_]/ : /[A-zА-я/\W|_]/)
+
+  watch(() => [set.standart, set.content, set.codeColor, set.bgColor,set.showData, set.quantity], v => {
     router.push({
       path: '/generator',
       query: {
@@ -89,7 +92,7 @@ export const useDataStore = defineStore('data', () => {
         quantity: set.quantity
       }
     })
-    if (corLengthHandler.value) {
+    if (corLengthHandler.value && !v[1].match(currentRegEx.value)) {
       set.isCorrect = true
       set.generated = false
       generateBarcode('#example', set.content)

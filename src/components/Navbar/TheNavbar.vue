@@ -4,7 +4,7 @@
     <div class="nav">
       <RouterLink to="/" class="_row">
         <LogoIcon />
-        <h3>{{ $i18n('nav.name') }}</h3>
+        <h3>{{ width > 375 ? $i18n('nav.name') : $i18n('nav.name_sh') }}</h3>
       </RouterLink>
       <div v-if="width > 900" class="options _row">
         <NavThemeSwitcher />

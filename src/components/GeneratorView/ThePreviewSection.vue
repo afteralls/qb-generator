@@ -1,21 +1,21 @@
 <template>
-  <section class="preview">
-    <small>{{ $i18n('generator.preview.prev') }}</small>
-    <div class="preview__wrapper">
-      <div v-if="!set.generated" class="preview__tip">
-        <InfoIcon />
-        <h3>{{ $i18n('generator.preview.info') }}</h3>
-      </div>
-      <table v-else class="preview__table">
-        <tr><th>№</th><th>{{ $i18n('generator.preview.code') }}</th></tr>
-        <tr v-for="(num, idx) in +set.beforeQuanSet" :key="num">
-          <td>{{ idx + 1 }}</td>
-          <td><div class="_svg-wrapper"><svg :data-num="idx + 1"></svg></div></td>
-        </tr>
-      </table>
-      <div class="space"></div>
+<section class="preview">
+  <small>{{ $i18n('generator.preview.prev') }}</small>
+  <div class="preview__wrapper">
+    <div v-if="!set.generated" class="preview__tip">
+      <InfoIcon />
+      <h3>{{ $i18n('generator.preview.info') }}</h3>
     </div>
-  </section>
+    <table v-else class="preview__table">
+      <tr><th>№</th><th>{{ $i18n('generator.preview.code') }}</th></tr>
+      <tr v-for="(num, idx) in +set.beforeQuanSet" :key="num">
+        <td>{{ idx + 1 }}</td>
+        <td><div class="_svg-wrapper"><svg :data-num="idx + 1"></svg></div></td>
+      </tr>
+    </table>
+    <div class="space"></div>
+  </div>
+</section>
 </template>
 
 <script setup>
@@ -35,11 +35,11 @@ const { set } = useDataStore()
 
   @media (max-width: 900px) {
     width: 100%;
-    max-width: 521px;
+    max-width: 499px;
   }
 
   @media (max-width: 575px) {
-    max-width: 359px;
+    max-width: 343px;
   }
 
   table {

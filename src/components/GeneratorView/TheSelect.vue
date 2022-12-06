@@ -4,8 +4,11 @@
     <div class="select__selected"><small>{{ selectOptions.model }}</small></div>
     <Transition name="main">
       <div v-show="open" class="select__items">
-        <div class="select__item"
-          v-for="item of data" :key="item" @click="$emit('updateData', item), !open">
+        <div
+          class="select__item"
+          v-for="item of data" :key="item"
+          @click="$emit('updateData', item), !open"
+        >
           <small>{{ item }}</small>
         </div>
       </div>
@@ -23,8 +26,8 @@ const open = ref(false)
 const data = computed(() => props.selectOptions.items.map(item => item.name))
 
 useEventListener(document, 'click', (evt) => {
-  if (evt.target.classList[0] !== 'select') {
-    open.value = false;
+  if (!evt.target.closest('.select')) {
+    open.value = false
   }
 })
 </script>
@@ -38,7 +41,7 @@ useEventListener(document, 'click', (evt) => {
   cursor: pointer;
 
   &__selected {
-    padding: 0.66rem;
+    padding: 12px;
     background-color: var(--wrapper-c-h);
     border-radius: var(--br-rad);
     color: var(--txt-c);

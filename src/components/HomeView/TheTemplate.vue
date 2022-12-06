@@ -5,7 +5,7 @@
         <BarcodeIcon />
         <div class="template__actions">
           <div @click.prevent="$emit('delTemp', idx)" class="template__action trash"><TrashIcon /></div>
-          <div @click.prevent="copyLink" class="template__action share"><ShareIcon /></div>
+          <div @click.prevent="shareLink" class="template__action share"><ShareIcon /></div>
         </div>
       </div>
       <small>{{ $i18n('home.tempSec.template.name') }}</small>
@@ -24,9 +24,19 @@
 import TrashIcon from '@/assets/svg/TrashIcon.vue'
 import ShareIcon from '@/assets/svg/ShareIcon.vue'
 import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
-const props = defineProps(['idx', 'link'])
+import { useShare } from '@vueuse/core'
 
-const copyLink = () => { navigator.clipboard.writeText(props.link) };
+const props = defineProps(['idx', 'link'])
+const { share, isSupported } = useShare()
+const shareLink = () => {
+  if (isSupported.value) {
+    share({
+      title: 'Hey...',
+      text: 'Look what barcode I managed to create!',
+      url: props.link
+    })
+  } else { navigator.clipboard.writeText(props.link) }
+}
 </script>
 
 <style scoped lang="scss">
@@ -41,29 +51,29 @@ const copyLink = () => { navigator.clipboard.writeText(props.link) };
   padding: var(--space);
   height: var(--template-size);
   min-width: var(--template-size);
-  max-width: var(--template-size);
   transition: var(--transition);
   cursor: pointer;
-  color: var(--txt-c);
 
   @media (max-width: 750px) {
-    height: calc(var(--template-size) / 1.2);
-    min-width: calc(var(--template-size) / 1.2);
+    height: calc(var(--template-size) / 1.1);
+    min-width: calc(var(--template-size) / 1.1);
   }
 
-  & ._column {
-    width: 100%;
-  }
+  & ._column { width: 100%; }
 
   svg {
-    width: 5rem !important;
+    width: 5rem;
     height: auto;
     pointer-events: none;
   }
 
-  &:hover {
-    background-color: var(--wrapper-c-h);
+  @media (max-width: 750px) {
+    svg {
+      width: 4rem;
+    }
   }
+
+  &:hover { background-color: var(--wrapper-c-h); }
 
   &__row {
     display: flex;
@@ -74,7 +84,7 @@ const copyLink = () => { navigator.clipboard.writeText(props.link) };
   &__actions {
     display: flex;
     gap: var(--space);
-    z-index: 10;
+    z-index: 30;
   }
 
   &__action {
@@ -83,27 +93,26 @@ const copyLink = () => { navigator.clipboard.writeText(props.link) };
     align-items: center;
     width: 40px;
     height: 40px;
+    transition: var(--transition);
     border-radius: calc(var(--br-rad) / 1.2);
     background-color: var(--wrapper-c-h);
 
     svg {
-      width: 20px !important;
+      width: 20px;
       height: auto;
+    }
+
+    @media (max-width: 750px) {
+      width: 35px;
+      height: 35px;
+
+      svg {
+        width: 15px;
+      }
     }
   }
 }
 
-.trash {
-  transition: var(--transition);
-  &:hover {
-    background-color: rgba(255, 0, 0, 0.2);
-  }
-}
-
-.share {
-  transition: var(--transition);
-  &:hover {
-    background-color: rgba(0, 255, 0, 0.2);
-  }
-}
+.trash:hover { background-color: rgba(255, 0, 0, 0.2); }
+.share:hover { background-color: rgba(0, 255, 0, 0.2); }
 </style>

@@ -5,12 +5,13 @@
         <small>{{ $i18n('generator.settings.content') }}</small>
         <div class="settings__input-wp">
           <input
-            :placeholder="set.curStandart.placeholder"
+            :placeholder="$i18n(`library.standarts.${set.curStandart.codeName}.placeholder`)"
             type="text"
+            ref="cont"
             v-model="set.content"
             :maxlength="set.curStandart.max"
           >
-          <AppSelect
+          <TheSelect
             :select-options="{ model: set.standart, items: standarts }"
             @update-data="(standart) => set.standart = standart"
             class="settings__select"
@@ -61,7 +62,7 @@
 <script setup>
 import CheckIcon from '@/assets/svg/CheckIcon.vue'
 import { useDataStore } from '@/stores/dataStore.js'
-import AppSelect from '@/components/GeneratorView/AppSelect.vue'
+import TheSelect from '@/components/GeneratorView/TheSelect.vue'
 import TheExportSection from '@/components/GeneratorView/TheExportSection.vue'
 import { onMounted } from 'vue'
 import { useUrlSearchParams } from '@vueuse/core'
@@ -70,18 +71,15 @@ const { set, standarts, generateBarcode, corLengthHandler } = useDataStore()
 
 onMounted(() => {
   const params = useUrlSearchParams('history')
-    setTimeout(() => {
-      set.standart = params.standart || 'EAN 13'
-    }, 50)
+    setTimeout(() => { set.standart = params.standart || 'EAN 13' }, 50)
     setTimeout(() => {
       set.content = params.content || ''
       set.codeColor = params.codeColor || '#000000'
       set.bgColor = params.bgColor || 'transparent'
       set.showData = params.showData || true
       set.quantity = params.quantity || ''
-      if (corLengthHandler) {
-        generateBarcode('#example', set.content)
-      }
+      set.generated = false
+      if (corLengthHandler) { generateBarcode('#example', set.content) }
     }, 51)
 })
 </script>
@@ -92,9 +90,10 @@ onMounted(() => {
   flex-direction: column;
   align-items: flex-start;
   gap: calc(var(--space) * 2);
+  max-width: 502px;
 
   @media (max-width: 900px) {
-    max-width: 521px;
+    max-width: 500px;
     gap: var(--space);
 
     & ._column {
@@ -117,9 +116,13 @@ onMounted(() => {
     width: 100%;
     gap: calc(var(--space) * 2);
 
+    @media (max-width: 900px) {
+      gap: var(--space);
+    }
+
     @media (max-width: 575px) {
       flex-direction: column;
-      gap: var(--space);
+      
     }
   }
 
@@ -160,7 +163,7 @@ onMounted(() => {
     z-index: 5;
 
     input {
-      width: 10rem;
+      width: 330px;
       padding-right: 10rem !important;
     }
   }
@@ -187,12 +190,18 @@ onMounted(() => {
 }
 
 .adaptive {
-  width: 120px;
+  max-width: 140px;
+  input { width: 100%; }
+
+  @media (max-width: 575px) {
+    max-width: 100%;
+  }
 }
 
 .sideset {
   @media (max-width: 900px) {
     width: 100%;
+    justify-content: space-between;
     & ._column {
       width: 100%;
 
