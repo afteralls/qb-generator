@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "vite",
     "dev-h": "vite --host",
+    "deploy": "firebase deploy --only hosting:generator-space",
     "build": "vite build",
     "preview": "vite preview",
     "dev-p": "vite --port 3030 --host"
