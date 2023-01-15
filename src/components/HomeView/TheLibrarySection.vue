@@ -1,20 +1,17 @@
-<script setup>
-import QrIcon from '@/assets/svg/QrIcon.vue'
-</script>
-
 <template>
-  <section class="library">
-    <div class="library__info">
-      <h1>{{ $i18n('home.libSec.title') }}</h1>
-      <p>{{ $i18n('home.libSec.desc.one') }}<br />{{ $i18n('home.libSec.desc.two') }}</p>
-      <RouterLink class="_btn" to="/library" :title="$i18n('home.libSec.linkTitle')">
-        <small>{{ $i18n('home.libSec.btn') }}</small>
-      </RouterLink>
-    </div>
-    <QrIcon />
-  </section>
+<section class="library">
+  <div class="info">
+    <h1>{{ $i18n('home.libTitle') }}</h1>
+    <p>{{ $i18n('home.libOne') }}<br />{{ $i18n('home.libTwo') }}</p>
+    <RouterLink class="_btn" to="/library" :title="$i18n('home.libLinkTitle')">
+      <small>{{ $i18n('home.gtLib') }}</small>
+    </RouterLink>
+  </div>
+  <QrIcon />
+</section>
 </template>
 
+<script setup></script>
 <style scoped lang="scss">
 .library {
   display: flex;
@@ -42,19 +39,19 @@ import QrIcon from '@/assets/svg/QrIcon.vue'
       height: auto;
     }
   }
+}
 
-  &__info {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    text-align: right;
-    gap: var(--space);
+.info {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  text-align: right;
+  gap: var(--space);
 
-    @media (max-width: 750px) {
-      order: 2;
-      text-align: center;
-      align-items: center;
-    }
+  @media (max-width: 750px) {
+    order: 2;
+    text-align: center;
+    align-items: center;
   }
 }
 </style>

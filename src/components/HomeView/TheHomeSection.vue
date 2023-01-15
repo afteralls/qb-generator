@@ -1,23 +1,18 @@
 <template>
-  <section class="home">
-    <div class="_column headers">
-      <h1>{{ $i18n('home.homeSec.title') }}</h1>
-      <h2>{{ $i18n('home.homeSec.subTitle') }}</h2>
-      <p>{{ $i18n('home.homeSec.desc.one') }}<br class="home__hidden" />{{ $i18n('home.homeSec.desc.two') }}<br class="home__hidden" />{{ $i18n('home.homeSec.desc.three') }}</p>
-      <RouterLink class="_btn" to="/generator" :title="$i18n('home.homeSec.linkTitle')">
-        <small>{{ $i18n('home.homeSec.btn') }}</small>
-      </RouterLink>
-    </div>
-    <div class="logo-wrapper">
-      <LogoIcon />
-    </div>
-  </section>
+<section class="home">
+  <div class="_column headers">
+    <h1>{{ $i18n('home.title') }}</h1>
+    <h2>{{ $i18n('home.subTitle') }}</h2>
+    <p>{{ $i18n('home.one') }}<br class="hidden" />{{ $i18n('home.two') }}<br class="hidden" />{{ $i18n('home.three') }}</p>
+    <RouterLink class="_btn" to="/generator" :title="$i18n('home.genLinkTitle')">
+      <small>{{ $i18n('home.gtGen') }}</small>
+    </RouterLink>
+  </div>
+  <div class="logo-wrapper"><LogoIcon /></div>
+</section>
 </template>
 
-<script setup>
-import LogoIcon from '@/assets/svg/LogoIcon.vue'
-</script>
-
+<script setup></script>
 <style scoped lang="scss">
 .home {
   display: flex;
@@ -26,14 +21,14 @@ import LogoIcon from '@/assets/svg/LogoIcon.vue'
   align-items: center;
   gap: var(--space);
 
-  &__hidden {
-    @media (max-width: 575px) {
-      display: none;
-    }
-  }
-
   @media (max-width: 900px) {
     flex-direction: column;
+  }
+}
+
+.hidden {
+  @media (max-width: 575px) {
+    display: none;
   }
 }
 

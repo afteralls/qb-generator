@@ -1,8 +1,4 @@
-import { defineStore } from 'pinia'
-import { computed, reactive, watch } from 'vue'
 import JsBarcode from 'jsbarcode'
-import { useRouter } from 'vue-router'
-import { useStorage } from '@vueuse/core'
 
 export const useDataStore = defineStore('data', () => {
   const standarts = [
@@ -62,11 +58,11 @@ export const useDataStore = defineStore('data', () => {
   const router = useRouter()
   const templates = useStorage('templates', [])
 
-  const corLengthHandler = computed(() => {
-    return ['ean13', 'ean8', 'itf14'].includes(set.curStandart.codeName)
+  const corLengthHandler = computed(() =>
+    ['ean13', 'ean8', 'itf14'].includes(set.curStandart.codeName)
       ? set.content.length === set.curStandart.corLength
       : set.content.length >= set.curStandart.corLength
-  })
+  )
 
   watch(() => set.standart, newV => {
     standarts.map((standart, idx) => {
@@ -77,9 +73,7 @@ export const useDataStore = defineStore('data', () => {
     })
   })
 
-  const currentRegEx = computed(() => 
-    set.standart === 'CODE 128' ? /[А-я/\W|_]/ : /[A-zА-я/\W|_]/)
-
+  const currentRegEx = computed(() => set.standart === 'CODE 128' ? /[А-я/\W|_]/ : /[A-zА-я/\W|_]/)
   watch(() => [set.standart, set.content, set.codeColor, set.bgColor,set.showData, set.quantity], v => {
     router.push({
       path: '/generator',
@@ -109,7 +103,7 @@ export const useDataStore = defineStore('data', () => {
           displayValue: set.showData
         })
       }, 1)
-    } catch (e) { }
+    } catch (e) {}
   }
 
   const generateHandler = () => {

@@ -1,5 +1,5 @@
 <template>
-<div class="export__row">
+<section class="export-row">
   <div class="_column">
     <small>{{ $i18n('generator.settings.export.name') }}</small>
     <div class="_row">
@@ -12,16 +12,16 @@
   </div>
   <button
     @click="generateHandler"
-    :class="{'btn-settings': true, _btn: true, _disabled: !set.isCorrect }"
+    :class="{ 'btn-settings': true, '_btn': true, '_center': true, '_disabled': !set.isCorrect }"
   >
     <GenerateIcon style="height: 25px; fill: #ffffff99" />
     <small>{{ $i18n('generator.settings.export.generate') }}</small>
   </button>
-</div>
-<div class="export__row">
+</section>
+<section class="export-row">
   <div class="_column">
     <small>{{ quantityFlag ? $i18n('generator.settings.export.fileName') : $i18n('generator.settings.export.arcName') }}</small>
-    <div class="merge__wrapper">
+    <div class="merge-wrapper">
       <input
         :placeholder="quantityFlag ? 'barcode-one' : 'my-collection (etc.)'"
         type="text"
@@ -30,7 +30,7 @@
       >
       <button
         @click="set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
-        :class="{merge__btn: true, _disabled: !set.isCorrect || !set.generated }"
+        :class="{ 'merge-btn': true, '_disabled': !set.isCorrect || !set.generated }"
       >
         <small>{{ $i18n('generator.settings.export.downloadBtn') }}</small>
       </button>
@@ -38,29 +38,22 @@
   </div>
   <button
     @click="isOpen = true"
-    :class="{'btn-settings': true, 'temp-btn': true, _disabled: !set.isCorrect }"
+    :class="{ 'btn-settings': true, '_center': true, 'temp-btn': true, '_disabled': !set.isCorrect }"
   >
     <CreateIcon />
     <small>{{ $i18n('generator.settings.export.saveTempBtn') }}</small>
   </button>
   <TheTemplateModal :isOpen="isOpen" @close-modal="isOpen = false" />
-</div>
+</section>
 </template>
 
 <script setup>
-import CheckIcon from '@/assets/svg/CheckIcon.vue'
-import CreateIcon from '@/assets/svg/CreateIcon.vue'
-import GenerateIcon from '@/assets/svg/GenerateIcon.vue'
-import TheTemplateModal from './TheTemplateModal.vue'
-import { useDataStore } from '@/stores/dataStore.js'
 import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
-import { computed, ref } from 'vue'
 
 const { set, generateHandler } = useDataStore()
 const isOpen = ref(false)
 const quantityFlag = computed(() => set.quantity === '1' || set.quantity === '')
-
 const exportFormats = [{ name: 'png'}, { name: 'jpg' }, { name: 'svg' }]
 
 const getZip = folder => {
@@ -125,7 +118,7 @@ button {
   transition: var(--transition);
 }
 
-.export__row {
+.export-row {
   display: flex;
   width: 100%;
   justify-content: flex-start;
@@ -149,9 +142,6 @@ button {
 
 .btn-settings {
   flex: 1 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   gap: calc(var(--space) / 2);
   height: 51px;
   padding: 0;
@@ -171,43 +161,41 @@ button {
   &:hover { background-color: var(--circle-c-tp); }
 }
 
-.merge {
-  &__wrapper {
-    position: relative;
+.merge-wrapper {
+  position: relative;
 
-    input {
-      box-sizing: border-box;
-      width: 310px;
-    }
-
-    @media (max-width: 575px) {
-      width: 100%;
-
-      input {
-        width: 100%;
-        box-sizing: border-box;
-      }
-    }
+  input {
+    box-sizing: border-box;
+    width: 310px;
   }
 
-  &__btn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: var(--accent-c);
-    padding: var(--space);
-    max-height: 51px;
-    cursor: pointer;
+  @media (max-width: 575px) {
+    width: 100%;
 
-    small { color: var(--dark-txt-c-h); }
-
-    &:hover {
-      background-color: var(--accent-c-h);
+    input {
+      width: 100%;
+      box-sizing: border-box;
     }
+  }
+}
 
-    @media (max-width: 575px) {
-      max-height: 50px;
-    }
+.merge-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: var(--accent-c);
+  padding: var(--space);
+  max-height: 51px;
+  cursor: pointer;
+
+  small { color: var(--dark-txt-c-h); }
+
+  &:hover {
+    background-color: var(--accent-c-h);
+  }
+
+  @media (max-width: 575px) {
+    max-height: 50px;
   }
 }
 </style>

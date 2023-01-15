@@ -14,14 +14,10 @@
 </template>
 
 <script setup>
-import { inject, computed } from 'vue'
-import { ru, en } from '@/languages/langData.js'
-import AppExample from '@/components/LibraryView/AppExample.vue'
+import { ru, en } from '@/languages/langData'
 
 const lang = inject('currentLang')
-const curLangStandarts = computed(() => 
-  lang.value === 'ru' ? ru.library.standarts : en.library.standarts)
-
+const curLangStandarts = computed(() => lang.value === 'ru' ? ru.library.standarts : en.library.standarts)
 const getImageUrl = name => new URL(`../assets/svg/examples/${name}.svg`, import.meta.url).href
 </script>
 

@@ -1,6 +1,6 @@
 <template>
 <div class="_wrapper">
-  <div class="not-found">
+  <div class="not-found _center">
     <h1>{{ $i18n('notfound.one') }}<br />{{ $i18n('notfound.two') }}</h1>
     <RouterLink to="/" :title="$i18n('notfound.linkTitle')" class="_btn">
       <small>{{ $i18n('notfound.btn') }}</small>
@@ -9,11 +9,9 @@
 </div>
 </template>
 
+<script setup></script>
 <style scoped lang="scss">
 .not-found {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   flex-direction: column;
   gap: var(--space);

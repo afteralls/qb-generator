@@ -1,20 +1,21 @@
 <template>
-  <div class="example">
-    <div class="example__img-wrapper">
-      <slot name="img"></slot>
-    </div>
-    <slot name="name"></slot>
-    <div class="example__section">
-      <small>{{ $i18n('library.desc') }}</small>
-      <slot name="desc"></slot>
-    </div>
-    <div class="example__section">
-      <small>{{ $i18n('library.structure') }}</small>
-      <slot name="structure"></slot>
-    </div>
+<div class="example">
+  <div class="example-img-wp _center">
+    <slot name="img"></slot>
   </div>
+  <slot name="name"></slot>
+  <div class="example-section">
+    <small>{{ $i18n('library.desc') }}</small>
+    <slot name="desc"></slot>
+  </div>
+  <div class="example-section">
+    <small>{{ $i18n('library.structure') }}</small>
+    <slot name="structure"></slot>
+  </div>
+</div>
 </template>
 
+<script setup></script>
 <style scoped lang="scss">
 .example {
   display: flex;
@@ -37,25 +38,22 @@
     width: 100%;
     min-height: auto;
   }
+}
 
-  &__img-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--wrapper-c-h);
-    border-radius: var(--br-rad);
-  }
+.example-img-wp {
+  width: 100%;
+  background-color: var(--wrapper-c-h);
+  border-radius: var(--br-rad);
+}
 
-  &__section {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) / 2);
+.example-section {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) / 2);
 
-    small {
-      text-transform: uppercase;
-      color: var(--txt-c-h);
-    }
+  small {
+    text-transform: uppercase;
+    color: var(--txt-c-h);
   }
 }
 </style>

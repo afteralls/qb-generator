@@ -1,12 +1,43 @@
 import { fileURLToPath, URL } from 'node:url'
 import { VitePWA } from 'vite-plugin-pwa'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 
 export default defineConfig({
   plugins: [
     vue(),
+    AutoImport({
+      imports: [
+        {
+          'vue': ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'inject'],
+          'vue-router': ['useRouter', 'RouterView'],
+          'pinia': ['defineStore'],
+          '@vueuse/core': [
+            'useStorage',
+            'useDark',
+            'useNavigatorLanguage',
+            'useEventListener',
+            'useResizeObserver',
+            'useShare',
+            'useUrlSearchParams'
+          ]
+        }
+      ],
+      dts: false,
+      defaultExportByFilename: true,
+      dirs: [
+        './src/utils',
+        './src/stores'
+      ]
+    }),
+    Components({
+      dirs: ['./src/components', './src/assets/svg'],
+      extensions: ['vue'],
+      deep: true,
+      dts: false
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'safari-pinned-tab.svg'],

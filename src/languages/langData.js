@@ -1,53 +1,41 @@
 export const en = {
+  route: {
+    home: 'Home | Barcode Generator',
+    generator: 'Generator',
+    library: 'Library',
+    notFound: 'You are lost!'
+  },
   nav: {
     name: 'Barcode Generator',
-    name_sh: 'Barcode Generator',
     darkMode: 'Dark Mode',
-    linkTitles: {
-      git: 'My page on GitHub',
-      telegram: 'My Telegram account',
-      home: 'Go to home page'
-    }
+    git: 'My page on GitHub',
+    telegram: 'My Telegram account',
+    home: 'Go to home page'
   },
   home: {
-    homeSec: {
-      title: 'Barcode Generator',
-      subTitle: 'Application for generating your own barcodes',
-      desc: {
-        one: 'Create Barcodes in a couple of clicks in your own design,',
-        two: ' use the desired standard and export in the desired format.',
-        three: ' Save templates, share and use them at any time'
-      },
-      btn: 'Go to Generator',
-      linkTitle: 'Go to Barcode Generator'
-    },
-    tempSec: {
-      create: 'Create a new template',
-      noDesc: 'No description',
-      tip: {
-        title: 'The templates you create will appear in this section, try creating the first one!',
-        desc: 'Just generate several types of barcodes and the system will prompt you to save the settings'
-      },
-      template: {
-        name: 'Name',
-        desc: 'Description',
-        date: 'Date'
-      },
-      linkTitles: {
-        new: 'Create a new template',
-        temp: 'Go to template'
-      }
-    },
-    libSec: {
-      title: 'Not sure which barcode format you need?',
-      desc: {
-        one: 'You can see the formats available for generation',
-        two: 'and choose the one that suits your needs best'
-      },
-      btn: 'Learn more',
-      linkTitle: 'Learn more about barcode standards'
-    },
-    madeByLinkTitle: 'My Telegram account'
+    title: 'Barcode Generator',
+    subTitle: 'Application for generating your own barcodes',
+    one: 'Create Barcodes in a couple of clicks in your own design,',
+    two: ' use the desired standard and export in the desired format.',
+    three: ' Save templates, share and use them at any time',
+    gtGen: 'Go to Generator',
+    genLinkTitle: 'Go to Barcode Generator',
+    create: 'Create a new template',
+    noDesc: 'No description',
+    tipTitle: 'The templates you create will appear in this section, try creating the first one!',
+    tipDesc: 'Just generate several types of barcodes and the system will prompt you to save the settings',
+    name: 'Name',
+    desc: 'Description',
+    date: 'Date',
+    new: 'Create a new template',
+    temp: 'Go to template',
+    shareTitle: 'Hey...',
+    shareDesc: 'Look what barcode I managed to create!',
+    libTitle: 'Not sure which barcode format you need?',
+    libOne: 'You can see the formats available for generation',
+    libTwo: 'and choose the one that suits your needs best',
+    gtLib: 'Learn more',
+    libLinkTitle: 'Learn more about barcode standards'
   },
   generator: {
     settings: {
@@ -168,55 +156,44 @@ export const en = {
 }
 
 export const ru = {
+  route: {
+    home: 'Главная | Генератор штрих-кодов',
+    generator: 'Генератор',
+    library: 'Библиотека',
+    notFound: 'Вы потерялись!'
+  },
   nav: {
     name: 'Генератор штрих-кодов',
     name_sh: 'Barcode Generator',
     darkMode: 'Тёмная тема',
-    linkTitles: {
-      git: 'Моя страница на GitHub',
-      telegram: 'Мой Telegram аккаунт',
-      home: 'Вернуться на главную'
-    }
+    git: 'Моя страница на GitHub',
+    telegram: 'Мой Telegram аккаунт',
+    home: 'Вернуться на главную'
   },
   home: {
-    homeSec: {
-      title: 'Генератор штрих-кодов',
-      subTitle: 'Приложение для генерации ваших собственных штрих-кодов',
-      desc: {
-        one: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне,',
-        two: ' используйте необходимый стандарт и экспортируйте в удобном формате.',
-        three: ' Сохраняйте шаблоны, делитесь и используйте их  в любое время'
-      },
-      btn: 'Перейти к Генератору',
-      linkTitle: 'Перейти к Генератору Штрих-кодов'
-    },
-    tempSec: {
-      create: 'Создать новый шаблон',
-      noDesc: 'Нет описания',
-      tip: {
-        title: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
-        desc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат'
-      },
-      template: {
-        name: 'Название',
-        desc: 'Описание',
-        date: 'Дата'
-      },
-      linkTitles: {
-        new: 'Создать новый шаблон',
-        temp: 'Перейти к шаблону'
-      }
-    },
-    libSec: {
-      title: 'Не уверены какой стандарт штрих-кодов вам нужен?',
-      desc: {
-        one: 'Вы можете просмотреть доступные стандарты для генерации',
-        two: 'и выбрать наиболее подходящий под ваши нужды'
-      },
-      btn: 'Подробнее',
-      linkTitle: 'Узнайте больше о стандартах штрих-кодов'
-    },
-    madeByLinkTitle: 'Мой Telegram аккаунт'
+    title: 'Генератор штрих-кодов',
+    subTitle: 'Приложение для генерации ваших собственных штрих-кодов',
+    one: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне,',
+    two: ' используйте необходимый стандарт и экспортируйте в удобном формате.',
+    three: ' Сохраняйте шаблоны, делитесь и используйте их  в любое время',
+    gtGen: 'Перейти к Генератору',
+    genLinkTitle: 'Перейти к Генератору Штрих-кодов',
+    create: 'Создать новый шаблон',
+    noDesc: 'Нет описания',
+    tipTitle: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
+    tipDesc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат',
+    name: 'Название',
+    desc: 'Описание',
+    date: 'Дата',
+    new: 'Создать новый шаблон',
+    temp: 'Перейти к шаблону',
+    shareTitle: 'Эй...',
+    shareDesc: 'Посмотри, какой штрих-код мне удалось создать!',
+    libTitle: 'Не уверены какой стандарт штрих-кодов вам нужен?',
+    libOne: 'Вы можете просмотреть доступные стандарты для генерации',
+    libTwo: 'и выбрать наиболее подходящий под ваши нужды',
+    gtLib: 'Подробнее',
+    libLinkTitle: 'Узнайте больше о стандартах штрих-кодов'
   },
   generator: {
     settings: {

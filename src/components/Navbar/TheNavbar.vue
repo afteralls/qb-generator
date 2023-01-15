@@ -2,9 +2,9 @@
 <nav ref="navSize" class="nav-wrapper">
   <div class="_container">
     <div class="nav">
-      <RouterLink to="/" class="_row" :title="$i18n('nav.linkTitles.home')">
+      <RouterLink to="/" class="_row" :title="$i18n('nav.home')">
         <LogoIcon />
-        <h3>{{ width > 375 ? $i18n('nav.name') : $i18n('nav.name_sh') }}</h3>
+        <h3>{{ $i18n('nav.name') }}</h3>
       </RouterLink>
       <div v-if="width > 900" class="options _row">
         <NavThemeSwitcher />
@@ -24,21 +24,13 @@
 </template>
 
 <script setup>
-import LogoIcon from '@/assets/svg/LogoIcon.vue'
-import NavContacts from './NavContacts.vue'
-import TranslateIcon from '@/assets/svg/TranslateIcon.vue'
-import NavThemeSwitcher from './NavThemeSwitcher.vue'
-import NavMobMenu from './NavMobMenu.vue'
-
-import { useResizeObserver } from '@vueuse/core'
-import { inject, ref, onMounted } from 'vue'
-
 const changeLang = inject('i18n')
+const curLang = inject('currentLang')
 const navSize = ref(null)
 const width = ref(null)
 
 useResizeObserver(navSize, entries => { width.value = entries[0].contentRect.width })
-onMounted(() => { width.value = window.window.innerWidth })
+onMounted(() => document.documentElement.lang = curLang)
 </script>
 
 <style lang="scss">
@@ -54,10 +46,11 @@ onMounted(() => { width.value = window.window.innerWidth })
 
 .nav {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: var(--space);
   padding: var(--space);
-  line-height: 0;
+  height: 60px;
 
   h3 { text-transform: uppercase; }
 
@@ -66,5 +59,9 @@ onMounted(() => { width.value = window.window.innerWidth })
     width: auto;
     cursor: pointer;
   }
+}
+
+.options {
+  height: 100%;
 }
 </style>

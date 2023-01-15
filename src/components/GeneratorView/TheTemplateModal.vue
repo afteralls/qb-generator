@@ -1,48 +1,43 @@
 <template>
-  <Teleport to="body">
-    <Transition name="main">
-      <div v-if="isOpen" class="modal">
-        <div class="modal__window">
-          <div class="modal__template">
-            <BarcodeIcon />
-            <small>{{ $i18n('generator.modal.name') }}</small>
-            <h3>{{ templateName ? templateName : $i18n('generator.modal.exName') }}</h3>
-            <small>{{ $i18n('generator.modal.desc') }}</small>
-            <p>{{ templateDesc ? templateDesc : $i18n('generator.modal.exDesc') }}</p>
+<Teleport to="body">
+  <Transition name="main">
+    <div v-if="isOpen" class="modal">
+      <div class="window">
+        <div class="modal-template">
+          <BarcodeIcon />
+          <small>{{ $i18n('generator.modal.name') }}</small>
+          <h3>{{ templateName ? templateName : $i18n('generator.modal.exName') }}</h3>
+          <small>{{ $i18n('generator.modal.desc') }}</small>
+          <p>{{ templateDesc ? templateDesc : $i18n('generator.modal.exDesc') }}</p>
+        </div>
+        <div class="modal-column">
+          <div class="_column">
+            <small>{{ $i18n('generator.modal.tempName') }}</small>
+            <input type="text" maxlength="12" :placeholder="$i18n('generator.modal.tempName_ph')" v-model="templateName">
           </div>
-          <div class="modal__column">
-            <div class="_column">
-              <small>{{ $i18n('generator.modal.tempName') }}</small>
-              <input type="text" maxlength="12" :placeholder="$i18n('generator.modal.tempName_ph')" v-model="templateName">
-            </div>
-            <div class="_column">
-              <small>{{ $i18n('generator.modal.tempDesc') }}</small>
-              <input
-                type="text"
-                maxlength="15"
-                :placeholder="$i18n('generator.modal.temDesc_ph')"
-                v-model="templateDesc"
-              >
-            </div>
-            <div class="_row">
-              <div 
-                :class="{_btn: true, 'save-btn': true, _disabled: templateName === ''}" @click="saveTemplate"
-              ><small>{{ $i18n('generator.modal.saveBtn') }}</small></div>
-              <div class="_btn" @click="$emit('closeModal')"><small>{{ $i18n('generator.modal.cancelBtn') }}</small></div>
-            </div>
+          <div class="_column">
+            <small>{{ $i18n('generator.modal.tempDesc') }}</small>
+            <input
+              type="text"
+              maxlength="15"
+              :placeholder="$i18n('generator.modal.temDesc_ph')"
+              v-model="templateDesc"
+            >
+          </div>
+          <div class="_row">
+            <div 
+              :class="{_btn: true, 'save-btn': true, _disabled: templateName === ''}" @click="saveTemplate"
+            ><small>{{ $i18n('generator.modal.saveBtn') }}</small></div>
+            <div class="_btn" @click="$emit('closeModal')"><small>{{ $i18n('generator.modal.cancelBtn') }}</small></div>
           </div>
         </div>
       </div>
-    </Transition>
-  </Teleport>
+    </div>
+  </Transition>
+</Teleport>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
-import { useDataStore } from '@/stores/dataStore.js'
-import { useRouter } from 'vue-router'
-
 defineProps(['isOpen'])
 const emit = defineEmits(['closeModal'])
 
@@ -76,59 +71,59 @@ const saveTemplate = () => {
   display: flex;
   justify-content: center;
   align-items: center;
+}
 
-  &__window {
-    display: flex;
-    gap: var(--space);
-    background-color: var(--bg-c);
-    backdrop-filter: blur(8px);
-    padding: var(--space);
-    border-radius: var(--br-rad);
+.window {
+  display: flex;
+  gap: var(--space);
+  background-color: var(--bg-c);
+  backdrop-filter: blur(8px);
+  padding: var(--space);
+  border-radius: var(--br-rad);
 
-    @media (max-width: 900px) {
-      flex-direction: column;
+  @media (max-width: 900px) {
+    flex-direction: column;
 
-      input {
-        box-sizing: border-box;
-        width: 100%;
-      }
+    input {
+      box-sizing: border-box;
+      width: 100%;
     }
   }
+}
 
-  &__column {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) * 2);
+.modal-column {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) * 2);
 
-    @media (max-width: 900px) {
-      gap: var(--space);
-    }
+  @media (max-width: 900px) {
+    gap: var(--space);
+  }
+}
+
+.modal-template {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space);
+  background-color: var(--wrapper-c);
+  border-radius: var(--br-rad);
+  padding: var(--space);
+  height: var(--template-size);
+  min-width: var(--template-size);
+  max-width: var(--template-size);
+  transition: var(--transition);
+  cursor: pointer;
+  color: var(--txt-c);
+
+  svg {
+    width: 6rem;
+    height: auto;
   }
 
-  &__template {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    gap: var(--space);
-    background-color: var(--wrapper-c);
-    border-radius: var(--br-rad);
-    padding: var(--space);
-    height: var(--template-size);
-    min-width: var(--template-size);
-    max-width: var(--template-size);
-    transition: var(--transition);
-    cursor: pointer;
-    color: var(--txt-c);
-
-    svg {
-      width: 6rem;
-      height: auto;
-    }
-
-    &:hover {
-      background-color: var(--wrapper-c-h);
-    }
+  &:hover {
+    background-color: var(--wrapper-c-h);
   }
 }
 

@@ -1,12 +1,12 @@
 <template>
 <section class="preview">
   <small>{{ $i18n('generator.preview.prev') }}</small>
-  <div class="preview__wrapper">
-    <div v-if="!set.generated" class="preview__tip">
+  <div class="preview-wrapper">
+    <div v-if="!set.generated" class="preview-tip">
       <InfoIcon />
       <h3>{{ $i18n('generator.preview.info') }}</h3>
     </div>
-    <table v-else class="preview__table">
+    <table v-else class="preview-table">
       <tr><th>№</th><th>{{ $i18n('generator.preview.code') }}</th></tr>
       <tr v-for="(num, idx) in +set.beforeQuanSet" :key="num">
         <td>{{ idx + 1 }}</td>
@@ -19,9 +19,6 @@
 </template>
 
 <script setup>
-import InfoIcon from '@/assets/svg/InfoIcon.vue'
-import { useDataStore } from '@/stores/dataStore.js'
-
 const { set } = useDataStore()
 </script>
 
@@ -39,6 +36,7 @@ const { set } = useDataStore()
   }
 
   @media (max-width: 575px) {
+    width: 100%;
     max-width: 343px;
   }
 
@@ -82,35 +80,36 @@ const { set } = useDataStore()
     border-radius: 0 0 var(--br-rad) 0;
   }
 
-  &__wrapper {
-    overflow-y: scroll;
-    height: 100%;
-    max-height: 33.75rem;
-    box-sizing: border-box;
-    border-radius: var(--br-rad);
-    padding: var(--space);
-    background: linear-gradient(210deg, var(--accent-c), var(--wrapper-c) 50%);
-  }
-
-  &__tip {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    gap: var(--space);
-  }
-
-  &__table {
-    display: block;
-  }
-
   svg {
     width: 50px;
     height: auto;
     max-height: 10rem;
   }
+}
+
+.preview-wrapper {
+  overflow-y: scroll;
+  height: 100%;
+  max-height: 33.75rem;
+  box-sizing: border-box;
+  border-radius: var(--br-rad);
+  padding: var(--space);
+  background: linear-gradient(210deg, var(--accent-c), var(--wrapper-c) 50%);
+}
+
+.preview-tip {
+  display: flex;
+  height: 100%;
+  min-height: 300px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: var(--space);
+}
+
+.preview-table {
+  display: block;
 }
 
 .space {

@@ -10,6 +10,7 @@
   outline: none;
   text-decoration: none;
   border: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body, input {
@@ -77,6 +78,21 @@ label {
 
 /* Global Classes */
 
+.main {
+  &-enter-from {
+    opacity: 0;
+  }
+  &-enter-active {
+    transition: all 0.2s ease-out;
+  }
+  &-leave-to {
+    opacity: 0;
+  }
+  &-leave-active {
+    transition: all 0.2s ease-in;
+  }
+}
+
 ._container {
   box-sizing: border-box;
   max-width: 1280px;
@@ -92,6 +108,10 @@ label {
   padding: var(--space);
   box-sizing: border-box;
   gap: calc(var(--space) * 3);
+
+  @media(max-width: 900px) {
+    margin: 3.5rem auto 0 auto;
+  }
 }
 
 ._column {
@@ -106,6 +126,12 @@ label {
   justify-content: center;
   align-items: center;
   gap: var(--space);
+}
+
+._center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ._btn {

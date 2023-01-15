@@ -1,8 +1,3 @@
-<script setup>
-import { RouterView } from 'vue-router'
-import TheNavbar from '@/components/Navbar/TheNavbar.vue'
-</script>
-
 <template>
   <TheNavbar />
   <div class="_container">
@@ -14,19 +9,8 @@ import TheNavbar from '@/components/Navbar/TheNavbar.vue'
   </div>
 </template>
 
-<style lang="scss">
-.main {
-  &-enter-from {
-    opacity: 0;
-  }
-  &-enter-active {
-    transition: all 0.2s ease-out;
-  }
-  &-leave-to {
-    opacity: 0;
-  }
-  &-leave-active {
-    transition: all 0.2s ease-in;
-  }
-}
-</style>
+<script setup>
+const router = useRouter()
+const i18n = inject('func')
+router.beforeEach(to => { document.title = i18n(to.name) })
+</script>

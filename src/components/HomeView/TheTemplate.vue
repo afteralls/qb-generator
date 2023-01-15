@@ -1,38 +1,38 @@
 <template>
-  <div class="template">
-    <div class="_column">
-      <div class="template__row">
-        <BarcodeIcon />
-        <div class="template__actions">
-          <div @click.prevent="$emit('delTemp', idx)" class="template__action trash"><TrashIcon /></div>
-          <div @click.prevent="shareLink" class="template__action share"><ShareIcon /></div>
+<div class="template">
+  <div class="_column">
+    <div class="template-row">
+      <BarcodeIcon />
+      <div class="template-actions">
+        <div @click.prevent="$emit('delTemp', idx)" class="template-action _center trash">
+          <TrashIcon />
+        </div>
+        <div @click.prevent="shareLink" class="template__action share">
+          <ShareIcon />
         </div>
       </div>
-      <small>{{ $i18n('home.tempSec.template.name') }}</small>
-      <slot name="codename"></slot>
-      <small>{{ $i18n('home.tempSec.template.desc') }}</small>
-      <slot name="desc"></slot>
     </div>
-    <div class="_row">
-      <small>{{ $i18n('home.tempSec.template.date') }}</small>
-      <slot name="date"></slot>
-    </div>
+    <small>{{ $i18n('home.name') }}</small>
+    <slot name="codename"></slot>
+    <small>{{ $i18n('home.desc') }}</small>
+    <slot name="desc"></slot>
   </div>
+  <div class="_row">
+    <small>{{ $i18n('home.date') }}</small>
+    <slot name="date"></slot>
+  </div>
+</div>
 </template>
 
 <script setup>
-import TrashIcon from '@/assets/svg/TrashIcon.vue'
-import ShareIcon from '@/assets/svg/ShareIcon.vue'
-import BarcodeIcon from '@/assets/svg/BarcodeIcon.vue'
-import { useShare } from '@vueuse/core'
-
 const props = defineProps(['idx', 'link'])
+const i18n = inject('func')
 const { share, isSupported } = useShare()
 const shareLink = () => {
   if (isSupported.value) {
     share({
-      title: 'Hey...',
-      text: 'Look what barcode I managed to create!',
+      title: i18n('home.shareTitle'),
+      text: i18n('home.shareDesc'),
       url: props.link
     })
   } else { navigator.clipboard.writeText(props.link) }
@@ -74,41 +74,38 @@ const shareLink = () => {
   }
 
   &:hover { background-color: var(--wrapper-c-h); }
+}
 
-  &__row {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
+.template-row {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.template-actions {
+  display: flex;
+  gap: var(--space);
+  z-index: 30;
+}
+
+.template-action {
+  width: 40px;
+  height: 40px;
+  transition: var(--transition);
+  border-radius: calc(var(--br-rad) / 1.2);
+  background-color: var(--wrapper-c-h);
+
+  svg {
+    width: 20px;
+    height: auto;
   }
 
-  &__actions {
-    display: flex;
-    gap: var(--space);
-    z-index: 30;
-  }
-
-  &__action {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 40px;
-    height: 40px;
-    transition: var(--transition);
-    border-radius: calc(var(--br-rad) / 1.2);
-    background-color: var(--wrapper-c-h);
+  @media (max-width: 750px) {
+    width: 35px;
+    height: 35px;
 
     svg {
-      width: 20px;
-      height: auto;
-    }
-
-    @media (max-width: 750px) {
-      width: 35px;
-      height: 35px;
-
-      svg {
-        width: 15px;
-      }
+      width: 15px;
     }
   }
 }
