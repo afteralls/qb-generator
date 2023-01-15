@@ -7,7 +7,7 @@
         <div @click.prevent="$emit('delTemp', idx)" class="template-action _center trash">
           <TrashIcon />
         </div>
-        <div @click.prevent="shareLink" class="template__action share">
+        <div @click.prevent="shareLink" class="template-action _center share">
           <ShareIcon />
         </div>
       </div>
