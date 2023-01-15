@@ -94,7 +94,8 @@ const saveTemplate = () => {
 .modal-column {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--space) * 2);
+  justify-content: space-between;
+  gap: var(--space);
 
   @media (max-width: 900px) {
     gap: var(--space);

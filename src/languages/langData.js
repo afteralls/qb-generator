@@ -8,7 +8,7 @@ export const en = {
   nav: {
     name: 'Barcode Generator',
     darkMode: 'Dark Mode',
-    git: 'My page on GitHub',
+    git: 'Link to source code',
     telegram: 'My Telegram account',
     home: 'Go to home page'
   },
@@ -166,7 +166,7 @@ export const ru = {
     name: 'Генератор штрих-кодов',
     name_sh: 'Barcode Generator',
     darkMode: 'Тёмная тема',
-    git: 'Моя страница на GitHub',
+    git: 'Ссылка на исходный код',
     telegram: 'Мой Telegram аккаунт',
     home: 'Вернуться на главную'
   },

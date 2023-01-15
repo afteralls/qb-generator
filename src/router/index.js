@@ -4,12 +4,14 @@ import GeneratorView from '@/views/GeneratorView.vue'
 
 export default createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  scrollBehavior() {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve({ top: 0 })
-      }, 250)
-    })
+  scrollBehavior(to, from) {
+    if (to.name !== from.name) {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve({ top: 0 })
+        }, 250)
+      })
+    }
   },
   routes: [
     {
