@@ -6,6 +6,13 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@import "@/assets/styles/module.scss";'
+      }
+    }
+  },
   plugins: [
     vue(),
     AutoImport({

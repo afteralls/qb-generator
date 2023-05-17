@@ -1,26 +1,28 @@
 export default {
   en: {
     route: {
-      home: 'Home | Barcode Generator',
+      home: 'Home | QB Generator',
       generator: 'Generator',
       library: 'Library',
       notFound: 'You are lost!'
     },
-    nav: {
-      name: 'Barcode Generator',
-      darkMode: 'Dark Mode',
+    header: {
+      title: 'QB Generator',
+      tL: 'Activate Light theme',
+      tD: 'Activate Dark theme',
+      lang: 'Switch to Russian',
       git: 'Link to source code',
       telegram: 'My Telegram account',
       home: 'Go to home page'
     },
     home: {
-      title: 'Barcode Generator',
-      subTitle: 'Application for generating your own barcodes',
+      title: 'QB Generator',
+      subTitle: 'Application for generating your own qrs and barcodes',
       one: 'Create Barcodes in a couple of clicks in your own design,',
       two: ' use the desired standard and export in the desired format.',
       three: ' Save templates, share and use them at any time',
       gtGen: 'Go to Generator',
-      genLinkTitle: 'Go to Barcode Generator',
+      genLinkTitle: 'Go to Generator',
       create: 'Create a new template',
       noDesc: 'No description',
       tipTitle: 'The templates you create will appear in this section, try creating the first one!',
@@ -157,15 +159,16 @@ export default {
   },
   ru: {
     route: {
-      home: 'Главная | Генератор штрих-кодов',
+      home: 'Главная | QB Generator',
       generator: 'Генератор',
       library: 'Библиотека',
       notFound: 'Вы потерялись!'
     },
-    nav: {
-      name: 'Генератор штрих-кодов',
-      name_sh: 'Barcode Generator',
-      darkMode: 'Тёмная тема',
+    header: {
+      title: 'QB Generator',
+      tL: 'Активировать Светлую тему',
+      tD: 'Активировать Тёмную тему',
+      lang: 'Переключиться на Английский',
       git: 'Ссылка на исходный код',
       telegram: 'Мой Telegram аккаунт',
       home: 'Вернуться на главную'

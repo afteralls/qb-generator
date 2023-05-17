@@ -1,4 +1,5 @@
 <template>
+  <TheHeader />
   <div class="_container">
     <RouterView v-slot="{ Component }">
       <Transition name="main" mode="out-in">

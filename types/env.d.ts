@@ -11,6 +11,8 @@ declare global {
     (key: string): string
   }
 
+  export type CurLang = string
+
   export interface LangProps {
     [key: string]: any
   }
