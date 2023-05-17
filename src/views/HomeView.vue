@@ -1,3 +1,7 @@
 <template>
-  <div></div>
+  <MainSection />
 </template>
+
+<style scoped lang="scss">
+
+</style>

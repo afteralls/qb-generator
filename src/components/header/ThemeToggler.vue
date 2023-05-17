@@ -12,12 +12,16 @@
 
 <script setup lang="ts">
 const isDark = useDark({ selector: 'body', attribute: 'class', valueDark: 'dark', valueLight: 'light' })
-const curColor = computed(() => isDark.value ? '#242424' : '#ffffff')
+const curColor = computed(() => isDark.value ? '#0c0c0d' : '#ffffff')
 const selector: string = 'meta[name="theme-color"]'
 const docMeta = () => document.querySelector(selector)!.setAttribute('content', curColor.value)
 
 watch(isDark, () => { docMeta() })
-onMounted(() => { docMeta() })
+onMounted(() => { 
+  docMeta()
+  const body: HTMLBodyElement | null = document.querySelector('body')
+  setTimeout(() => body!.style.transition = 'all 0.5s ease', 0)
+})
 </script>
 
 <style scoped lang="scss">

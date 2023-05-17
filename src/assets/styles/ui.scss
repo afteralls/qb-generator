@@ -1,4 +1,4 @@
-header, h1, h2, p {
+header, h2, p {
   line-height: 1.5;
 }
 
@@ -8,6 +8,7 @@ header {
 }
 
 h1 {
+  line-height: 1;
   font-size: toRem(72);
 
   @media (max-width: $lg) {
@@ -49,6 +50,8 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: toRem(25);
+  height: toRem(25);
 
   svg {
     width: 100%;
@@ -57,24 +60,9 @@ p {
     fill: var(--txt-m);
   }
 
-  &.act {
-    cursor: pointer;
-
-    &:hover {
-      svg {
-        fill: var(--m)
-      }
-    }
-  }
-
   &.sm {
     width: toRem(16);
     height: toRem(16);
-  }
-
-  &.md {
-    width: toRem(25);
-    height: toRem(25);
   }
 
   &.lg {
@@ -84,17 +72,21 @@ p {
 }
 
 ._btn {
-  button {
-    cursor: pointer;
-    @include action-styles;
-    background-color: var(--m-c);
-    color: var(--dark-txt-c);
-    gap: var(--space-m);
+  cursor: pointer;
+  @include action-styles;
+  background-color: var(--s);
+  color: var(--dark-txt-m);
+  gap: var(--space-m);
+  border: toRem(1) solid var(--br);
 
-    &:hover,
-    &:focus {
-      background-color: var(--m-c-h);
-    }
+  svg {
+    fill: var(--dark-txt-m);
+  }
+
+  &:hover,
+  &:focus {
+    border: toRem(1) solid var(--m);
+    background-color: var(--s-h);
   }
 }
 
@@ -144,17 +136,19 @@ a {
 
     &:hover,
     &:focus {
-      color: var(--s-light);
-      border-bottom: 2px solid var(--s-light);
+      color: var(--m);
+      border-bottom: 2px solid var(-m);
     }
   }
 
   &.icon {
-    padding: var(--space-m);
-
     &:hover,
     &:focus {
-      color: var(--s-light);
+      color: var(--m);
+
+      svg {
+        fill: var(--m);
+      }
     }
   }
 }
