@@ -3,9 +3,7 @@
   <div class="_container">
     <RouterView v-slot="{ Component }">
       <Transition name="main" mode="out-in">
-        <div class="_wrapper">
-          <component :is="Component" />
-        </div>
+        <component :is="Component" />
       </Transition>
     </RouterView>
   </div>

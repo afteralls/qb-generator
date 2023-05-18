@@ -2,7 +2,7 @@
   <div class="copyright _center">
     <h4>Made with</h4>
     <div class="_i"><HeartIcon /></div>
-    <h4>by <a href="https://t.me/afterallspace" :title="$i18n('header.telegram')">Daniil Sukharnikov</a></h4>
+    <h4>by <a href="https://t.me/afterallspace" class="text" :title="$i18n('header.telegram')">Daniil Sukharnikov</a></h4>
   </div>
 </template>
 
@@ -12,7 +12,6 @@
   flex-wrap: wrap;
 
   svg {
-    fill: var(--txt-c);
     fill: red;
   }
 

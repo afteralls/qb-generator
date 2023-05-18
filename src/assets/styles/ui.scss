@@ -114,7 +114,7 @@ svg {
   align-items: center;
   @include action-styles;
   background-color: var(--s);
-  color: var(--dark-txt-m);
+  color: var(--dark-txt-m) !important;
   gap: var(--space-m);
   border: toRem(1) solid var(--br);
 
@@ -169,7 +169,6 @@ a {
   }
 
   &.text {
-    border-bottom: 2px dashed var(--txt-m);
     transition: var(--tr);
 
     &.bold {
@@ -180,7 +179,6 @@ a {
     &:hover,
     &:focus {
       color: var(--m);
-      border-bottom: 2px solid var(-m);
     }
   }
 
