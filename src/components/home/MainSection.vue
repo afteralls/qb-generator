@@ -2,7 +2,7 @@
   <section class="home">
     <div class="info _column">
       <h1>QB Generator</h1>
-      <p class="lg">{{ $i18n('home.desc') }}</p>
+      <p class="bg">{{ $i18n('home.desc') }}</p>
       <RouterLink class="_btn" to="/generator" :title="$i18n('home.gtGen')">
         <div class="_i"><BarcodeIcon /></div>
         <h4>{{ $i18n('home.gtGen') }}</h4>
@@ -37,7 +37,7 @@
 
 .logo-wrapper {
   filter: drop-shadow(0 0 10rem var(--m));
-  min-width: toRem(400);
+  width: toRem(400);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,10 +48,11 @@
   }
 
   @media (max-width: $lg) {
-    svg {
-      max-width: 250px;
-      height: 100%;
-    }
+    width: toRem(250);
+  }
+
+  @media (max-width: $zf) {
+    width: toRem(100%);
   }
 }
 </style>

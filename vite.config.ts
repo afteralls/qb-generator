@@ -26,8 +26,8 @@ export default defineConfig({
             'useDark',
             'useNavigatorLanguage',
             'useEventListener',
-            'useResizeObserver',
             'useShare',
+            'onClickOutside',
             'useUrlSearchParams'
           ]
         }

@@ -1,5 +1,9 @@
-header, h2, p {
+header p {
   line-height: 1.5;
+
+  @media (max-width: $md) {
+    line-height: 1.2;
+  }
 }
 
 header {
@@ -18,9 +22,18 @@ h1 {
   @media (max-width: $md) {
     font-size: toRem(48);
   }
+
+  @media (max-width: $sm) {
+    line-height: 1;
+  }
+
+  @media (max-width: $zf) {
+    font-size: toRem(34);
+  }
 }
 
 h2 {
+  line-height: 1;
   font-size: toRem(48);
 
   @media (max-width: $lg) {
@@ -45,16 +58,28 @@ h2 {
 }
 
 p {
-  &.lg {
+  &.bg {
     font-size: toRem(20);
+
+    @media (max-width: $sm) {
+      font-size: toRem(18);
+    }
+
+    @media (max-width: $zf) {
+      font-size: toRem(16);
+    }
   }
 
-  &.md {
+  &.wp {
     font-size: toRem(18);
-  }
 
-  &.sm {
-    font-size: toRem(16);
+    @media (max-width: $md) {
+      font-size: toRem(16);
+    }
+
+    @media (max-width: $zf) {
+      line-height: 1;
+    }
   }
 }
 
@@ -101,11 +126,16 @@ svg {
   &:focus {
     background-color: var(--s-h);
   }
+
+  @media (max-width: $zf) {
+    font-size: 0.8rem;
+  }
 }
 
 ._i-btn {
   width: toRem(25);
   height: toRem(25);
+  position: relative;
 
   button {
     background: none;

@@ -2,7 +2,7 @@
   <section class="library _row">
     <div class="info _column">
       <h2 class="md">{{ $i18n('home.libTitle') }}</h2>
-      <p>{{ $i18n('home.libDesc') }}</p>
+      <p class="wp">{{ $i18n('home.libDesc') }}</p>
       <RouterLink class="_btn" to="/library" :title="$i18n('home.libLinkTitle')">
         <div class="_i"><InfoIcon /></div>
         <h4>{{ $i18n('home.gtLib') }}</h4>

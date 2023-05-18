@@ -14,6 +14,7 @@ export default {
       telegram: 'My Telegram account',
       home: 'Go to home page',
       mail: 'My E-Mail',
+      link: 'Show links'
     },
     home: {
       desc: 'Create Barcodes in a couple of clicks in your own design, use the desired standard and export in the desired format. Save templates, share and use them at any time.',
@@ -166,6 +167,7 @@ export default {
       telegram: 'Мой Telegram аккаунт',
       home: 'Вернуться на главную',
       mail: 'Мой E-Mail',
+      link: 'Показать ссылки'
     },
     home: {
       desc: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
