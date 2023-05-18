@@ -30,6 +30,18 @@ h2 {
   @media (max-width: $md) {
     font-size: toRem(30);
   }
+
+  &.md {
+    font-size: toRem(30);
+
+    @media (max-width: $lg) {
+      font-size: toRem(24);
+    }
+  
+    @media (max-width: $md) {
+      font-size: toRem(18);
+    }
+  }
 }
 
 p {
@@ -46,19 +58,19 @@ p {
   }
 }
 
+svg {
+  width: 100%;
+  transition: var(--tr);
+  height: 100%;
+  fill: var(--txt-m);
+}
+
 ._i {
   display: flex;
   justify-content: center;
   align-items: center;
   width: toRem(25);
   height: toRem(25);
-
-  svg {
-    width: 100%;
-    transition: var(--tr);
-    height: 100%;
-    fill: var(--txt-m);
-  }
 
   &.sm {
     width: toRem(16);
@@ -73,6 +85,8 @@ p {
 
 ._btn {
   cursor: pointer;
+  display: flex;
+  align-items: center;
   @include action-styles;
   background-color: var(--s);
   color: var(--dark-txt-m);
@@ -85,7 +99,6 @@ p {
 
   &:hover,
   &:focus {
-    border: toRem(1) solid var(--m);
     background-color: var(--s-h);
   }
 }

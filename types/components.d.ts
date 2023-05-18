@@ -21,6 +21,7 @@ declare module '@vue/runtime-core' {
     GitHubIcon: typeof import('./../src/assets/svg/GitHubIcon.vue')['default']
     HeartIcon: typeof import('./../src/assets/svg/HeartIcon.vue')['default']
     InfoIcon: typeof import('./../src/assets/svg/InfoIcon.vue')['default']
+    LibrarySection: typeof import('./../src/components/home/LibrarySection.vue')['default']
     LightModeIcon: typeof import('./../src/assets/svg/LightModeIcon.vue')['default']
     LightThemeIcon: typeof import('./../src/assets/svg/LightThemeIcon.vue')['default']
     LogoIcon: typeof import('./../src/assets/svg/LogoIcon.vue')['default']

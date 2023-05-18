@@ -3,9 +3,9 @@
     <div class="info _column">
       <h1>QB Generator</h1>
       <p class="lg">{{ $i18n('home.desc') }}</p>
-      <RouterLink class="_btn _center" to="/generator" :title="$i18n('home.gtGen')">
+      <RouterLink class="_btn" to="/generator" :title="$i18n('home.gtGen')">
         <div class="_i"><BarcodeIcon /></div>
-        <h3>{{ $i18n('home.gtGen') }}</h3>
+        <h4>{{ $i18n('home.gtGen') }}</h4>
       </RouterLink>
     </div>
     <div class="logo-wrapper"><LogoIcon /></div>
@@ -21,7 +21,7 @@
   gap: var(--space);
 
   @media (max-width: $lg) {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 }
 
@@ -32,7 +32,6 @@
   @media (max-width: $lg) {
     text-align: center;
     align-items: center;
-    // order: 2;
   }
 }
 
@@ -50,7 +49,6 @@
 
   @media (max-width: $lg) {
     svg {
-      order: 1;
       max-width: 250px;
       height: 100%;
     }

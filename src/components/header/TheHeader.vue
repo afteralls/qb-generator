@@ -32,10 +32,8 @@
             href="mailto:afterallspace@gmail.com"
             target="_blank"
             :title="$i18n('header.mail')"
-            class="_i"
-          >
-            <EmailIcon />
-          </a>
+            class="_i icon"
+          ><EmailIcon /></a>
         </div>
       </div>
     </div>
@@ -56,7 +54,7 @@ const curLang = inject('curLang') as CurLang
   top: 0;
   width: 100%;
   z-index: 10;
-  background-color: var(--tp-c);
+  background-color: var(--tp);
   backdrop-filter: blur(8px);
 
   mask: linear-gradient(
@@ -78,8 +76,9 @@ const curLang = inject('curLang') as CurLang
 }
 
 .br {
+  transition: var(--tr);
   height: toRem(25);
-  width: toRem(2);
+  width: toRem(1);
   background-color: var(--txt-m);
 }
 </style>

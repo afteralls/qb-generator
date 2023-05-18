@@ -61,7 +61,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  gap: calc(var(--space) * 3);
+  gap: 8rem;
 }
 
 ._center {
@@ -80,4 +80,16 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--space);
+}
+
+._ui {
+  transition: var(--tr);
+  padding: var(--space);
+  border-radius: var(--br-rad);
+  background-color: var(--fg-m);
+  border: toRem(1) solid var(--br);
+
+  &:hover {
+    background-color: var(--fg-s);
+  }
 }

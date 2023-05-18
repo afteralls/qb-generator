@@ -5,14 +5,14 @@
 @mixin action-styles {
   font-family: 'Montserrat';
   padding: 0 var(--space);
-  height: toRem(40);
+  height: toRem(45);
   border-radius: var(--br-rad);
 
   &:hover, &:focus {
-    border-color: var(--s-h);
+    border-color: var(--m-h);
   }
 }
 
-$lg: toRem(900);
-$md: toRem(768);
-$sm: toRem(640);
+$lg: toRem(1045);
+$md: toRem(870);
+$sm: toRem(700);

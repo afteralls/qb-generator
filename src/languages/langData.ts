@@ -30,8 +30,7 @@ export default {
       shareTitle: 'Hey...',
       shareDesc: 'Look what barcode I managed to create!',
       libTitle: 'Not sure which barcode format you need?',
-      libOne: 'You can see the formats available for generation',
-      libTwo: 'and choose the one that suits your needs best',
+      libDesc: 'You can see the formats available for generation and choose the one that suits your needs best.',
       gtLib: 'Learn more',
       libLinkTitle: 'Learn more about barcode standards'
     },
@@ -169,7 +168,7 @@ export default {
       mail: 'Мой E-Mail',
     },
     home: {
-      desc: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь и используйте их  в любое время.',
+      desc: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
       gtGen: 'Перейти к Генератору',
       create: 'Создать новый шаблон',
       noDesc: 'Нет описания',
@@ -182,9 +181,8 @@ export default {
       temp: 'Перейти к шаблону',
       shareTitle: 'Эй...',
       shareDesc: 'Посмотри, какой штрих-код мне удалось создать!',
-      libTitle: 'Не уверены какой стандарт штрих-кодов вам нужен?',
-      libOne: 'Вы можете просмотреть доступные стандарты для генерации',
-      libTwo: 'и выбрать наиболее подходящий под ваши нужды',
+      libTitle: 'Не уверены какой стандарт вам нужен?',
+      libDesc: 'Вы можете просмотреть доступные стандарты для генерации и выбрать наиболее подходящий под ваши нужды.',
       gtLib: 'Подробнее',
       libLinkTitle: 'Узнайте больше о стандартах штрих-кодов'
     },
