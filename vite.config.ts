@@ -19,7 +19,7 @@ export default defineConfig({
       imports: [
         {
           'vue': ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'inject'],
-          'vue-router': ['useRouter', 'RouterView'],
+          'vue-router': ['useRouter', 'RouterView', 'useRoute'],
           'pinia': ['defineStore'],
           '@vueuse/core': [
             'useStorage',

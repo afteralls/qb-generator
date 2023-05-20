@@ -17,19 +17,19 @@ export default {
       link: 'Show links'
     },
     home: {
-      desc: 'Create Barcodes in a couple of clicks in your own design, use the desired standard and export in the desired format. Save templates, share and use them at any time.',
+      desc: 'Create QR and Barcodes in a couple of clicks in your own design, use the desired standard and export in the desired format. Save templates, share and use them at any time.',
       gtGen: 'Go to Generator',
-      create: 'Create a new template',
-      noDesc: 'No description',
-      tipTitle: 'The templates you create will appear in this section, try creating the first one!',
-      tipDesc: 'Just generate several types of barcodes and the system will prompt you to save the settings',
-      name: 'Name',
-      sdesc: 'Description',
-      date: 'Date',
-      new: 'Create a new template',
-      temp: 'Go to template',
-      shareTitle: 'Hey...',
-      shareDesc: 'Look what barcode I managed to create!',
+      // create: 'Create a new template',
+      // noDesc: 'No description',
+      // tipTitle: 'The templates you create will appear in this section, try creating the first one!',
+      // tipDesc: 'Just generate several types of barcodes and the system will prompt you to save the settings',
+      // name: 'Name',
+      // sdesc: 'Description',
+      // date: 'Date',
+      // new: 'Create a new template',
+      // temp: 'Go to template',
+      // shareTitle: 'Hey...',
+      // shareDesc: 'Look what barcode I managed to create!',
       libTitle: 'Not sure which barcode format you need?',
       libDesc: 'You can see the formats available for generation and choose the one that suits your needs best.',
       gtLib: 'Learn more',
@@ -169,23 +169,23 @@ export default {
       link: 'Показать ссылки'
     },
     home: {
-      desc: 'Создавайте штрих-коды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
+      desc: 'Создавайте QR и штрихкоды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
       gtGen: 'Перейти к Генератору',
-      create: 'Создать новый шаблон',
-      noDesc: 'Нет описания',
-      tipTitle: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
-      tipDesc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат',
-      name: 'Название',
-      cdesc: 'Описание',
-      date: 'Дата',
-      new: 'Создать новый шаблон',
-      temp: 'Перейти к шаблону',
-      shareTitle: 'Эй...',
-      shareDesc: 'Посмотри, какой штрих-код мне удалось создать!',
+      // create: 'Создать новый шаблон',
+      // noDesc: 'Нет описания',
+      // tipTitle: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
+      // tipDesc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат',
+      // name: 'Название',
+      // cdesc: 'Описание',
+      // date: 'Дата',
+      // new: 'Создать новый шаблон',
+      // temp: 'Перейти к шаблону',
+      // shareTitle: 'Эй...',
+      // shareDesc: 'Посмотри, какой штрихкод мне удалось создать!',
       libTitle: 'Не уверены какой стандарт вам нужен?',
       libDesc: 'Вы можете просмотреть доступные стандарты для генерации и выбрать наиболее подходящий под ваши нужды.',
       gtLib: 'Подробнее',
-      libLinkTitle: 'Узнайте больше о стандартах штрих-кодов'
+      libLinkTitle: 'Узнайте больше о стандартах штрихкодов'
     },
     generator: {
       settings: {
@@ -197,7 +197,7 @@ export default {
         bg: 'Цвет заднего фона',
         bg_plh: "'#ffffff' или 'transparent'",
         showTxt: 'Показать текст / код',
-        color: 'Цвет штрих-кода',
+        color: 'Цвет штрихкода',
         color_plh: "'#000000' или 'black'",
         export: {
           name: 'Формат экспорта',
@@ -210,7 +210,7 @@ export default {
       },
       preview: {
         prev: 'Предпросмотр',
-        info: "Данное окно — превью для ваших штрих-кодов, но вы их пока не сгенерировали...",
+        info: "Данное окно — превью для ваших штрихкодов, но вы их пока не сгенерировали...",
         code: 'Barcode'
       },
       modal: {
@@ -244,10 +244,10 @@ export default {
         },
         ean8: {
           name: 'EAN 8',
-          desc: 'Был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки.',
+          desc: 'Был введен для использования на небольших упаковках, где штрихкод EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки.',
           info: [
             'Первые 3 цифры – код страны-производителя товара.',
-            'Затем 4 цифры – порядковый номер продукта.',
+            'Затем, 4 цифры – порядковый номер продукта.',
             'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
           placeholder: 'Числа (7)',
@@ -300,7 +300,7 @@ export default {
       }
     },
     notfound: {
-      title: 'Кажется, что вас здесь быть не должно...',
+      title: 'Кажется, вас здесь быть не должно...',
       btn: 'На главную',
       linkTitle: 'Вернуться на главную страницу'
     }

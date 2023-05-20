@@ -19,6 +19,7 @@ const docMeta = () => document.querySelector(selector)!.setAttribute('content', 
 
 main.isDark = isDark.value
 watch(isDark, (val) => { docMeta(); main.isDark = val })
+
 onMounted(() => { 
   docMeta()
   const body: HTMLBodyElement | null = document.querySelector('body')

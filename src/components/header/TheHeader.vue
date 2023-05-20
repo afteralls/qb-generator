@@ -41,23 +41,20 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-
 const lang = useLangStore()
 const route = useRoute()
 const i18n = inject('func') as LangFunc
 
 const showLinks = ref<boolean>(false)
 const linkTarget = ref<HTMLDivElement | null>(null)
+
 onClickOutside(linkTarget, (evt) => {
   if (!(evt.target as HTMLElement).closest('._i-btn')) {
     showLinks.value = false
   }
 })
 
-const titleLangHandler = () => {
-  document.title = i18n(route.name as string)
-}
+const titleLangHandler = () => (document.title = i18n(route.name as string))
 </script>
 
 <style scoped lang="scss">
@@ -67,15 +64,8 @@ const titleLangHandler = () => {
   top: 0;
   width: 100%;
   z-index: 10;
-  background-color: var(--tp);
+  background: linear-gradient(to bottom, var(--bg) 0%, var(--tp) 100%);
   backdrop-filter: blur(8px);
-
-  mask: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 1) 30%,
-    rgba(0, 0, 0, 0) 100%
-  );
 }
 
 .header {

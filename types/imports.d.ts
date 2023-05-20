@@ -17,6 +17,7 @@ declare global {
   const useLangStore: typeof import('../src/stores/lang')['useLangStore']
   const useMainStore: typeof import('../src/stores/main')['useMainStore']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
+  const useRoute: typeof import('vue-router')['useRoute']
   const useRouter: typeof import('vue-router')['useRouter']
   const useShare: typeof import('@vueuse/core')['useShare']
   const useStorage: typeof import('@vueuse/core')['useStorage']
