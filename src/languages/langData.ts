@@ -146,8 +146,7 @@ export default {
       }
     },
     notfound: {
-      one: "Seems like you weren't",
-      two: 'supposed to be here...',
+      title: "Seems like you weren't supposed to be here...",
       btn: 'Go to Home',
       linkTitle: 'Go to Home page'
     }
@@ -301,10 +300,9 @@ export default {
       }
     },
     notfound: {
-      one: 'Кажется, что вас',
-      two: 'здесь быть не должно...',
+      title: 'Кажется, что вас здесь быть не должно...',
       btn: 'На главную',
-      linkTitle: 'Перейти на главную страницу'
+      linkTitle: 'Вернуться на главную страницу'
     }
   }
 } as LangProps

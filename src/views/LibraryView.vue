@@ -37,22 +37,25 @@ const getImageUrl = (name: string) => {
   const urlTheme = main.isDark ? 'L' : 'D'
   return new URL(`../assets/svg/examples/${name + urlTheme}.svg`, import.meta.url).href
 }
-
-watch(() => main.isDark, () => { console.log('some') })
 </script>
 
 <style scoped lang="scss">
 .examples {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
+  display: grid;
   gap: var(--space);
+  grid-template-columns: 1fr 1fr 1fr;
 
   ol {
     margin: 0;
     padding-left: toRem(20);
+  }
+
+  @media (max-width: $mx) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $sm) {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -64,8 +67,6 @@ watch(() => main.isDark, () => { console.log('some') })
 
 .example {
   align-items: flex-start;
-  width: toRem(394.58);
-  height: toRem(590);
 
   img {
     height: toRem(200) !important;
@@ -75,11 +76,6 @@ watch(() => main.isDark, () => { console.log('some') })
   rect,
   img g {
     fill: var(--txt-m);
-  }
-
-  @media (max-width: $lib) {
-    width: 100%;
-    height: auto;
   }
 
   @media (max-width: $sm) {

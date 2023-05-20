@@ -48,6 +48,7 @@ onMounted(() => {
   background-color: var(--fg-m);
   border-radius: 1rem;
   position: relative;
+  box-sizing: border-box;
   border: toRem(1) solid var(--br);
 }
 
@@ -77,7 +78,7 @@ input {
   width: toRem(23);
   height: toRem(23);
   background-color: var(--bg);
-  border-radius: 100%;
+  border-radius: var(--space);
   transition: var(--tr);
   position: absolute;
 }
