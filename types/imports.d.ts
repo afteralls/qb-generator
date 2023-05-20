@@ -14,6 +14,7 @@ declare global {
   const ref: typeof import('vue')['ref']
   const useDark: typeof import('@vueuse/core')['useDark']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
+  const useLangStore: typeof import('../src/stores/lang')['useLangStore']
   const useMainStore: typeof import('../src/stores/main')['useMainStore']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useRouter: typeof import('vue-router')['useRouter']

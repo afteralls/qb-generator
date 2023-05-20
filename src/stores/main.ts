@@ -1,1 +1,5 @@
-export const useMainStore = defineStore('main', () => {})
+export const useMainStore = defineStore('main', () => {
+  const isDark = ref<boolean | null>()
+
+  return { isDark }
+})

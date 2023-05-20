@@ -11,12 +11,14 @@
 </template>
 
 <script setup lang="ts">
+const main = useMainStore()
 const isDark = useDark({ selector: 'body', attribute: 'class', valueDark: 'dark', valueLight: 'light' })
 const curColor = computed(() => isDark.value ? '#0c0c0d' : '#ffffff')
 const selector: string = 'meta[name="theme-color"]'
 const docMeta = () => document.querySelector(selector)!.setAttribute('content', curColor.value)
 
-watch(isDark, () => { docMeta() })
+main.isDark = isDark.value
+watch(isDark, (val) => { docMeta(); main.isDark = val })
 onMounted(() => { 
   docMeta()
   const body: HTMLBodyElement | null = document.querySelector('body')

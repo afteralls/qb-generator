@@ -83,7 +83,7 @@ body {
 }
 
 ._ui {
-  transition: var(--tr);
+  transition: background-color 0.5s ease;
   padding: var(--space);
   border-radius: var(--br-rad);
   background-color: var(--fg-m);

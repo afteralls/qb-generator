@@ -8,4 +8,4 @@ import i18n from './plugins/i18n'
 import './assets/styles/main.scss'
 
 const app = createApp(App)
-app.use(i18n).use(createPinia()).use(router).mount('#app')
+app.use(createPinia()).use(i18n).use(router).mount('#app')

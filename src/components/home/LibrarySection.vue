@@ -1,5 +1,5 @@
 <template>
-  <section class="library _row">
+  <section class="library _ui _row">
     <div class="info _column">
       <h2 class="md">{{ $i18n('home.libTitle') }}</h2>
       <p class="wp">{{ $i18n('home.libDesc') }}</p>
@@ -22,17 +22,8 @@
   width: 100%;
   justify-content: flex-end;
   text-align: right;
-  transition: background-color 0.5s ease;
   padding: calc(var(--space) * 2);
   gap: calc(var(--space) * 2);
-  border-radius: var(--br-rad);
-  background-color: var(--fg-m);
-  border: toRem(1) solid var(--br);
-
-  &:hover {
-    background-color: var(--fg-s);
-  }
-  // background: linear-gradient(45deg, var(--m-h) 0% , var(--m) 100%);
 
   svg {
     width: toRem(200);

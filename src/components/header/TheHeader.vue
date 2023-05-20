@@ -9,8 +9,8 @@
         <div class="options _row">
           <ThemeToggler />
           <div
-            @click="changeLang"
-            :title="curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
+            @click="lang.changeLang(), titleLangHandler()"
+            :title="lang.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
             class="_i-btn"
           >
             <button><TranslateIcon /></button>
@@ -29,7 +29,7 @@
               </button>
             </div>
             <Transition name="main" mode="out-in">
-              <div ref="linkTarget" v-if="showLinks" class="hidden-links _row">
+              <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row">
                 <TheLinks />
               </div>
             </Transition>
@@ -41,8 +41,11 @@
 </template>
 
 <script setup lang="ts">
-const changeLang = inject('i18n') as Function
-const curLang = inject('curLang') as CurLang
+import { useRoute } from 'vue-router'
+
+const lang = useLangStore()
+const route = useRoute()
+const i18n = inject('func') as LangFunc
 
 const showLinks = ref<boolean>(false)
 const linkTarget = ref<HTMLDivElement | null>(null)
@@ -51,6 +54,10 @@ onClickOutside(linkTarget, (evt) => {
     showLinks.value = false
   }
 })
+
+const titleLangHandler = () => {
+  document.title = i18n(route.name as string)
+}
 </script>
 
 <style scoped lang="scss">
@@ -129,7 +136,5 @@ onClickOutside(linkTarget, (evt) => {
   right: var(--space);
   top: toRem(73);
   padding: var(--space);
-  border-radius: var(--br-rad);
-  background-color: var(--fg-m);
 }
 </style>

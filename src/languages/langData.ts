@@ -80,23 +80,23 @@ export default {
       standarts: {
         ean13: {
           name: 'EAN 13',
-          desc: 'The European Article Number is a standard to encode product numbers. The EAN is a special case of a Global Trade Item Number',
+          desc: 'The European Article Number is a standard to encode product numbers. The EAN is a special case of a Global Trade Item Number.',
           info: [
-            'Country-specific part: 1-3 digits',
-            'Company part',
-            'Article number: 4-5 digits',
-            'Checksum digit'
+            'Country-specific part: 1-3 digits.',
+            'Company part.',
+            'Article number: 4-5 digits.',
+            'Checksum digit.'
           ],
           placeholder: 'Digits (12)',
           import: 'ean13'
         },
         ean8: {
           name: 'EAN 8',
-          desc: 'The normal length of an EAN is 13 digits. There is also a shorter version called EAN-8, for small packages, where the full 13-digit number would take too much space on the package',
+          desc: 'The normal length of an EAN is 13 digits. There is also a shorter version called EAN-8, for small packages, where the full 13-digit number would take too much space on the package.',
           info: [
-            'Country-specific part: 2-3 digits',
-            'Article number: 4-5 digits',
-            'Checksum digit'
+            'Country-specific part: 2-3 digits.',
+            'Article number: 4-5 digits.',
+            'Checksum digit.'
           ],
           placeholder: 'Digits (7)',
           import: 'ean8'
@@ -105,10 +105,10 @@ export default {
           name: 'CODE 128',
           desc: "is a high-density linear barcode symbology defined in ISO/IEC. It's used for alphanumeric or numeric-only barcodes.",
           info: [
-            'Start symbol',
-            'Encoded data',
-            'Check symbol',
-            'Stop symbol'
+            'Start symbol.',
+            'Encoded data.',
+            'Check symbol.',
+            'Stop symbol.'
           ],
           placeholder: 'Text (50)',
           import: 'code128'
@@ -117,18 +117,18 @@ export default {
           name: 'ITF 14',
           desc: 'ITF-14 is the GS1 implementation of an Interleaved 2 of 5 (ITF) bar code to encode a Global Trade Item Number. ITF-14 symbols are generally used on packaging levels of a product, such as a case box of 24 cans of soup. The ITF-14 will always encode 14 digits.',
           info: [
-            'Packaging indicator',
-            'The next 12 digits are representing the product number',
-            'Checksum digit'
+            'Packaging indicator.',
+            'The next 12 digits are representing the product number.',
+            'Checksum digit.'
           ],
           placeholder: 'Digits (13)',
           import: 'itf14'
         },
         msi: {
           name: 'MSI',
-          desc: 'The code can display only the number 0-9 and has no fixed length. Today this type of code is outdated and is no longer used. Because of this most barcode scanners can not recognize this type of code',
+          desc: 'The code can display only the number 0-9 and has no fixed length. Today this type of code is outdated and is no longer used. Because of this most barcode scanners can not recognize this type of code.',
           info: [
-            'Can display only the number 0-9'
+            'Can display only the number 0-9.'
           ],
           placeholder: 'Digits (50)',
           import: 'msicode'
@@ -137,8 +137,8 @@ export default {
           name: 'PHARMACODE',
           desc: 'Pharmaceutical Binary Code is a barcode standard, used in the pharmaceutical industry as a packing control system. It is designed to be readable despite printing errors',
           info: [
-            'Pharmacode can represent only a single integer from 3 to 131 070',
-            'The minimum barcode is 2 bars and the maximum 16'
+            'Pharmacode can represent only a single integer from 3 to 131 070.',
+            'The minimum barcode is 2 bars and the maximum 16.'
           ],
           placeholder: 'Digits (3 — 131 070)',
           import: 'pharmacode'
@@ -233,67 +233,67 @@ export default {
       standarts: {
         ean13: {
           name: 'EAN 13',
-          desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя',
+          desc: 'European Article Number — европейский стандарт штрихкода, предназначенный для кодирования идентификатора товара и производителя.',
           info: [
-            '1-я группа (2-3 цифры) – код страны-производителя товара',
-            '2-я группа (4-6 цифр) – это регистрационный номер компании',
-            '3-я группа (3-5 цифр) – порядковый номер продукта',
-            'Последняя цифра — контрольная, вычисляется автоматически'
+            'Первые 2-3 цифры – код страны-производителя товара.',
+            'Следующие 4-6 цифр – это регистрационный номер компании.',
+            'Далее, 3-5 цифр – порядковый номер продукта.',
+            'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
           placeholder: 'Числа (12)',
           import: 'ean13'
         },
         ean8: {
           name: 'EAN 8',
-          desc: 'Был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки',
+          desc: 'Был введен для использования на небольших упаковках, где штрих-код EAN-13 был бы слишком большим; например, на сигаретах, карандашах и пачках жевательной резинки.',
           info: [
-            '1-я группа (3 цифры) – код страны-производителя товара',
-            '2-я группа (4 цифры) – порядковый номер продукта',
-            'Последняя цифра — контрольная, вычисляется автоматически'
+            'Первые 3 цифры – код страны-производителя товара.',
+            'Затем 4 цифры – порядковый номер продукта.',
+            'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
           placeholder: 'Числа (7)',
           import: 'ean8'
         },
         code128: {
           name: 'CODE 128',
-          desc: "Штриховой код Code 128 включает в себя 107 символов, из которых 103 символа данных, 3 стартовых и 1 остановочный (стоп) символ",
+          desc: "Штриховой код Code 128 включает в себя 107 символов, из которых 103 символа данных, 3 стартовых и 1 остановочный (стоп) символ.",
           info: [
-            'Стартовый символ (Start)',
-            'Кодированная информация',
-            'Проверочный символ (контрольный знак)',
-            'Остановочный (Stop) символ'
+            'Стартовый символ (Start).',
+            'Кодированная информация.',
+            'Проверочный символ (контрольный знак).',
+            'Остановочный (Stop) символ.'
           ],
           placeholder: 'Текст (50)',
           import: 'code128'
         },
         itf14: {
           name: 'ITF 14',
-          desc: 'Штрих код ITF-14 разработан специально для транспортной упаковки. Он создаётся на основе кодов EAN-8 или EAN-13 и дополнительно несёт в себе один символ «тип упаковки», которым кодируется вариант упаковки',
+          desc: 'Штрих код ITF-14 разработан специально для транспортной упаковки. Он создаётся на основе кодов EAN-8 или EAN-13 и дополнительно несёт в себе один символ «тип упаковки», которым кодируется вариант упаковки.',
           info: [
-            'Первая цифра показывает тип упаковки',
-            'Группа далее (12 цифр) – код стандарта EAN 13',
-            'Последняя цифра — контрольная, вычисляется автоматически'
+            'Первая цифра показывает тип упаковки.',
+            'Группа далее (12 цифр) – код стандарта EAN 13.',
+            'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
           placeholder: 'Числа (13)',
           import: 'itf14'
         },
         msi: {
           name: 'MSI',
-          desc: 'Это непрерывная символика, которая не поддается самоконтролю. MSI используется в основном для управления запасами, маркировки контейнеров и полок на складах',
+          desc: 'Это непрерывная символика, которая не поддается самоконтролю. MSI используется в основном для управления запасами, маркировки контейнеров и полок на складах.',
           info: [
-            'Представляет собой только цифры 0–9',
-            'Не поддерживает буквы и символы',
-            'Каждая цифра преобразуется в 4 двоично-десятичный код биты. Затем добавляется 1 бит и два 0 бита'
+            'Представляет собой только цифры 0–9.',
+            'Не поддерживает буквы и символы.',
+            'Каждая цифра преобразуется в 4 двоично-десятичный код.'
           ],
           placeholder: 'Числа (50)',
           import: 'msicode'
         },
         pharmacode: {
           name: 'PHARMACODE',
-          desc: 'Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати',
+          desc: 'Фармацевтической двоичный код — стандарт штрихового кода, используемый в фармацевтической промышленности в качестве системы контроля упаковок. Может быть читаемым, даже несмотря на ошибки при печати.',
           info: [
-            'Может представляться только одним целым числом от 1 до 131 070',
-            'Минимальная длина штрихкода — 1 узкая полоса и максимальная — 16 широких'
+            'Может представляться только одним целым числом от 1 до 131 070.',
+            'Минимальная длина штрихкода — 1 узкая полоса и максимальная — 16 широких.'
           ],
           placeholder: 'Числа (3 — 131 070)',
           import: 'pharmacode'
