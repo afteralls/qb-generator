@@ -116,11 +116,13 @@ svg {
 ._btn {
   cursor: pointer;
   display: flex;
+  font-size: 1rem;
   align-items: center;
   @include action-styles;
   background-color: var(--txt-m);
   color: var(--fg-m) !important;
   gap: var(--space-m);
+  transition: var(--tr);
   border: toRem(1) solid var(--br);
 
   svg {
@@ -195,9 +197,11 @@ a {
   }
 }
 
-input[type='text'] {
+input[type="text"] {
   @include action-styles;
-  width: toRem(200);
+  font-size: 1rem;
   background-color: var(--fg-m);
+  transition: var(--tr);
   color: var(--txt-m);
+  border: toRem(1) solid var(--br);
 }

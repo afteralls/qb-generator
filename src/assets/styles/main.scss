@@ -82,6 +82,12 @@ body {
   gap: var(--space);
 }
 
+._s-column {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) / 2);
+}
+
 ._ui {
   transition: background-color 0.5s ease;
   padding: var(--space);

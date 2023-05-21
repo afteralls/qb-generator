@@ -35,6 +35,7 @@ export default {
       libLinkTitle: 'Learn more about barcode standards'
     },
     generator: {
+      barcode: 'Barcode',
       settings: {
         content: 'Content',
         quantity: 'Quantity',
@@ -186,6 +187,7 @@ export default {
       libLinkTitle: 'Узнайте больше о стандартах штрихкодов'
     },
     generator: {
+      barcode: 'Штрихкод',
       settings: {
         content: 'Содержание',
         quantity: 'Количество',

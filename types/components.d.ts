@@ -36,6 +36,7 @@ declare module '@vue/runtime-core' {
     ShareIcon: typeof import('./../src/assets/svg/ShareIcon.vue')['default']
     TelegramIcon: typeof import('./../src/assets/svg/TelegramIcon.vue')['default']
     TemplatesSection: typeof import('./../src/components/home/TemplatesSection.vue')['default']
+    TheCheckbox: typeof import('./../src/components/generator/TheCheckbox.vue')['default']
     TheCopyright: typeof import('./../src/components/home/TheCopyright.vue')['default']
     TheHeader: typeof import('./../src/components/header/TheHeader.vue')['default']
     TheLinks: typeof import('./../src/components/header/TheLinks.vue')['default']

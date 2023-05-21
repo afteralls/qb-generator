@@ -46,7 +46,6 @@ const getImageUrl = (name: string) => {
   grid-template-columns: 1fr 1fr 1fr;
 
   ol {
-    // margin: 0;
     padding-left: toRem(19);
   }
 
