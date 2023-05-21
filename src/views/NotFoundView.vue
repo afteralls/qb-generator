@@ -3,7 +3,7 @@
     <div class="not-found _row _center">
       <div class="banner"><NotFoundIcon /></div>
       <div class="_column info">
-        <h2>{{ $i18n('notfound.title') }}</h2>
+        <h2 class="lg">{{ $i18n('notfound.title') }}</h2>
         <RouterLink to="/" :title="$i18n('notfound.linkTitle')" class="_btn">
           <div class="_i"><HomeIcon /></div>
           <h4>{{ $i18n('notfound.btn') }}</h4>

@@ -5,7 +5,7 @@
         <Transition name="main" mode="out-in">
           <img :src="getImageUrl(standart.import)" alt="Barcode example" />
         </Transition>
-        <h2 class="md">{{ standart.name }}</h2>
+        <header class="md">{{ standart.name }}</header>
         <div class="info">
           <small>{{ $i18n('library.desc') }}</small>
           <p>{{ standart.desc }}</p>
@@ -46,8 +46,8 @@ const getImageUrl = (name: string) => {
   grid-template-columns: 1fr 1fr 1fr;
 
   ol {
-    margin: 0;
-    padding-left: toRem(20);
+    // margin: 0;
+    padding-left: toRem(19);
   }
 
   @media (max-width: $mx) {
@@ -73,14 +73,9 @@ const getImageUrl = (name: string) => {
     max-width: 100%;
   }
 
-  rect,
-  img g {
-    fill: var(--txt-m);
-  }
-
   @media (max-width: $sm) {
     img {
-      max-height: 150px;
+      max-height: toRem(150);
     }
   }
 }

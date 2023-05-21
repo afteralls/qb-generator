@@ -1,7 +1,5 @@
 <template>
-  <div class="_wrapper">
-    <TheSettings />
-  </div>
+  <div>Template</div>
 </template>
 
 <script setup lang='ts'>

@@ -8,14 +8,9 @@
         <h4>{{ $i18n('home.gtLib') }}</h4>
       </RouterLink>
     </div>
-    <QrIcon />
+    <div class="banner"><QrIcon /></div>
   </section>
 </template>
-
-<script setup lang='ts'>
-
-
-</script>
 
 <style scoped lang='scss'>
 .library {
@@ -24,11 +19,6 @@
   text-align: right;
   padding: calc(var(--space) * 2);
   gap: calc(var(--space) * 2);
-
-  svg {
-    width: toRem(200);
-    height: toRem(200);
-  }
 
   @media (max-width: $sm) {
     flex-direction: column-reverse;
@@ -45,6 +35,13 @@
   @media (max-width: $sm) {
     align-items: center;
     text-align: center;
+  }
+}
+
+.banner {
+  svg {
+    width: toRem(200);
+    height: toRem(200);
   }
 }
 </style>

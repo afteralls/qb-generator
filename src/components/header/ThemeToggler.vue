@@ -35,11 +35,11 @@ onMounted(() => {
   }
   &-enter-from {
     opacity: 0;
-    transform: translateX(7px);
+    transform: translateX(toRem(7));
   }
   &-leave-to {
     opacity: 0;
-    transform: translateX(-7px);
+    transform: translateX(toRem(7));
   }
 }
 

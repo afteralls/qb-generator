@@ -1,14 +1,6 @@
-header p {
-  line-height: 1.5;
-
-  @media (max-width: $md) {
-    line-height: 1.2;
-  }
-}
-
 header {
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 small {
@@ -37,15 +29,17 @@ h1 {
 }
 
 h2 {
-  line-height: 1;
-  font-size: toRem(48);
+  &.lg {
+    line-height: 1;
+    font-size: toRem(48);
 
-  @media (max-width: $lg) {
-    font-size: toRem(36);
-  }
+    @media (max-width: $lg) {
+      font-size: toRem(36);
+    }
 
-  @media (max-width: $md) {
-    font-size: toRem(30);
+    @media (max-width: $md) {
+      font-size: toRem(30);
+    }
   }
 
   &.md {
@@ -54,10 +48,16 @@ h2 {
     @media (max-width: $lg) {
       font-size: toRem(24);
     }
-  
+
     @media (max-width: $md) {
       font-size: toRem(18);
     }
+  }
+}
+
+h4 {
+  @media (max-width: $zf) {
+    font-size: 0.8rem;
   }
 }
 
@@ -79,10 +79,6 @@ p {
 
     @media (max-width: $md) {
       font-size: toRem(16);
-    }
-
-    @media (max-width: $zf) {
-      line-height: 1;
     }
   }
 }
@@ -107,8 +103,13 @@ svg {
   }
 
   &.lg {
-    width: toRem(40);
-    height: toRem(40);
+    width: toRem(50);
+    height: toRem(50);
+  }
+
+  &.mx {
+    width: toRem(80);
+    height: toRem(80);
   }
 }
 
@@ -129,10 +130,6 @@ svg {
   &:hover,
   &:focus {
     background-color: var(--txt-s);
-  }
-
-  @media (max-width: $zf) {
-    font-size: 0.8rem;
   }
 }
 
@@ -198,7 +195,7 @@ a {
   }
 }
 
-input[type=text] {
+input[type='text'] {
   @include action-styles;
   width: toRem(200);
   background-color: var(--fg-m);
