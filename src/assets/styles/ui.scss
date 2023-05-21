@@ -118,6 +118,7 @@ svg {
   display: flex;
   font-size: 1rem;
   align-items: center;
+  justify-content: center;
   @include action-styles;
   background-color: var(--txt-m);
   color: var(--fg-m) !important;

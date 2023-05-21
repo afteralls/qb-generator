@@ -1,16 +1,21 @@
 <template>
-  <div @click="$emit('change:model')" class="checkbox _row">
-    <input type="checkbox" :value="model" />
+  <div @change="$emit('change:model', model)" class="checkbox _s-row">
+    <input :checked="model === value" :type="type" :name="name" :value="value" />
     <div class="box _center _ui">
       <div class="_i"><CheckIcon /></div>
     </div>
-    <small>{{ $i18n('generator.settings.showTxt') }}</small>
+    <small><slot /></small>
   </div>
 </template>
 
 <script setup lang="ts">
-defineProps<{ model: boolean }>()
-defineEmits<{ (evt: 'change:model'): void }>()
+defineProps<{
+  model?: boolean | string
+  value: boolean | string
+  type: 'checkbox' | 'radio'
+  name?: string
+}>()
+defineEmits<{ (evt: 'change:model', val: string): void }>()
 </script>
 
 <style scoped lang="scss">

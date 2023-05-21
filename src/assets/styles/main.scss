@@ -76,6 +76,12 @@ body {
   gap: var(--space);
 }
 
+._s-row {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space) / 2);
+}
+
 ._column {
   display: flex;
   flex-direction: column;
