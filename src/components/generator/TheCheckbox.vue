@@ -1,6 +1,6 @@
 <template>
   <div @change="$emit('change:model', model)" class="checkbox _s-row">
-    <input :checked="model === value" :type="type" :name="name" :value="value" />
+    <input :checked="checked" :type="type" :name="name" />
     <div class="box _center _ui">
       <div class="_i"><CheckIcon /></div>
     </div>
@@ -10,12 +10,12 @@
 
 <script setup lang="ts">
 defineProps<{
-  model?: boolean | string
-  value: boolean | string
   type: 'checkbox' | 'radio'
+  checked: boolean
+  model?: boolean | string
   name?: string
 }>()
-defineEmits<{ (evt: 'change:model', val: string): void }>()
+defineEmits<{ (evt: 'change:model', val?: string): void }>()
 </script>
 
 <style scoped lang="scss">

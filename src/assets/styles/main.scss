@@ -82,6 +82,12 @@ body {
   gap: calc(var(--space) / 2);
 }
 
+._grid {
+  display: grid;
+  width: 100%;
+  gap: var(--space);
+}
+
 ._column {
   display: flex;
   flex-direction: column;

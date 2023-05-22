@@ -11,12 +11,14 @@
           <h4>QR</h4>
         </button>
       </div>
-      <TheSettings />
+      <BarcodeSettings />
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+</script>
 
 <style scoped lang="scss">
 .layout {

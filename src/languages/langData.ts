@@ -36,30 +36,30 @@ export default {
     },
     generator: {
       barcode: 'Barcode',
-      settings: {
+      set: {
         content: 'Content',
         quantity: 'Quantity',
-        quan_plh: 'Digits (2000)',
+        quantity_ph: 'Digits (2000)',
         example: 'Example',
         invalid: 'Enter valid content',
         bg: 'Background color',
-        bg_plh: "'#ffffff' or 'transparent'",
+        bg_ph: "'#30d5c8' or 'transparent'",
         showTxt: 'Show text / code',
         color: 'Code color',
-        color_plh: "'#000000' or 'black'",
-        export: {
-          name: 'Export Format',
-          generate: 'Generate',
-          fileName: 'File Name',
-          arcName: 'Archive Name (.zip)',
-          downloadBtn: 'Download',
-          saveTempBtn: 'Save'
-        }
+        color_ph: "'#000000' or 'black'",
+      },
+      export: {
+        tip: 'Generate before export',
+        format: 'Export format',
+        generate: 'Generate',
+        fileName: 'File name',
+        arcName: 'Archive name (.zip)',
+        downloadBtn: 'Download',
+        saveTempBtn: 'Save'
       },
       preview: {
-        prev: 'Preview',
+        title: 'Preview',
         info: "This window is a preview for your barcodes, but you haven't generated them yet...",
-        code: 'Barcode'
       },
       modal: {
         name: 'Name',
@@ -188,30 +188,30 @@ export default {
     },
     generator: {
       barcode: 'Штрихкод',
-      settings: {
+      set: {
         content: 'Содержание',
         quantity: 'Количество',
-        quan_plh: 'Числа (2000)',
+        quantity_ph: 'Числа (1 — 999)',
         example: 'Пример',
         invalid: 'Введите корректное содержание',
         bg: 'Цвет заднего фона',
-        bg_plh: "'#ffffff' или 'transparent'",
+        bg_ph: "'#30d5c8' или 'transparent'",
         showTxt: 'Показать текст / код',
         color: 'Цвет штрихкода',
-        color_plh: "'#000000' или 'black'",
-        export: {
-          name: 'Формат экспорта',
-          generate: 'Генерировать',
-          fileName: 'Название файла',
-          arcName: 'Название архива (.zip)',
-          downloadBtn: 'Скачать',
-          saveTempBtn: 'Сохранить'
-        }
+        color_ph: "'#000000' или 'black'"
+      },
+      export: {
+        tip: 'Сгенерируйте перед экспортом',
+        format: 'Формат экспорта',
+        generate: 'Генерировать',
+        fileName: 'Название файла',
+        arcName: 'Название архива (.zip)',
+        downloadBtn: 'Скачать',
+        saveTempBtn: 'Сохранить'
       },
       preview: {
-        prev: 'Предпросмотр',
+        title: 'Предпросмотр',
         info: "Данное окно — превью для ваших штрихкодов, но вы их пока не сгенерировали...",
-        code: 'Barcode'
       },
       modal: {
         name: 'Название',
