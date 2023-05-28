@@ -120,7 +120,7 @@ svg {
   align-items: center;
   justify-content: center;
   @include action-styles;
-  background-color: var(--txt-m);
+  background-color: var(--btn-bg-m);
   color: var(--fg-m) !important;
   gap: var(--space-m);
   transition: var(--tr);
@@ -132,7 +132,7 @@ svg {
 
   &:hover,
   &:focus {
-    background-color: var(--txt-s);
+    background-color: var(--btn-bg-s);
   }
 }
 

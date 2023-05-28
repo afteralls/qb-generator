@@ -1,5 +1,5 @@
 @function toRem($value) {
-  @return calc($value / 16) + rem; 
+  @return calc($value / 16) + rem;
 }
 
 @mixin action-styles {
@@ -8,17 +8,11 @@
   height: toRem(45);
   border-radius: var(--br-rad);
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     border-color: var(--m-h);
   }
 }
-
-// $mx: toRem(1271);
-// $lg: toRem(1045);
-// $md: toRem(870);
-// $lib: toRem(838);
-// $sm: toRem(700);
-// $zf: toRem(375);
 
 $mx: 1271px;
 $lg: 1045px;

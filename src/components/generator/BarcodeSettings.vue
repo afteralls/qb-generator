@@ -1,19 +1,19 @@
 <template>
-  <div class="barcode">
-    <div class="_column">
-      <div class="_grid t-o">
+  <div class="_column">
+      <div class="_grid _t-o">
         <div class="_s-column">
           <small>{{ $i18n('generator.set.content') }}</small>
           <div class="action-wp">
             <input
               type="text"
-              :placeholder="$i18n(`library.standarts.${main.set.curStandart.codeName}.placeholder`)"
+              v-model="main.set.content"
+              :placeholder="$i18n(`library.standarts.${main.set.curStandart.codeName}.ph`)"
               :maxlength="main.set.curStandart.max"
             />
             <div class="action">
               <TheSelect
                 :inWp="true"
-                :options="standartArr"
+                :options="getStandartArr"
                 :selected="main.set.curStandart.name"
                 @change:option="(idx: number) => main.set.curStandart = main.standarts[idx]"
               />
@@ -22,116 +22,64 @@
         </div>
         <div class="_s-column">
           <small>{{ $i18n('generator.set.quantity') }}</small>
-          <input type="text" placeholder="1-999" />
+          <input type="text" v-model="main.set.quantity" placeholder="1-999" />
         </div>
       </div>
-      <div class="_grid o-o">
+      <div class="_grid _o-o">
         <div class="_s-column">
           <small>{{ $i18n('generator.set.example') }}</small>
           <div class="example _center _ui">
-            <small v-if="wrong">
+            <small v-if="!main.set.isCorrect">
               {{ $i18n('generator.set.invalid') }}
             </small>
+            <div v-else class="barcode _center">
+              <svg id="example"></svg>
+            </div>
           </div>
         </div>
         <div class="_grid">
           <div class="_s-column">
             <small>{{ $i18n('generator.set.bg') }}</small>
-            <input type="text" :placeholder="$i18n('generator.set.bg_ph')" />
+            <input
+              type="text"
+              v-model="main.set.bgColor"
+              :placeholder="$i18n('generator.set.bg_ph')"
+            />
           </div>
           <TheCheckbox
-            :checked="modell"
+            :checked="main.set.showData"
             :type="'checkbox'"
-            @change:model="() => (modell = !modell)"
+            @change:model="() => (main.set.showData = !main.set.showData)"
           >
             {{ $i18n('generator.set.showTxt') }}
           </TheCheckbox>
           <div class="_s-column">
             <small>{{ $i18n('generator.set.color') }}</small>
-            <input type="text" :placeholder="$i18n('generator.set.color_ph')" />
+            <input
+              type="text"
+              v-model="main.set.codeColor"
+              :placeholder="$i18n('generator.set.color_ph')"
+            />
           </div>
         </div>
       </div>
     </div>
-    <div class="_s-column">
-      <small>{{ $i18n('generator.preview.title') }}</small>
-      <div class="preview _center _ui">
-        <small v-if="!generated">
-          {{ $i18n('generator.preview.info') }}
-        </small>
-      </div>
-    </div>
-    <div class="_column">
-      <div class="_s-column">
-        <div class="_s-row">
-          <div class="_i sm"><InfoIcon /></div>
-          <small>{{ $i18n('generator.export.tip') }}</small>
-        </div>
-        <button class="_btn">
-          <div class="_i"><GenerateIcon /></div>
-          <h4>{{ $i18n('generator.export.generate') }}</h4>
-        </button>
-      </div>
-      <div class="_s-column">
-        <small>{{ $i18n('generator.export.format') }}</small>
-        <div class="_grid o-o-o">
-          <TheCheckbox
-            v-for="format in exportFormats"
-            :key="format"
-            :name="'export'"
-            :checked="m === format"
-            :model="m"
-            :type="'radio'"
-            @change:model="(val: string) => m = val"
-          >
-            {{ format.toUpperCase() }}
-          </TheCheckbox>
-        </div>
-      </div>
-      <div class="_s-column">
-        <small>{{ $i18n('generator.export.fileName') }}</small>
-        <input type="text" placeholder="barcode-one" />
-      </div>
-      <div class="_grid o-o">
-        <button class="_btn">
-          <div class="_i"><DownloadIcon /></div>
-          <h4>{{ $i18n('generator.export.downloadBtn') }}</h4>
-        </button>
-        <button class="_btn">
-          <div class="_i"><CreateIcon /></div>
-          <h4>{{ $i18n('generator.export.saveTempBtn') }}</h4>
-        </button>
-      </div>
-    </div>
-  </div>
 </template>
 
-<script setup lang="ts">
-const modell = ref<boolean>(true)
-const generated = ref(false)
-const wrong = ref(true)
-const exportFormats = ['png', 'jpg', 'svg']
-const m = ref('svg')
-
+<script setup lang='ts'>
 const main = useMainStore()
-const standartArr: string[] = []
-main.standarts.forEach(standart => standartArr.push(standart.name))
+const getStandartArr = computed<string[]>(() =>
+  main.standarts.map((standart: Standart) => standart.name)
+)
 </script>
 
-<style scoped lang="scss">
-.barcode {
-  display: grid;
-  width: 100%;
-  gap: calc(var(--space) * 2);
-  grid-template-columns: 2fr 1fr 1.2fr;
-
-  input {
-    width: 100%;
-  }
-}
-
+<style scoped lang='scss'>
 .action-wp {
   position: relative;
+
+  input {
+    padding-right: toRem(186);
+  }
 }
 
 .action {
@@ -140,21 +88,14 @@ main.standarts.forEach(standart => standartArr.push(standart.name))
   top: toRem(2);
 }
 
-.t-o {
-  grid-template-columns: 2fr 1fr;
-}
-
-.o-o {
-  grid-template-columns: 1fr 1fr;
-}
-
-.o-o-o {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.example,
-.preview {
+.example {
+  padding: var(--space-m);
   height: 100%;
   text-align: center;
+
+  svg {
+    height: 100%;
+    border-radius: calc(var(--br-rad) / 2);
+  }
 }
 </style>

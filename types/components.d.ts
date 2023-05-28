@@ -11,7 +11,10 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ArrowIcon: typeof import('./../src/assets/svg/ArrowIcon.vue')['default']
     BackArrowIcon: typeof import('./../src/assets/svg/BackArrowIcon.vue')['default']
+    BarcodeExport: typeof import('./../src/components/generator/BarcodeExport.vue')['default']
     BarcodeIcon: typeof import('./../src/assets/svg/BarcodeIcon.vue')['default']
+    BarcodeLayout: typeof import('./../src/components/generator/BarcodeLayout.vue')['default']
+    BarcodePreview: typeof import('./../src/components/generator/BarcodePreview.vue')['default']
     BarcodeSettings: typeof import('./../src/components/generator/BarcodeSettings.vue')['default']
     CheckIcon: typeof import('./../src/assets/svg/CheckIcon.vue')['default']
     CreateIcon: typeof import('./../src/assets/svg/CreateIcon.vue')['default']

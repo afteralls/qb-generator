@@ -39,7 +39,6 @@ export default {
       set: {
         content: 'Content',
         quantity: 'Quantity',
-        quantity_ph: 'Digits (2000)',
         example: 'Example',
         invalid: 'Enter valid content',
         bg: 'Background color',
@@ -87,7 +86,7 @@ export default {
             'Article number: 4-5 digits.',
             'Checksum digit.'
           ],
-          placeholder: 'Digits (12)',
+          ph: 'Digits (12)',
           import: 'ean13'
         },
         ean8: {
@@ -98,7 +97,7 @@ export default {
             'Article number: 4-5 digits.',
             'Checksum digit.'
           ],
-          placeholder: 'Digits (7)',
+          ph: 'Digits (7)',
           import: 'ean8'
         },
         code128: {
@@ -110,7 +109,7 @@ export default {
             'Check symbol.',
             'Stop symbol.'
           ],
-          placeholder: 'Text (50)',
+          ph: 'Text (50)',
           import: 'code128'
         },
         itf14: {
@@ -121,7 +120,7 @@ export default {
             'The next 12 digits are representing the product number.',
             'Checksum digit.'
           ],
-          placeholder: 'Digits (13)',
+          ph: 'Digits (13)',
           import: 'itf14'
         },
         msi: {
@@ -130,7 +129,7 @@ export default {
           info: [
             'Can display only the number 0-9.'
           ],
-          placeholder: 'Digits (50)',
+          ph: 'Digits (50)',
           import: 'msicode'
         },
         pharmacode: {
@@ -140,7 +139,7 @@ export default {
             'Pharmacode can represent only a single integer from 3 to 131 070.',
             'The minimum barcode is 2 bars and the maximum 16.'
           ],
-          placeholder: 'Digits (3 — 131 070)',
+          ph: '3 — 131 070',
           import: 'pharmacode'
         }
       }
@@ -191,7 +190,6 @@ export default {
       set: {
         content: 'Содержание',
         quantity: 'Количество',
-        quantity_ph: 'Числа (1 — 999)',
         example: 'Пример',
         invalid: 'Введите корректное содержание',
         bg: 'Цвет заднего фона',
@@ -239,7 +237,7 @@ export default {
             'Далее, 3-5 цифр – порядковый номер продукта.',
             'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
-          placeholder: 'Числа (12)',
+          ph: 'Числа (12)',
           import: 'ean13'
         },
         ean8: {
@@ -250,7 +248,7 @@ export default {
             'Затем, 4 цифры – порядковый номер продукта.',
             'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
-          placeholder: 'Числа (7)',
+          ph: 'Числа (7)',
           import: 'ean8'
         },
         code128: {
@@ -262,7 +260,7 @@ export default {
             'Проверочный символ (контрольный знак).',
             'Остановочный (Stop) символ.'
           ],
-          placeholder: 'Текст (50)',
+          ph: 'Текст (50)',
           import: 'code128'
         },
         itf14: {
@@ -273,7 +271,7 @@ export default {
             'Группа далее (12 цифр) – код стандарта EAN 13.',
             'Последняя цифра — контрольная, вычисляется автоматически.'
           ],
-          placeholder: 'Числа (13)',
+          ph: 'Числа (13)',
           import: 'itf14'
         },
         msi: {
@@ -284,7 +282,7 @@ export default {
             'Не поддерживает буквы и символы.',
             'Каждая цифра преобразуется в 4 двоично-десятичный код.'
           ],
-          placeholder: 'Числа (50)',
+          ph: 'Числа (50)',
           import: 'msicode'
         },
         pharmacode: {
@@ -294,7 +292,7 @@ export default {
             'Может представляться только одним целым числом от 1 до 131 070.',
             'Минимальная длина штрихкода — 1 узкая полоса и максимальная — 16 широких.'
           ],
-          placeholder: 'Числа (3 — 131 070)',
+          ph: '3 — 131 070',
           import: 'pharmacode'
         }
       }

@@ -33,6 +33,8 @@ body.dark {
   --tp: var(--dark-tp);
   --fg-m: var(--dark-fg-m);
   --fg-s: var(--dark-fg-s);
+  --btn-bg-m: var(--light-fg-m);
+  --btn-bg-s: var(--light-fg-s);
   --br: var(--dark-br);
   --txt-m: var(--dark-txt-m);
   --txt-s: var(--dark-txt-s);
@@ -43,6 +45,8 @@ body.light {
   --tp: var(--light-tp);
   --fg-m: var(--light-fg-m);
   --fg-s: var(--light-fg-s);
+  --btn-bg-m: var(--dark-fg-m);
+  --btn-bg-s: var(--dark-fg-s);
   --br: var(--light-br);
   --txt-m: var(--light-txt-m);
   --txt-s: var(--light-txt-s);

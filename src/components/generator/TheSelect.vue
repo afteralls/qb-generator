@@ -68,6 +68,10 @@ onClickOutside(selectTarget, (evt) => {
   width: 100%;
   justify-content: flex-start;
   border-color: var(--txt-m);
+
+  small {
+    pointer-events: none;
+  }
 }
 
 .active {
@@ -76,15 +80,7 @@ onClickOutside(selectTarget, (evt) => {
   }
 }
 
-.lg {
-  width: toRem(200);
-}
-
 .md {
   width: toRem(170);
-}
-
-.sm {
-  width: toRem(100);
 }
 </style>

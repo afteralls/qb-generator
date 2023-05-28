@@ -11,7 +11,7 @@
           <h4>QR</h4>
         </button>
       </div>
-      <BarcodeSettings />
+      <BarcodeLayout />
     </div>
   </div>
 </template>
