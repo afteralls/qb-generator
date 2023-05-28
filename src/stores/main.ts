@@ -41,6 +41,7 @@ export const useMainStore = defineStore('main', () => {
   ]
 
   const set: SetData = reactive({
+    standart: 1,
     content: '',
     bgColor: 'transparent',
     codeColor: '#000000',
@@ -65,8 +66,7 @@ export const useMainStore = defineStore('main', () => {
 
   watch(
     () => set.curStandart.name,
-    (newV) => {
-      console.log(newV);
+    () => {
       set.content = ''
     }
   )
@@ -87,16 +87,17 @@ export const useMainStore = defineStore('main', () => {
   }
 
   watch(
-    () => [set.content, set.codeColor, set.bgColor, set.showData, set.quantity],
+    () => [set.standart, set.content, set.codeColor, set.bgColor, set.showData, set.quantity],
     (v) => {
+      set.curStandart = standarts[set.standart]
       router.push({
         path: '/generator',
         query: {
-          standart: set.curStandart.name,
+          standart: set.standart,
           content: set.content,
           codeColor: set.codeColor,
           bgColor: set.bgColor,
-          showData: set.showData.toString(),
+          showData: set.showData as string,
           quantity: set.quantity
         }
       })

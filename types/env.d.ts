@@ -24,6 +24,7 @@ declare global {
   }
 
   export interface SetData {
+    standart: number
     content: string
     bgColor: string
     codeColor: string

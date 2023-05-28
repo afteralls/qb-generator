@@ -64,13 +64,15 @@ const titleLangHandler = () => (document.title = i18n(route.name as string))
   top: 0;
   width: 100%;
   z-index: 10;
-  background: linear-gradient(to bottom, var(--bg) 0%, var(--tp) 100%);
+  transition: var(--tr);
   backdrop-filter: blur(8px);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--tp) 100%);
 }
 
 .header {
   height: toRem(70);
   width: 100%;
+  z-index: 5;
   justify-content: space-between;
 
   @media (max-width: $sm) {

@@ -18,7 +18,7 @@ const selector: string = 'meta[name="theme-color"]'
 const docMeta = () => document.querySelector(selector)!.setAttribute('content', curColor.value)
 
 main.isDark = isDark.value
-watch(isDark, (val) => { docMeta(); main.isDark = val })
+watch(isDark, (val) => { docMeta(); main.isDark = val; })
 
 onMounted(() => { 
   docMeta()
@@ -50,6 +50,7 @@ onMounted(() => {
   border-radius: 1rem;
   position: relative;
   box-sizing: border-box;
+  transition: var(--tr);
   border: toRem(1) solid var(--br);
 }
 
