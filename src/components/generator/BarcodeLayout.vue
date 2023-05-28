@@ -19,7 +19,7 @@ onMounted(() => {
     main.set.content = (params.content as string) || ''
     main.set.codeColor = (params.codeColor as string) || '#000000'
     main.set.bgColor = (params.bgColor as string) || 'transparent'
-    main.set.showData = JSON.parse(params.showData as string) || true
+    main.set.showData = params.showData ? JSON.parse((params.showData as string)) : true
     main.set.quantity = (params.quantity as string) || '1'
     main.set.generated = false
     if (main.corLengthHandler) {
@@ -29,34 +29,38 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .barcode-wrapper {
   display: grid;
   width: 100%;
   gap: calc(var(--space) * 2);
+  grid-template-areas:
+    "Set Prev Exp";
   grid-template-columns: 2fr 1fr 1.2fr;
 
   input {
     width: 100%;
   }
-}
 
-:deep(.barcode) {
-  svg {
-    max-width: 100%;
-    height: auto;
+  @media (max-width: $mx) {
+    gap: var(--space);
+    grid-template-areas:
+      "Set Set"
+      "Prev Exp";
+    grid-template-columns: 1fr 1fr;
   }
-}
 
-:deep(._t-o) {
-  grid-template-columns: 2fr 1fr;
-}
+  @media (max-width: $md) {
+    grid-template-columns: 1fr 1fr;
+  }
 
-:deep(._o-o) {
-  grid-template-columns: 1fr 1fr;
-}
-
-:deep(._o-o-o) {
-  grid-template-columns: 1fr 1fr 1fr;
+  @media (max-width: $sm) {
+    gap: calc(var(--space) * 2);
+    grid-template-areas:
+      "Set"
+      "Prev"
+      "Exp";
+    grid-template-columns: 1fr;
+  }
 }
 </style>

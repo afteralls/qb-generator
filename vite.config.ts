@@ -21,9 +21,6 @@ export default defineConfig({
           'vue': ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'inject'],
           'vue-router': ['useRouter', 'RouterView', 'useRoute'],
           'pinia': ['defineStore'],
-          'jsbarcode': [
-            ['default', 'JsBarcode'],
-          ],
           '@vueuse/core': [
             'useStorage',
             'useDark',

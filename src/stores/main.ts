@@ -1,3 +1,5 @@
+import JsBarcode from 'jsbarcode'
+
 export const useMainStore = defineStore('main', () => {
   const isDark = ref<boolean | null>()
 
@@ -65,7 +67,7 @@ export const useMainStore = defineStore('main', () => {
   )
 
   watch(
-    () => set.curStandart.name,
+    () => set.curStandart,
     () => {
       set.content = ''
     }
@@ -101,7 +103,7 @@ export const useMainStore = defineStore('main', () => {
           quantity: set.quantity
         }
       })
-      if (corLengthHandler.value && !(v[0] as string).match(currentRegEx.value)) {
+      if (corLengthHandler.value && !(v[1] as string).match(currentRegEx.value)) {
         set.isCorrect = true
         set.generated = false
         generateBarcode('#example', set.content)

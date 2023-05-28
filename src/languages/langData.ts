@@ -53,6 +53,7 @@ export default {
         generate: 'Generate',
         fileName: 'File name',
         arcName: 'Archive name (.zip)',
+        actions: 'Actions',
         downloadBtn: 'Download',
         saveTempBtn: 'Save'
       },
@@ -204,6 +205,7 @@ export default {
         generate: 'Генерировать',
         fileName: 'Название файла',
         arcName: 'Название архива (.zip)',
+        actions: 'Действия',
         downloadBtn: 'Скачать',
         saveTempBtn: 'Сохранить'
       },

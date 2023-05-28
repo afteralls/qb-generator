@@ -1,7 +1,7 @@
 <template>
   <div class="_wrapper">
     <div class="layout">
-      <div class="_row">
+      <div class="_grid act">
         <button class="_btn">
           <div class="_i"><BarcodeIcon /> </div>
           <h4>{{ $i18n('generator.barcode') }}</h4>
@@ -27,6 +27,14 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: var(--space);
+  gap: calc(var(--space) * 2);
+}
+
+.act {
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: $sm) {
+    width: 100%;
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="_column">
-    <div class="_grid _t-o">
+  <div class="_column settings">
+    <div class="_grid cont-g">
       <div class="_s-column">
         <small>{{ $i18n('generator.set.content') }}</small>
         <div class="action-wp">
@@ -25,7 +25,7 @@
         <input type="text" v-model="main.set.quantity" placeholder="1-999" />
       </div>
     </div>
-    <div class="_grid _o-o">
+    <div class="_grid ex-g">
       <div class="_s-column">
         <small>{{ $i18n('generator.set.example') }}</small>
         <div class="example _center _ui">
@@ -74,6 +74,31 @@ const getStandartArr = computed<string[]>(() =>
 </script>
 
 <style scoped lang="scss">
+.settings {
+  grid-area: Set;
+
+  @media (max-width: $gen) {
+    gap: calc(var(--space) * 2);
+  }
+}
+
+.cont-g {
+  grid-template-columns: 2fr 1fr;
+
+  @media (max-width: $gen) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ex-g {
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: $gen) {
+    gap: calc(var(--space) * 2);
+    grid-template-columns: 1fr;
+  }
+}
+
 .action-wp {
   position: relative;
 
@@ -90,7 +115,7 @@ const getStandartArr = computed<string[]>(() =>
 
 .example {
   padding: var(--space-m);
-  height: 100%;
+  height: toRem(191);
   text-align: center;
 
   svg {

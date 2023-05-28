@@ -1,5 +1,5 @@
 <template>
-  <div class="_column">
+  <div class="_grid export">
     <div class="_s-column">
       <div class="_s-row">
         <div class="_i sm"><InfoIcon /></div>
@@ -12,14 +12,14 @@
     </div>
     <div class="_s-column">
       <small>{{ $i18n('generator.export.format') }}</small>
-      <div class="_grid _o-o-o">
+      <div class="_row exp">
         <TheCheckbox
           v-for="format in exportFormats"
           :key="format"
-          :name="'export'"
+          name="export"
           :checked="main.set.exportFormat === format"
           :model="main.set.exportFormat"
-          :type="'radio'"
+          type="radio"
           @change:model="(val: ExportFormat) => main.set.exportFormat = val"
         >
           {{ format.toUpperCase() }}
@@ -34,7 +34,7 @@
         :placeholder="quantityFlag ? 'barcode-one' : 'my-collection (etc.)'"
       />
     </div>
-    <div class="_grid _o-o">
+    <div class="_grid act-g">
       <button @click="getGraphics()" class="_btn">
         <div class="_i"><DownloadIcon /></div>
         <h4>{{ $i18n('generator.export.downloadBtn') }}</h4>
@@ -118,3 +118,40 @@ const getSvgs = () => {
   }
 }
 </script>
+
+<style scoped lang="scss">
+.export {
+  grid-area: Exp;
+}
+
+.exp {
+  justify-content: space-between;
+
+  @media (max-width: $mx) {
+    justify-content: flex-start;
+  }
+
+  @media (max-width: $md) {
+    justify-content: space-between;
+  }
+
+  @media (max-width: $zf) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: $zf) {
+    // justify-content: flex-start;
+    // align-items: flex-start;
+    // flex-direction: column;
+  }
+}
+
+.act-g {
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: $zf) {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

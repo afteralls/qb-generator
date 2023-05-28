@@ -1,7 +1,7 @@
 <template>
-  <div class="_s-column">
+  <div class="_s-column preview">
     <small>{{ $i18n('generator.preview.title') }}</small>
-    <div class="preview">
+    <div class="preview-wrapper">
       <div v-if="!main.set.generated" class="_center tip">
         <small>
           {{ $i18n('generator.preview.info') }}
@@ -15,7 +15,7 @@
           </tr>
           <tr v-for="(num, idx) in +main.set.beforeQuanSet!" :key="num">
             <td>{{ idx + 1 }}</td>
-            <td>
+            <td class="max">
               <svg :data-num="idx + 1"></svg>
             </td>
           </tr>
@@ -31,6 +31,10 @@ const main = useMainStore()
 
 <style scoped lang="scss">
 .preview {
+  grid-area: Prev;
+}
+
+.preview-wrapper {
   height: toRem(276);
   text-align: center;
   transition: background-color 0.5s ease;
@@ -38,6 +42,15 @@ const main = useMainStore()
   border-radius: var(--br-rad);
   background-color: var(--fg-m);
   border: toRem(1) solid var(--br);
+
+  @media (max-width: $mx) {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media (max-width: $mob) {
+    display: block;
+  }
 }
 
 .table-wrapper {
@@ -49,6 +62,7 @@ const main = useMainStore()
 svg {
   display: block;
   border-radius: calc(var(--br-rad) / 2);
+  width: 100%;
 }
 
 table {
@@ -60,6 +74,18 @@ table {
     background-color: var(--fg-s);
     padding: var(--space-m);
     border-radius: var(--space-m);
+  }
+}
+
+.max {
+  width: 100%;
+
+  @media (max-width: $sm) {
+    width: auto;
+  }
+
+  @media (max-width: $mob) {
+    width: 100%;
   }
 }
 
