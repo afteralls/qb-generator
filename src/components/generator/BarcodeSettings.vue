@@ -6,6 +6,7 @@
         <div class="action-wp">
           <input
             type="text"
+            name="content"
             v-model="main.set.content"
             :placeholder="$i18n(`library.standarts.${main.set.curStandart.codeName}.ph`)"
             :maxlength="main.set.curStandart.max"
@@ -22,7 +23,7 @@
       </div>
       <div class="_s-column">
         <small>{{ $i18n('generator.set.quantity') }}</small>
-        <input type="text" v-model="main.set.quantity" placeholder="1-999" />
+        <input type="text" name="quantity" v-model="main.set.quantity" placeholder="1-999" />
       </div>
     </div>
     <div class="_grid ex-g">
@@ -42,14 +43,16 @@
           <small>{{ $i18n('generator.set.bg') }}</small>
           <input
             type="text"
+            name="bgColor"
             v-model="main.set.bgColor"
             :placeholder="$i18n('generator.set.bg_ph')"
           />
         </div>
         <TheCheckbox
           :checked="main.set.showData"
-          :type="'checkbox'"
-          @change:model="() => (main.set.showData = !main.set.showData)"
+          :model="main.set.showData"
+          name="showData"
+          @change:model="(val: boolean) => main.set.showData = val"
         >
           {{ $i18n('generator.set.showTxt') }}
         </TheCheckbox>
@@ -57,6 +60,7 @@
           <small>{{ $i18n('generator.set.color') }}</small>
           <input
             type="text"
+            name="codeColor"
             v-model="main.set.codeColor"
             :placeholder="$i18n('generator.set.color_ph')"
           />

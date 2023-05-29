@@ -7,6 +7,8 @@ declare global {
   const RouterView: typeof import('vue-router')['RouterView']
   const computed: typeof import('vue')['computed']
   const defineStore: typeof import('pinia')['defineStore']
+  const getGraphics: typeof import('../src/utils/exportFunctions')['getGraphics']
+  const getSvgs: typeof import('../src/utils/exportFunctions')['getSvgs']
   const inject: typeof import('vue')['inject']
   const onClickOutside: typeof import('@vueuse/core')['onClickOutside']
   const onMounted: typeof import('vue')['onMounted']

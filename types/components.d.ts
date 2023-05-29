@@ -46,6 +46,7 @@ declare module '@vue/runtime-core' {
     TheHeader: typeof import('./../src/components/header/TheHeader.vue')['default']
     TheLinks: typeof import('./../src/components/header/TheLinks.vue')['default']
     ThemeToggler: typeof import('./../src/components/header/ThemeToggler.vue')['default']
+    TheRadio: typeof import('./../src/components/generator/TheRadio.vue')['default']
     TheSelect: typeof import('./../src/components/generator/TheSelect.vue')['default']
     TheSettings: typeof import('./../src/components/generator/TheSettings.vue')['default']
     TheTemplate: typeof import('./../src/components/home/TheTemplate.vue')['default']

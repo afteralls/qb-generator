@@ -1,6 +1,6 @@
 <template>
   <div :title="isDark ? $i18n('header.tL') : $i18n('header.tD')" class="toggler">
-    <input v-model="isDark" type="checkbox" />
+    <input v-model="isDark" name="theme" type="checkbox" />
     <div class="circle _center">
       <Transition name="slide" mode="out-in">
         <div v-if="isDark" class="_i sm"><DarkModeIcon /></div>
@@ -49,6 +49,8 @@ onMounted(() => {
   background-color: var(--fg-m);
   border-radius: 1rem;
   position: relative;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
   transition: var(--tr);
   border: toRem(1) solid var(--br);
@@ -63,7 +65,7 @@ input {
   cursor: pointer;
 
   &:checked + .circle {
-    margin-left: toRem(25);
+    margin-left: toRem(24.9);
   }
 
   &:hover + .circle,
@@ -83,5 +85,6 @@ input {
   border-radius: var(--space);
   transition: var(--tr);
   position: absolute;
+  left: toRem(0.1);
 }
 </style>

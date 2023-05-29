@@ -56,12 +56,17 @@ body {
 }
 
 ._wrapper {
-  margin: 8rem auto 2rem auto;
+  margin: 9rem auto 2rem auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   gap: 8rem;
+
+  @media (max-width: $sm) {
+    margin: calc(toRem(57) + 4rem) auto 2rem auto;
+    gap: 4rem;
+  }
 }
 
 ._center {
@@ -97,6 +102,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: calc(var(--space) / 2);
+}
+
+._disabled {
+  pointer-events: none;
+  filter: brightness(0.5);
 }
 
 ._ui {

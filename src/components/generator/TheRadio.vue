@@ -1,28 +1,29 @@
 <template>
-  <div class="checkbox _s-row">
+  <div v-for="option in options" :key="option" class="radio _s-row">
     <input
-      type="checkbox"
+      type="radio"
       :name="name"
-      :checked="model"
-      @change="$emit('change:model', $event.target.checked)"
+      :checked="model === option"
+      @change="$emit('change:model', option)"
     />
     <div class="box _center _ui">
       <div class="_i"><CheckIcon /></div>
     </div>
-    <small><slot /></small>
+    <small>{{ option.toUpperCase() }}</small>
   </div>
 </template>
 
 <script setup lang="ts">
 defineProps<{
   model: boolean | string
+  options: string[]
   name: string
 }>()
-defineEmits<{ (evt: 'change:model', val: boolean): void }>()
+defineEmits<{ (evt: 'change:model', val: string): void }>()
 </script>
 
 <style scoped lang="scss">
-.checkbox {
+.radio {
   position: relative;
 }
 
