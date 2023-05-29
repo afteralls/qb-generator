@@ -64,14 +64,11 @@ export default {
       modal: {
         name: 'Name',
         desc: 'Description',
-        exName: 'Example Name',
-        exDesc: 'Example Description',
+        exName: 'My Template',
+        exDesc: 'Important info (or not...)',
         tempName: 'Template Name',
-        tempName_ph: 'Name (12)',
         tempDesc: 'Template Description',
-        temDesc_ph: 'Important info (or not...)',
         saveBtn: 'Save',
-        cancelBtn: 'Cancel'
       }
     },
     library: {

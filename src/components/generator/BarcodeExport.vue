@@ -46,6 +46,7 @@
         <h4>{{ $i18n('generator.export.downloadBtn') }}</h4>
       </button>
       <button
+        @click="showTemplateModal = true"
         :disabled="!main.set.generated"
         :class="{ _btn: true, _disabled: !main.set.generated }"
       >
@@ -53,6 +54,10 @@
         <h4>{{ $i18n('generator.export.saveTempBtn') }}</h4>
       </button>
     </div>
+    <TemplateModal
+      :model="showTemplateModal"
+      @templateModal:close="showTemplateModal = !showTemplateModal"
+    />
   </div>
 </template>
 
@@ -62,6 +67,7 @@ import JSZip from 'jszip'
 import { saveAs } from 'file-saver'
 
 const main = useMainStore()
+const showTemplateModal = ref<boolean>(false)
 const quantityFlag = computed(() => main.set.quantity === '1' || main.set.quantity === '')
 const exportFormats: ExportFormat[] = ['png', 'jpg', 'svg']
 
