@@ -28,7 +28,7 @@ declare global {
     content: string
     bgColor: string
     codeColor: string
-    showData: boolean | string
+    showData: boolean
     curStandart: Standart
     isCorrect: boolean
     quantity: string | number
@@ -36,6 +36,17 @@ declare global {
     exportName: string
     generated: boolean
     beforeQuanSet: null | number
+  }
+
+  export interface Template {
+    name: string
+    desc: string
+    standart: string | number
+    href: string
+    path: string
+    date: string
+    mode: 'barcode' | 'qr'
+    isExample?: boolean
   }
 
   export type CurLang = string

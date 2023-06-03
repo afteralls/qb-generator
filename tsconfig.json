@@ -1,22 +1,11 @@
 {
-  "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": [
-    "./types/imports.d.ts",
-    "./types/components.d.ts",
-    "./types/env.d.ts",
-    "./src/**/*"
-  ],  
-  "compilerOptions": {
-    "baseUrl": ".",
-    "ignoreDeprecations": "5.0",
-    "useUnknownInCatchVariables": false,
-    "paths": {
-      "@/*": ["./src/*"]
-    }
-  },
+  "files": [],
   "references": [
     {
       "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
     }
   ]
 }

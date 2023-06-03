@@ -58,7 +58,7 @@ export const useMainStore = defineStore('main', () => {
   })
 
   const router = useRouter()
-  const templates = useStorage('templates', [])
+  const templates = useStorage<Template[]>('templates', [])
 
   const corLengthHandler = computed(() =>
     ['ean13', 'ean8', 'itf14'].includes(set.curStandart.codeName)

@@ -9,6 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AppCheckbox: typeof import('./../src/components/app/AppCheckbox.vue')['default']
+    AppModal: typeof import('./../src/components/app/AppModal.vue')['default']
+    AppRadio: typeof import('./../src/components/app/AppRadio.vue')['default']
+    AppSelect: typeof import('./../src/components/app/AppSelect.vue')['default']
     AppTemplate: typeof import('./../src/components/app/AppTemplate.vue')['default']
     ArrowIcon: typeof import('./../src/assets/svg/ArrowIcon.vue')['default']
     BackArrowIcon: typeof import('./../src/assets/svg/BackArrowIcon.vue')['default']
@@ -41,14 +45,10 @@ declare module '@vue/runtime-core' {
     TelegramIcon: typeof import('./../src/assets/svg/TelegramIcon.vue')['default']
     TemplateModal: typeof import('./../src/components/generator/TemplateModal.vue')['default']
     TemplatesSection: typeof import('./../src/components/home/TemplatesSection.vue')['default']
-    TheCheckbox: typeof import('./../src/components/app/TheCheckbox.vue')['default']
     TheCopyright: typeof import('./../src/components/home/TheCopyright.vue')['default']
     TheHeader: typeof import('./../src/components/header/TheHeader.vue')['default']
     TheLinks: typeof import('./../src/components/header/TheLinks.vue')['default']
     ThemeToggler: typeof import('./../src/components/header/ThemeToggler.vue')['default']
-    TheModal: typeof import('./../src/components/app/TheModal.vue')['default']
-    TheRadio: typeof import('./../src/components/app/TheRadio.vue')['default']
-    TheSelect: typeof import('./../src/components/app/TheSelect.vue')['default']
     TranslateIcon: typeof import('./../src/assets/svg/TranslateIcon.vue')['default']
     TrashIcon: typeof import('./../src/assets/svg/TrashIcon.vue')['default']
   }

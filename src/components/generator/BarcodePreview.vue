@@ -12,7 +12,7 @@
           <tr>
             <th>№</th>
             <th>Barcode</th>
-          </tr>
+          </tr> 
           <tr v-for="(num, idx) in +main.set.beforeQuanSet!" :key="num">
             <td>{{ idx + 1 }}</td>
             <td class="max">
@@ -37,7 +37,7 @@ const main = useMainStore()
 .preview-wrapper {
   height: toRem(276);
   text-align: center;
-  transition: background-color 0.5s ease;
+  transition: var(--tr-fg);
   padding: 0 var(--space-m);
   border-radius: var(--br-rad);
   background-color: var(--fg-m);
@@ -71,6 +71,7 @@ table {
 
   th,
   td {
+    transition: var(--tr-fg);
     background-color: var(--fg-s);
     padding: var(--space-m);
     border-radius: var(--space-m);

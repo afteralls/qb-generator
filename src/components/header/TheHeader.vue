@@ -28,7 +28,7 @@
                 </div>
               </button>
             </div>
-            <Transition name="main" mode="out-in">
+            <Transition name="up" mode="out-in">
               <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row">
                 <TheLinks />
               </div>

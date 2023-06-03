@@ -1,5 +1,5 @@
 <template>
-  <TheModal :isOpen="model" @modal:close="$emit('templateModal:close')">
+  <AppModal :isOpen="model" @modal:close="$emit('templateModal:close')">
     <div class="example _row">
       <AppTemplate mode="barcode" :name="tempName" :desc="tempDesc" :date="date" />
       <div class="_column">
@@ -33,20 +33,32 @@
         </button>
       </div>
     </div>
-  </TheModal>
+  </AppModal>
 </template>
 
 <script setup lang="ts">
 defineProps<{ model: boolean }>()
-defineEmits<{ (evt: 'templateModal:close'): void }>()
+const emit = defineEmits<{ (evt: 'templateModal:close'): void }>()
 
 const main = useMainStore()
+const router = useRouter()
 const tempName = ref<string>('')
 const tempDesc = ref<string>('')
 const date = new Date().toLocaleDateString()
 
 const saveTemplate = () => {
-  // some logic...
+  main.templates.push({
+    mode: 'barcode',
+    name: tempName.value,
+    desc: tempDesc.value,
+    standart: main.set.standart,
+    href: window.location.href,
+    path: router.options.history.location,
+    date: new Date().toLocaleDateString()
+  })
+  tempName.value = ''
+  tempDesc.value = ''
+  emit('templateModal:close')
 }
 </script>
 

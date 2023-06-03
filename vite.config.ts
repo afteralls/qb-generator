@@ -14,7 +14,11 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue(),
+    vue({
+      script: {
+        defineModel: true
+      }
+    }),
     AutoImport({
       imports: [
         {
@@ -32,7 +36,7 @@ export default defineConfig({
           ]
         }
       ],
-      dts: './types/imports.d.ts',
+      dts: "./types/imports.d.ts",
       defaultExportByFilename: true,
       dirs: [
         './src/utils',
@@ -43,7 +47,7 @@ export default defineConfig({
       dirs: ['./src/components', './src/assets/svg'],
       extensions: ['vue'],
       deep: true,
-      dts: './types/components.d.ts'
+      dts: "./types/components.d.ts"
     }),
     VitePWA({
       registerType: 'autoUpdate',
@@ -51,7 +55,7 @@ export default defineConfig({
       manifest: {
         name: 'Barcode Generator',
         short_name: 'Barcode Generator',
-        description: 'Аpplication for generating your own barcodes',
+        description: 'Application for generating your own barcodes',
         theme_color: '#242424',
         icons: [
           {

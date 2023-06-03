@@ -5,11 +5,16 @@
         <div class="_i mx"><CreateIcon /></div>
         <h3>{{ $i18n('home.create') }}</h3>
       </RouterLink>
-      <!-- <div v-for="i in 10" :key="i" class="template _center _column _ui">
-        <div class="_i mx"><CreateIcon /></div>
-        <h3>{{ $i18n('home.create') }}</h3>
-      </div> -->
-      <div class="tip _column">
+      <RouterLink v-for="(template, idx) in main.templates" :to="template.path" :key="idx">
+        <AppTemplate
+          :name="template.name"
+          :desc="template.desc"
+          :date="template.date"
+          mode="barcode"
+          isExample: boolean
+        />
+      </RouterLink>
+      <div v-if="!main.templates.length" class="tip _column">
         <div class="_i lg"><InfoIcon /></div>
         <h4>{{ $i18n('home.tipTitle') }}</h4>
         <p class="txt">{{ $i18n('home.tipDesc') }}</p>
@@ -18,7 +23,9 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const main = useMainStore()
+</script>
 
 <style scoped lang="scss">
 .templates {

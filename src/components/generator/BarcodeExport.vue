@@ -17,7 +17,7 @@
     <div class="_s-column">
       <small>{{ $i18n('generator.export.format') }}</small>
       <div class="_row exp">
-        <TheRadio
+        <AppRadio
           :options="exportFormats"
           name="exportFormat"
           :model="main.set.exportFormat"

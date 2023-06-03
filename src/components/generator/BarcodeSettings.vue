@@ -1,3 +1,10 @@
+<script setup lang="ts">
+const main = useMainStore()
+const getStandartArr = computed<string[]>(() =>
+  main.standarts.map((standart: Standart) => standart.name)
+)
+</script>
+
 <template>
   <div class="_column settings">
     <div class="_grid cont-g">
@@ -12,7 +19,7 @@
             :maxlength="main.set.curStandart.max"
           />
           <div class="action">
-            <TheSelect
+            <AppSelect
               :inWp="true"
               :options="getStandartArr"
               :selected="main.set.curStandart.name"
@@ -48,14 +55,9 @@
             :placeholder="$i18n('generator.set.bg_ph')"
           />
         </div>
-        <TheCheckbox
-          :checked="main.set.showData"
-          :model="main.set.showData"
-          name="showData"
-          @change:model="(val: boolean) => main.set.showData = val"
-        >
+        <AppCheckbox v-model="main.set.showData">
           {{ $i18n('generator.set.showTxt') }}
-        </TheCheckbox>
+        </AppCheckbox>
         <div class="_s-column">
           <small>{{ $i18n('generator.set.color') }}</small>
           <input
@@ -69,13 +71,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-const main = useMainStore()
-const getStandartArr = computed<string[]>(() =>
-  main.standarts.map((standart: Standart) => standart.name)
-)
-</script>
 
 <style scoped lang="scss">
 .settings {

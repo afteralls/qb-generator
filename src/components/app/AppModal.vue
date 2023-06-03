@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <Transition name="main">
+    <Transition name="up" mode="out-in">
       <div v-if="isOpen" class="modal _center">
         <div ref="windowTarget" class="window">
           <slot />
@@ -23,15 +23,18 @@ onClickOutside(windowTarget, () => {
 <style scoped lang="scss">
 .modal {
   background-color: var(--tp);
+  backdrop-filter: blur(8px);
+  // background: linear-gradient(180deg, var(--bg) 0%, var(--tp) 100%);
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
   z-index: 50;
+  overflow: hidden;
 }
 
 .window {
-  transition: background-color 0.5s ease;
+  transition: var(--tr-fg);
   padding: var(--space);
   border-radius: var(--br-rad);
   background-color: var(--fg-m);
