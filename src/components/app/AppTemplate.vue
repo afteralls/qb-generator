@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-interface Template {
+export interface Template {
   name: string
   desc: string
   standart: string | number

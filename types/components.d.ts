@@ -9,10 +9,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AppCheckbox: typeof import('./../src/components/app/AppCheckbox.vue')['default']
-    AppModal: typeof import('./../src/components/app/AppModal.vue')['default']
-    AppRadio: typeof import('./../src/components/app/AppRadio.vue')['default']
-    AppSelect: typeof import('./../src/components/app/AppSelect.vue')['default']
     AppTemplate: typeof import('./../src/components/app/AppTemplate.vue')['default']
     ArrowIcon: typeof import('./../src/assets/svg/ArrowIcon.vue')['default']
     BackArrowIcon: typeof import('./../src/assets/svg/BackArrowIcon.vue')['default']
@@ -51,5 +47,10 @@ declare module '@vue/runtime-core' {
     ThemeToggler: typeof import('./../src/components/header/ThemeToggler.vue')['default']
     TranslateIcon: typeof import('./../src/assets/svg/TranslateIcon.vue')['default']
     TrashIcon: typeof import('./../src/assets/svg/TrashIcon.vue')['default']
+    UiCheckbox: typeof import('./../src/components/ui/UiCheckbox.vue')['default']
+    UiInput: typeof import('./../src/components/ui/UiInput.vue')['default']
+    UiModal: typeof import('./../src/components/ui/UiModal.vue')['default']
+    UiRadio: typeof import('./../src/components/ui/UiRadio.vue')['default']
+    UiSelect: typeof import('./../src/components/ui/UiSelect.vue')['default']
   }
 }

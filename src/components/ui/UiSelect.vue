@@ -1,8 +1,8 @@
 <template>
-  <div :class="{ 'select': true, 'wp': inWp }">
+  <div :class="{ select: true, wp: inWp }">
     <button ref="selectTarget" @click="isOpen = !isOpen" class="_btn selected md">
-      <small>{{ selected }}</small>
-      <div :class="{ '_i': true, 'active': isOpen }"><ArrowIcon /></div>
+      <small>{{ modelValue }}</small>
+      <div :class="{ _i: true, active: isOpen }"><ArrowIcon /></div>
     </button>
     <Transition name="main" mode="out-in">
       <div v-if="isOpen" @click="optionsHandler" class="options">
@@ -15,18 +15,18 @@
 </template>
 
 <script setup lang="ts">
-interface Select {
+export interface Select {
   options: string[]
   inWp?: boolean
-  selected?: string | null
+  modelValue: string
 }
 
-defineProps<Select>()
-const emit = defineEmits<{ (evt: 'change:option', selected: number): void }>()
+withDefaults(defineProps<Select>(), { inWp: false })
+const emit = defineEmits<{ (evt: 'update:modelValue', value: number): void }>()
 
 const isOpen = ref<boolean>(false)
 const optionsHandler = (evt: MouseEvent) => {
-  emit('change:option', +(evt.target as HTMLButtonElement).dataset.idx!)
+  emit('update:modelValue', +(evt.target as HTMLButtonElement).dataset.idx!)
   isOpen.value = false
 }
 
@@ -40,7 +40,7 @@ onClickOutside(selectTarget, (evt) => {
 
 <style scoped lang="scss">
 .select {
-  position: relative
+  position: relative;
 }
 
 .wp {

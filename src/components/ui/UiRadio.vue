@@ -1,10 +1,10 @@
 <template>
-  <div v-for="option in options" :key="option" class="radio _s-row">
+  <div v-for="option in options" :key="option" class="checkbox _s-row">
     <input
       type="radio"
       :name="name"
-      :checked="model === option"
-      @change="$emit('change:model', option)"
+      :checked="modelValue === option"
+      @change="$emit('update:modelValue', option)"
     />
     <div class="box _center _ui">
       <div class="_i"><CheckIcon /></div>
@@ -15,15 +15,18 @@
 
 <script setup lang="ts">
 defineProps<{
-  model: boolean | string
+  modelValue: boolean | string
   options: string[]
   name: string
 }>()
-defineEmits<{ (evt: 'change:model', val: string): void }>()
+
+defineEmits<{
+  (evt: 'update:modelValue', value: string): void
+}>()
 </script>
 
 <style scoped lang="scss">
-.radio {
+.checkbox {
   position: relative;
 }
 

@@ -22,7 +22,7 @@ export default defineConfig({
     AutoImport({
       imports: [
         {
-          'vue': ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'inject'],
+          'vue': ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'inject', 'useCssModule'],
           'vue-router': ['useRouter', 'RouterView', 'useRoute'],
           'pinia': ['defineStore'],
           '@vueuse/core': [

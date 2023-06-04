@@ -17,11 +17,10 @@
     <div class="_s-column">
       <small>{{ $i18n('generator.export.format') }}</small>
       <div class="_row exp">
-        <AppRadio
+        <UiRadio
           :options="exportFormats"
           name="exportFormat"
-          :model="main.set.exportFormat"
-          @change:model="(val: ExportFormat) => main.set.exportFormat = val"
+          v-model="main.set.exportFormat"
         />
       </div>
     </div>
@@ -29,8 +28,7 @@
       <small>
         {{ quantityFlag ? $i18n('generator.export.fileName') : $i18n('generator.export.arcName') }}
       </small>
-      <input
-        type="text"
+      <UiInput
         name="exportName"
         v-model="main.set.exportName"
         :placeholder="quantityFlag ? 'barcode-one' : 'my-collection (etc.)'"

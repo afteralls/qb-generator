@@ -1,5 +1,5 @@
 <template>
-  <AppModal :isOpen="model" @modal:close="$emit('templateModal:close')">
+  <UiModal :isOpen="model" @modal:close="$emit('templateModal:close')">
     <div class="example _row">
       <AppTemplate mode="barcode" :name="tempName" :desc="tempDesc" :date="date" />
       <div class="_column">
@@ -33,7 +33,7 @@
         </button>
       </div>
     </div>
-  </AppModal>
+  </UiModal>
 </template>
 
 <script setup lang="ts">

@@ -1,19 +1,20 @@
 <script setup lang="ts">
-const modelValue = defineModel<boolean>({ required: true })
-defineProps<{ name: string }>()
+defineProps<{ name: string; modelValue: boolean; label: string }>()
+defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
 <template>
   <div class="checkbox _s-row">
     <input
+      @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
       type="checkbox"
       :id="name"
-      v-model="modelValue"
+      :checked="modelValue"
     />
     <div class="box _center _ui">
       <div class="_i"><CheckIcon /></div>
     </div>
-    <label :for="name"><slot /></label>
+    <label :for="name">{{ label }}</label>
   </div>
 </template>
 

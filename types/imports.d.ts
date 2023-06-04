@@ -12,6 +12,7 @@ declare global {
   const onMounted: typeof import('vue')['onMounted']
   const reactive: typeof import('vue')['reactive']
   const ref: typeof import('vue')['ref']
+  const useCssModule: typeof import('vue')['useCssModule']
   const useDark: typeof import('@vueuse/core')['useDark']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
   const useLangStore: typeof import('../src/stores/lang')['useLangStore']

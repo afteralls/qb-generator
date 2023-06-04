@@ -11,18 +11,17 @@ const getStandartArr = computed<string[]>(() =>
       <div class="_s-column">
         <small>{{ $i18n('generator.set.content') }}</small>
         <div class="action-wp">
-          <input
-            type="text"
+          <UiInput
             name="content"
             v-model="main.set.content"
             :placeholder="$i18n(`library.standarts.${main.set.curStandart.codeName}.ph`)"
-            :maxlength="main.set.curStandart.max"
+            :length="main.set.curStandart.max"
           />
           <div class="action">
-            <AppSelect
+            <UiSelect
               :inWp="true"
               :options="getStandartArr"
-              :selected="main.set.curStandart.name"
+              :modelValue="main.set.curStandart.name"
               @change:option="(idx: number) => main.set.standart = idx"
             />
           </div>
@@ -30,7 +29,7 @@ const getStandartArr = computed<string[]>(() =>
       </div>
       <div class="_s-column">
         <small>{{ $i18n('generator.set.quantity') }}</small>
-        <input type="text" name="quantity" v-model="main.set.quantity" placeholder="1-999" />
+        <UiInput name="quantity" v-model="main.set.quantity" placeholder="1-999" />
       </div>
     </div>
     <div class="_grid ex-g">
@@ -48,20 +47,20 @@ const getStandartArr = computed<string[]>(() =>
       <div class="_grid">
         <div class="_s-column">
           <small>{{ $i18n('generator.set.bg') }}</small>
-          <input
-            type="text"
+          <UiInput
             name="bgColor"
             v-model="main.set.bgColor"
             :placeholder="$i18n('generator.set.bg_ph')"
           />
         </div>
-        <AppCheckbox v-model="main.set.showData">
-          {{ $i18n('generator.set.showTxt') }}
-        </AppCheckbox>
+        <UiCheckbox
+          v-model="main.set.showData"
+          name="showData"
+          :label="$i18n('generator.set.showTxt')"
+        />
         <div class="_s-column">
           <small>{{ $i18n('generator.set.color') }}</small>
-          <input
-            type="text"
+          <UiInput
             name="codeColor"
             v-model="main.set.codeColor"
             :placeholder="$i18n('generator.set.color_ph')"
