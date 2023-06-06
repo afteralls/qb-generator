@@ -1,16 +1,20 @@
 <template>
   <div :class="{ select: true, wp: inWp }">
-    <UiButton
-      ref="selectTarget"
-      title=""
-      @trigger="isOpen = !isOpen"
-    >
+    <UiButton ref="selectTarget" title="" class="selected md" @trigger="isOpen = !isOpen">
       <UiText type="small" :text="modelValue" />
-      <div :class="{ active: isOpen }"><UiIcon><ArrowIcon /></UiIcon></div>
+      <div :class="{ active: isOpen }">
+        <UiIcon><ArrowIcon /></UiIcon>
+      </div>
     </UiButton>
     <Transition name="main" mode="out-in">
       <div v-if="isOpen" @click="optionsHandler" class="options">
-        <UiButton v-for="(option, idx) in options" :key="idx" :data-idx="idx" :title="option">
+        <UiButton
+          v-for="(option, idx) in options"
+          class="option"
+          :key="idx"
+          :data-idx="idx"
+          :title="option"
+        >
           <UiText type="small" :text="option" />
         </UiButton>
       </div>

@@ -3,13 +3,14 @@
     <input
       type="radio"
       :name="name"
+      :id="option"
       :checked="modelValue === option"
       @change="$emit('update:modelValue', option)"
     />
     <div class="box _center _ui">
       <UiIcon><CheckIcon /></UiIcon>
     </div>
-    <UiText type="label" :for="name" :text="option.toUpperCase()" />
+    <UiText type="label" :for="option" :text="option.toUpperCase()" />
   </div>
 </template>
 

@@ -15,7 +15,7 @@
               :inWp="true"
               :options="getStandartArr"
               :modelValue="main.set.curStandart.name"
-              @change:option="(idx: number) => main.set.standart = idx"
+              @update:modelValue="(idx: number) => main.set.standart = idx"
             />
           </div>
         </div>
