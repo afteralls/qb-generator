@@ -1,18 +1,18 @@
 <template>
   <section class="home">
     <div class="info _column">
-      <h1>QB Generator</h1>
-      <p class="bg">{{ $i18n('home.desc') }}</p>
-      <RouterLink class="_btn" to="/generator" :title="$i18n('home.gtGen')">
-        <div class="_i"><BarcodeIcon /></div>
-        <h4>{{ $i18n('home.gtGen') }}</h4>
-      </RouterLink>
+      <UiText type="h1" text="QB Generator" />
+      <UiText class="bg" :text="$i18n('home.desc')" />
+      <UiButton type="link" to="/generator" :title="$i18n('home.gtGen')">
+        <UiIcon><BarcodeIcon /></UiIcon>
+        <UiText type="h4" :text="$i18n('home.gtGen')" />
+      </UiButton>
     </div>
     <div class="logo-wrapper"><LogoIcon /></div>
   </section>
 </template>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .home {
   display: flex;
   width: 100%;

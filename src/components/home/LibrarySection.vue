@@ -1,18 +1,18 @@
 <template>
   <section class="library _ui _row">
     <div class="info _column">
-      <h2 class="md">{{ $i18n('home.libTitle') }}</h2>
-      <p class="wp">{{ $i18n('home.libDesc') }}</p>
-      <RouterLink class="_btn" to="/library" :title="$i18n('home.libLinkTitle')">
-        <div class="_i"><InfoIcon /></div>
-        <h4>{{ $i18n('home.gtLib') }}</h4>
-      </RouterLink>
+      <UiText type="h2" class="md" :text="$i18n('home.libTitle')" />
+      <UiText class="wp" :text="$i18n('home.libDesc')" />
+      <UiButton :title="$i18n('home.libLinkTitle')" type="link" to="/library">
+        <UiIcon><InfoIcon /></UiIcon>
+        <UiText type="h4" :text="$i18n('home.gtLib')" />
+      </UiButton>
     </div>
     <div class="banner"><QrIcon /></div>
   </section>
 </template>
 
-<style scoped lang='scss'>
+<style scoped lang="scss">
 .library {
   width: 100%;
   justify-content: flex-end;

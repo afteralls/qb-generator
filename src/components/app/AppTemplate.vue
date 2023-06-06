@@ -1,7 +1,6 @@
 <template>
   <div class="template _column _ui">
     <div v-if="!isExample" class="actions _row">
-      
       <div class="_i"><ShareIcon /></div>
       <div class="_i"><TrashIcon /></div>
     </div>

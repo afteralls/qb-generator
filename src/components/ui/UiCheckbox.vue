@@ -1,6 +1,8 @@
 <script setup lang="ts">
 defineProps<{ name: string; modelValue: boolean; label: string }>()
 defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
+
+useCssModule('cb')
 </script>
 
 <template>
@@ -18,7 +20,7 @@ defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
   </div>
 </template>
 
-<style scoped lang="scss">
+<style scoped lang="scss" module="cb">
 .checkbox {
   position: relative;
 }

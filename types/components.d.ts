@@ -47,10 +47,14 @@ declare module '@vue/runtime-core' {
     ThemeToggler: typeof import('./../src/components/header/ThemeToggler.vue')['default']
     TranslateIcon: typeof import('./../src/assets/svg/TranslateIcon.vue')['default']
     TrashIcon: typeof import('./../src/assets/svg/TrashIcon.vue')['default']
+    UiButton: typeof import('./../src/components/ui/UiButton.vue')['default']
     UiCheckbox: typeof import('./../src/components/ui/UiCheckbox.vue')['default']
+    UiIcon: typeof import('./../src/components/ui/UiIcon.vue')['default']
     UiInput: typeof import('./../src/components/ui/UiInput.vue')['default']
+    UiLink: typeof import('./../src/components/ui/UiLink.vue')['default']
     UiModal: typeof import('./../src/components/ui/UiModal.vue')['default']
     UiRadio: typeof import('./../src/components/ui/UiRadio.vue')['default']
     UiSelect: typeof import('./../src/components/ui/UiSelect.vue')['default']
+    UiText: typeof import('./../src/components/ui/UiText.vue')['default']
   }
 }
