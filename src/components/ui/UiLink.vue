@@ -1,42 +1,28 @@
 <template>
-  <a :href="href" :class="mode" target="_blank"><slot /></a>
+  <RouterLink v-if="local" :to="to" class="_row" :title="title"><slot /></RouterLink>
+  <a v-else :href="to" target="_blank" :title="title"><slot /></a>
 </template>
 
 <script setup lang="ts">
-defineProps<{ href: string, mode: 'text' | 'icon', title: string }>()
+withDefaults(
+  defineProps<{ to: string; title: string; local?: boolean }>(),
+  { local: false }
+)
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 a {
-  cursor: pointer;
-  transition: var(--tr);
+  transition: color 0.5s ease;
 
   &:visited {
     color: var(--txt-m);
   }
 
-  &.text {
-    transition: var(--tr);
-
-    &.bold {
-      font-weight: bold;
-      font-size: toRem(20);
-    }
-
-    &:hover,
-    &:focus {
-      color: var(--m);
-    }
-  }
-
-  &.icon {
-    &:hover,
-    &:focus {
-      color: var(--m);
-
-      svg {
-        fill: var(--m);
-      }
+  &:hover,
+  &:focus {
+    color: var(--m);
+    svg {
+      fill: var(--m);
     }
   }
 }

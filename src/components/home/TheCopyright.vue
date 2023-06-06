@@ -3,7 +3,7 @@
     <UiText type="h4" text="Made with" />
     <UiIcon><HeartIcon /></UiIcon>
     <UiText type="h4" text="by" />
-    <UiLink href="https://t.me/afterallspace" mode="text" :title="$i18n('header.telegram')">
+    <UiLink to="https://t.me/afterallspace" mode="text" :title="$i18n('header.telegram')">
       <UiText type="h4" text="Daniil Sukharnikov" />
     </UiLink>
   </div>

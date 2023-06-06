@@ -40,6 +40,8 @@
 
 .banner {
   svg {
+    transition: var(--tr);
+    fill: var(--txt-m);
     width: toRem(200);
     height: toRem(200);
   }

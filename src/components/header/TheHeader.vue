@@ -2,32 +2,28 @@
   <div class="header-wrapper">
     <div class="_container">
       <div class="header _row">
-        <RouterLink to="/" class="icon _row">
-          <div class="_i"><QrIcon /></div>
-          <header>QBG</header>
-        </RouterLink>
+        <UiLink to="/" :title="$i18n('header.home')" :local="true">
+          <UiIcon><QrIcon /></UiIcon>
+          <UiText type="header" text="QBG" />
+        </UiLink>
         <div class="options _row">
           <ThemeToggler />
-          <div
-            @click="lang.changeLang(), titleLangHandler()"
+          <UiButton
+            @trigger="lang.changeLang(), titleLangHandler()"
             :title="lang.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
-            class="_i-btn"
-          >
-            <button><TranslateIcon /></button>
-          </div>
+            mode="icon"
+          ><TranslateIcon /></UiButton>
           <div class="br hide"></div>
           <div class="desc-links _row">
             <TheLinks />
           </div>
-          <div class="mob-links _row">
-            <div @click="showLinks = !showLinks" :title="$i18n('header.link')" class="_i-btn">
-              <button>
-                <LinksIcon />
-                <div :class="{ 'link-arrow': true, _i: true, sm: true, act: showLinks }">
-                  <ArrowIcon />
-                </div>
-              </button>
-            </div>
+          <div class="mob-links">
+            <UiButton @trigger="showLinks = !showLinks" :title="$i18n('header.link')" mode="icon">
+              <LinksIcon />
+              <div :class="{ 'link-arrow': true, act: showLinks }">
+                <UiIcon size="sm"><ArrowIcon /></UiIcon>
+              </div>
+            </UiButton>
             <Transition name="up" mode="out-in">
               <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row">
                 <TheLinks />
@@ -49,7 +45,7 @@ const showLinks = ref<boolean>(false)
 const linkTarget = ref<HTMLDivElement | null>(null)
 
 onClickOutside(linkTarget, (evt) => {
-  if (!(evt.target as HTMLElement).closest('._i-btn')) {
+  if (!(evt.target as HTMLElement).closest('.mob-links')) {
     showLinks.value = false
   }
 })
@@ -113,8 +109,12 @@ const titleLangHandler = () => (document.title = i18n(route.name as string))
 
 .link-arrow {
   position: absolute;
-  bottom: toRem(-4);
-  right: toRem(-4);
+  bottom: toRem(12);
+  right: toRem(12);
+
+  svg {
+    transition: var(--tr);
+  }
 
   &.act {
     svg {

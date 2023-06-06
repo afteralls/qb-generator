@@ -10,7 +10,7 @@
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    type: 'button' | 'link'
+    type?: 'button' | 'link'
     to?: string
     title: string
     mode?: 'btn' | 'icon'
@@ -21,7 +21,7 @@ withDefaults(
 defineEmits<{ (e: 'trigger'): void }>()
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .btn {
   cursor: pointer;
   display: flex;
@@ -36,7 +36,7 @@ defineEmits<{ (e: 'trigger'): void }>()
   border: toRem(1) solid var(--br);
 
   svg {
-    fill: var(--fg-m);
+    fill: var(--fg-m) !important;
   }
 
   &:hover,
@@ -45,30 +45,23 @@ defineEmits<{ (e: 'trigger'): void }>()
   }
 }
 
-.icon {
+button.icon {
   width: toRem(25);
   height: toRem(25);
-  position: relative;
+  background: none;
+  padding: 0;
 
-  button {
-    background: none;
+  svg {
     width: 100%;
     height: 100%;
-    padding: 0;
-    cursor: pointer;
+    fill: var(--txt-m);
+    transition: var(--tr);
+  }
 
+  &:hover,
+  &:focus {
     svg {
-      width: 100%;
-      fill: var(--txt-m);
-      transition: var(--tr);
-      height: 100%;
-    }
-
-    &:hover,
-    &:focus {
-      svg {
-        fill: var(--m);
-      }
+      fill: var(--m);
     }
   }
 }

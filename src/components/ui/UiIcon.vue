@@ -1,25 +1,25 @@
 <template>
-  <div :class="['icon', props.size]"><slot /></div>
+  <div :class="['i', props.size]"><slot /></div>
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
 </script>
 
-<style scoped lang="scss">
-svg {
-  width: 100%;
-  transition: var(--tr);
-  height: 100%;
-  fill: var(--txt-m);
-}
-
-.icon {
+<style lang="scss">
+.i {
   display: flex;
   justify-content: center;
   align-items: center;
   width: toRem(25);
   height: toRem(25);
+
+  svg {
+    width: 100%;
+    height: 100%;
+    transition: fill 0.5s ease;
+    fill: var(--txt-m);
+  }
 
   &.sm {
     width: toRem(16);
