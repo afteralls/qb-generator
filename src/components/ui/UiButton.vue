@@ -1,7 +1,11 @@
 <template>
-  <button v-if="type === 'button'" :class="mode" :title="title" @click="$emit('trigger')">
-    <slot />
-  </button>
+  <button
+    v-if="type === 'button'"
+    :disabled="disabled"
+    :class="{ 'btn': mode === 'btn', 'icon': mode === 'icon', disabled: disabled }"
+    :title="title"
+    @click="$emit('trigger')"
+  ><slot /></button>
   <RouterLink v-else :class="mode" :to="(to as string)" :title="title">
     <slot />
   </RouterLink>
@@ -14,8 +18,9 @@ withDefaults(
     to?: string
     title: string
     mode?: 'btn' | 'icon'
+    disabled?: boolean
   }>(),
-  { mode: 'btn', type: 'button' }
+  { mode: 'btn', type: 'button', disabled: false }
 )
 
 defineEmits<{ (e: 'trigger'): void }>()
@@ -64,5 +69,10 @@ button.icon {
       fill: var(--m);
     }
   }
+}
+
+.disabled {
+  pointer-events: none;
+  filter: brightness(0.5);
 }
 </style>

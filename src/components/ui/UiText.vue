@@ -4,11 +4,12 @@ const props = withDefaults(
     type?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'header' | 'small' | 'label'
     mode?: 'lg' | 'md' | 'bg' | 'wp'
     text: string
+    for?: string
   }>(),
   { type: 'p' }
 )
 
-const CreateText = () => h(props.type, { class: props.mode }, props.text)
+const CreateText = () => h(props.type, { class: props.mode, for: props.for }, props.text)
 </script>
 
 <template>

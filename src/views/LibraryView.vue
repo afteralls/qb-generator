@@ -5,16 +5,16 @@
         <Transition name="main" mode="out-in">
           <img :src="getImageUrl(standart.import)" alt="Barcode example" />
         </Transition>
-        <header class="md">{{ standart.name }}</header>
+        <UiText type="header" mode="md" :text="standart.name" />
         <div class="info">
-          <small>{{ $i18n('library.desc') }}</small>
-          <p>{{ standart.desc }}</p>
+          <UiText type="small" :text="$i18n('library.desc')" />
+          <UiText :text="standart.desc" />
         </div>
         <div class="info">
-          <small>{{ $i18n('library.structure') }}</small>
+          <UiText type="small" :text="$i18n('library.structure')" />
           <ol>
             <li v-for="(item, id) in standart.info" :key="id">
-              <p>{{ item }}</p>
+              <UiText :text="item" />
             </li>
           </ol>
         </div>

@@ -1,15 +1,8 @@
-<script setup lang="ts">
-const main = useMainStore()
-const getStandartArr = computed<string[]>(() =>
-  main.standarts.map((standart: Standart) => standart.name)
-)
-</script>
-
 <template>
   <div class="_column settings">
     <div class="_grid cont-g">
       <div class="_s-column">
-        <small>{{ $i18n('generator.set.content') }}</small>
+        <UiText type="small" :text="$i18n('generator.set.content')" />
         <div class="action-wp">
           <UiInput
             name="content"
@@ -28,17 +21,15 @@ const getStandartArr = computed<string[]>(() =>
         </div>
       </div>
       <div class="_s-column">
-        <small>{{ $i18n('generator.set.quantity') }}</small>
+        <UiText type="small" :text="$i18n('generator.set.quantity')" />
         <UiInput name="quantity" v-model="main.set.quantity" placeholder="1-999" />
       </div>
     </div>
     <div class="_grid ex-g">
       <div class="_s-column">
-        <small>{{ $i18n('generator.set.example') }}</small>
+        <UiText type="small" :text="$i18n('generator.set.example')" />
         <div class="example _center _ui">
-          <small v-if="!main.set.isCorrect">
-            {{ $i18n('generator.set.invalid') }}
-          </small>
+          <UiText v-if="!main.set.isCorrect" type="small" :text="$i18n('generator.set.invalid')" />
           <div v-else class="barcode _center">
             <svg id="example"></svg>
           </div>
@@ -46,7 +37,7 @@ const getStandartArr = computed<string[]>(() =>
       </div>
       <div class="_grid">
         <div class="_s-column">
-          <small>{{ $i18n('generator.set.bg') }}</small>
+          <UiText type="small" :text="$i18n('generator.set.bg')" />
           <UiInput
             name="bgColor"
             v-model="main.set.bgColor"
@@ -59,7 +50,7 @@ const getStandartArr = computed<string[]>(() =>
           :label="$i18n('generator.set.showTxt')"
         />
         <div class="_s-column">
-          <small>{{ $i18n('generator.set.color') }}</small>
+          <UiText type="small" :text="$i18n('generator.set.color')" />
           <UiInput
             name="codeColor"
             v-model="main.set.codeColor"
@@ -70,6 +61,13 @@ const getStandartArr = computed<string[]>(() =>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+const main = useMainStore()
+const getStandartArr = computed<string[]>(() =>
+  main.standarts.map((standart: Standart) => standart.name)
+)
+</script>
 
 <style scoped lang="scss">
 .settings {

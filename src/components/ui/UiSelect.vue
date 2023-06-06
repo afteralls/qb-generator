@@ -1,14 +1,18 @@
 <template>
   <div :class="{ select: true, wp: inWp }">
-    <button ref="selectTarget" @click="isOpen = !isOpen" class="_btn selected md">
-      <small>{{ modelValue }}</small>
-      <div :class="{ _i: true, active: isOpen }"><ArrowIcon /></div>
-    </button>
+    <UiButton
+      ref="selectTarget"
+      title=""
+      @trigger="isOpen = !isOpen"
+    >
+      <UiText type="small" :text="modelValue" />
+      <div :class="{ active: isOpen }"><UiIcon><ArrowIcon /></UiIcon></div>
+    </UiButton>
     <Transition name="main" mode="out-in">
       <div v-if="isOpen" @click="optionsHandler" class="options">
-        <button v-for="(option, idx) in options" :key="idx" :data-idx="idx" class="_btn option">
-          <small>{{ option }}</small>
-        </button>
+        <UiButton v-for="(option, idx) in options" :key="idx" :data-idx="idx" :title="option">
+          <UiText type="small" :text="option" />
+        </UiButton>
       </div>
     </Transition>
   </div>

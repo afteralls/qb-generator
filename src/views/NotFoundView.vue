@@ -3,11 +3,11 @@
     <div class="not-found _row _center">
       <div class="banner"><NotFoundIcon /></div>
       <div class="_column info">
-        <h2 class="lg">{{ $i18n('notfound.title') }}</h2>
-        <RouterLink to="/" :title="$i18n('notfound.linkTitle')" class="_btn">
-          <div class="_i"><HomeIcon /></div>
-          <h4>{{ $i18n('notfound.btn') }}</h4>
-        </RouterLink>
+        <UiText type="h2" mode="lg" :text="$i18n('notfound.title')" />
+        <UiButton type="link" to="/" :title="$i18n('notfound.linkTitle')">
+          <UiIcon><HomeIcon /></UiIcon>
+          <UiText type="h4" :text="$i18n('notfound.btn')" />
+        </UiButton>
       </div>
     </div>
   </div>

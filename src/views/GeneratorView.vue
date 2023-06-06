@@ -2,23 +2,21 @@
   <div class="_wrapper">
     <div class="layout">
       <div class="_grid act">
-        <button class="_btn">
-          <div class="_i"><BarcodeIcon /> </div>
-          <h4>{{ $i18n('generator.barcode') }}</h4>
-        </button>
-        <button class="_btn">
-          <div class="_i"><QrIcon /> </div>
-          <h4>QR</h4>
-        </button>
+        <UiButton title="">
+          <UiIcon><BarcodeIcon /></UiIcon>
+          <UiText type="h4" :text="$i18n('generator.barcode')" />
+        </UiButton>
+        <UiButton title="">
+          <UiIcon><QrIcon /></UiIcon>
+          <UiText type="h4" text="QR" />
+        </UiButton>
       </div>
       <BarcodeLayout />
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <style scoped lang="scss">
 .layout {

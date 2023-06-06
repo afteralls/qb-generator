@@ -2,55 +2,44 @@
   <div class="_grid export">
     <div class="_s-column">
       <div class="_s-row">
-        <div class="_i sm"><InfoIcon /></div>
-        <small>{{ $i18n('generator.export.tip') }}</small>
+        <UiIcon size="sm"><InfoIcon /></UiIcon>
+        <UiText type="small" :text="$i18n('generator.export.tip')" />
       </div>
-      <button
-        :disabled="!main.set.isCorrect"
-        @click="main.generateHandler"
-        :class="{ _btn: true, _disabled: !main.set.isCorrect }"
-      >
-        <div class="_i"><GenerateIcon /></div>
-        <h4>{{ $i18n('generator.export.generate') }}</h4>
-      </button>
+      <UiButton title="" :disabled="!main.set.isCorrect" @trigger="main.generateHandler">
+        <UiIcon><GenerateIcon /></UiIcon>
+        <UiText type="small" :text="$i18n('generator.export.generate')" />
+      </UiButton>
     </div>
     <div class="_s-column">
-      <small>{{ $i18n('generator.export.format') }}</small>
+      <UiText type="small" :text="$i18n('generator.export.format')" />
       <div class="_row exp">
-        <UiRadio
-          :options="exportFormats"
-          name="exportFormat"
-          v-model="main.set.exportFormat"
-        />
+        <UiRadio :options="exportFormats" name="exportFormat" v-model="main.set.exportFormat" />
       </div>
     </div>
     <div class="_s-column">
-      <small>
-        {{ quantityFlag ? $i18n('generator.export.fileName') : $i18n('generator.export.arcName') }}
-      </small>
+      <UiText
+        type="small"
+        :text="qFlag ? $i18n('generator.export.fileName') : $i18n('generator.export.arcName')"
+      />
       <UiInput
         name="exportName"
         v-model="main.set.exportName"
-        :placeholder="quantityFlag ? 'barcode-one' : 'my-collection (etc.)'"
+        :placeholder="qFlag ? 'barcode-one' : 'my-collection (etc.)'"
       />
     </div>
     <div class="_grid act-g">
-      <button
-        @click="main.set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
-        :disabled="!main.set.generated"
-        :class="{ _btn: true, _disabled: !main.set.generated }"
+      <UiButton
+        title=""
+        :disabled="!main.set.isCorrect"
+        @trigger="main.set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
       >
-        <div class="_i"><DownloadIcon /></div>
-        <h4>{{ $i18n('generator.export.downloadBtn') }}</h4>
-      </button>
-      <button
-        @click="showTemplateModal = true"
-        :disabled="!main.set.generated"
-        :class="{ _btn: true, _disabled: !main.set.generated }"
-      >
-        <div class="_i"><CreateIcon /></div>
-        <h4>{{ $i18n('generator.export.saveTempBtn') }}</h4>
-      </button>
+        <UiIcon><DownloadIcon /></UiIcon>
+        <UiText type="small" :text="$i18n('generator.export.downloadBtn')" />
+      </UiButton>
+      <UiButton title="" :disabled="!main.set.isCorrect" @trigger="showTemplateModal = true">
+        <UiIcon><CreateIcon /></UiIcon>
+        <UiText type="small" :text="$i18n('generator.export.saveTempBtn')" />
+      </UiButton>
     </div>
     <TemplateModal
       :model="showTemplateModal"
@@ -66,7 +55,7 @@ import { saveAs } from 'file-saver'
 
 const main = useMainStore()
 const showTemplateModal = ref<boolean>(false)
-const quantityFlag = computed(() => main.set.quantity === '1' || main.set.quantity === '')
+const qFlag = computed(() => main.set.quantity === '1' || main.set.quantity === '')
 const exportFormats: ExportFormat[] = ['png', 'jpg', 'svg']
 
 const getZip = (folder: JSZip) => {
@@ -98,7 +87,7 @@ const getGraphics = () => {
       URL.revokeObjectURL(url)
 
       canvas.toBlob((blob) => {
-        if (quantityFlag.value) {
+        if (qFlag.value) {
           saveAs(blob, `${main.set.exportName || 'Barcode'}.${main.set.exportFormat}`)
         } else {
           zip.file(`Barcode-${i + 1}.${main.set.exportFormat}`, blob!, { base64: true })
@@ -116,7 +105,7 @@ const getGraphics = () => {
 const getSvgs = () => {
   const zip = new JSZip()
   const preview: HTMLDivElement | null = document.querySelector('.preview')
-  if (quantityFlag.value) {
+  if (qFlag.value) {
     const blob = new Blob([preview!.querySelector(`[data-num="1"]`)!.outerHTML], {
       type: 'image/svg+xml'
     })

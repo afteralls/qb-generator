@@ -59,6 +59,7 @@ export default {
       },
       preview: {
         title: 'Preview',
+        barcode: 'Barcode',
         info: "This window is a preview for your barcodes, but you haven't generated them yet...",
       },
       modal: {
@@ -208,6 +209,7 @@ export default {
       },
       preview: {
         title: 'Предпросмотр',
+        barcode: 'Штрихкод',
         info: "Данное окно — превью для ваших штрихкодов, но вы их пока не сгенерировали...",
       },
       modal: {

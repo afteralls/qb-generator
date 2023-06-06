@@ -7,9 +7,9 @@
       @change="$emit('update:modelValue', option)"
     />
     <div class="box _center _ui">
-      <div class="_i"><CheckIcon /></div>
+      <UiIcon><CheckIcon /></UiIcon>
     </div>
-    <small>{{ option.toUpperCase() }}</small>
+    <UiText type="label" :for="name" :text="option.toUpperCase()" />
   </div>
 </template>
 
@@ -23,50 +23,48 @@ defineProps<{
 defineEmits<{
   (evt: 'update:modelValue', value: string): void
 }>()
-
-useCssModule('cb')
 </script>
 
-<style scoped lang="scss" module="cb">
-// .checkbox {
-//   position: relative;
-// }
+<style scoped lang="scss">
+.checkbox {
+  position: relative;
+}
 
-// .box {
-//   @include action-styles;
-//   transition: var(--tr);
-//   width: toRem(45);
-//   position: relative;
-//   padding: 0;
+.box {
+  @include action-styles;
+  transition: var(--tr);
+  width: toRem(45);
+  position: relative;
+  padding: 0;
 
-//   svg {
-//     width: toRem(60);
-//     height: auto;
-//     position: absolute;
-//     left: toRem(1);
-//     opacity: 0;
-//     visibility: hidden;
-//   }
-// }
+  svg {
+    width: toRem(60);
+    height: auto;
+    position: absolute;
+    left: toRem(1);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 
-// input {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   opacity: 0;
-//   z-index: 1;
-//   cursor: pointer;
+input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
 
-//   &:checked + .box {
-//     svg {
-//       opacity: 1;
-//       visibility: visible;
-//     }
-//   }
+  &:checked + .box {
+    svg {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 
-//   &:hover + .box,
-//   &:focus + .box {
-//     border-color: var(--m-h);
-//   }
-// }
+  &:hover + .box,
+  &:focus + .box {
+    border-color: var(--m-h);
+  }
+}
 </style>

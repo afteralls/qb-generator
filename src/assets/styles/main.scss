@@ -120,11 +120,6 @@ body {
   gap: calc(var(--space) / 2);
 }
 
-._disabled {
-  pointer-events: none;
-  filter: brightness(0.5);
-}
-
 ._ui {
   transition: var(--tr-fg);
   padding: var(--space);
