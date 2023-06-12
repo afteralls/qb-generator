@@ -7,26 +7,7 @@
 </template>
 
 <script setup lang="ts">
-const main = useMainStore()
 
-onMounted(() => {
-  const params = useUrlSearchParams('history')
-  setTimeout(() => {
-    main.set.standart = +params.standart || 0
-  }, 50)
-  setTimeout(() => {
-    main.set.curStandart = main.standarts[main.set.standart]
-    main.set.content = (params.content as string) || ''
-    main.set.codeColor = (params.codeColor as string) || '#000000'
-    main.set.bgColor = (params.bgColor as string) || 'transparent'
-    main.set.showData = params.showData ? JSON.parse((params.showData as string)) : true
-    main.set.quantity = (params.quantity as string) || '1'
-    main.set.generated = false
-    if (main.corLengthHandler) {
-      main.generateBarcode('#example', main.set.content)
-    }
-  }, 55)
-})
 </script>
 
 <style lang="scss">

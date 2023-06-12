@@ -2,7 +2,7 @@
   <button
     v-if="type === 'button'"
     :disabled="disabled"
-    :class="{ 'btn': mode === 'btn', 'icon': mode === 'icon', disabled: disabled }"
+    :class="{ btn: mode === 'btn', icon: mode === 'icon', disabled: disabled, active: active }"
     :title="title"
     @click="$emit('trigger')"
   ><slot /></button>
@@ -19,6 +19,7 @@ withDefaults(
     title: string
     mode?: 'btn' | 'icon'
     disabled?: boolean
+    active?: boolean
   }>(),
   { mode: 'btn', type: 'button', disabled: false }
 )
@@ -74,5 +75,14 @@ button.icon {
 .disabled {
   pointer-events: none;
   filter: brightness(0.5);
+}
+
+.active {
+  background-color: var(--m);
+
+  &:hover,
+  &:focus {
+    background-color: var(--m-h);
+  }
 }
 </style>

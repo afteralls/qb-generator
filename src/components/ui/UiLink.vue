@@ -1,6 +1,6 @@
 <template>
-  <RouterLink v-if="local" :to="to" class="_row" :title="title"><slot /></RouterLink>
-  <a v-else :href="to" target="_blank" :title="title"><slot /></a>
+  <RouterLink v-if="local" :to="to" class="_row link" :title="title"><slot /></RouterLink>
+  <a class="link" v-else :href="to" target="_blank" :title="title"><slot /></a>
 </template>
 
 <script setup lang="ts">
@@ -11,7 +11,7 @@ withDefaults(
 </script>
 
 <style lang="scss">
-a {
+.link {
   transition: color 0.5s ease;
 
   &:visited {

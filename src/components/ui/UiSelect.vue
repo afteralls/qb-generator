@@ -2,7 +2,7 @@
   <div :class="{ select: true, wp: inWp }">
     <UiButton ref="selectTarget" title="" class="selected md" @trigger="isOpen = !isOpen">
       <UiText type="small" :text="modelValue" />
-      <div :class="{ active: isOpen }">
+      <div :class="{ rotate: isOpen }">
         <UiIcon><ArrowIcon /></UiIcon>
       </div>
     </UiButton>
@@ -82,7 +82,7 @@ onClickOutside(selectTarget, (evt) => {
   }
 }
 
-.active {
+.rotate {
   svg {
     transform: rotate(180deg);
   }

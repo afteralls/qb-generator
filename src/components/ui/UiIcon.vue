@@ -17,7 +17,7 @@ const props = defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
   svg {
     width: 100%;
     height: 100%;
-    transition: fill 0.5s ease;
+    transition: all 0.5s ease;
     fill: var(--txt-m);
   }
 

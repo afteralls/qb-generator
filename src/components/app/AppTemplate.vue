@@ -1,38 +1,27 @@
 <template>
   <div class="template _column _ui">
     <div v-if="!isExample" class="actions _row">
-      <div class="_i"><ShareIcon /></div>
-      <div class="_i"><TrashIcon /></div>
+      <UiIcon><ShareIcon /></UiIcon>
+      <UiIcon><TrashIcon /></UiIcon>
     </div>
-    <div class="_i mx">
-      <BarcodeIcon v-if="mode === 'barcode'" />
-      <QrIcon v-else />
+    <UiIcon size="md" v-if="mode === 'qr'"><QrIcon /></UiIcon>
+    <UiIcon size="md" v-else><BarcodeIcon /></UiIcon>
+    <div class="_s-column">
+      <UiText type="small" :text="$i18n('generator.modal.name')" />
+      <UiText type="h3" :text="name || $i18n('generator.modal.exName')" />
     </div>
     <div class="_s-column">
-      <small>{{ $i18n('generator.modal.name') }}</small>
-      <h3>{{ name || $i18n('generator.modal.exName') }}</h3>
+      <UiText type="small" :text="$i18n('generator.modal.desc')" />
+      <UiText :text="desc || $i18n('generator.modal.exDesc')" />
     </div>
-    <div class="_s-column">
-      <small>{{ $i18n('generator.modal.desc') }}</small>
-      <p>{{ desc || $i18n('generator.modal.exDesc') }}</p>
-    </div>
-    <small>{{ date }}</small>
+    <UiText type="small" :text="date" />
   </div>
 </template>
 
 <script setup lang="ts">
-export interface Template {
-  name: string
-  desc: string
-  standart: string | number
-  href: string
-  path: string
-  date: string
-  mode: 'barcode' | 'qr'
-  isExample?: boolean
-}
+import type { Template } from '@/stores/main'
 
-defineProps<Template>()
+withDefaults(defineProps<Template>(), { isExample: false })
 </script>
 
 <style scoped lang="scss">
@@ -42,11 +31,13 @@ defineProps<Template>()
   width: toRem(250);
   min-width: toRem(250);
   cursor: pointer;
-  text-align: center;
+  text-align: left !important;
   align-items: flex-start;
-  transition: var(--tr);
+  transition: var(--tr-g);
+  color: var(--txt);
 
-  &:focus, &:hover {
+  &:focus,
+  &:hover {
     background-color: var(--fg-s);
     border-color: var(--m-h);
   }

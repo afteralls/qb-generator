@@ -1,5 +1,16 @@
 import JsBarcode from 'jsbarcode'
 
+export interface Template {
+  name: string
+  desc: string
+  standart?: string | number
+  href?: string
+  path?: string
+  date: string
+  mode: Mode
+  isExample?: boolean
+}
+
 export const useMainStore = defineStore('main', () => {
   const isDark = ref<boolean | null>()
 
@@ -43,6 +54,7 @@ export const useMainStore = defineStore('main', () => {
   ]
 
   const set: SetData = reactive({
+    mode: 'barcode',
     standart: 1,
     content: '',
     bgColor: 'transparent',
@@ -67,7 +79,7 @@ export const useMainStore = defineStore('main', () => {
   )
 
   watch(
-    () => set.curStandart,
+    () => [set.curStandart, set.mode],
     () => {
       set.content = ''
     }
@@ -91,24 +103,26 @@ export const useMainStore = defineStore('main', () => {
   watch(
     () => [set.standart, set.content, set.codeColor, set.bgColor, set.showData, set.quantity],
     (v) => {
-      set.curStandart = standarts[set.standart]
-      router.push({
-        path: '/generator',
-        query: {
-          standart: set.standart,
-          content: set.content,
-          codeColor: set.codeColor,
-          bgColor: set.bgColor,
-          showData: set.showData as string,
-          quantity: set.quantity
+      if (set.mode === 'barcode') {
+        set.curStandart = standarts[set.standart]
+        router.push({
+          path: '/generator',
+          query: {
+            standart: set.standart,
+            content: set.content,
+            codeColor: set.codeColor,
+            bgColor: set.bgColor,
+            showData: set.showData.toString(),
+            quantity: set.quantity
+          }
+        })
+        if (corLengthHandler.value && !(v[1] as string).match(currentRegEx.value)) {
+          set.isCorrect = true
+          set.generated = false
+          generateBarcode('#example', set.content)
+        } else {
+          set.isCorrect = false
         }
-      })
-      if (corLengthHandler.value && !(v[1] as string).match(currentRegEx.value)) {
-        set.isCorrect = true
-        set.generated = false
-        generateBarcode('#example', set.content)
-      } else {
-        set.isCorrect = false
       }
     }
   )

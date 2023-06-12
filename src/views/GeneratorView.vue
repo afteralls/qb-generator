@@ -2,21 +2,37 @@
   <div class="_wrapper">
     <div class="layout">
       <div class="_grid act">
-        <UiButton title="">
+        <UiButton
+          title=""
+          @trigger="main.set.mode = 'barcode'"
+          :active="main.set.mode === 'barcode'"
+        >
           <UiIcon><BarcodeIcon /></UiIcon>
           <UiText type="h4" :text="$i18n('generator.barcode')" />
         </UiButton>
-        <UiButton title="">
+        <UiButton title="" @trigger="main.set.mode = 'qr'" :active="main.set.mode === 'qr'">
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="h4" text="QR" />
         </UiButton>
       </div>
-      <BarcodeLayout />
+      <Transition name="main" mode="out-in">
+        <BarcodeLayout v-if="main.set.mode === 'barcode'" />
+        <QrLayout v-else />
+      </Transition>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const main = useMainStore()
+
+onMounted(() => {
+  const params = useUrlSearchParams('history')
+  if (params.mode) {
+    setTimeout(() => (main.set.mode = params.mode as Mode), 50)
+  }
+})
+</script>
 
 <style scoped lang="scss">
 .layout {

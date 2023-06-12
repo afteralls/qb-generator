@@ -116,6 +116,7 @@ const getStandartArr = computed<string[]>(() =>
 
   svg {
     height: 100%;
+    width: 100%;
     border-radius: calc(var(--br-rad) / 2);
   }
 }

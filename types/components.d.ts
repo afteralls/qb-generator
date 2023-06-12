@@ -35,6 +35,7 @@ declare module '@vue/runtime-core' {
     MainSection: typeof import('./../src/components/home/MainSection.vue')['default']
     NotFoundIcon: typeof import('./../src/assets/svg/NotFoundIcon.vue')['default']
     QrIcon: typeof import('./../src/assets/svg/QrIcon.vue')['default']
+    QrLayout: typeof import('./../src/components/generator/QrLayout.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     ShareIcon: typeof import('./../src/assets/svg/ShareIcon.vue')['default']

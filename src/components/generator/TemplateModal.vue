@@ -1,36 +1,36 @@
 <template>
   <UiModal :isOpen="model" @modal:close="$emit('templateModal:close')">
     <div class="example _row">
-      <AppTemplate mode="barcode" :name="tempName" :desc="tempDesc" :date="date" />
+      <AppTemplate
+        :mode="main.set.mode"
+        :name="tempName"
+        :desc="tempDesc"
+        :date="date"
+        :isExample="true"
+      />
       <div class="_column">
         <div class="_s-column">
-          <small>{{ $i18n('generator.modal.tempName') }}</small>
-          <input
-            type="text"
+          <UiText type="small" :text="$i18n('generator.modal.tempName')" />
+          <UiInput
             name="tempName"
-            maxlength="11"
             v-model="tempName"
+            :length="11"
             :placeholder="$i18n('generator.modal.exName')"
           />
         </div>
         <div class="_s-column">
-          <small>{{ $i18n('generator.modal.tempDesc') }}</small>
-          <input
-            type="text"
+          <UiText type="small" :text="$i18n('generator.modal.tempDesc')" />
+          <UiInput
             name="tempDesc"
-            maxlength="12"
             v-model="tempDesc"
+            :length="12"
             :placeholder="$i18n('generator.modal.exDesc')"
           />
         </div>
-        <button
-          @click="saveTemplate"
-          :disabled="!tempName.length"
-          :class="{ _btn: true, _disabled: !tempName.length }"
-        >
-          <div class="_i"><CreateIcon /></div>
-          <h4>{{ $i18n('generator.modal.saveBtn') }}</h4>
-        </button>
+        <UiButton :title="''" @trigger="saveTemplate" :disabled="!tempName.length">
+          <UiIcon><CreateIcon /></UiIcon>
+          <UiText type="h4" :text="$i18n('generator.modal.saveBtn')" />
+        </UiButton>
       </div>
     </div>
   </UiModal>

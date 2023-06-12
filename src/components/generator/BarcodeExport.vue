@@ -7,7 +7,7 @@
       </div>
       <UiButton title="" :disabled="!main.set.isCorrect" @trigger="main.generateHandler">
         <UiIcon><GenerateIcon /></UiIcon>
-        <UiText type="small" :text="$i18n('generator.export.generate')" />
+        <UiText type="h4" :text="$i18n('generator.export.generate')" />
       </UiButton>
     </div>
     <div class="_s-column">
@@ -34,11 +34,11 @@
         @trigger="main.set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
       >
         <UiIcon><DownloadIcon /></UiIcon>
-        <UiText type="small" :text="$i18n('generator.export.downloadBtn')" />
+        <UiText type="h4" :text="$i18n('generator.export.downloadBtn')" />
       </UiButton>
       <UiButton title="" :disabled="!main.set.isCorrect" @trigger="showTemplateModal = true">
         <UiIcon><CreateIcon /></UiIcon>
-        <UiText type="small" :text="$i18n('generator.export.saveTempBtn')" />
+        <UiText type="h4" :text="$i18n('generator.export.saveTempBtn')" />
       </UiButton>
     </div>
     <TemplateModal

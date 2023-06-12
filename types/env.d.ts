@@ -15,6 +15,7 @@ declare global {
 
   export type StandartName = 'EAN 13' | 'EAN 8' | 'CODE 128' | 'ITF 14' | 'MSI' | 'PHARMACODE'
   export type ExportFormat = 'svg' | 'png' | 'jpg'
+  export type Mode = 'barcode' | 'qr'
 
   export interface Standart {
     name: StandartName
@@ -24,6 +25,7 @@ declare global {
   }
 
   export interface SetData {
+    mode: Mode
     standart: number
     content: string
     bgColor: string
@@ -36,17 +38,6 @@ declare global {
     exportName: string
     generated: boolean
     beforeQuanSet: null | number
-  }
-
-  export interface Template {
-    name: string
-    desc: string
-    standart: string | number
-    href: string
-    path: string
-    date: string
-    mode: 'barcode' | 'qr'
-    isExample?: boolean
   }
 
   export type CurLang = string
