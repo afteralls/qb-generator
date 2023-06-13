@@ -33,9 +33,7 @@ declare global {
     showData: boolean
     curStandart: Standart
     isCorrect: boolean
-    quantity: string | number
-    exportFormat: ExportFormat
-    exportName: string
+    quantity: string
     generated: boolean
     beforeQuanSet: null | number
   }

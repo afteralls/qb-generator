@@ -35,7 +35,7 @@ export default defineConfig({
       dts: "./types/imports.d.ts",
       defaultExportByFilename: true,
       dirs: [
-        './src/utils',
+        './src/composables',
         './src/stores'
       ]
     }),

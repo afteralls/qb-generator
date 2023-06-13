@@ -63,8 +63,6 @@ export const useMainStore = defineStore('main', () => {
     curStandart: standarts[0],
     isCorrect: false,
     quantity: '1',
-    exportFormat: 'svg',
-    exportName: '',
     generated: false,
     beforeQuanSet: null
   })
@@ -119,7 +117,7 @@ export const useMainStore = defineStore('main', () => {
         if (corLengthHandler.value && !(v[1] as string).match(currentRegEx.value)) {
           set.isCorrect = true
           set.generated = false
-          generateBarcode('#example', set.content)
+          generateBarcode('#barcode-ex', set.content)
         } else {
           set.isCorrect = false
         }

@@ -44,17 +44,19 @@ const main = useMainStore()
   cursor: pointer;
   text-align: center;
   transition: var(--tr);
-
-  &:focus,
-  &:hover {
-    background-color: var(--fg-s);
-    border-color: var(--m-h);
-  }
 }
 
 .t-link {
-  &:visited {
+  &, &:visited {
     color: var(--txt-m);
+  }
+
+  & .template {
+    &:focus,
+    &:hover {
+      background-color: var(--fg-s);
+      border-color: var(--m-h);
+    }
   }
 }
 

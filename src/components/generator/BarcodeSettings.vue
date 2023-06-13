@@ -30,8 +30,8 @@
         <UiText type="small" :text="$i18n('generator.set.example')" />
         <div class="example _center _ui">
           <UiText v-if="!main.set.isCorrect" type="small" :text="$i18n('generator.set.invalid')" />
-          <div v-else class="barcode _center">
-            <svg id="example"></svg>
+          <div v-else class="_center">
+            <svg id="barcode-ex"></svg>
           </div>
         </div>
       </div>
@@ -116,7 +116,8 @@ const getStandartArr = computed<string[]>(() =>
 
   svg {
     height: 100%;
-    width: 100%;
+    height: toRem(191);
+    width: auto;
     border-radius: calc(var(--br-rad) / 2);
   }
 }

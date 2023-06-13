@@ -36,11 +36,7 @@ withDefaults(defineProps<Template>(), { isExample: false })
   transition: var(--tr-g);
   color: var(--txt);
 
-  &:focus,
-  &:hover {
-    background-color: var(--fg-s);
-    border-color: var(--m-h);
-  }
+
 }
 
 .actions {

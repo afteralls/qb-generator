@@ -13,7 +13,7 @@
     <div class="_s-column">
       <UiText type="small" :text="$i18n('generator.export.format')" />
       <div class="_row exp">
-        <UiRadio :options="exportFormats" name="exportFormat" v-model="main.set.exportFormat" />
+        <UiRadio :options="exportFormats" name="exportFormat" v-model="exportFormat" />
       </div>
     </div>
     <div class="_s-column">
@@ -23,16 +23,12 @@
       />
       <UiInput
         name="exportName"
-        v-model="main.set.exportName"
+        v-model="exportName"
         :placeholder="qFlag ? 'barcode-one' : 'my-collection (etc.)'"
       />
     </div>
     <div class="_grid act-g">
-      <UiButton
-        title=""
-        :disabled="!main.set.isCorrect"
-        @trigger="main.set.exportFormat === 'svg' ? getSvgs() : getGraphics()"
-      >
+      <UiButton title="" :disabled="!main.set.isCorrect" @trigger="exportHandler">
         <UiIcon><DownloadIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.downloadBtn')" />
       </UiButton>
@@ -49,78 +45,17 @@
 </template>
 
 <script setup lang="ts">
-import JSZip from 'jszip'
-// @ts-ignore
-import { saveAs } from 'file-saver'
-
 const main = useMainStore()
 const showTemplateModal = ref<boolean>(false)
 const qFlag = computed(() => main.set.quantity === '1' || main.set.quantity === '')
+const exportName = ref<string>('')
 const exportFormats: ExportFormat[] = ['png', 'jpg', 'svg']
+const exportFormat = ref<ExportFormat>('svg')
 
-const getZip = (folder: JSZip) => {
-  folder.generateAsync({ type: 'blob' }).then((content) => {
-    saveAs(content, `${main.set.exportName || 'Barcodes'}.zip`)
-  })
-}
-
-const getGraphics = () => {
-  const zip = new JSZip()
-  let counter = 0
-  const preview: HTMLDivElement | null = document.querySelector('.preview')
-  const barcodeCollection = preview!.querySelectorAll('[data-num]')
-  const { width, height } = (barcodeCollection[0] as SVGAElement)!.getBBox()
-
-  barcodeCollection.forEach((node, i) => {
-    const canvas = document.createElement('canvas')
-    canvas.width = width
-    canvas.height = height
-    const ctx = canvas.getContext('2d')
-    const serializer = new XMLSerializer()
-    const svgString = serializer.serializeToString(node)
-    const svg = new Blob([svgString], { type: 'image/svg+xml; charset=utf-8' })
-    const url = URL.createObjectURL(svg)
-    const img = new Image()
-
-    img.onload = () => {
-      ctx!.drawImage(img, 0, 0)
-      URL.revokeObjectURL(url)
-
-      canvas.toBlob((blob) => {
-        if (qFlag.value) {
-          saveAs(blob, `${main.set.exportName || 'Barcode'}.${main.set.exportFormat}`)
-        } else {
-          zip.file(`Barcode-${i + 1}.${main.set.exportFormat}`, blob!, { base64: true })
-          counter++
-          if (+main.set.quantity <= counter) {
-            getZip(zip)
-          }
-        }
-      }, `image/${main.set.exportFormat}`)
-    }
-    img.src = url
-  })
-}
-
-const getSvgs = () => {
-  const zip = new JSZip()
-  const preview: HTMLDivElement | null = document.querySelector('.preview')
-  if (qFlag.value) {
-    const blob = new Blob([preview!.querySelector(`[data-num="1"]`)!.outerHTML], {
-      type: 'image/svg+xml'
-    })
-    saveAs(blob, `${main.set.exportName || 'Barcode'}.svg`)
-  } else {
-    for (let i = 1; i <= +main.set.quantity; i++) {
-      zip.file(
-        `Barcode-${i}.svg`,
-        new Blob([preview!.querySelector(`[data-num="${i}"]`)!.outerHTML], {
-          type: 'image/svg+xml'
-        })
-      )
-    }
-    getZip(zip)
-  }
+const exportHandler = () => {
+  exportFormat.value === 'svg'
+    ? getSvgs(qFlag.value, exportName.value, main.set.quantity)
+    : getGraphics(qFlag.value, exportName.value, exportFormat.value, main.set.quantity)
 }
 </script>
 

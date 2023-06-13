@@ -9,8 +9,7 @@ export interface Input {
 
 withDefaults(defineProps<Input>(), {
   placeholder: 'Some text...',
-  type: 'text',
-  length: 12
+  type: 'text'
 })
 
 defineEmits<{
