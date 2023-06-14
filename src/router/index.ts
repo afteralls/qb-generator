@@ -7,7 +7,7 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior(to, from) {
     if (to.name !== from.name) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           resolve({ top: 0 })
         }, 250)
@@ -24,12 +24,12 @@ const router = createRouter({
     {
       path: '/library',
       name: 'route.library',
-      component: LibraryView,
+      component: LibraryView
     },
     {
       path: '/generator',
       name: 'route.generator',
-      component: GeneratorView,
+      component: GeneratorView
     },
     {
       path: '/:notFound(.*)',

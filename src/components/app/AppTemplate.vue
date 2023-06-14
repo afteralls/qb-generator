@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Template } from '@/stores/main'
+import type { Template } from '@/stores/barcode.js'
 
 withDefaults(defineProps<Template>(), { isExample: false })
 </script>

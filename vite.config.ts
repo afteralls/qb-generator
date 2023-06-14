@@ -18,9 +18,9 @@ export default defineConfig({
     AutoImport({
       imports: [
         {
-          'vue': ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'h', 'inject', 'useCssModule'],
+          vue: ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'h', 'inject'],
           'vue-router': ['useRouter', 'RouterView', 'useRoute'],
-          'pinia': ['defineStore'],
+          pinia: ['defineStore'],
           '@vueuse/core': [
             'useStorage',
             'useDark',
@@ -32,18 +32,15 @@ export default defineConfig({
           ]
         }
       ],
-      dts: "./types/imports.d.ts",
+      dts: './types/imports.d.ts',
       defaultExportByFilename: true,
-      dirs: [
-        './src/composables',
-        './src/stores'
-      ]
+      dirs: ['./src/composables', './src/stores']
     }),
     Components({
       dirs: ['./src/components', './src/assets/svg'],
       extensions: ['vue'],
       deep: true,
-      dts: "./types/components.d.ts"
+      dts: './types/components.d.ts'
     }),
     VitePWA({
       registerType: 'autoUpdate',

@@ -14,12 +14,12 @@
 
   --light-bg: rgb(255, 255, 255);
   --light-tp: rgba(255, 255, 255, 0.7);
-  --light-fg-m: rgb(244,244,245);
+  --light-fg-m: rgb(244, 244, 245);
   --light-fg-s: rgb(227, 227, 240);
   --light-br: rgb(228, 228, 231);
   --light-txt-m: rgb(24, 24, 27);
-  --light-txt-s: rgb(113,113,122);
-  --light-txt-fg: rgb(120,120,129);
+  --light-txt-s: rgb(113, 113, 122);
+  --light-txt-fg: rgb(120, 120, 129);
 
   /* Styles */
   --space: 1rem;

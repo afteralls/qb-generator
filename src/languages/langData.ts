@@ -1,3 +1,7 @@
+interface LangProps {
+  [key: string]: any
+}
+
 export default {
   en: {
     route: {

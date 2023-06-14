@@ -12,5 +12,9 @@
 <script setup lang="ts">
 const router = useRouter()
 const i18n = inject('func') as LangFunc
-router.beforeEach((to, _, next) => { document.title = i18n(to.name as string); next() })
+
+router.beforeEach((to, _, next) => {
+  document.title = i18n(to.name as string)
+  next()
+})
 </script>
