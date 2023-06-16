@@ -12,8 +12,6 @@ withDefaults(
 
 <style lang="scss">
 .link {
-  transition: color 0.5s ease;
-
   &:visited {
     color: var(--txt-m);
   }

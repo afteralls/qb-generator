@@ -38,7 +38,7 @@ defineEmits<{ (e: 'trigger'): void }>()
   background-color: var(--btn-bg-m);
   color: var(--fg-m) !important;
   gap: var(--space-m);
-  transition: var(--tr);
+  transition: var(--tr-fg);
   border: toRem(1) solid var(--br);
 
   svg {
@@ -56,6 +56,7 @@ button.icon {
   height: toRem(25);
   background: none;
   padding: 0;
+  cursor: pointer;
 
   svg {
     width: 100%;

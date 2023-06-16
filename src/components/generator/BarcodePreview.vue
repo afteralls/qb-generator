@@ -2,7 +2,7 @@
   <div class="_s-column preview">
     <UiText type="small" :text="$i18n('generator.preview.title')" />
     <div class="preview-wrapper">
-      <div v-if="!main.set.generated" class="_center tip">
+      <div v-if="!brc.set.generated" class="_center tip">
         <UiText type="small" :text="$i18n('generator.preview.info')" />
       </div>
       <div v-else class="table-wrapper">
@@ -11,7 +11,7 @@
             <th>№</th>
             <th>{{ $i18n('generator.preview.barcode') }}</th>
           </tr>
-          <tr v-for="(num, idx) in +main.set.beforeQuanSet!" :key="num">
+          <tr v-for="(num, idx) in +brc.set.beforeQuanSet!" :key="num">
             <td>{{ idx + 1 }}</td>
             <td class="max">
               <svg :data-num="idx + 1"></svg>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-const main = useMainStore()
+const brc = useBarcodeStore()
 </script>
 
 <style scoped lang="scss">

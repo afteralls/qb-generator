@@ -19,7 +19,11 @@
         <UiInput name="exportName" v-model="exportName" placeholder="my-qr" />
       </div>
       <div class="_grid act-g">
-        <UiButton title="" :disabled="inputHandler(exportName)" @trigger="getQr(exportName, qrcode)">
+        <UiButton
+          title=""
+          :disabled="inputHandler(exportName)"
+          @trigger="getQr(exportName, qrcode)"
+        >
           <UiIcon><DownloadIcon /></UiIcon>
           <UiText type="h4" :text="$i18n('generator.export.downloadBtn')" />
         </UiButton>

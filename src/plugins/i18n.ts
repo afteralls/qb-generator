@@ -3,7 +3,7 @@ import type { App } from 'vue'
 
 export default {
   install: (app: App) => {
-    const lang = useLangStore()
+    const lang = useComposableStore()
     
     app.config.globalProperties.$i18n = (key: string) =>
       key.split('.').reduce((o, i) => o[i], langData[lang.curLang])

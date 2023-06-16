@@ -1,7 +1,7 @@
 <template>
   <div class="header-wrapper">
     <div class="_container">
-      <div class="header _row">
+      <nav class="header _row">
         <UiLink to="/" :title="$i18n('header.home')" :local="true">
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="header" text="QBG" />
@@ -9,8 +9,8 @@
         <div class="options _row">
           <ThemeToggler />
           <UiButton
-            @trigger="lang.changeLang(), titleLangHandler()"
-            :title="lang.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
+            @trigger="composable.changeLang(), titleLangHandler()"
+            :title="composable.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
             mode="icon"
           ><TranslateIcon /></UiButton>
           <div class="br hide"></div>
@@ -21,23 +21,23 @@
             <UiButton @trigger="showLinks = !showLinks" :title="$i18n('header.link')" mode="icon">
               <LinksIcon />
               <div :class="{ 'link-arrow': true, act: showLinks }">
-                <UiIcon size="sm"><ArrowIcon /></UiIcon>
+                <UiIcon size="min"><ArrowIcon /></UiIcon>
               </div>
             </UiButton>
-            <Transition name="up" mode="out-in">
+            <Transition name="main">
               <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row">
                 <TheLinks />
               </div>
             </Transition>
           </div>
         </div>
-      </div>
+      </nav>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const lang = useLangStore()
+const composable = useComposableStore()
 const route = useRoute()
 const i18n = inject('func') as LangFunc
 
@@ -60,8 +60,9 @@ const titleLangHandler = () => (document.title = i18n(route.name as string))
   top: 0;
   width: 100%;
   z-index: 10;
-  transition: var(--tr);
   backdrop-filter: blur(8px);
+  // transition: background-color 0.5s ease;
+  // background-color: var(--tp);
   background: linear-gradient(180deg, var(--bg) 0%, var(--tp) 100%);
 }
 

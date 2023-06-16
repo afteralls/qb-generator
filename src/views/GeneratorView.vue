@@ -2,21 +2,17 @@
   <div class="_wrapper">
     <div class="layout">
       <div class="_grid act">
-        <UiButton
-          title=""
-          @trigger="main.set.mode = 'barcode'"
-          :active="main.set.mode === 'barcode'"
-        >
+        <UiButton title="" @trigger="cpb.mode = 'barcode'" :active="cpb.mode === 'barcode'">
           <UiIcon><BarcodeIcon /></UiIcon>
           <UiText type="h4" :text="$i18n('generator.barcode')" />
         </UiButton>
-        <UiButton title="" @trigger="main.set.mode = 'qr'" :active="main.set.mode === 'qr'">
+        <UiButton title="" @trigger="cpb.mode = 'qr'" :active="cpb.mode === 'qr'">
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="h4" text="QR" />
         </UiButton>
       </div>
       <Transition name="main" mode="out-in">
-        <BarcodeLayout v-if="main.set.mode === 'barcode'" />
+        <BarcodeLayout v-if="cpb.mode === 'barcode'" />
         <QrLayout v-else />
       </Transition>
     </div>
@@ -24,13 +20,26 @@
 </template>
 
 <script setup lang="ts">
-const main = useMainStore()
+const router = useRouter()
+const cpb = useComposableStore()
+
+const setMode = () => {
+  router.push({
+    path: '/generator',
+    query: {
+      mode: cpb.mode
+    }
+  })
+}
+
+watch(
+  () => cpb.mode,
+  () => setMode()
+)
 
 onMounted(() => {
   const params = useUrlSearchParams('history')
-  if (params.mode) {
-    setTimeout(() => (main.set.mode = params.mode as Mode), 50)
-  }
+  params.mode ? (cpb.mode = params.mode as Mode) : setMode()
 })
 </script>
 

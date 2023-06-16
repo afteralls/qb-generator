@@ -6,30 +6,30 @@
         <div class="action-wp">
           <UiInput
             name="content"
-            v-model="main.set.content"
-            :placeholder="$i18n(`library.standarts.${main.set.curStandart.codeName}.ph`)"
-            :length="main.set.curStandart.max"
+            v-model="brc.set.content"
+            :placeholder="$i18n(`library.standarts.${brc.set.curStandart.codeName}.ph`)"
+            :length="brc.set.curStandart.max"
           />
           <div class="action">
             <UiSelect
               :inWp="true"
               :options="getStandartArr"
-              :modelValue="main.set.curStandart.name"
-              @update:modelValue="(idx: number) => main.set.standart = idx"
+              :modelValue="brc.set.curStandart.name"
+              @update:modelValue="(idx: number) => brc.set.standart = idx"
             />
           </div>
         </div>
       </div>
       <div class="_s-column">
         <UiText type="small" :text="$i18n('generator.set.quantity')" />
-        <UiInput name="quantity" v-model="main.set.quantity" placeholder="1-999" />
+        <UiInput name="quantity" v-model="brc.set.quantity" placeholder="1-999" />
       </div>
     </div>
     <div class="_grid ex-g">
       <div class="_s-column">
         <UiText type="small" :text="$i18n('generator.set.example')" />
         <div class="example _center _ui">
-          <UiText v-if="!main.set.isCorrect" type="small" :text="$i18n('generator.set.invalid')" />
+          <UiText v-if="!brc.set.isCorrect" type="small" :text="$i18n('generator.set.invalid')" />
           <div v-else class="_center">
             <svg id="barcode-ex"></svg>
           </div>
@@ -40,12 +40,12 @@
           <UiText type="small" :text="$i18n('generator.set.bg')" />
           <UiInput
             name="bgColor"
-            v-model="main.set.bgColor"
+            v-model="brc.set.bgColor"
             :placeholder="$i18n('generator.set.bg_ph')"
           />
         </div>
         <UiCheckbox
-          v-model="main.set.showData"
+          v-model="brc.set.showData"
           name="showData"
           :label="$i18n('generator.set.showTxt')"
         />
@@ -53,7 +53,7 @@
           <UiText type="small" :text="$i18n('generator.set.color')" />
           <UiInput
             name="codeColor"
-            v-model="main.set.codeColor"
+            v-model="brc.set.codeColor"
             :placeholder="$i18n('generator.set.color_ph')"
           />
         </div>
@@ -63,9 +63,9 @@
 </template>
 
 <script setup lang="ts">
-const main = useMainStore()
+const brc = useBarcodeStore()
 const getStandartArr = computed<string[]>(() =>
-  main.standarts.map((standart: Standart) => standart.name)
+  brc.standarts.map((standart: Standart) => standart.name)
 )
 </script>
 

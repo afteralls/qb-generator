@@ -2,9 +2,7 @@
   <div class="_wrapper">
     <section class="examples">
       <div class="example _ui _column" v-for="(standart, idx) in curLangStandarts" :key="idx">
-        <Transition name="main" mode="out-in">
-          <img :src="getImageUrl(standart.import)" alt="Barcode example" />
-        </Transition>
+        <img :src="getImageUrl(standart.import)" alt="Barcode example" />
         <UiText type="header" mode="md" :text="standart.name" />
         <div class="info">
           <UiText type="small" :text="$i18n('library.desc')" />
@@ -26,15 +24,13 @@
 <script setup lang="ts">
 import langs from '@/languages/langData'
 
-const lang = useLangStore()
-const main = useMainStore()
-
+const cpb = useComposableStore()
 const curLangStandarts = computed(() =>
-  lang.curLang === 'ru' ? langs.ru.library.standarts : langs.en.library.standarts
+  cpb.curLang === 'ru' ? langs.ru.library.standarts : langs.en.library.standarts
 )
 
 const getImageUrl = (name: string) => {
-  const urlTheme = main.isDark ? 'L' : 'D'
+  const urlTheme = cpb.isDark ? 'L' : 'D'
   return new URL(`../assets/svg/examples/${name + urlTheme}.svg`, import.meta.url).href
 }
 </script>
@@ -47,6 +43,10 @@ const getImageUrl = (name: string) => {
 
   ol {
     padding-left: toRem(19);
+  }
+
+  li::marker {
+    transition: color 0.5s ease;
   }
 
   @media (max-width: $mx) {

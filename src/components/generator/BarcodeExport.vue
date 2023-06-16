@@ -5,7 +5,7 @@
         <UiIcon size="sm"><InfoIcon /></UiIcon>
         <UiText type="small" :text="$i18n('generator.export.tip')" />
       </div>
-      <UiButton title="" :disabled="!bar.set.isCorrect" @trigger="generateHandler">
+      <UiButton title="" :disabled="!brc.set.isCorrect" @trigger="generateHandler">
         <UiIcon><GenerateIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.generate')" />
       </UiButton>
@@ -24,15 +24,15 @@
       <UiInput
         name="exportName"
         v-model="exportName"
-        :placeholder="qFlag ? 'barcode-one' : 'my-collection (etc.)'"
+        :placeholder="qFlag ? 'brccode-one' : 'my-collection (etc.)'"
       />
     </div>
     <div class="_grid act-g">
-      <UiButton title="" :disabled="!bar.set.isCorrect" @trigger="exportHandler">
+      <UiButton title="" :disabled="!brc.set.isCorrect" @trigger="exportHandler">
         <UiIcon><DownloadIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.downloadBtn')" />
       </UiButton>
-      <UiButton title="" :disabled="!bar.set.isCorrect" @trigger="showTemplateModal = true">
+      <UiButton title="" :disabled="!brc.set.isCorrect" @trigger="showTemplateModal = true">
         <UiIcon><CreateIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.saveTempBtn')" />
       </UiButton>
@@ -45,31 +45,31 @@
 </template>
 
 <script setup lang="ts">
-const bar = useBarcodeStore()
+const brc = useBarcodeStore()
 const showTemplateModal = ref<boolean>(false)
-const qFlag = computed(() => bar.set.quantity === '1' || bar.set.quantity === '')
+const qFlag = computed(() => brc.set.quantity === '1' || brc.set.quantity === '')
 const exportName = ref<string>('')
 const exportFormats: ExportFormat[] = ['png', 'jpg', 'svg']
 const exportFormat = ref<ExportFormat>('svg')
 
 const exportHandler = () => {
   exportFormat.value === 'svg'
-    ? getSvgs(qFlag.value, exportName.value, bar.set.quantity)
-    : getGraphics(qFlag.value, exportName.value, exportFormat.value, bar.set.quantity)
+    ? getSvgs(qFlag.value, exportName.value, brc.set.quantity)
+    : getGraphics(qFlag.value, exportName.value, exportFormat.value, brc.set.quantity)
 }
 
 const generateHandler = () => {
-  bar.set.beforeQuanSet = +bar.set.quantity || 1
+  brc.set.beforeQuanSet = +brc.set.quantity || 1
   let curContent = ''
   setTimeout(() => {
-    for (let i = 0, j = 0; i < bar.set.beforeQuanSet!; i++, j++) {
-      bar.set.curStandart.codeName !== 'code128'
-        ? (curContent = (+bar.set.content + j).toString())
-        : (curContent = bar.set.content)
-      generateBarcode(`[data-num="${i + 1}"]`, curContent, bar.set)
+    for (let i = 0, j = 0; i < brc.set.beforeQuanSet!; i++, j++) {
+      brc.set.curStandart.codeName !== 'code128'
+        ? (curContent = (+brc.set.content + j).toString())
+        : (curContent = brc.set.content)
+      generateBarcode(`[data-num="${i + 1}"]`, curContent, brc.set)
     }
   }, 1)
-  bar.set.generated = true
+  brc.set.generated = true
 }
 </script>
 

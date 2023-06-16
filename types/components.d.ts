@@ -9,6 +9,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AppHotifications: typeof import('../src/components/app/AppNotifications.vue')['default']
+    AppNotifications: typeof import('./../src/components/app/AppNotifications.vue')['default']
     AppTemplate: typeof import('./../src/components/app/AppTemplate.vue')['default']
     ArrowIcon: typeof import('./../src/assets/svg/ArrowIcon.vue')['default']
     BackArrowIcon: typeof import('./../src/assets/svg/BackArrowIcon.vue')['default']

@@ -26,9 +26,14 @@
     width: auto;
   }
 
-  @media (max-width: $sm) {
-    flex-direction: column;
+  @media (max-width: $md) {
+    svg {
+      width: toRem(350);
+      height: auto;
+    }
+  }
 
+  @media (max-width: $sm) {
     svg {
       width: toRem(250);
       height: auto;
@@ -37,7 +42,9 @@
 }
 
 .info {
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 
   @media (max-width: $sm) {
     align-items: center;

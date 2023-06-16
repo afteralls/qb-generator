@@ -3,32 +3,30 @@
     <input v-model="isDark" name="theme" type="checkbox" />
     <div class="circle _center">
       <Transition name="slide" mode="out-in">
-        <UiIcon v-if="isDark" size="sm"><DarkModeIcon /></UiIcon>
-        <UiIcon v-else size="sm"><LightModeIcon /></UiIcon>
+        <UiIcon v-if="isDark" size="min"><DarkModeIcon /></UiIcon>
+        <UiIcon v-else size="min"><LightModeIcon /></UiIcon>
       </Transition>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const main = useMainStore()
+const composable = useComposableStore()
 const isDark = useDark({ selector: 'body', attribute: 'class', valueLight: 'light' })
 const curColor = computed(() => (isDark.value ? '#0c0c0d' : '#ffffff'))
 const selector: string = 'meta[name="theme-color"]'
 const docMeta = () => document.querySelector(selector)!.setAttribute('content', curColor.value)
 
-main.isDark = isDark.value
+composable.isDark = isDark.value
 watch(isDark, (val) => {
   docMeta()
-  main.isDark = val
+  composable.isDark = val
 })
 
 onMounted(() => {
   docMeta()
   const body: HTMLBodyElement | null = document.querySelector('body')
-  setTimeout(
-    () => (body!.style.transition = 'background-color 0.5s ease, color 0.5s ease'), 0
-  )
+  setTimeout(() => (body!.style.transition = 'background-color 0.5s ease'), 0)
 })
 </script>
 

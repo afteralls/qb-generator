@@ -67,6 +67,8 @@ export const useBarcodeStore = defineStore('barcode', () => {
   )
 
   const router = useRouter()
+  const cpb = useComposableStore()
+
   watch(
     () => [set.standart, set.content, set.codeColor, set.bgColor, set.showData, set.quantity],
     (v) => {
@@ -74,6 +76,7 @@ export const useBarcodeStore = defineStore('barcode', () => {
       router.push({
         path: '/generator',
         query: {
+          mode: cpb.mode,
           standart: set.standart,
           content: set.content,
           codeColor: set.codeColor,

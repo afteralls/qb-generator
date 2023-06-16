@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
+const props = defineProps<{ size?: 'min' | 'sm' | 'md' | 'lg' }>()
 </script>
 
 <style lang="scss">
@@ -21,9 +21,14 @@ const props = defineProps<{ size?: 'sm' | 'md' | 'lg' }>()
     fill: var(--txt-m);
   }
 
-  &.sm {
+  &.min {
     width: toRem(16);
     height: toRem(16);
+  }
+
+  &.sm {
+    width: toRem(20);
+    height: toRem(20);
   }
 
   &.md {

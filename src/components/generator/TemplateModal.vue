@@ -2,7 +2,9 @@
   <UiModal :isOpen="model" @modal:close="$emit('templateModal:close')">
     <div class="example _row">
       <AppTemplate
-        :mode="main.set.mode"
+        :example="true"
+        :title="''"
+        :mode="cpb.mode"
         :name="tempName"
         :desc="tempDesc"
         :date="date"
@@ -40,22 +42,25 @@
 defineProps<{ model: boolean }>()
 const emit = defineEmits<{ (evt: 'templateModal:close'): void }>()
 
-const main = useMainStore()
+const cpb = useComposableStore()
+const brc = useBarcodeStore()
 const router = useRouter()
+
 const tempName = ref<string>('')
 const tempDesc = ref<string>('')
 const date = new Date().toLocaleDateString()
 
 const saveTemplate = () => {
-  main.templates.push({
-    mode: 'barcode',
+  cpb.templates.push({
+    mode: cpb.mode,
     name: tempName.value,
     desc: tempDesc.value,
-    standart: main.set.standart,
+    standart: brc.set.standart,
     href: window.location.href,
     path: router.options.history.location,
-    date: new Date().toLocaleDateString()
+    date: date
   })
+
   tempName.value = ''
   tempDesc.value = ''
   emit('templateModal:close')

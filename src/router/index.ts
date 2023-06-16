@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import LibraryView from '@/views/LibraryView.vue'
 import GeneratorView from '@/views/GeneratorView.vue'
 
 const router = createRouter({
@@ -24,7 +23,7 @@ const router = createRouter({
     {
       path: '/library',
       name: 'route.library',
-      component: LibraryView
+      component: () => import('@/views/LibraryView.vue')
     },
     {
       path: '/generator',

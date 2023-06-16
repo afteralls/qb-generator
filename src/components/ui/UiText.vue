@@ -17,6 +17,10 @@ const CreateText = () => h(props.type, { class: props.mode, for: props.for }, pr
 </template>
 
 <style scoped lang="scss">
+* {
+  transition: color 0.5s ease;
+}
+
 header {
   font-weight: bold;
   font-size: 1.5rem;
