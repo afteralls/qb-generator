@@ -45,6 +45,12 @@ defineEmits<{ (e: 'trigger'): void }>()
     fill: var(--fg-m) !important;
   }
 
+  h4 {
+    @media (max-width: $zf) {
+      font-size: 0.8rem;
+    }
+  }
+
   &:hover,
   &:focus {
     background-color: var(--btn-bg-s);
@@ -75,6 +81,7 @@ button.icon {
 
 .disabled {
   pointer-events: none;
+  // transition: var(--tr);
   filter: brightness(0.5);
 }
 

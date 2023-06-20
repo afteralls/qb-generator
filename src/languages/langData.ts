@@ -74,6 +74,10 @@ export default {
         tempName: 'Template Name',
         tempDesc: 'Template Description',
         saveBtn: 'Save',
+      },
+      qr: {
+        tipTitle: 'QR is a two-dimensional barcode that is read by imaging devices.',
+        tipDesc: 'This abbreviation means "quick response" (Quick Response). The main feature of the code is that it provides instant access to a large amount of information.'
       }
     },
     library: {
@@ -227,6 +231,10 @@ export default {
         temDesc_ph: 'Что-то важное (или нет...)',
         saveBtn: 'Сохранить',
         cancelBtn: 'Отменить'
+      },
+      qr: {
+        tipTitle: 'QR — это двумерный штрихкод, который считывается устройствами обработки изображений.',
+        tipDesc: 'Эта аббревиатура означает «быстрый отклик» (Quick Response). Главная особенность кода в том, что он предоставляет мгновенный доступ к большому объёму информации.'
       }
     },
     library: {

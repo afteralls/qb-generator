@@ -34,11 +34,13 @@ const props = defineProps<{ size?: 'min' | 'sm' | 'md' | 'lg' }>()
   &.md {
     width: toRem(50);
     height: toRem(50);
+    min-width: toRem(50);
   }
 
   &.lg {
     width: toRem(80);
     height: toRem(80);
+    min-width: toRem(80);
   }
 }
 </style>

@@ -39,9 +39,9 @@ export const useBarcodeStore = defineStore('barcode', () => {
   ]
 
   const set: BarcodeData = reactive({
-    standart: 1,
+    standart: 0,
     content: '',
-    bgColor: 'transparent',
+    bgColor: 'white',
     codeColor: '#000000',
     showData: true,
     curStandart: standarts[0],

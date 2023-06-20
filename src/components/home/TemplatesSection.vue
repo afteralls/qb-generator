@@ -1,5 +1,5 @@
 <template>
-  <section class="templates">
+  <section ref="target" class="templates">
     <div class="_row">
       <AppTemplate :title="$i18n('home.create')" :create="true" path="/generator" />
       <AppTemplate
@@ -12,7 +12,6 @@
         :desc="template.desc"
         :date="template.date"
         :mode="template.mode"
-        @delete="delete"
       />
       <div v-if="!cpb.templates.length" class="tip _column">
         <UiIcon size="md"><InfoIcon /></UiIcon>
@@ -25,6 +24,12 @@
 
 <script setup lang="ts">
 const cpb = useComposableStore()
+const target = ref<HTMLDivElement | null>(null)
+
+// useEventListener(target, 'scroll', () => {
+//   console.log(target.value!.scrollLeft);
+//   console.log(target.value!.offsetWidth - target.value!.scrollLeft);
+// })
 </script>
 
 <style scoped lang="scss">

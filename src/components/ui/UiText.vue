@@ -80,12 +80,6 @@ h2 {
   }
 }
 
-h4 {
-  @media (max-width: $zf) {
-    font-size: 0.8rem;
-  }
-}
-
 p {
   &.bg {
     font-size: toRem(20);

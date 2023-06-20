@@ -85,8 +85,8 @@ export const getSvgs = (flag: boolean, name: string, quantity: string) => {
  * @param name
  * @param qr
  */
-export const getQr = async (name: string, qr: string) => {
+export const getQr = async (qr: string, name?: string) => {
   const base64Response = await fetch(qr);
   const blob = await base64Response.blob()
-  saveAs(blob, `${name}.png`)
+  saveAs(blob, `${name || 'my-qr'}.png`)
 }

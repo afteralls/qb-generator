@@ -34,7 +34,10 @@ const setMode = () => {
 
 watch(
   () => cpb.mode,
-  () => setMode()
+  () => {
+    setMode()
+    cpb.qrContent = ''
+  }
 )
 
 onMounted(() => {
