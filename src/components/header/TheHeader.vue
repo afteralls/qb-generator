@@ -9,10 +9,12 @@
         <div class="options _row">
           <ThemeToggler />
           <UiButton
-            @trigger="composable.changeLang(), titleLangHandler()"
-            :title="composable.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
+            @trigger="cpb.changeLang(), titleLangHandler()"
+            :title="cpb.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
             mode="icon"
-          ><TranslateIcon /></UiButton>
+          >
+            <TranslateIcon />
+          </UiButton>
           <div class="br hide"></div>
           <div class="desc-links _row">
             <TheLinks />
@@ -37,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-const composable = useComposableStore()
+const cpb = useComposableStore()
 const route = useRoute()
 const i18n = inject('func') as LangFunc
 

@@ -11,16 +11,16 @@
 </template>
 
 <script setup lang="ts">
-const composable = useComposableStore()
+const cpb = useComposableStore()
 const isDark = useDark({ selector: 'body', attribute: 'class', valueLight: 'light' })
 const curColor = computed(() => (isDark.value ? '#0c0c0d' : '#ffffff'))
 const selector: string = 'meta[name="theme-color"]'
 const docMeta = () => document.querySelector(selector)!.setAttribute('content', curColor.value)
 
-composable.isDark = isDark.value
+cpb.isDark = isDark.value
 watch(isDark, (val) => {
   docMeta()
-  composable.isDark = val
+  cpb.isDark = val
 })
 
 onMounted(() => {

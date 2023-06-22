@@ -1,19 +1,5 @@
 import { useQRCode } from '@vueuse/integrations/useQRCode'
 
-export interface Template {
-  idx?: number
-  title?: string
-  name?: string
-  desc?: string
-  standart?: string | number
-  href?: string
-  path?: string
-  date?: string
-  mode?: Mode
-  example?: boolean
-  create?: boolean
-}
-
 export const useComposableStore = defineStore('composable', () => {
   const isDark = ref<boolean | null>()
   const mode = ref<Mode>('barcode')

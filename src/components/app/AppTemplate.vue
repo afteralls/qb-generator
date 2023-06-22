@@ -1,7 +1,7 @@
 <template>
   <div class="template-wp">
     <RouterLink :to="(path as string)" :title="title" class="template _center _column _ui">
-      <div v-if="!create" class="info _column _center">
+      <div v-if="!isCreate" class="info _column _center">
         <UiIcon size="md" v-if="mode === 'qr'"><QrIcon /></UiIcon>
         <UiIcon size="md" v-else><BarcodeIcon /></UiIcon>
         <div class="_s-column">
@@ -19,7 +19,7 @@
         <UiText type="h3" :text="$i18n('home.create')" />
       </div>
     </RouterLink>
-    <div v-if="!example && !create" class="actions _row">
+    <div v-if="!isExample && !isCreate" class="actions _row">
       <UiButton @trigger="shareLink" mode="icon" :title="''" class="share">
         <ShareIcon />
       </UiButton>
@@ -31,12 +31,25 @@
 </template>
 
 <script setup lang="ts">
-import type { Template } from '@/stores/composable'
+
+export interface Template {
+  idx?: number
+  title: string
+  name?: string
+  desc?: string
+  standart?: string | number
+  href?: string
+  path?: string
+  date?: string
+  mode?: Mode
+  isExample?: boolean
+  isCreate?: boolean
+}
 
 const props = withDefaults(defineProps<Template>(), {
-  example: false,
-  create: false,
-  path: '/generator'
+  isExample: false,
+  isCreate: false,
+  path: '/'
 })
 
 const i18n = inject('func') as LangFunc

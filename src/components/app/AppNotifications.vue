@@ -45,7 +45,7 @@ const { notifications } = useNotificationStore()
   &-enter-from,
   &-leave-to {
     opacity: 0;
-    transform: translateX(30px);
+    transform: translateX(toRem(30));
   }
 }
 </style>

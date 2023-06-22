@@ -1,7 +1,7 @@
 <template>
   <section ref="target" class="templates">
     <div class="_row">
-      <AppTemplate :title="$i18n('home.create')" :create="true" path="/generator" />
+      <AppTemplate :title="$i18n('home.create')" :is-create="true" path="/generator" />
       <AppTemplate
         v-for="(template, idx) in cpb.templates"
         :key="idx"
