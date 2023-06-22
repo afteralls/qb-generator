@@ -3,7 +3,7 @@
     <TransitionGroup name="notf">
       <div v-for="item in notifications" :key="item" class="notification _s-row">
         <UiIcon><InfoIcon /></UiIcon>
-        <UiText type="small" :text="item" />
+        <UiText type="small" :text="$i18n(item)" />
       </div>
     </TransitionGroup>
   </div>

@@ -2,8 +2,6 @@
   <UiModal :isOpen="model" @modal:close="$emit('templateModal:close')">
     <div class="example _row">
       <AppTemplate
-        :example="true"
-        :title="''"
         :mode="cpb.mode"
         :name="tempName"
         :desc="tempDesc"
@@ -43,7 +41,6 @@ defineProps<{ model: boolean }>()
 const emit = defineEmits<{ (evt: 'templateModal:close'): void }>()
 
 const cpb = useComposableStore()
-const brc = useBarcodeStore()
 const router = useRouter()
 
 const tempName = ref<string>('')
@@ -55,11 +52,14 @@ const saveTemplate = () => {
     mode: cpb.mode,
     name: tempName.value,
     desc: tempDesc.value,
-    standart: brc.set.standart,
     href: window.location.href,
     path: router.options.history.location,
     date: date
   })
+
+  // console.log('href:', window.location.href)
+  // console.log('path:', router.options.history.location)
+  
 
   tempName.value = ''
   tempDesc.value = ''

@@ -13,15 +13,13 @@ declare global {
   export type ExportFormat = 'svg' | 'png' | 'jpg'
   export type Mode = 'barcode' | 'qr'
 
-  
   export interface Template {
-    mode?: Mode
-    idx?: number
-    name?: string
+    mode: Mode
+    name: string
     desc?: string
-    href?: string
-    path?: string
-    date?: string
+    href: string
+    path: string
+    date: string
   }
 
   export interface Standart {

@@ -74,7 +74,6 @@ export const useBarcodeStore = defineStore('barcode', () => {
   const router = useRouter()
   const ntf = useNotificationStore()
   const cpb = useComposableStore()
-  const i18n = inject('func') as LangFunc
 
   watch(
     () => [set.standart, set.content, set.quantity, set.bgColor, set.showData, set.codeColor],
@@ -97,25 +96,25 @@ export const useBarcodeStore = defineStore('barcode', () => {
       }
       if (regExHandler(set.content, currentRegEx.value)) {
         set.content = o[1] as string
-        ntf.addNotification(isCode128.value ? i18n('notf.numLetErr') : i18n('notf.numOnlyErr'))
+        ntf.addNotification(isCode128.value ? 'notf.numLetErr' : 'notf.numOnlyErr')
       }
       if (regExHandler(set.quantity, /^\d+$/)) {
         set.quantity = o[2] as string
-        ntf.addNotification(i18n('notf.numOnlyErr'))
+        ntf.addNotification('notf.numOnlyErr')
       }
       if (regExHandler(set.bgColor, /^[#a-zA-Z0-9]+$/)) {
         set.bgColor = o[3] as string
-        ntf.addNotification(i18n('notf.numLetSpErr'))
+        ntf.addNotification('notf.numLetSpErr')
       }
       if (regExHandler(set.codeColor, /^[#a-zA-Z0-9]+$/)) {
         set.codeColor = o[5] as string
-        ntf.addNotification(i18n('notf.numLetSpErr'))
+        ntf.addNotification('notf.numLetSpErr')
       }
       if (set.curStandart.name === 'PHARMACODE') {
         if ((+set.content > 2 && +set.content <= 131070) || set.content === '') {
           genHandler()
         } else if (+set.content > 131070) {
-          ntf.addNotification(i18n('notf.pharmaErr'))
+          ntf.addNotification('notf.pharmaErr')
         }
       } else {
         genHandler()

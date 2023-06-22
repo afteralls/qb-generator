@@ -7,7 +7,8 @@
         :key="idx"
         :idx="idx"
         :title="''"
-        :to="(template.path as string)"
+        :path="template.path"
+        :href="template.href"
         :name="template.name"
         :desc="template.desc"
         :date="template.date"
@@ -25,11 +26,6 @@
 <script setup lang="ts">
 const cpb = useComposableStore()
 const target = ref<HTMLDivElement | null>(null)
-
-// useEventListener(target, 'scroll', () => {
-//   console.log(target.value!.scrollLeft);
-//   console.log(target.value!.offsetWidth - target.value!.scrollLeft);
-// })
 </script>
 
 <style scoped lang="scss">

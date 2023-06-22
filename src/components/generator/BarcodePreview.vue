@@ -8,11 +8,11 @@
       <div v-else class="table-wrapper">
         <table>
           <tr>
-            <th>№</th>
-            <th>{{ $i18n('generator.barcode') }}</th>
+            <th><UiText type="h4" text="№" /></th>
+            <th><UiText type="h4" :text="$i18n('generator.barcode')" /></th>
           </tr>
           <tr v-for="(num, idx) in +brc.set.beforeQuanSet!" :key="num">
-            <td>{{ idx + 1 }}</td>
+            <td><UiText type="h4" :text="(idx + 1).toString()" /></td>
             <td class="max _center">
               <svg :data-num="idx + 1"></svg>
             </td>

@@ -1,6 +1,10 @@
 <template>
   <div class="template-wp">
-    <RouterLink :to="(path as string)" :title="title" class="template _center _column _ui">
+    <RouterLink
+      :to="(path as string)"
+      :title="title"
+      :class="['template', '_center', '_column', '_ui', isExample ? 'ex' : '']"
+    >
       <div v-if="!isCreate" class="info _column _center">
         <UiIcon size="md" v-if="mode === 'qr'"><QrIcon /></UiIcon>
         <UiIcon size="md" v-else><BarcodeIcon /></UiIcon>
@@ -31,13 +35,11 @@
 </template>
 
 <script setup lang="ts">
-
 export interface Template {
   idx?: number
-  title: string
+  title?: string
   name?: string
   desc?: string
-  standart?: string | number
   href?: string
   path?: string
   date?: string
@@ -65,7 +67,7 @@ const shareLink = () => {
       url: props.href
     })
   } else {
-    navigator.clipboard.writeText(props.path)
+    navigator.clipboard.writeText(props.href as string)
   }
 }
 
@@ -95,6 +97,10 @@ const deleteTemplate = () => {
     background-color: var(--fg-s);
     border-color: var(--m-h);
   }
+}
+
+.ex {
+  pointer-events: none;
 }
 
 .info {
