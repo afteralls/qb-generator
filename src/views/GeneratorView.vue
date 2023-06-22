@@ -2,11 +2,19 @@
   <div class="_wrapper">
     <div class="layout">
       <div class="_grid act">
-        <UiButton title="" @trigger="cpb.mode = 'barcode'" :active="cpb.mode === 'barcode'">
+        <UiButton
+          :title="$i18n('generator.cBarcode')"
+          @trigger=";(cpb.mode = 'barcode'), queryHandler()"
+          :active="cpb.mode === 'barcode'"
+        >
           <UiIcon><BarcodeIcon /></UiIcon>
           <UiText type="h4" :text="$i18n('generator.barcode')" />
         </UiButton>
-        <UiButton title="" @trigger="cpb.mode = 'qr'" :active="cpb.mode === 'qr'">
+        <UiButton
+          :title="$i18n('generator.cQr')"
+          @trigger=";(cpb.mode = 'qr'), queryHandler()"
+          :active="cpb.mode === 'qr'"
+        >
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="h4" text="QR" />
         </UiButton>
@@ -20,29 +28,19 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
 const cpb = useComposableStore()
+const router = useRouter()
 
-const setMode = () => {
+const queryHandler = () => {
   router.push({
     path: '/generator',
-    query: {
-      mode: cpb.mode
-    }
+    query: undefined
   })
 }
 
-watch(
-  () => cpb.mode,
-  () => {
-    setMode()
-    cpb.qrContent = ''
-  }
-)
-
-onMounted(() => {
+onBeforeMount(() => {
   const params = useUrlSearchParams('history')
-  params.mode ? (cpb.mode = params.mode as Mode) : setMode()
+  if (params.mode) cpb.mode = params.mode as Mode
 })
 </script>
 

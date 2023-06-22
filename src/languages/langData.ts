@@ -1,36 +1,39 @@
 interface LangProps {
-  [key: string]: any
+  [key: string]: object | string
 }
 
 export default {
   en: {
+    links: {
+      git: 'Link to source code',
+      telegram: 'My Telegram account',
+      mail: 'My E-Mail'
+    },
     route: {
       home: 'Home | QB Generator',
       generator: 'Generator',
       library: 'Library',
       notFound: 'You are lost!'
     },
+    notf: {
+      numOnlyErr: 'Only digit input is available',
+      numLetErr: 'Only numbers and latin characters are available',
+      numLetSpErr: 'Only numbers, latin characters and # are available',
+      pharmaErr: 'Number out of range'
+    },
     header: {
+      gtHome: 'Go to home page',
       tL: 'Activate Light theme',
       tD: 'Activate Dark theme',
       lang: 'Switch to Russian',
-      git: 'Link to source code',
-      telegram: 'My Telegram account',
-      home: 'Go to home page',
-      mail: 'My E-Mail',
       link: 'Show links'
     },
     home: {
       desc: 'Create QR and Barcodes in a couple of clicks in your own design, use the desired standard and export in the desired format. Save templates, share and use them at any time.',
       gtGen: 'Go to Generator',
       create: 'Create a new template',
-      // noDesc: 'No description',
       tipTitle: 'The templates you create will appear in this section, try creating the first one!',
       tipDesc: 'Just generate several types of barcodes and the system will prompt you to save the settings.',
-      // name: 'Name',
-      // sdesc: 'Description',
-      // date: 'Date',
-      // temp: 'Go to template',
       // shareTitle: 'Hey...',
       // shareDesc: 'Look what barcode I managed to create!',
       libTitle: 'Not sure which barcode format you need?',
@@ -39,7 +42,11 @@ export default {
       libLinkTitle: 'Learn more about barcode standards'
     },
     generator: {
+      cBarcode: 'Create Barcode',
+      cQr: 'Create Qr',
       barcode: 'Barcode',
+      preview: 'Preview',
+      previewInfo: "This window is a preview for your barcodes, but you haven't generated them yet...",
       set: {
         content: 'Content',
         quantity: 'Quantity',
@@ -61,11 +68,6 @@ export default {
         downloadBtn: 'Download',
         saveTempBtn: 'Save'
       },
-      preview: {
-        title: 'Preview',
-        barcode: 'Barcode',
-        info: "This window is a preview for your barcodes, but you haven't generated them yet...",
-      },
       modal: {
         name: 'Name',
         desc: 'Description',
@@ -76,6 +78,7 @@ export default {
         saveBtn: 'Save',
       },
       qr: {
+        content: 'Anything...',
         tipTitle: 'QR is a two-dimensional barcode that is read by imaging devices.',
         tipDesc: 'This abbreviation means "quick response" (Quick Response). The main feature of the code is that it provides instant access to a large amount of information.'
       }
@@ -158,33 +161,36 @@ export default {
     }
   },
   ru: {
+    links: {
+      git: 'Ссылка на исходный код',
+      telegram: 'Мой Telegram аккаунт',
+      mail: 'Мой E-Mail',
+    },
     route: {
       home: 'Главная | QB Generator',
       generator: 'Генератор',
       library: 'Библиотека',
       notFound: 'Вы потерялись!'
     },
+    notf: {
+      numOnlyErr: 'Доступен только ввод цифр',
+      numLetErr: 'Доступен только ввод цифр и латинских символов',
+      numLetSpErr: 'Доступен только ввод цифр, латинских символов и #',
+      pharmaErr: 'Число за пределами допустимого диапазона'
+    },
     header: {
+      gtHome: 'Вернуться на главную',
       tL: 'Активировать Светлую тему',
       tD: 'Активировать Тёмную тему',
       lang: 'Переключиться на Английский',
-      git: 'Ссылка на исходный код',
-      telegram: 'Мой Telegram аккаунт',
-      home: 'Вернуться на главную',
-      mail: 'Мой E-Mail',
       link: 'Показать ссылки'
     },
     home: {
       desc: 'Создавайте QR и штрихкоды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
       gtGen: 'Перейти к Генератору',
       create: 'Создать новый шаблон',
-      // noDesc: 'Нет описания',
       tipTitle: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
       tipDesc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат.',
-      // name: 'Название',
-      // cdesc: 'Описание',
-      // date: 'Дата',
-      // temp: 'Перейти к шаблону',
       // shareTitle: 'Эй...',
       // shareDesc: 'Посмотри, какой штрихкод мне удалось создать!',
       libTitle: 'Не уверены какой стандарт вам нужен?',
@@ -193,7 +199,11 @@ export default {
       libLinkTitle: 'Узнайте больше о стандартах штрихкодов'
     },
     generator: {
+      cBarcode: 'Создать Штрихкод',
+      cQr: 'Создать Qr',
       barcode: 'Штрихкод',
+      preview: 'Предпросмотр',
+      previewInfo: "Данное окно — превью для ваших штрихкодов, но вы их пока не сгенерировали...",
       set: {
         content: 'Содержание',
         quantity: 'Количество',
@@ -215,11 +225,6 @@ export default {
         downloadBtn: 'Скачать',
         saveTempBtn: 'Сохранить'
       },
-      preview: {
-        title: 'Предпросмотр',
-        barcode: 'Штрихкод',
-        info: "Данное окно — превью для ваших штрихкодов, но вы их пока не сгенерировали...",
-      },
       modal: {
         name: 'Название',
         desc: 'Описание',
@@ -233,6 +238,7 @@ export default {
         cancelBtn: 'Отменить'
       },
       qr: {
+        content: 'Всё, что угодно...',
         tipTitle: 'QR — это двумерный штрихкод, который считывается устройствами обработки изображений.',
         tipDesc: 'Эта аббревиатура означает «быстрый отклик» (Quick Response). Главная особенность кода в том, что он предоставляет мгновенный доступ к большому объёму информации.'
       }

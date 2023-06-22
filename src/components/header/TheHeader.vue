@@ -2,7 +2,7 @@
   <div class="header-wrapper">
     <div class="_container">
       <nav class="header _row">
-        <UiLink to="/" :title="$i18n('header.home')" :local="true">
+        <UiLink to="/" :title="$i18n('header.gtHome')" :local="true">
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="header" text="QBG" />
         </UiLink>

@@ -1,19 +1,19 @@
 <template>
   <div class="_s-column preview">
-    <UiText type="small" :text="$i18n('generator.preview.title')" />
+    <UiText type="small" :text="$i18n('generator.preview')" />
     <div class="preview-wrapper">
       <div v-if="!brc.set.generated" class="_center tip">
-        <UiText type="small" :text="$i18n('generator.preview.info')" />
+        <UiText type="small" :text="$i18n('generator.previewInfo')" />
       </div>
       <div v-else class="table-wrapper">
         <table>
           <tr>
             <th>№</th>
-            <th>{{ $i18n('generator.preview.barcode') }}</th>
+            <th>{{ $i18n('generator.barcode') }}</th>
           </tr>
           <tr v-for="(num, idx) in +brc.set.beforeQuanSet!" :key="num">
             <td>{{ idx + 1 }}</td>
-            <td class="max">
+            <td class="max _center">
               <svg :data-num="idx + 1"></svg>
             </td>
           </tr>
@@ -45,22 +45,12 @@ const brc = useBarcodeStore()
     display: flex;
     justify-content: center;
   }
-
-  @media (max-width: $mob) {
-    display: block;
-  }
 }
 
 .table-wrapper {
   height: 100%;
   overflow-y: scroll;
   padding: var(--space-m) 0;
-}
-
-svg {
-  display: block;
-  border-radius: calc(var(--br-rad) / 2);
-  width: 100%;
 }
 
 table {
@@ -78,6 +68,13 @@ table {
 
 .max {
   width: 100%;
+
+  svg {
+    display: block;
+    border-radius: calc(var(--br-rad) / 2);
+    width: 100%;
+    height: auto;
+  }
 
   @media (max-width: $sm) {
     width: auto;

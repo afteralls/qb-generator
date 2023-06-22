@@ -22,7 +22,7 @@
       </div>
       <div class="_s-column">
         <UiText type="small" :text="$i18n('generator.set.quantity')" />
-        <UiInput name="quantity" v-model="brc.set.quantity" placeholder="1-999" />
+        <UiInput name="quantity" :length="3" v-model="brc.set.quantity" placeholder="1-999" />
       </div>
     </div>
     <div class="_grid ex-g">

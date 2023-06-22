@@ -18,7 +18,7 @@ export default defineConfig({
     AutoImport({
       imports: [
         {
-          vue: ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'h', 'inject'],
+          vue: ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'onBeforeMount', 'h', 'inject'],
           'vue-router': ['useRouter', 'RouterView', 'useRoute'],
           pinia: ['defineStore'],
           '@vueuse/core': [
@@ -29,6 +29,9 @@ export default defineConfig({
             'useShare',
             'onClickOutside',
             'useUrlSearchParams'
+          ],
+          '@vueuse/integrations': [
+            'useQRCode'
           ]
         }
       ],

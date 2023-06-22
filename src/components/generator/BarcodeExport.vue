@@ -2,10 +2,14 @@
   <div class="_grid export">
     <div class="_s-column">
       <div class="_s-row">
-        <UiIcon size="sm"><InfoIcon /></UiIcon>
+        <UiIcon size="min"><InfoIcon /></UiIcon>
         <UiText type="small" :text="$i18n('generator.export.tip')" />
       </div>
-      <UiButton title="" :disabled="!brc.set.isCorrect" @trigger="generateHandler">
+      <UiButton
+        :title="$i18n('generator.export.generate')"
+        :disabled="!brc.set.isCorrect"
+        @trigger="generateHandler"
+      >
         <UiIcon><GenerateIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.generate')" />
       </UiButton>
@@ -24,15 +28,23 @@
       <UiInput
         name="exportName"
         v-model="exportName"
-        :placeholder="qFlag ? 'brccode-one' : 'my-collection (etc.)'"
+        :placeholder="qFlag ? 'barcode-one' : 'my-collection (etc.)'"
       />
     </div>
     <div class="_grid act-g">
-      <UiButton title="" :disabled="!brc.set.isCorrect" @trigger="exportHandler">
+      <UiButton
+        :title="$i18n('generator.export.downloadBtn')"
+        :disabled="!brc.set.generated"
+        @trigger="exportHandler"
+      >
         <UiIcon><DownloadIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.downloadBtn')" />
       </UiButton>
-      <UiButton title="" :disabled="!brc.set.isCorrect" @trigger="showTemplateModal = true">
+      <UiButton
+        :title="$i18n('generator.export.saveTempBtn')"
+        :disabled="!brc.set.isCorrect"
+        @trigger="showTemplateModal = true"
+      >
         <UiIcon><CreateIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.saveTempBtn')" />
       </UiButton>
@@ -47,7 +59,7 @@
 <script setup lang="ts">
 const brc = useBarcodeStore()
 const showTemplateModal = ref<boolean>(false)
-const qFlag = computed(() => brc.set.quantity === '1' || brc.set.quantity === '')
+const qFlag = computed(() => brc.set.quantity === '' || +brc.set.quantity <= 1)
 const exportName = ref<string>('')
 const exportFormats: ExportFormat[] = ['png', 'jpg', 'svg']
 const exportFormat = ref<ExportFormat>('svg')

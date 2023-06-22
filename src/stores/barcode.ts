@@ -57,22 +57,28 @@ export const useBarcodeStore = defineStore('barcode', () => {
       : set.content.length >= set.curStandart.corLength
   )
 
-  watch(
-    () => set.curStandart,
-    () => (set.content = '')
-  )
+  const isCode128 = computed(() => set.curStandart.name === 'CODE 128')
+  const currentRegEx = computed(() => (isCode128.value ? /^[a-zA-Z0-9]+$/ : /^\d+$/))
+  const regExHandler = (v: string, regEx: RegExp) => !v.match(regEx) && v !== ''
 
-  const currentRegEx = computed(() =>
-    set.curStandart.name === 'CODE 128' ? /[А-я/\W|_]/ : /[A-zА-я/\W|_]/
-  )
+  const genHandler = () => {
+    if (corLengthHandler.value) {
+      set.isCorrect = true
+      set.generated = false
+      generateBarcode('#barcode-ex', set.content, set)
+    } else {
+      set.isCorrect = false
+    }
+  }
 
   const router = useRouter()
+  const ntf = useNotificationStore()
   const cpb = useComposableStore()
+  const i18n = inject('func') as LangFunc
 
   watch(
-    () => [set.standart, set.content, set.codeColor, set.bgColor, set.showData, set.quantity],
-    (v) => {
-      set.curStandart = standarts[set.standart]
+    () => [set.standart, set.content, set.quantity, set.bgColor, set.showData, set.codeColor],
+    (_, o) => {
       router.push({
         path: '/generator',
         query: {
@@ -85,15 +91,37 @@ export const useBarcodeStore = defineStore('barcode', () => {
           quantity: set.quantity
         }
       })
-      if (corLengthHandler.value && !(v[1] as string).match(currentRegEx.value)) {
-        set.isCorrect = true
-        set.generated = false
-        generateBarcode('#barcode-ex', set.content, set)
+      if (set.standart !== o[0]) {
+        set.curStandart = standarts[set.standart]
+        set.content = ''
+      }
+      if (regExHandler(set.content, currentRegEx.value)) {
+        set.content = o[1] as string
+        ntf.addNotification(isCode128.value ? i18n('notf.numLetErr') : i18n('notf.numOnlyErr'))
+      }
+      if (regExHandler(set.quantity, /^\d+$/)) {
+        set.quantity = o[2] as string
+        ntf.addNotification(i18n('notf.numOnlyErr'))
+      }
+      if (regExHandler(set.bgColor, /^[#a-zA-Z0-9]+$/)) {
+        set.bgColor = o[3] as string
+        ntf.addNotification(i18n('notf.numLetSpErr'))
+      }
+      if (regExHandler(set.codeColor, /^[#a-zA-Z0-9]+$/)) {
+        set.codeColor = o[5] as string
+        ntf.addNotification(i18n('notf.numLetSpErr'))
+      }
+      if (set.curStandart.name === 'PHARMACODE') {
+        if ((+set.content > 2 && +set.content <= 131070) || set.content === '') {
+          genHandler()
+        } else if (+set.content > 131070) {
+          ntf.addNotification(i18n('notf.pharmaErr'))
+        }
       } else {
-        set.isCorrect = false
+        genHandler()
       }
     }
   )
 
-  return { set, standarts }
+  return { set, standarts, genHandler }
 })

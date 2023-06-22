@@ -1,7 +1,7 @@
 <template>
   <div class="_grid qr-wrapper">
     <div class="ex _s-column">
-      <UiText type="small" :text="$i18n('generator.set.example')" />
+      <UiText type="small" :text="$i18n('generator.preview')" />
       <div class="qr _center _ui">
         <UiText
           v-if="inputHandler(cpb.qrContent)"
@@ -16,7 +16,11 @@
     <div class="set _column">
       <div class="_s-column">
         <UiText type="small" :text="$i18n('generator.set.content')" />
-        <UiInput name="qr-content" v-model="cpb.qrContent" :placeholder="''" />
+        <UiInput
+          name="qr-content"
+          v-model="cpb.qrContent"
+          :placeholder="$i18n('generator.qr.content')"
+        />
       </div>
       <div class="_s-column">
         <UiText type="small" :text="$i18n('generator.export.fileName')" />
@@ -24,7 +28,7 @@
       </div>
       <div class="_grid act-g">
         <UiButton
-          title=""
+          :title="$i18n('generator.export.downloadBtn')"
           :disabled="inputHandler(cpb.qrContent)"
           @trigger="getQr(cpb.qrcode, exportName)"
         >
@@ -32,7 +36,7 @@
           <UiText type="h4" :text="$i18n('generator.export.downloadBtn')" />
         </UiButton>
         <UiButton
-          title=""
+          :title="$i18n('generator.export.saveTempBtn')"
           :disabled="inputHandler(cpb.qrContent)"
           @trigger="showTemplateModal = true"
         >
@@ -70,6 +74,7 @@ watch(
     router.push({
       path: '/generator',
       query: {
+        mode: cpb.mode,
         content: cpb.qrContent
       }
     })
@@ -79,7 +84,9 @@ watch(
 onMounted(() => {
   const params = useUrlSearchParams()
   if (params.content) {
-    cpb.qrContent = params.content as string
+    setTimeout(() => {
+      cpb.qrContent = params.content as string
+    }, 0)
   }
 })
 </script>

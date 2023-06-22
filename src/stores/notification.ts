@@ -9,9 +9,5 @@ export const useNotificationStore = defineStore('notification', () => {
     }, timeout)
   }
 
-  setTimeout(() => {
-    addNotification('sdssdsdds')
-  }, 4000)
-
   return { notifications, addNotification, timeout }
 })
