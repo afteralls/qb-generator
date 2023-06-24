@@ -15,7 +15,7 @@
             name="tempName"
             v-model="tempName"
             :length="11"
-            :placeholder="$i18n('generator.modal.exName')"
+            :placeholder="$i18n('generator.modal.tempName_ph')"
           />
         </div>
         <div class="_s-column">
@@ -24,7 +24,7 @@
             name="tempDesc"
             v-model="tempDesc"
             :length="12"
-            :placeholder="$i18n('generator.modal.exDesc')"
+            :placeholder="$i18n('generator.modal.tempDesc_ph')"
           />
         </div>
         <UiButton :title="''" @trigger="saveTemplate" :disabled="!tempName.length">

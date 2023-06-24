@@ -9,25 +9,30 @@
         <UiIcon size="md" v-if="mode === 'qr'"><QrIcon /></UiIcon>
         <UiIcon size="md" v-else><BarcodeIcon /></UiIcon>
         <div class="_s-column">
-          <UiText type="small" :text="$i18n('generator.modal.name')" />
-          <UiText type="h3" :text="name || $i18n('generator.modal.exName')" />
+          <UiText type="small" :text="$i18n('template.name')" />
+          <UiText type="h3" :text="name || $i18n('template.exName')" />
         </div>
         <div class="_s-column">
-          <UiText type="small" :text="$i18n('generator.modal.desc')" />
-          <UiText :text="desc || $i18n('generator.modal.exDesc')" />
+          <UiText type="small" :text="$i18n('template.desc')" />
+          <UiText :text="desc || $i18n('template.exDesc')" />
         </div>
         <UiText type="small" :text="(date as string)" />
       </div>
       <div v-else class="create _center _column">
         <UiIcon size="lg"><CreateIcon /></UiIcon>
-        <UiText type="h3" :text="$i18n('home.create')" />
+        <UiText type="h3" :text="$i18n('template.create')" />
       </div>
     </RouterLink>
     <div v-if="!isExample && !isCreate" class="actions _row">
-      <UiButton @trigger="shareLink" mode="icon" :title="''" class="share">
+      <UiButton @trigger="shareLink" mode="icon" :title="$i18n('template.share')" class="share">
         <ShareIcon />
       </UiButton>
-      <UiButton @trigger="deleteTemplate" mode="icon" :title="''" class="delete">
+      <UiButton
+        @trigger="deleteTemplate"
+        mode="icon"
+        :title="$i18n('template.delete')"
+        class="delete"
+      >
         <TrashIcon />
       </UiButton>
     </div>

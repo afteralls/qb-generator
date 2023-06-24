@@ -19,8 +19,11 @@ const docMeta = () => document.querySelector(selector)!.setAttribute('content', 
 
 cpb.isDark = isDark.value
 watch(isDark, (val) => {
+  const headerWp: HTMLDivElement | null = document.querySelector('.header-wrapper')
+  headerWp!.classList.replace('bg-lg', 'bg-c')
   docMeta()
   cpb.isDark = val
+  setTimeout(() => headerWp!.classList.replace('bg-c', 'bg-lg'), 500)
 })
 
 onMounted(() => {

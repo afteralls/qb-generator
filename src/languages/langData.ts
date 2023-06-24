@@ -31,15 +31,23 @@ export default {
     home: {
       desc: 'Create QR and Barcodes in a couple of clicks in your own design, use the desired standard and export in the desired format. Save templates, share and use them at any time.',
       gtGen: 'Go to Generator',
-      create: 'Create a new template',
       tipTitle: 'The templates you create will appear in this section, try creating the first one!',
       tipDesc: 'Just generate several types of barcodes and the system will prompt you to save the settings.',
-      // shareTitle: 'Hey...',
-      // shareDesc: 'Look what barcode I managed to create!',
       libTitle: 'Not sure which barcode format you need?',
       libDesc: 'You can see the formats available for generation and choose the one that suits your needs best.',
       gtLib: 'Learn more',
       libLinkTitle: 'Learn more about barcode standards'
+    },
+    template: {
+      name: 'Name',
+      desc: 'Description',
+      exName: 'My Template',
+      exDesc: 'Important info (or not...)',
+      create: 'Create a new template',
+      share: 'Share',
+      delete: 'Delete'
+      // shareTitle: 'Hey...',
+      // shareDesc: 'Look what barcode I managed to create!',
     },
     generator: {
       cBarcode: 'Create Barcode',
@@ -69,12 +77,11 @@ export default {
         saveTempBtn: 'Save'
       },
       modal: {
-        name: 'Name',
-        desc: 'Description',
-        exName: 'My Template',
-        exDesc: 'Important info (or not...)',
         tempName: 'Template Name',
+        tempName_ph: 'Name (12)',
         tempDesc: 'Template Description',
+        tempDesc_ph: 'Important info (or not...)',
+        cancelBtn: 'Cancel',
         saveBtn: 'Save',
       },
       qr: {
@@ -188,15 +195,23 @@ export default {
     home: {
       desc: 'Создавайте QR и штрихкоды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
       gtGen: 'Перейти к Генератору',
-      create: 'Создать новый шаблон',
       tipTitle: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
       tipDesc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат.',
-      // shareTitle: 'Эй...',
-      // shareDesc: 'Посмотри, какой штрихкод мне удалось создать!',
       libTitle: 'Не уверены какой стандарт вам нужен?',
       libDesc: 'Вы можете просмотреть доступные стандарты для генерации и выбрать наиболее подходящий под ваши нужды.',
       gtLib: 'Подробнее',
       libLinkTitle: 'Узнайте больше о стандартах штрихкодов'
+    },
+    template: {
+      name: 'Название',
+      desc: 'Описание',
+      exName: 'Пример названия',
+      exDesc: 'Пример описания',
+      create: 'Создать новый шаблон',
+      share: 'Поделиться',
+      delete: 'Удалить'
+      // shareTitle: 'Эй...',
+      // shareDesc: 'Посмотри, какой штрихкод мне удалось создать!',
     },
     generator: {
       cBarcode: 'Создать Штрихкод',
@@ -226,14 +241,10 @@ export default {
         saveTempBtn: 'Сохранить'
       },
       modal: {
-        name: 'Название',
-        desc: 'Описание',
-        exName: 'Пример названия',
-        exDesc: 'Пример описания',
         tempName: 'Название шаблона',
         tempName_ph: 'Название (12)',
         tempDesc: 'Описание шаблона',
-        temDesc_ph: 'Что-то важное (или нет...)',
+        tempDesc_ph: 'Что-то важное (или нет...)',
         saveBtn: 'Сохранить',
         cancelBtn: 'Отменить'
       },

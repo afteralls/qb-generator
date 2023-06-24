@@ -38,8 +38,8 @@ defineEmits<{ (e: 'trigger'): void }>()
   background-color: var(--btn-bg-m);
   color: var(--fg-m) !important;
   gap: var(--space-m);
-  transition: var(--tr-fg);
-  border: toRem(1) solid var(--br);
+  transition: background-color 0.5s ease, border 0.5s ease, filter 0.5s ease;
+  border: toRem(3) solid var(--btn-bg-m);
 
   svg {
     fill: var(--fg-m) !important;
@@ -81,12 +81,12 @@ button.icon {
 
 .disabled {
   pointer-events: none;
-  // transition: var(--tr);
   filter: brightness(0.5);
 }
 
 .active {
   background-color: var(--m);
+  border: toRem(3) solid var(--m);
 
   &:hover,
   &:focus {

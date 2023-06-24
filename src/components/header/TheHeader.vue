@@ -1,5 +1,5 @@
 <template>
-  <div class="header-wrapper">
+  <div class="header-wrapper bg-lg">
     <div class="_container">
       <nav class="header _row">
         <UiLink to="/" :title="$i18n('header.gtHome')" :local="true">
@@ -26,7 +26,7 @@
                 <UiIcon size="min"><ArrowIcon /></UiIcon>
               </div>
             </UiButton>
-            <Transition name="main">
+            <Transition name="main" mode="out-in">
               <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row">
                 <TheLinks />
               </div>
@@ -63,8 +63,14 @@ const titleLangHandler = () => (document.title = i18n(route.name as string))
   width: 100%;
   z-index: 10;
   backdrop-filter: blur(8px);
-  // transition: background-color 0.5s ease;
-  // background-color: var(--tp);
+  transition: var(--tr-fg);
+}
+
+.bg-c {
+  background-color: var(--bg);
+}
+
+.bg-lg {
   background: linear-gradient(180deg, var(--bg) 0%, var(--tp) 100%);
 }
 
