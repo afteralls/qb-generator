@@ -28,7 +28,9 @@ export default defineConfig({
             'useEventListener',
             'useShare',
             'onClickOutside',
-            'useUrlSearchParams'
+            'useUrlSearchParams',
+            'useScroll',
+            'useElementSize'
           ],
           '@vueuse/integrations': [
             'useQRCode'
