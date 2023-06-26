@@ -23,6 +23,7 @@ declare global {
   const useDark: typeof import('@vueuse/core')['useDark']
   const useElementSize: typeof import('@vueuse/core')['useElementSize']
   const useEventListener: typeof import('@vueuse/core')['useEventListener']
+  const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useNavigatorLanguage: typeof import('@vueuse/core')['useNavigatorLanguage']
   const useNotificationStore: typeof import('../src/stores/notification')['useNotificationStore']
   const useQRCode: typeof import('@vueuse/integrations')['useQRCode']

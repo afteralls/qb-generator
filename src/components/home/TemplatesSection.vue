@@ -8,7 +8,7 @@
       'sc-r': arrivedState.right
     }"
   >
-    <div class="_row">
+    <div class="_row _d">
       <AppTemplate :title="$i18n('home.create')" :is-create="true" path="/generator" />
       <AppTemplate
         v-for="(template, idx) in cpb.templates"
@@ -22,7 +22,7 @@
         :date="template.date"
         :mode="template.mode"
       />
-      <div v-if="!cpb.templates.length" class="tip _column">
+      <div v-if="!cpb.templates.length" class="tip _col _d">
         <UiIcon size="md"><InfoIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('home.tipTitle')" />
         <UiText :text="$i18n('home.tipDesc')" />
@@ -34,7 +34,6 @@
 <script setup lang="ts">
 const cpb = useComposableStore()
 const target = ref<HTMLDivElement | null>(null)
-
 const { arrivedState, x } = useScroll(target)
 
 const maskHandler = () => {

@@ -1,6 +1,9 @@
 <template>
   <div class="_wrapper">
-    <div class="layout">
+    <div class="layout _col _l">
+      <div class="mw _col _d">
+        <UiText type="h2" mode="lg" :text="$i18n('route.generator')" />
+      </div>
       <div class="_grid act">
         <UiButton
           :title="$i18n('generator.cBarcode')"
@@ -46,12 +49,8 @@ onBeforeMount(() => {
 
 <style scoped lang="scss">
 .layout {
-  display: flex;
   width: 100%;
-  flex-direction: column;
-  justify-content: flex-start;
   align-items: flex-start;
-  gap: calc(var(--space) * 2);
 }
 
 .act {

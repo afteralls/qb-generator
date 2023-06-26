@@ -30,7 +30,8 @@ export default defineConfig({
             'onClickOutside',
             'useUrlSearchParams',
             'useScroll',
-            'useElementSize'
+            'useElementSize',
+            'useMagicKeys'
           ],
           '@vueuse/integrations': [
             'useQRCode'

@@ -4,7 +4,7 @@ defineEmits<{ (e: 'update:modelValue', value: boolean): void }>()
 </script>
 
 <template>
-  <div class="checkbox _s-row">
+  <div class="checkbox _row _s">
     <input
       @change="$emit('update:modelValue', ($event.target as HTMLInputElement).checked)"
       type="checkbox"

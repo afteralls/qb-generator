@@ -1,8 +1,8 @@
 <template>
   <section class="home">
-    <div class="info _column">
+    <div class="info _col _d">
       <UiText type="h1" text="QB Generator" />
-      <UiText class="bg" :text="$i18n('home.desc')" />
+      <UiText mode="bg" :text="$i18n('home.desc')" />
       <UiButton type="link" to="/generator" :title="$i18n('home.gtGen')">
         <UiIcon><BarcodeIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('home.gtGen')" />

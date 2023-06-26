@@ -1,5 +1,5 @@
 <template>
-  <div class="_s-column preview">
+  <div class="_col _s preview">
     <UiText type="small" :text="$i18n('generator.preview')" />
     <div class="preview-wrapper">
       <div v-if="!brc.set.generated" class="_center tip">

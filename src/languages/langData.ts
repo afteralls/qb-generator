@@ -1,5 +1,5 @@
 interface LangProps {
-  [key: string]: object | string
+  [key: string]: any
 }
 
 export default {
@@ -91,6 +91,8 @@ export default {
       }
     },
     library: {
+      title: 'Library',
+      info: 'Barcode is an image in which information about a product, manufacturer or buyer is encrypted. Used all over the world. A combination of black lines, spaces between them and numbers.',
       desc: 'Description',
       structure: 'Structure',
       standarts: {
@@ -255,6 +257,8 @@ export default {
       }
     },
     library: {
+      title: 'Библиотека',
+      info: 'Штрихкод — изображение, в котором зашифрована информация о товаре, производителе или покупателе. Используется по всему миру. Сочетание чёрных линий, промежутков между ними и цифр.',
       desc: 'Описание',
       structure: 'Структура',
       standarts: {

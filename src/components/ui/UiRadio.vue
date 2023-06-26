@@ -1,5 +1,5 @@
 <template>
-  <div v-for="option in options" :key="option" class="checkbox _s-row">
+  <div v-for="option in options" :key="option" class="checkbox _row _s">
     <input
       type="radio"
       :name="name"

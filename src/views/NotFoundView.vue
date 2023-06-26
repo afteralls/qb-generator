@@ -1,8 +1,8 @@
 <template>
   <div class="_wrapper">
-    <div class="not-found _row _center">
+    <div class="not-found _row _d _center">
       <div class="banner"><NotFoundIcon /></div>
-      <div class="_column info">
+      <div class="_col _d info">
         <UiText type="h2" mode="lg" :text="$i18n('notfound.title')" />
         <UiButton type="link" to="/" :title="$i18n('notfound.linkTitle')">
           <UiIcon><HomeIcon /></UiIcon>

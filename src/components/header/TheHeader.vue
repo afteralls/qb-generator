@@ -1,12 +1,12 @@
 <template>
   <div class="header-wrapper bg-lg">
     <div class="_container">
-      <nav class="header _row">
+      <nav class="header _row _d">
         <UiLink to="/" :title="$i18n('header.gtHome')" :local="true">
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="header" text="QBG" />
         </UiLink>
-        <div class="options _row">
+        <div class="options _row _d">
           <ThemeToggler />
           <UiButton
             @trigger="cpb.changeLang(), titleLangHandler()"
@@ -16,7 +16,7 @@
             <TranslateIcon />
           </UiButton>
           <div class="br hide"></div>
-          <div class="desc-links _row">
+          <div class="desc-links _row _d">
             <TheLinks />
           </div>
           <div class="mob-links">
@@ -27,7 +27,7 @@
               </div>
             </UiButton>
             <Transition name="main" mode="out-in">
-              <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row">
+              <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row _d">
                 <TheLinks />
               </div>
             </Transition>

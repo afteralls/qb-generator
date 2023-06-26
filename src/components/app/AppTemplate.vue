@@ -3,27 +3,27 @@
     <RouterLink
       :to="(path as string)"
       :title="title"
-      :class="['template', '_center', '_column', '_ui', isExample ? 'ex' : '']"
+      :class="['template', '_center', '_col _d', '_ui', isExample ? 'ex' : '']"
     >
-      <div v-if="!isCreate" class="info _column _center">
+      <div v-if="!isCreate" class="info _col _d _center">
         <UiIcon size="md" v-if="mode === 'qr'"><QrIcon /></UiIcon>
         <UiIcon size="md" v-else><BarcodeIcon /></UiIcon>
-        <div class="_s-column">
+        <div class="_col _s">
           <UiText type="small" :text="$i18n('template.name')" />
           <UiText type="h3" :text="name || $i18n('template.exName')" />
         </div>
-        <div class="_s-column">
+        <div class="_col _s">
           <UiText type="small" :text="$i18n('template.desc')" />
           <UiText :text="desc || $i18n('template.exDesc')" />
         </div>
         <UiText type="small" :text="(date as string)" />
       </div>
-      <div v-else class="create _center _column">
+      <div v-else class="create _center _col _d">
         <UiIcon size="lg"><CreateIcon /></UiIcon>
         <UiText type="h3" :text="$i18n('template.create')" />
       </div>
     </RouterLink>
-    <div v-if="!isExample && !isCreate" class="actions _row">
+    <div v-if="!isExample && !isCreate" class="actions _row _d">
       <UiButton @trigger="shareLink" mode="icon" :title="$i18n('template.share')" class="share">
         <ShareIcon />
       </UiButton>

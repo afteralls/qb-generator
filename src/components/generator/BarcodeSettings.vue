@@ -1,7 +1,7 @@
 <template>
-  <div class="_column settings">
+  <div class="_col _d settings">
     <div class="_grid cont-g">
-      <div class="_s-column">
+      <div class="_col _s">
         <UiText type="small" :text="$i18n('generator.set.content')" />
         <div class="action-wp">
           <UiInput
@@ -20,13 +20,13 @@
           </div>
         </div>
       </div>
-      <div class="_s-column">
+      <div class="_col _s">
         <UiText type="small" :text="$i18n('generator.set.quantity')" />
         <UiInput name="quantity" :length="3" v-model="brc.set.quantity" placeholder="1-999" />
       </div>
     </div>
     <div class="_grid ex-g">
-      <div class="_s-column">
+      <div class="_col _s">
         <UiText type="small" :text="$i18n('generator.set.example')" />
         <div class="example _center _ui">
           <UiText v-if="!brc.set.isCorrect" type="small" :text="$i18n('generator.set.invalid')" />
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="_grid">
-        <div class="_s-column">
+        <div class="_col _s">
           <UiText type="small" :text="$i18n('generator.set.bg')" />
           <UiInput
             name="bgColor"
@@ -49,7 +49,7 @@
           name="showData"
           :label="$i18n('generator.set.showTxt')"
         />
-        <div class="_s-column">
+        <div class="_col _s">
           <UiText type="small" :text="$i18n('generator.set.color')" />
           <UiInput
             name="codeColor"

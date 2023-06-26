@@ -1,23 +1,29 @@
 <template>
   <div class="_wrapper">
-    <section class="examples">
-      <div class="example _ui _column" v-for="(standart, idx) in curLangStandarts" :key="idx">
-        <img :src="getImageUrl(standart.import)" alt="Barcode example" />
-        <UiText type="header" mode="md" :text="standart.name" />
-        <div class="info">
-          <UiText type="small" :text="$i18n('library.desc')" />
-          <UiText :text="standart.desc" />
-        </div>
-        <div class="info">
-          <UiText type="small" :text="$i18n('library.structure')" />
-          <ol>
-            <li v-for="(item, id) in standart.info" :key="id">
-              <UiText :text="item" />
-            </li>
-          </ol>
-        </div>
+    <div class="_col _l">
+      <div class="mw _col _d">
+        <UiText type="h2" mode="lg" :text="$i18n('library.title')" />
+        <UiText :text="$i18n('library.info')" />
       </div>
-    </section>
+      <section class="examples">
+        <div class="example _ui _col _d" v-for="(standart, idx) in curLangStandarts" :key="idx">
+          <img :src="getImageUrl(standart.import)" alt="Barcode example" />
+          <UiText type="header" mode="md" :text="standart.name" />
+          <div class="info">
+            <UiText type="small" :text="$i18n('library.desc')" />
+            <UiText :text="standart.desc" />
+          </div>
+          <div class="info">
+            <UiText type="small" :text="$i18n('library.structure')" />
+            <ol>
+              <li v-for="(item, id) in standart.info" :key="id">
+                <UiText :text="item" />
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
@@ -77,5 +83,9 @@ const getImageUrl = (name: string) => {
       max-height: toRem(150);
     }
   }
+}
+
+.mw {
+  max-width: toRem(700);
 }
 </style>

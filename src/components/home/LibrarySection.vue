@@ -1,8 +1,8 @@
 <template>
-  <section class="library _ui _row">
-    <div class="info _column">
+  <section class="library _ui _row _l">
+    <div class="info _col _d">
       <UiText type="h2" class="md" :text="$i18n('home.libTitle')" />
-      <UiText class="wp" :text="$i18n('home.libDesc')" />
+      <UiText mode="wp" :text="$i18n('home.libDesc')" />
       <UiButton :title="$i18n('home.libLinkTitle')" type="link" to="/library">
         <UiIcon><InfoIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('home.gtLib')" />
@@ -18,7 +18,6 @@
   justify-content: flex-end;
   text-align: right;
   padding: calc(var(--space) * 2);
-  gap: calc(var(--space) * 2);
 
   @media (max-width: $sm) {
     flex-direction: column-reverse;

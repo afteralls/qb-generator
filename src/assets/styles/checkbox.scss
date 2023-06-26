@@ -13,8 +13,10 @@
     width: toRem(60);
     height: auto;
     position: absolute;
-    left: toRem(1);
+    left: toRem(-1);
+    bottom: toRem(-2);
     opacity: 0;
+    transform: translateY(toRem(30));
     visibility: hidden;
   }
 }
@@ -31,6 +33,7 @@ input {
     svg {
       opacity: 1;
       visibility: visible;
+      transform: translateY(0);
     }
   }
 

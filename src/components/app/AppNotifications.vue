@@ -1,7 +1,7 @@
 <template>
-  <div class="notifications _column">
+  <div class="notifications _col _d">
     <TransitionGroup name="notf">
-      <div v-for="item in notifications" :key="item" class="notification _s-row">
+      <div v-for="item in notifications" :key="item" class="notification _row _s">
         <UiIcon><InfoIcon /></UiIcon>
         <UiText type="small" :text="$i18n(item)" />
       </div>
@@ -34,6 +34,10 @@ const { notifications } = useNotificationStore()
   padding: 0 var(--space);
   height: toRem(45);
   border-radius: var(--br-rad);
+  // color: darkred;
+  // svg {
+  //   fill: darkred;
+  // }
 }
 
 .notf {

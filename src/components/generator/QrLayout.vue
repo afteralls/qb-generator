@@ -1,6 +1,6 @@
 <template>
   <div class="_grid qr-wrapper">
-    <div class="ex _s-column">
+    <div class="ex _col _s">
       <UiText type="small" :text="$i18n('generator.preview')" />
       <div class="qr _center _ui">
         <UiText
@@ -13,8 +13,8 @@
         </div>
       </div>
     </div>
-    <div class="set _column">
-      <div class="_s-column">
+    <div class="set _col _d">
+      <div class="_col _s">
         <UiText type="small" :text="$i18n('generator.set.content')" />
         <UiInput
           name="qr-content"
@@ -22,7 +22,7 @@
           :placeholder="$i18n('generator.qr.content')"
         />
       </div>
-      <div class="_s-column">
+      <div class="_col _s">
         <UiText type="small" :text="$i18n('generator.export.fileName')" />
         <UiInput name="exportName" v-model="exportName" placeholder="my-qr" />
       </div>
@@ -49,9 +49,9 @@
         @templateModal:close="showTemplateModal = !showTemplateModal"
       />
     </div>
-    <div class="tip _column">
+    <div class="tip _col _d">
       <UiIcon size="md"><InfoIcon /></UiIcon>
-      <div class="info _column">
+      <div class="info _col _d">
         <UiText type="h4" :text="$i18n('generator.qr.tipTitle')" />
         <UiText :text="$i18n('generator.qr.tipDesc')" />
       </div>

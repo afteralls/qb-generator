@@ -1,6 +1,6 @@
 <template>
   <UiModal :isOpen="model" @modal:close="$emit('templateModal:close')">
-    <div class="example _row">
+    <div class="example _row _d">
       <AppTemplate
         :mode="cpb.mode"
         :name="tempName"
@@ -8,8 +8,8 @@
         :date="date"
         :isExample="true"
       />
-      <div class="_column">
-        <div class="_s-column">
+      <div class="_col _d">
+        <div class="_col _s">
           <UiText type="small" :text="$i18n('generator.modal.tempName')" />
           <UiInput
             name="tempName"
@@ -18,7 +18,7 @@
             :placeholder="$i18n('generator.modal.tempName_ph')"
           />
         </div>
-        <div class="_s-column">
+        <div class="_col _s">
           <UiText type="small" :text="$i18n('generator.modal.tempDesc')" />
           <UiInput
             name="tempDesc"
@@ -59,7 +59,6 @@ const saveTemplate = () => {
 
   // console.log('href:', window.location.href)
   // console.log('path:', router.options.history.location)
-  
 
   tempName.value = ''
   tempDesc.value = ''
@@ -69,7 +68,7 @@ const saveTemplate = () => {
 
 <style scoped lang="scss">
 .example {
-  ._column {
+  ._col _d {
     width: 100%;
   }
 

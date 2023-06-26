@@ -1,7 +1,7 @@
 <template>
   <div class="_grid export">
-    <div class="_s-column">
-      <div class="_s-row">
+    <div class="_col _s">
+      <div class="_row _s">
         <UiIcon size="min"><InfoIcon /></UiIcon>
         <UiText type="small" :text="$i18n('generator.export.tip')" />
       </div>
@@ -14,13 +14,13 @@
         <UiText type="h4" :text="$i18n('generator.export.generate')" />
       </UiButton>
     </div>
-    <div class="_s-column">
+    <div class="_col _s">
       <UiText type="small" :text="$i18n('generator.export.format')" />
-      <div class="_row exp">
+      <div class="_row _d exp">
         <UiRadio :options="exportFormats" name="exportFormat" v-model="exportFormat" />
       </div>
     </div>
-    <div class="_s-column">
+    <div class="_col _s">
       <UiText
         type="small"
         :text="qFlag ? $i18n('generator.export.fileName') : $i18n('generator.export.arcName')"

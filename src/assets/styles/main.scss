@@ -91,33 +91,31 @@ body {
   align-items: center;
 }
 
-._row {
-  display: flex;
-  align-items: center;
-  gap: var(--space);
-}
-
-._s-row {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--space) / 2);
-}
-
 ._grid {
   display: grid;
   gap: var(--space);
 }
 
-._column {
+._row {
+  display: flex;
+  align-items: center;
+}
+
+._col {
   display: flex;
   flex-direction: column;
+}
+
+._s {
+  gap: calc(var(--space) / 2);
+}
+
+._d {
   gap: var(--space);
 }
 
-._s-column {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--space) / 2);
+._l {
+  gap: calc(var(--space) * 2);
 }
 
 ._ui {
