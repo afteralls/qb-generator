@@ -1,4 +1,5 @@
 <template>
+  <AppHotkeys v-model="hotkeyModal" />
   <div class="header-wrapper bg-lg">
     <div class="_container">
       <nav class="header _row _d">
@@ -40,9 +41,11 @@
 
 <script setup lang="ts">
 const cpb = useComposableStore()
-const route = useRoute()
+const router = useRouter()
+const hotkeyModal = ref<boolean>(false)
 const i18n = inject('func') as LangFunc
 
+const { shift, h, g, l } = useMagicKeys()
 const showLinks = ref<boolean>(false)
 const linkTarget = ref<HTMLDivElement | null>(null)
 
@@ -52,7 +55,13 @@ onClickOutside(linkTarget, (evt) => {
   }
 })
 
-const titleLangHandler = () => (document.title = i18n(route.name as string))
+watchEffect(() => {
+  if (shift.value && h.value) hotkeyModal.value = !hotkeyModal.value
+  else if (shift.value && g.value) router.push('/generator')
+  else if (shift.value && l.value) router.push('/library')
+})
+
+const titleLangHandler = () => (document.title = i18n(router.currentRoute.value.name as string))
 </script>
 
 <style scoped lang="scss">

@@ -34,4 +34,5 @@ declare global {
   const useStorage: typeof import('@vueuse/core')['useStorage']
   const useUrlSearchParams: typeof import('@vueuse/core')['useUrlSearchParams']
   const watch: typeof import('vue')['watch']
+  const watchEffect: typeof import('vue')['watchEffect']
 }

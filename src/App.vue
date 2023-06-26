@@ -1,7 +1,6 @@
 <template>
   <TheHeader />
   <AppNotifications />
-  <UiModal :is-open="hotkeyModal" />
   <div class="_container">
     <RouterView v-slot="{ Component }">
       <Transition name="main" mode="out-in">
@@ -13,7 +12,6 @@
 
 <script setup lang="ts">
 const router = useRouter()
-const hotkeyModal = ref<boolean>(false)
 const i18n = inject('func') as LangFunc
 
 router.beforeEach((to, _, next) => {

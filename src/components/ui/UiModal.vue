@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <Transition name="up" mode="out-in">
-      <div v-if="isOpen" class="modal _center">
+      <div v-if="modelValue" class="modal _center">
         <div ref="windowTarget" class="window">
           <slot />
         </div>
@@ -11,12 +11,12 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ isOpen: boolean }>()
-const emit = defineEmits<{ (evt: 'modal:close'): void }>()
+const props = defineProps<{ modelValue: boolean }>()
+const emit = defineEmits<{ (evt: 'update:modelValue', val: boolean): void }>()
 
 const windowTarget = ref<HTMLDivElement | null>(null)
 onClickOutside(windowTarget, () => {
-  emit('modal:close')
+  emit('update:modelValue', !props.modelValue)
 })
 </script>
 

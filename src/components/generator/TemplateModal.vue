@@ -1,5 +1,5 @@
 <template>
-  <UiModal :isOpen="model" @modal:close="$emit('templateModal:close')">
+  <UiModal :model-value="modelValue" @update:model-value="$emit('update:modelValue', !modelValue)">
     <div class="example _row _d">
       <AppTemplate
         :mode="cpb.mode"
@@ -37,12 +37,11 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ model: boolean }>()
-const emit = defineEmits<{ (evt: 'templateModal:close'): void }>()
+const props = defineProps<{ modelValue: boolean }>()
+const emit = defineEmits<{ (evt: 'update:modelValue', val: boolean): void }>()
 
 const cpb = useComposableStore()
 const router = useRouter()
-
 const tempName = ref<string>('')
 const tempDesc = ref<string>('')
 const date = new Date().toLocaleDateString()
@@ -62,7 +61,7 @@ const saveTemplate = () => {
 
   tempName.value = ''
   tempDesc.value = ''
-  emit('templateModal:close')
+  emit('update:modelValue', !props.modelValue)
 }
 </script>
 

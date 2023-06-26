@@ -6,6 +6,7 @@
         <div class="action-wp">
           <UiInput
             name="content"
+            data-content
             v-model="brc.set.content"
             :placeholder="$i18n(`library.standarts.${brc.set.curStandart.codeName}.ph`)"
             :length="brc.set.curStandart.max"
@@ -15,7 +16,7 @@
               :inWp="true"
               :options="getStandartArr"
               :modelValue="brc.set.curStandart.name"
-              @update:modelValue="(idx: number) => brc.set.standart = idx"
+              @update:modelValue="formatHandler"
             />
           </div>
         </div>
@@ -64,9 +65,20 @@
 
 <script setup lang="ts">
 const brc = useBarcodeStore()
+const contentTarget = ref<HTMLInputElement | null>(null)
+
 const getStandartArr = computed<string[]>(() =>
   brc.standarts.map((standart: Standart) => standart.name)
 )
+
+const formatHandler = (idx: number) => {
+  brc.set.standart = idx
+  contentTarget.value!.focus()
+}
+
+onMounted(() => {
+  contentTarget.value = document.querySelector('[data-content]')
+})
 </script>
 
 <style scoped lang="scss">

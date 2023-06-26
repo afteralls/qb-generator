@@ -18,7 +18,17 @@ export default defineConfig({
     AutoImport({
       imports: [
         {
-          vue: ['ref', 'computed', 'watch', 'reactive', 'onMounted', 'onBeforeMount', 'h', 'inject'],
+          vue: [
+            'ref',
+            'computed',
+            'watch',
+            'reactive',
+            'onMounted',
+            'onBeforeMount',
+            'h',
+            'inject',
+            'watchEffect'
+          ],
           'vue-router': ['useRouter', 'RouterView', 'useRoute'],
           pinia: ['defineStore'],
           '@vueuse/core': [
@@ -33,9 +43,7 @@ export default defineConfig({
             'useElementSize',
             'useMagicKeys'
           ],
-          '@vueuse/integrations': [
-            'useQRCode'
-          ]
+          '@vueuse/integrations': ['useQRCode']
         }
       ],
       dts: './types/imports.d.ts',
