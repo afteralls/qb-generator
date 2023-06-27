@@ -85,11 +85,12 @@ p {
     font-size: toRem(20);
 
     @media (max-width: $sm) {
-      font-size: toRem(18);
+      font-weight: bold;
+      font-size: toRem(16);
     }
 
     @media (max-width: $zf) {
-      font-size: toRem(16);
+      font-weight: normal;
     }
   }
 

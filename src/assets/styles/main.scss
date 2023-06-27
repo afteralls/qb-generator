@@ -63,7 +63,7 @@ body {
   gap: 8rem;
 
   @media (max-width: $sm) {
-    margin: calc(toRem(57) + 4rem) auto 2rem auto;
+    margin: calc(toRem(70) + 4rem) auto 2rem auto;
     gap: 4rem;
   }
 }

@@ -17,22 +17,8 @@
             <TranslateIcon />
           </UiButton>
           <div class="br hide"></div>
-          <div class="desc-links _row _d">
-            <TheLinks />
-          </div>
-          <div class="mob-links">
-            <UiButton @trigger="showLinks = !showLinks" :title="$i18n('header.link')" mode="icon">
-              <LinksIcon />
-              <div :class="{ 'link-arrow': true, act: showLinks }">
-                <UiIcon size="min"><ArrowIcon /></UiIcon>
-              </div>
-            </UiButton>
-            <Transition name="main" mode="out-in">
-              <div ref="linkTarget" v-if="showLinks" class="hidden-links _ui _row _d">
-                <TheLinks />
-              </div>
-            </Transition>
-          </div>
+          <div class="desc-links _row _d"><TheLinks /></div>
+          <MobLinks />
         </div>
       </nav>
     </div>
@@ -46,14 +32,6 @@ const hotkeyModal = ref<boolean>(false)
 const i18n = inject('func') as LangFunc
 
 const { shift, h, g, l } = useMagicKeys()
-const showLinks = ref<boolean>(false)
-const linkTarget = ref<HTMLDivElement | null>(null)
-
-onClickOutside(linkTarget, (evt) => {
-  if (!(evt.target as HTMLElement).closest('.mob-links')) {
-    showLinks.value = false
-  }
-})
 
 watchEffect(() => {
   if (shift.value && h.value) hotkeyModal.value = !hotkeyModal.value
@@ -88,10 +66,6 @@ const titleLangHandler = () => (document.title = i18n(router.currentRoute.value.
   width: 100%;
   z-index: 5;
   justify-content: space-between;
-
-  @media (max-width: $sm) {
-    height: toRem(57);
-  }
 }
 
 .options {
@@ -115,36 +89,5 @@ const titleLangHandler = () => (document.title = i18n(router.currentRoute.value.
   @media (max-width: $sm) {
     display: none;
   }
-}
-
-.mob-links {
-  display: none;
-
-  @media (max-width: $sm) {
-    display: flex;
-  }
-}
-
-.link-arrow {
-  position: absolute;
-  bottom: toRem(12);
-  right: toRem(12);
-
-  svg {
-    transition: var(--tr);
-  }
-
-  &.act {
-    svg {
-      transform: rotate(180deg);
-    }
-  }
-}
-
-.hidden-links {
-  position: fixed;
-  right: var(--space);
-  top: toRem(73);
-  padding: var(--space);
 }
 </style>
