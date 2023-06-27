@@ -17,7 +17,6 @@
     bottom: toRem(-2);
     opacity: 0;
     transform: translateY(toRem(30));
-    visibility: hidden;
   }
 }
 
@@ -31,8 +30,8 @@ input {
 
   &:checked + .box {
     svg {
+      animation: bounce 0.5s ease;
       opacity: 1;
-      visibility: visible;
       transform: translateY(0);
     }
   }
@@ -40,5 +39,19 @@ input {
   &:hover + .box,
   &:focus + .box {
     border-color: var(--m-h);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(toRem(30));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(toRem(-5));
+  }
+  100% {
+    transform: translateY(0);
   }
 }

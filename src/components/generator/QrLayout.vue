@@ -44,10 +44,7 @@
           <UiText type="h4" :text="$i18n('generator.export.saveTempBtn')" />
         </UiButton>
       </div>
-      <TemplateModal
-        :model="showTemplateModal"
-        @templateModal:close="showTemplateModal = !showTemplateModal"
-      />
+      <TemplateModal v-model="showTemplateModal" />
     </div>
     <div class="tip _col _d">
       <UiIcon size="md"><InfoIcon /></UiIcon>

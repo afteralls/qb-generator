@@ -3,6 +3,7 @@
     <RouterLink
       :to="(path as string)"
       :title="title"
+      :tabindex="isExample ? -1 : ''"
       :class="['template', '_center', '_col _d', '_ui', isExample ? 'ex' : '']"
     >
       <div v-if="!isCreate" class="info _col _d _center">
@@ -85,6 +86,10 @@ const deleteTemplate = () => {
 <style scoped lang="scss">
 .template-wp {
   position: relative;
+
+  @media (max-width: $sm) {
+    width: 100%;
+  }
 }
 
 .template {
@@ -106,6 +111,11 @@ const deleteTemplate = () => {
 
 .ex {
   pointer-events: none;
+
+  @media (max-width: $sm) {
+    width: 100%;
+    min-width: 100%;
+  }
 }
 
 .info {

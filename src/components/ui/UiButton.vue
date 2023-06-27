@@ -5,7 +5,9 @@
     :class="{ btn: mode === 'btn', icon: mode === 'icon', disabled: disabled, active: active }"
     :title="title"
     @click="$emit('trigger')"
-  ><slot /></button>
+  >
+    <slot />
+  </button>
   <RouterLink v-else :class="mode" :to="(to as string)" :title="title">
     <slot />
   </RouterLink>
@@ -80,8 +82,12 @@ button.icon {
 }
 
 .disabled {
-  pointer-events: none;
+  cursor: not-allowed;
   filter: brightness(0.5);
+
+  &:hover {
+    border: toRem(3) solid var(--btn-bg-m);
+  }
 }
 
 .active {

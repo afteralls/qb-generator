@@ -42,7 +42,7 @@ export default {
       name: 'Name',
       desc: 'Description',
       exName: 'My Template',
-      exDesc: 'Important info (or not...)',
+      exDesc: 'No description',
       create: 'Create a new template',
       share: 'Share',
       delete: 'Delete'
@@ -81,8 +81,8 @@ export default {
         tempName_ph: 'Name (12)',
         tempDesc: 'Template Description',
         tempDesc_ph: 'Important info (or not...)',
-        cancelBtn: 'Cancel',
         saveBtn: 'Save',
+        cancelBtn: 'Cancel'
       },
       qr: {
         content: 'Anything...',
@@ -208,7 +208,7 @@ export default {
       name: 'Название',
       desc: 'Описание',
       exName: 'Пример названия',
-      exDesc: 'Пример описания',
+      exDesc: 'Описание отсутствует',
       create: 'Создать новый шаблон',
       share: 'Поделиться',
       delete: 'Удалить'

@@ -17,6 +17,7 @@ declare module 'vue' {
     BarcodeLayout: typeof import('./../src/components/generator/BarcodeLayout.vue')['default']
     BarcodePreview: typeof import('./../src/components/generator/BarcodePreview.vue')['default']
     BarcodeSettings: typeof import('./../src/components/generator/BarcodeSettings.vue')['default']
+    CancelIcon: typeof import('./../src/assets/svg/CancelIcon.vue')['default']
     CheckIcon: typeof import('./../src/assets/svg/CheckIcon.vue')['default']
     CreateIcon: typeof import('./../src/assets/svg/CreateIcon.vue')['default']
     DarkModeIcon: typeof import('./../src/assets/svg/DarkModeIcon.vue')['default']
