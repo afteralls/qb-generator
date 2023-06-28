@@ -1,9 +1,9 @@
 <template>
-  <div :class="['i', props.size]"><slot /></div>
+  <div :class="['i', size]"><slot /></div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ size?: 'min' | 'sm' | 'md' | 'lg' }>()
+defineProps<{ size?: 'min' | 'sm' | 'md' | 'lg' }>()
 </script>
 
 <style lang="scss">
@@ -17,7 +17,7 @@ const props = defineProps<{ size?: 'min' | 'sm' | 'md' | 'lg' }>()
   svg {
     width: 100%;
     height: 100%;
-    transition: all 0.5s ease;
+    transition: fill 0.5s ease;
     fill: var(--txt-m);
   }
 

@@ -1,14 +1,14 @@
 <template>
-  <div class="_row _d">
-    <div class="_row _s">
-      <div v-for="(keyName, idx) in keys" :key="idx" class="_row _s _center">
-        <div class="key _center"><UiText type="h3" :text="keyName" /></div>
+  <UiBlock layout="row">
+    <UiBlock layout="row" mode="sm">
+      <UiBlock :center="true" layout="row" mode="sm" v-for="(keyName, idx) in keys" :key="idx">
+        <UiBlock :center="true" class="key"><UiText type="h3" :text="keyName" /></UiBlock>
         <UiText v-if="idx !== keys.length - 1" type="h3" text="+" />
-      </div>
-    </div>
+      </UiBlock>
+    </UiBlock>
     <UiText type="h3" text="—" />
     <UiText type="h4" :text="tip" />
-  </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">

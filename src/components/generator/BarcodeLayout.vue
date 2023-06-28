@@ -1,9 +1,9 @@
 <template>
-  <div class="barcode-wrapper">
+  <section class="barcode-wrapper">
     <BarcodeSettings />
     <BarcodePreview />
     <BarcodeExport />
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">

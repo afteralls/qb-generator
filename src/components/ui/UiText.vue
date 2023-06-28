@@ -1,3 +1,5 @@
+<template><Text /></template>
+
 <script setup lang="ts">
 const props = withDefaults(
   defineProps<{
@@ -6,15 +8,11 @@ const props = withDefaults(
     text: string
     for?: string
   }>(),
-  { type: 'p' }
+  { type: 'small' }
 )
 
-const CreateText = () => h(props.type, { class: props.mode, for: props.for }, props.text)
+const Text = () => h(props.type, { class: props.mode, for: props.for }, props.text)
 </script>
-
-<template>
-  <CreateText />
-</template>
 
 <style scoped lang="scss">
 * {

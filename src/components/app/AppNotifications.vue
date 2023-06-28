@@ -1,12 +1,18 @@
 <template>
-  <div class="notifications _col _d">
+  <UiBlock layout="col" class="notifications">
     <TransitionGroup name="notf">
-      <div v-for="item in notifications" :key="item" class="notification _row _s">
+      <UiBlock
+        layout="row"
+        mode="sm"
+        v-for="item in notifications"
+        :key="item"
+        class="notification"
+      >
         <UiIcon><InfoIcon /></UiIcon>
-        <UiText type="small" :text="$i18n(item)" />
-      </div>
+        <UiText :text="$i18n(item)" />
+      </UiBlock>
     </TransitionGroup>
-  </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">
@@ -18,13 +24,9 @@ const { notifications } = useNotificationStore()
   align-items: flex-end;
   margin: var(--space);
   position: fixed;
-  top: toRem(70);
+  top: var(--header-height);
   right: 0;
   z-index: 10;
-
-  @media (max-width: $sm) {
-    top: toRem(57);
-  }
 }
 
 .notification {
@@ -34,10 +36,6 @@ const { notifications } = useNotificationStore()
   padding: 0 var(--space);
   height: toRem(45);
   border-radius: var(--br-rad);
-  // color: darkred;
-  // svg {
-  //   fill: darkred;
-  // }
 }
 
 .notf {

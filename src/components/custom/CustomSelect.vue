@@ -1,7 +1,7 @@
 <template>
   <div :class="{ select: true, wp: inWp }">
     <UiButton ref="selectTarget" title="" class="selected md" @trigger="isOpen = !isOpen">
-      <UiText type="small" :text="modelValue" />
+      <UiText :text="modelValue" />
       <div :class="{ rotate: isOpen }">
         <UiIcon><ArrowIcon /></UiIcon>
       </div>
@@ -15,7 +15,7 @@
           :data-idx="idx"
           :title="option"
         >
-          <UiText type="small" :text="option" />
+          <UiText :text="option" />
         </UiButton>
       </div>
     </Transition>

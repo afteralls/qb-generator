@@ -1,6 +1,6 @@
 <template>
   <UiModal :model-value="modelValue" @update:model-value="$emit('update:modelValue', !modelValue)">
-    <div class="example _row _d space">
+    <UiBlock layout="row" class="example space">
       <AppTemplate
         :mode="cpb.mode"
         :name="tempName"
@@ -8,28 +8,28 @@
         :date="date"
         :isExample="true"
       />
-      <div class="_col _d space">
-        <div class="_col _d">
-          <div class="_col _s">
-            <UiText type="small" :text="$i18n('generator.modal.tempName')" />
+      <UiBlock layout="col" class="space">
+        <UiBlock layout="col">
+          <UiBlock layout="col" mode="sm">
+            <UiText :text="$i18n('generator.modal.tempName')" />
             <UiInput
               name="tempName"
               v-model="tempName"
               :length="11"
               :placeholder="$i18n('generator.modal.tempName_ph')"
             />
-          </div>
-          <div class="_col _s">
-            <UiText type="small" :text="$i18n('generator.modal.tempDesc')" />
+          </UiBlock>
+          <UiBlock layout="col" mode="sm">
+            <UiText :text="$i18n('generator.modal.tempDesc')" />
             <UiInput
               name="tempDesc"
               v-model="tempDesc"
               :length="12"
               :placeholder="$i18n('generator.modal.tempDesc_ph')"
             />
-          </div>
-        </div>
-        <div class="_grid act-g">
+          </UiBlock>
+        </UiBlock>
+        <UiBlock layout="grid" mode="d2">
           <UiButton
             :title="$i18n('generator.modal.saveBtn')"
             @trigger="saveTemplate"
@@ -45,9 +45,9 @@
             <UiIcon><CancelIcon /></UiIcon>
             <UiText type="h4" :text="$i18n('generator.modal.cancelBtn')" />
           </UiButton>
-        </div>
-      </div>
-    </div>
+        </UiBlock>
+      </UiBlock>
+    </UiBlock>
   </UiModal>
 </template>
 
@@ -82,21 +82,12 @@ const saveTemplate = () => {
 
 <style scoped lang="scss">
 .example {
-  ._col,
-  _s {
+  .col {
     width: 100%;
   }
 
   @media (max-width: $sm) {
     flex-direction: column;
-  }
-}
-
-.act-g {
-  grid-template-columns: repeat(2, 1fr);
-
-  @media (max-width: $mob) {
-    grid-template-columns: 1fr;
   }
 }
 

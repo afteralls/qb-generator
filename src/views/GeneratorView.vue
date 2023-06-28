@@ -1,10 +1,8 @@
 <template>
-  <div class="_wrapper">
-    <div class="layout _col _l">
-      <div class="mw _col _d">
-        <UiText type="h2" mode="lg" :text="$i18n('route.generator')" />
-      </div>
-      <div class="_grid act">
+  <UiBlock layout="wrapper">
+    <UiBlock layout="col" mode="lg" class="layout">
+      <UiText type="h2" mode="lg" :text="$i18n('route.generator')" />
+      <UiBlock layout="grid" mode="s2">
         <UiButton
           :title="$i18n('generator.cBarcode')"
           @trigger=";(cpb.mode = 'barcode'), queryHandler()"
@@ -21,13 +19,13 @@
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="h4" text="QR" />
         </UiButton>
-      </div>
+      </UiBlock>
       <Transition name="main" mode="out-in">
         <BarcodeLayout v-if="cpb.mode === 'barcode'" />
         <QrLayout v-else />
       </Transition>
-    </div>
-  </div>
+    </UiBlock>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">
@@ -51,13 +49,5 @@ onBeforeMount(() => {
 .layout {
   width: 100%;
   align-items: flex-start;
-}
-
-.act {
-  grid-template-columns: 1fr 1fr;
-
-  @media (max-width: $sm) {
-    width: 100%;
-  }
 }
 </style>

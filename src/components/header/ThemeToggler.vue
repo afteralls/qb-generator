@@ -1,12 +1,12 @@
 <template>
   <div :title="isDark ? $i18n('header.tL') : $i18n('header.tD')" class="toggler">
     <input v-model="isDark" name="theme" type="checkbox" />
-    <div class="circle _center">
+    <UiBlock :center="true" class="circle">
       <Transition name="slide" mode="out-in">
         <UiIcon v-if="isDark" size="min"><DarkModeIcon /></UiIcon>
         <UiIcon v-else size="min"><LightModeIcon /></UiIcon>
       </Transition>
-    </div>
+    </UiBlock>
   </div>
 </template>
 

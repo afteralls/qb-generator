@@ -1,15 +1,15 @@
 <template>
-  <section class="library _ui _row _l">
-    <div class="info _col _d">
+  <UiBlock type="section" layout="row" :wp="true" mode="lg" class="library">
+    <UiBlock layout="col" class="info">
       <UiText type="h2" class="md" :text="$i18n('home.libTitle')" />
-      <UiText mode="wp" :text="$i18n('home.libDesc')" />
-      <UiButton :title="$i18n('home.libLinkTitle')" type="link" to="/library">
+      <UiText type="p" mode="wp" :text="$i18n('home.libDesc')" />
+      <UiButton :title="$i18n('home.libLinkTitle')" to="/library">
         <UiIcon><InfoIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('home.gtLib')" />
       </UiButton>
-    </div>
+    </UiBlock>
     <div class="banner"><QrIcon /></div>
-  </section>
+  </UiBlock>
 </template>
 
 <style scoped lang="scss">

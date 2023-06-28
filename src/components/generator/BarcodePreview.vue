@@ -1,10 +1,10 @@
 <template>
-  <div class="_col _s preview">
+  <UiBlock layout="col" mode="sm" class="preview">
     <UiText type="small" :text="$i18n('generator.preview')" />
     <div class="preview-wrapper">
-      <div v-if="!brc.set.generated" class="_center tip">
+      <UiBlock :center="true" v-if="!brc.set.generated" class="tip">
         <UiText type="small" :text="$i18n('generator.previewInfo')" />
-      </div>
+      </UiBlock>
       <div v-else class="table-wrapper">
         <table>
           <tr>
@@ -20,7 +20,7 @@
         </table>
       </div>
     </div>
-  </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">

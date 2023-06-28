@@ -1,11 +1,11 @@
 <template>
   <UiModal :model-value="modelValue" @update:model-value="$emit('update:modelValue', !modelValue)">
-    <div class="_col _d">
+    <UiBlock layout="col">
       <UiText type="h2" :text="'По всему приложению'" />
-      <div class="_col _d">
-        <UiKeys :keys="['Shift', 'H']" tip="Показать возможные варианты HotKeys" />
-      </div>
-    </div>
+      <UiBlock layout="col">
+        <CustomKeys :keys="['Shift', 'H']" tip="Показать возможные варианты HotKeys" />
+      </UiBlock>
+    </UiBlock>
   </UiModal>
 </template>
 

@@ -1,16 +1,16 @@
 <template>
-  <div class="_wrapper">
-    <div class="not-found _row _d _center">
+  <UiBlock layout="wrapper">
+    <UiBlock type="section" layout="row" :center="true" class="not-found">
       <div class="banner"><NotFoundIcon /></div>
-      <div class="_col _d info">
+      <UiBlock layout="col" class="info">
         <UiText type="h2" mode="lg" :text="$i18n('notfound.title')" />
-        <UiButton type="link" to="/" :title="$i18n('notfound.linkTitle')">
+        <UiButton to="/" :title="$i18n('notfound.linkTitle')">
           <UiIcon><HomeIcon /></UiIcon>
           <UiText type="h4" :text="$i18n('notfound.btn')" />
         </UiButton>
-      </div>
-    </div>
-  </div>
+      </UiBlock>
+    </UiBlock>
+  </UiBlock>
 </template>
 
 <style scoped lang="scss">

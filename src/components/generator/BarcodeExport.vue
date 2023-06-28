@@ -1,10 +1,10 @@
 <template>
-  <div class="_grid export">
-    <div class="_col _s">
-      <div class="_row _s">
+  <UiBlock layout="grid" class="export">
+    <UiBlock layout="col" mode="sm">
+      <UiBlock layout="row" mode="sm">
         <UiIcon size="min"><InfoIcon /></UiIcon>
-        <UiText type="small" :text="$i18n('generator.export.tip')" />
-      </div>
+        <UiText :text="$i18n('generator.export.tip')" />
+      </UiBlock>
       <UiButton
         :title="$i18n('generator.export.generate')"
         :disabled="!brc.set.isCorrect"
@@ -13,16 +13,15 @@
         <UiIcon><GenerateIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.generate')" />
       </UiButton>
-    </div>
-    <div class="_col _s">
+    </UiBlock>
+    <UiBlock layout="col" mode="sm">
       <UiText type="small" :text="$i18n('generator.export.format')" />
-      <div class="_row _d exp">
-        <UiRadio :options="exportFormats" name="exportFormat" v-model="exportFormat" />
-      </div>
-    </div>
-    <div class="_col _s">
+      <UiBlock layout="row" class="exp">
+        <CustomRadio :options="exportFormats" name="exportFormat" v-model="exportFormat" />
+      </UiBlock>
+    </UiBlock>
+    <UiBlock layout="col" mode="sm">
       <UiText
-        type="small"
         :text="qFlag ? $i18n('generator.export.fileName') : $i18n('generator.export.arcName')"
       />
       <UiInput
@@ -30,8 +29,8 @@
         v-model="exportName"
         :placeholder="qFlag ? 'barcode-one' : 'my-collection (etc.)'"
       />
-    </div>
-    <div class="_grid act-g">
+    </UiBlock>
+    <UiBlock layout="grid" mode="d2">
       <UiButton
         :title="$i18n('generator.export.downloadBtn')"
         :disabled="!brc.set.generated"
@@ -48,9 +47,9 @@
         <UiIcon><CreateIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('generator.export.saveTempBtn')" />
       </UiButton>
-    </div>
+    </UiBlock>
     <TemplateModal v-model="showTemplateModal" />
-  </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">

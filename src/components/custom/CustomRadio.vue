@@ -1,5 +1,5 @@
 <template>
-  <div v-for="option in options" :key="option" class="checkbox _row _s">
+  <UiBlock layout="row" mode="sm" v-for="option in options" :key="option" class="checkbox">
     <input
       type="radio"
       :name="name"
@@ -7,11 +7,11 @@
       :checked="modelValue === option"
       @change="$emit('update:modelValue', option)"
     />
-    <div class="box _center _ui">
+    <UiBlock :center="true" :wp="true" class="box">
       <UiIcon><CheckIcon /></UiIcon>
-    </div>
+    </UiBlock>
     <UiText type="label" :for="option" :text="option.toUpperCase()" />
-  </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">

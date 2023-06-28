@@ -1,8 +1,8 @@
 <template>
-  <div class="_col _d settings">
-    <div class="_grid cont-g">
-      <div class="_col _s">
-        <UiText type="small" :text="$i18n('generator.set.content')" />
+  <UiBlock layout="col" class="settings">
+    <UiBlock layout="grid" class="cont-g">
+      <UiBlock layout="col" mode="sm">
+        <UiText :text="$i18n('generator.set.content')" />
         <div class="action-wp">
           <UiInput
             name="content"
@@ -12,7 +12,7 @@
             :length="brc.set.curStandart.max"
           />
           <div class="action">
-            <UiSelect
+            <CustomSelect
               :inWp="true"
               :options="getStandartArr"
               :modelValue="brc.set.curStandart.name"
@@ -20,47 +20,47 @@
             />
           </div>
         </div>
-      </div>
-      <div class="_col _s">
-        <UiText type="small" :text="$i18n('generator.set.quantity')" />
+      </UiBlock>
+      <UiBlock layout="col" mode="sm">
+        <UiText :text="$i18n('generator.set.quantity')" />
         <UiInput name="quantity" :length="3" v-model="brc.set.quantity" placeholder="1-999" />
-      </div>
-    </div>
-    <div class="_grid ex-g">
-      <div class="_col _s">
-        <UiText type="small" :text="$i18n('generator.set.example')" />
-        <div class="example _center _ui">
-          <UiText v-if="!brc.set.isCorrect" type="small" :text="$i18n('generator.set.invalid')" />
-          <div v-else class="_center">
+      </UiBlock>
+    </UiBlock>
+    <UiBlock layout="grid" mode="d2" class="ex-g">
+      <UiBlock layout="col" mode="sm">
+        <UiText :text="$i18n('generator.set.example')" />
+        <UiBlock :center="true" :wp="true" class="example">
+          <UiText v-if="!brc.set.isCorrect" :text="$i18n('generator.set.invalid')" />
+          <UiBlock v-else :center="true">
             <svg id="barcode-ex"></svg>
-          </div>
-        </div>
-      </div>
-      <div class="_grid">
-        <div class="_col _s">
-          <UiText type="small" :text="$i18n('generator.set.bg')" />
+          </UiBlock>
+        </UiBlock>
+      </UiBlock>
+      <UiBlock layout="grid">
+        <UiBlock layout="col" mode="sm">
+          <UiText :text="$i18n('generator.set.bg')" />
           <UiInput
             name="bgColor"
             v-model="brc.set.bgColor"
             :placeholder="$i18n('generator.set.bg_ph')"
           />
-        </div>
-        <UiCheckbox
+        </UiBlock>
+        <CustomCheckbox
           v-model="brc.set.showData"
           name="showData"
           :label="$i18n('generator.set.showTxt')"
         />
-        <div class="_col _s">
-          <UiText type="small" :text="$i18n('generator.set.color')" />
+        <UiBlock layout="col" mode="sm">
+          <UiText :text="$i18n('generator.set.color')" />
           <UiInput
             name="codeColor"
             v-model="brc.set.codeColor"
             :placeholder="$i18n('generator.set.color_ph')"
           />
-        </div>
-      </div>
-    </div>
-  </div>
+        </UiBlock>
+      </UiBlock>
+    </UiBlock>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">
@@ -99,11 +99,8 @@ onMounted(() => {
 }
 
 .ex-g {
-  grid-template-columns: 1fr 1fr;
-
   @media (max-width: $gen) {
     gap: calc(var(--space) * 2);
-    grid-template-columns: 1fr;
   }
 }
 

@@ -1,24 +1,21 @@
 <template>
-  <section class="home">
-    <div class="info _col _d">
+  <UiBlock type="section" :center="true" class="home">
+    <UiBlock layout="col" class="info">
       <UiText type="h1" text="QB Generator" />
-      <UiText mode="bg" :text="$i18n('home.desc')" />
-      <UiButton type="link" to="/generator" :title="$i18n('home.gtGen')">
+      <UiText type="p" mode="bg" :text="$i18n('home.desc')" />
+      <UiButton to="/generator" :title="$i18n('home.gtGen')">
         <UiIcon><BarcodeIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('home.gtGen')" />
       </UiButton>
-    </div>
+    </UiBlock>
     <div class="logo-wrapper"><LogoIcon /></div>
-  </section>
+  </UiBlock>
 </template>
 
 <style scoped lang="scss">
 .home {
-  display: flex;
   width: 100%;
   justify-content: space-between;
-  align-items: center;
-  gap: var(--space);
 
   @media (max-width: $lg) {
     flex-direction: column-reverse;

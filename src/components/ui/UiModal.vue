@@ -1,11 +1,11 @@
 <template>
   <Teleport to="body">
     <Transition name="main" mode="out-in">
-      <div v-if="modelValue" class="modal _center">
+      <UiBlock :center="true" v-if="modelValue" class="modal">
         <div ref="windowTarget" class="window">
           <slot />
         </div>
-      </div>
+      </UiBlock>
     </Transition>
   </Teleport>
 </template>
@@ -18,8 +18,8 @@ const windowTarget = ref<HTMLDivElement | null>(null)
 
 watch(
   () => props.modelValue,
-  (v) => {
-    if (v) {
+  (val) => {
+    if (val) {
       body!.style.height = '100%'
       body!.style.overflow = 'hidden'
       setTimeout(() => windowTarget.value!.classList.add('act'), 0)

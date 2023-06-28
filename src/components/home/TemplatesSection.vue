@@ -8,7 +8,7 @@
       'sc-r': arrivedState.right
     }"
   >
-    <div class="_row _d">
+    <UiBlock layout="row">
       <AppTemplate :title="$i18n('home.create')" :is-create="true" path="/generator" />
       <AppTemplate
         v-for="(template, idx) in cpb.templates"
@@ -22,12 +22,12 @@
         :date="template.date"
         :mode="template.mode"
       />
-      <div v-if="!cpb.templates.length" class="tip _col _d">
+      <UiBlock layout="col" v-if="!cpb.templates.length" class="tip">
         <UiIcon size="md"><InfoIcon /></UiIcon>
         <UiText type="h4" :text="$i18n('home.tipTitle')" />
-        <UiText :text="$i18n('home.tipDesc')" />
-      </div>
-    </div>
+        <UiText type="p" :text="$i18n('home.tipDesc')" />
+      </UiBlock>
+    </UiBlock>
   </section>
 </template>
 
@@ -48,6 +48,7 @@ watch(
     setTimeout(() => {
       maskHandler()
       x.value += 1
+      x.value -= 1
     }, 0)
   }
 )

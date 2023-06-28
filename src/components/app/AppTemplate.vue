@@ -1,30 +1,30 @@
 <template>
   <div class="template-wp">
     <RouterLink
-      :to="(path as string)"
+      :to="path"
       :title="title"
       :tabindex="isExample ? -1 : ''"
-      :class="['template', '_center', '_col _d', '_ui', isExample ? 'ex' : '']"
+      :class="['template', isExample ? 'ex' : '']"
     >
-      <div v-if="!isCreate" class="info _col _d _center">
+      <UiBlock v-if="!isCreate" layout="col" :center="true" class="info">
         <UiIcon size="md" v-if="mode === 'qr'"><QrIcon /></UiIcon>
         <UiIcon size="md" v-else><BarcodeIcon /></UiIcon>
-        <div class="_col _s">
-          <UiText type="small" :text="$i18n('template.name')" />
+        <UiBlock layout="col" mode="sm">
+          <UiText :text="$i18n('template.name')" />
           <UiText type="h3" :text="name || $i18n('template.exName')" />
-        </div>
-        <div class="_col _s">
-          <UiText type="small" :text="$i18n('template.desc')" />
-          <UiText :text="desc || $i18n('template.exDesc')" />
-        </div>
-        <UiText type="small" :text="(date as string)" />
-      </div>
-      <div v-else class="create _center _col _d">
+        </UiBlock>
+        <UiBlock layout="col" mode="sm">
+          <UiText :text="$i18n('template.desc')" />
+          <UiText type="p" :text="desc || $i18n('template.exDesc')" />
+        </UiBlock>
+        <UiText :text="(date as string)" />
+      </UiBlock>
+      <UiBlock v-else layout="col" :center="true" class="create">
         <UiIcon size="lg"><CreateIcon /></UiIcon>
         <UiText type="h3" :text="$i18n('template.create')" />
-      </div>
+      </UiBlock>
     </RouterLink>
-    <div v-if="!isExample && !isCreate" class="actions _row _d">
+    <UiBlock layout="row" v-if="!isExample && !isCreate" class="actions">
       <UiButton @trigger="shareLink" mode="icon" :title="$i18n('template.share')" class="share">
         <ShareIcon />
       </UiButton>
@@ -36,7 +36,7 @@
       >
         <TrashIcon />
       </UiButton>
-    </div>
+    </UiBlock>
   </div>
 </template>
 
@@ -97,6 +97,18 @@ const deleteTemplate = () => {
   width: toRem(250);
   min-width: toRem(250);
   color: var(--txt);
+  transition: var(--tr-fg);
+  padding: var(--space);
+  border-radius: var(--br-rad);
+  background-color: var(--fg-m);
+  border: toRem(1) solid var(--br);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: var(--fg-s);
+  }
 
   &:visited {
     color: var(--txt-m);

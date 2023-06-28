@@ -1,32 +1,29 @@
 <template>
   <button
-    v-if="type === 'button'"
     :disabled="disabled"
-    :class="{ btn: mode === 'btn', icon: mode === 'icon', disabled: disabled, active: active }"
+    :class="[mode, disabled ? 'disabled' : '', active ? 'active' : '']"
     :title="title"
-    @click="$emit('trigger')"
+    @click="to ? $router.push(to) : $emit('trigger')"
   >
     <slot />
   </button>
-  <RouterLink v-else :class="mode" :to="(to as string)" :title="title">
-    <slot />
-  </RouterLink>
 </template>
 
 <script setup lang="ts">
 withDefaults(
   defineProps<{
-    type?: 'button' | 'link'
     to?: string
     title: string
     mode?: 'btn' | 'icon'
     disabled?: boolean
     active?: boolean
   }>(),
-  { mode: 'btn', type: 'button', disabled: false }
+  { mode: 'btn' }
 )
 
-defineEmits<{ (e: 'trigger'): void }>()
+defineEmits<{
+  (e: 'trigger'): void
+}>()
 </script>
 
 <style lang="scss">
@@ -59,7 +56,7 @@ defineEmits<{ (e: 'trigger'): void }>()
   }
 }
 
-button.icon {
+.icon {
   width: toRem(25);
   height: toRem(25);
   background: none;

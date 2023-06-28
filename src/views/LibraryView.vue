@@ -1,37 +1,37 @@
 <template>
-  <div class="_wrapper">
-    <div class="_col _l">
-      <div class="mw _col _d">
+  <UiBlock layout="wrapper">
+    <UiBlock layout="col" mode="lg">
+      <UiBlock layout="col" class="mw">
         <UiText type="h2" mode="lg" :text="$i18n('library.title')" />
-        <UiText :text="$i18n('library.info')" />
-      </div>
-      <section class="examples">
-        <div class="example _ui _col _d" v-for="(standart, idx) in curLangStandarts" :key="idx">
-          <img :src="getImageUrl(standart.import)" alt="Barcode example" />
-          <UiText type="header" mode="md" :text="standart.name" />
+        <UiText type="p" :text="$i18n('library.info')" />
+      </UiBlock>
+      <UiBlock type="section" layout="grid" mode="d3" class="examples">
+        <UiBlock layout="col" :wp="true" class="example" v-for="(st, idx) in curLangSt" :key="idx">
+          <img :src="getImageUrl(st.import)" alt="Barcode example" />
+          <UiText type="header" mode="md" :text="st.name" />
           <div class="info">
-            <UiText type="small" :text="$i18n('library.desc')" />
-            <UiText :text="standart.desc" />
+            <UiText :text="$i18n('library.desc')" />
+            <UiText type="p" :text="st.desc" />
           </div>
           <div class="info">
-            <UiText type="small" :text="$i18n('library.structure')" />
+            <UiText :text="$i18n('library.structure')" />
             <ol>
-              <li v-for="(item, id) in standart.info" :key="id">
-                <UiText :text="item" />
+              <li v-for="(item, idx) in st.info" :key="idx">
+                <UiText type="p" :text="item" />
               </li>
             </ol>
           </div>
-        </div>
-      </section>
-    </div>
-  </div>
+        </UiBlock>
+      </UiBlock>
+    </UiBlock>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">
 import langs from '@/languages/langData'
 
 const cpb = useComposableStore()
-const curLangStandarts = computed(() =>
+const curLangSt = computed(() =>
   cpb.curLang === 'ru' ? langs.ru.library.standarts : langs.en.library.standarts
 )
 
@@ -42,11 +42,13 @@ const getImageUrl = (name: string) => {
 </script>
 
 <style scoped lang="scss">
-.examples {
-  display: grid;
-  gap: var(--space);
-  grid-template-columns: 1fr 1fr 1fr;
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space) / 2);
+}
 
+.examples {
   ol {
     padding-left: toRem(19);
   }
@@ -54,20 +56,6 @@ const getImageUrl = (name: string) => {
   li::marker {
     transition: color 0.5s ease;
   }
-
-  @media (max-width: $mx) {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @media (max-width: $sm) {
-    grid-template-columns: 1fr;
-  }
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--space) / 2);
 }
 
 .example {

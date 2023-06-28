@@ -1,13 +1,12 @@
 <template>
-  <AppHotkeys v-model="hotkeyModal" />
   <div class="header-wrapper bg-lg">
-    <div class="_container">
-      <nav class="header _row _d">
+    <UiBlock layout="container">
+      <UiBlock type="nav" layout="row" class="header">
         <UiLink to="/" :title="$i18n('header.gtHome')" :local="true">
           <UiIcon><QrIcon /></UiIcon>
           <UiText type="header" text="QBG" />
         </UiLink>
-        <div class="options _row _d">
+        <UiBlock layout="row" class="options">
           <ThemeToggler />
           <UiButton
             @trigger="cpb.changeLang(), titleLangHandler()"
@@ -17,12 +16,13 @@
             <TranslateIcon />
           </UiButton>
           <div class="br hide"></div>
-          <div class="desc-links _row _d"><TheLinks /></div>
+          <UiBlock layout="row" class="desc-links"><TheLinks /></UiBlock>
           <MobLinks />
-        </div>
-      </nav>
-    </div>
+        </UiBlock>
+      </UiBlock>
+    </UiBlock>
   </div>
+  <AppHotkeys v-model="hotkeyModal" />
 </template>
 
 <script setup lang="ts">

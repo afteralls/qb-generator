@@ -1,13 +1,13 @@
 <template>
   <TheHeader />
   <AppNotifications />
-  <div class="_container">
+  <UiBlock layout="container">
     <RouterView v-slot="{ Component }">
       <Transition name="main" mode="out-in">
         <component :is="Component" />
       </Transition>
     </RouterView>
-  </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">

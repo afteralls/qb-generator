@@ -1,32 +1,28 @@
 <template>
-  <div class="_grid qr-wrapper">
-    <div class="ex _col _s">
-      <UiText type="small" :text="$i18n('generator.preview')" />
-      <div class="qr _center _ui">
-        <UiText
-          v-if="inputHandler(cpb.qrContent)"
-          type="small"
-          :text="$i18n('generator.set.invalid')"
-        />
-        <div v-else class="qr-wp _center">
+  <UiBlock type="section" layout="grid" class="qr-wrapper">
+    <UiBlock layout="col" mode="sm" class="ex">
+      <UiText :text="$i18n('generator.preview')" />
+      <UiBlock :center="true" :wp="true" class="qr">
+        <UiText v-if="inputHandler(cpb.qrContent)" :text="$i18n('generator.set.invalid')" />
+        <UiBlock :center="true" v-else class="qr-wp">
           <img id="qr-ex" :src="cpb.qrcode" alt="QR Code" />
-        </div>
-      </div>
-    </div>
-    <div class="set _col _d">
-      <div class="_col _s">
-        <UiText type="small" :text="$i18n('generator.set.content')" />
+        </UiBlock>
+      </UiBlock>
+    </UiBlock>
+    <UiBlock layout="col" class="set">
+      <UiBlock layout="col" mode="sm">
+        <UiText :text="$i18n('generator.set.content')" />
         <UiInput
           name="qr-content"
           v-model="cpb.qrContent"
           :placeholder="$i18n('generator.qr.content')"
         />
-      </div>
-      <div class="_col _s">
-        <UiText type="small" :text="$i18n('generator.export.fileName')" />
+      </UiBlock>
+      <UiBlock layout="col" mode="sm">
+        <UiText :text="$i18n('generator.export.fileName')" />
         <UiInput name="exportName" v-model="exportName" placeholder="my-qr" />
-      </div>
-      <div class="_grid act-g">
+      </UiBlock>
+      <UiBlock layout="grid" class="act-g">
         <UiButton
           :title="$i18n('generator.export.downloadBtn')"
           :disabled="inputHandler(cpb.qrContent)"
@@ -43,17 +39,17 @@
           <UiIcon><CreateIcon /></UiIcon>
           <UiText type="h4" :text="$i18n('generator.export.saveTempBtn')" />
         </UiButton>
-      </div>
+      </UiBlock>
       <TemplateModal v-model="showTemplateModal" />
-    </div>
-    <div class="tip _col _d">
+    </UiBlock>
+    <UiBlock layout="col" class="tip">
       <UiIcon size="md"><InfoIcon /></UiIcon>
-      <div class="info _col _d">
+      <UiBlock layout="col" class="info">
         <UiText type="h4" :text="$i18n('generator.qr.tipTitle')" />
-        <UiText :text="$i18n('generator.qr.tipDesc')" />
-      </div>
-    </div>
-  </div>
+        <UiText type="p" :text="$i18n('generator.qr.tipDesc')" />
+      </UiBlock>
+    </UiBlock>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">

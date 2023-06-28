@@ -1,25 +1,5 @@
-<script setup lang="ts">
-export interface Input {
-  name: string
-  modelValue: string | number
-  placeholder?: string
-  type?: string
-  length?: number
-}
-
-withDefaults(defineProps<Input>(), {
-  placeholder: 'Some text...',
-  type: 'text'
-})
-
-defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
-</script>
-
 <template>
   <input
-    :type="type"
     :name="name"
     :value="modelValue"
     :maxlength="length"
@@ -27,6 +7,19 @@ defineEmits<{
     @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
   />
 </template>
+
+<script setup lang="ts">
+defineProps<{
+  name: string
+  modelValue: string
+  placeholder?: string
+  length?: number
+}>()
+
+defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+</script>
 
 <style scoped lang="scss">
 input {

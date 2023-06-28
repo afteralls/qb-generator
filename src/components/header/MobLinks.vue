@@ -7,9 +7,9 @@
       </div>
     </UiButton>
     <Transition name="main" mode="out-in">
-      <div v-if="showLinks" ref="linkTarget" class="hidden-links _ui _row _d">
+      <UiBlock layout="row" :wp="true" v-if="showLinks" ref="linkTarget" class="hidden-links">
         <TheLinks />
-      </div>
+      </UiBlock>
     </Transition>
   </div>
 </template>

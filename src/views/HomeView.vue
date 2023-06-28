@@ -1,8 +1,8 @@
 <template>
-  <div class="_wrapper">
+  <UiBlock layout="wrapper">
     <MainSection />
     <TemplatesSection />
     <LibrarySection />
     <TheCopyright />
-  </div>
+  </UiBlock>
 </template>
