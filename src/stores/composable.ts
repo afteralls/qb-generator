@@ -1,4 +1,5 @@
 import { useQRCode } from '@vueuse/integrations/useQRCode'
+import'@vueuse/shared'
 
 export const useComposableStore = defineStore('composable', () => {
   const isDark = ref<boolean | null>()

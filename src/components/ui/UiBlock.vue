@@ -100,6 +100,7 @@ const Block = () =>
   max-width: 80rem;
   margin: auto;
   padding: 0 2rem;
+  position: relative;
 
   @media (max-width: $lg) {
     padding: 0 1.5rem;

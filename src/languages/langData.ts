@@ -31,6 +31,7 @@ export default {
     home: {
       desc: 'Create QR and Barcodes in a couple of clicks in your own design, use the desired standard and export in the desired format. Save templates, share and use them at any time.',
       gtGen: 'Go to Generator',
+      tempTip: 'Hold Shift to scroll horizontally',
       tipTitle: 'The templates you create will appear in this section, try creating the first one!',
       tipDesc: 'Just generate several types of barcodes and the system will prompt you to save the settings.',
       libTitle: 'Not sure which barcode format you need?',
@@ -197,6 +198,7 @@ export default {
     home: {
       desc: 'Создавайте QR и штрихкоды за пару кликов в своём собственном дизайне. Сохраняйте шаблоны, делитесь ими и используйте в любое время.',
       gtGen: 'Перейти к Генератору',
+      tempTip: 'Удерживайте Shift для горизонтального скролла',
       tipTitle: 'Шаблоны, которые вы создадите, будут попадать в эту секцию. Попробуйте разработать первый!',
       tipDesc: 'Просто сгенерируйте необходимый стандарт, добавьте нужные настройки и система позволит вам сохранить результат.',
       libTitle: 'Не уверены какой стандарт вам нужен?',

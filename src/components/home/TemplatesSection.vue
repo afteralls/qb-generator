@@ -1,34 +1,40 @@
 <template>
-  <section
-    ref="target"
-    :class="{
-      templates: true,
-      'sc-l': arrivedState.left,
-      'sc-m': !arrivedState.left && !arrivedState.right,
-      'sc-r': arrivedState.right
-    }"
-  >
-    <UiBlock layout="row">
-      <AppTemplate :title="$i18n('home.create')" :is-create="true" path="/generator" />
-      <AppTemplate
-        v-for="(template, idx) in cpb.templates"
-        :key="idx"
-        :idx="idx"
-        :title="''"
-        :path="template.path"
-        :href="template.href"
-        :name="template.name"
-        :desc="template.desc"
-        :date="template.date"
-        :mode="template.mode"
-      />
-      <UiBlock layout="col" v-if="!cpb.templates.length" class="tip">
-        <UiIcon size="md"><InfoIcon /></UiIcon>
-        <UiText type="h4" :text="$i18n('home.tipTitle')" />
-        <UiText type="p" :text="$i18n('home.tipDesc')" />
-      </UiBlock>
+  <UiBlock type="section" layout="col" class="template-wrapper">
+    <UiBlock v-if="cpb.templates.length > 3" layout="row" mode="sm" class="lg-tip">
+      <UiIcon size="min"><InfoIcon /></UiIcon>
+      <UiText :text="$i18n('home.tempTip')" />
     </UiBlock>
-  </section>
+    <div
+      ref="target"
+      :class="{
+        templates: true,
+        'sc-l': arrivedState.left,
+        'sc-m': !arrivedState.left && !arrivedState.right,
+        'sc-r': arrivedState.right
+      }"
+    >
+      <UiBlock layout="row">
+        <AppTemplate :title="$i18n('home.create')" :is-create="true" path="/generator" />
+        <AppTemplate
+          v-for="(template, idx) in cpb.templates"
+          :key="idx"
+          :idx="idx"
+          :title="''"
+          :path="template.path"
+          :href="template.href"
+          :name="template.name"
+          :desc="template.desc"
+          :date="template.date"
+          :mode="template.mode"
+        />
+        <UiBlock layout="col" v-if="!cpb.templates.length" class="tip">
+          <UiIcon size="md"><InfoIcon /></UiIcon>
+          <UiText type="h4" :text="$i18n('home.tipTitle')" />
+          <UiText type="p" :text="$i18n('home.tipDesc')" />
+        </UiBlock>
+      </UiBlock>
+    </div>
+  </UiBlock>
 </template>
 
 <script setup lang="ts">
@@ -58,6 +64,9 @@ onMounted(() => maskHandler())
 </script>
 
 <style scoped lang="scss">
+.template-wrapper {
+  width: 100%;
+}
 .templates {
   overflow-x: scroll;
   position: relative;
@@ -68,6 +77,12 @@ onMounted(() => maskHandler())
   justify-content: center;
   max-width: toRem(350);
   min-width: toRem(350);
+}
+
+.lg-tip {
+  @media (max-width: $md) {
+    display: none;
+  }
 }
 
 .sc-l {

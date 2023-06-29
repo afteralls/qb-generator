@@ -3,6 +3,6 @@
     <MainSection />
     <TemplatesSection />
     <LibrarySection />
-    <TheCopyright />
+    <TheEnd />
   </UiBlock>
 </template>

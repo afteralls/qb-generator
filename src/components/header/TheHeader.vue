@@ -15,6 +15,13 @@
           >
             <TranslateIcon />
           </UiButton>
+          <UiButton
+            @trigger="hotkeyModal = !hotkeyModal"
+            :title="cpb.curLang === 'ru' ? $i18n('header.lang') : $i18n('header.lang')"
+            mode="icon"
+          >
+            <HotkeyIcon />
+          </UiButton>
           <div class="br hide"></div>
           <UiBlock layout="row" class="desc-links"><TheLinks /></UiBlock>
           <MobLinks />
