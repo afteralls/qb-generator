@@ -1,0 +1,57 @@
+.checkbox {
+  position: relative;
+}
+
+.box {
+  @include action-styles;
+  transition: var(--tr);
+  width: toRem(45);
+  position: relative;
+  padding: 0;
+
+  svg {
+    width: toRem(60);
+    height: auto;
+    position: absolute;
+    left: toRem(-1);
+    bottom: toRem(-2);
+    opacity: 0;
+    transform: translateY(toRem(30));
+  }
+}
+
+input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1;
+  cursor: pointer;
+
+  &:checked + .box {
+    svg {
+      animation: bounce 0.5s ease;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &:hover + .box,
+  &:focus + .box {
+    border-color: var(--m-h);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(toRem(30));
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(toRem(-5));
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

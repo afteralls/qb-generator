@@ -1,6 +1,9 @@
 {
   "hosting": {
+<<<<<<< HEAD
     "site": "generator-space",
+=======
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
     "public": "dist",
     "headers": [
       {

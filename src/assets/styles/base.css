@@ -1,0 +1,58 @@
+:root {
+  /* Colors */
+  --m: rgb(48, 213, 200);
+  --m-h: rgba(48, 213, 200, 0.7);
+  --m-tp: rgba(48, 213, 200, 0.5);
+
+  --dark-bg: rgb(12, 12, 13);
+  --dark-tp: rgba(12, 12, 13, 0.7);
+  --dark-fg-m: rgb(24, 24, 27);
+  --dark-fg-s: rgb(39, 39, 42);
+  --dark-br: rgb(39, 39, 42);
+  --dark-txt-m: rgb(250, 250, 250);
+  --dark-txt-s: rgb(161, 161, 170);
+  --dark-txt-fg: rgb(151, 151, 160);
+
+  --light-bg: rgb(255, 255, 255);
+  --light-tp: rgba(255, 255, 255, 0.7);
+  --light-fg-m: rgb(244, 244, 245);
+  --light-fg-s: rgb(227, 227, 240);
+  --light-br: rgb(228, 228, 231);
+  --light-txt-m: rgb(24, 24, 27);
+  --light-txt-s: rgb(113, 113, 122);
+  --light-txt-fg: rgb(120, 120, 129);
+
+  /* Styles */
+  --space: 1rem;
+  --space-m: 0.5rem;
+  --tr: all 0.5s ease;
+  --tr-fg: background-color 0.5s ease, border 0.5s ease;
+  --br-rad: 0.75rem;
+
+  /* Header */
+  --header-height: 4.375rem;
+}
+
+body.dark {
+  --bg: var(--dark-bg);
+  --tp: var(--dark-tp);
+  --fg-m: var(--dark-fg-m);
+  --fg-s: var(--dark-fg-s);
+  --btn-bg-m: var(--light-fg-m);
+  --btn-bg-s: var(--light-fg-s);
+  --br: var(--dark-br);
+  --txt-m: var(--dark-txt-m);
+  --txt-s: var(--dark-txt-s);
+}
+
+body.light {
+  --bg: var(--light-bg);
+  --tp: var(--light-tp);
+  --fg-m: var(--light-fg-m);
+  --fg-s: var(--light-fg-s);
+  --btn-bg-m: var(--dark-fg-m);
+  --btn-bg-s: var(--dark-fg-s);
+  --br: var(--light-br);
+  --txt-m: var(--light-txt-m);
+  --txt-s: var(--light-txt-s);
+}

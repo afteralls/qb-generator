@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 .DS_Store
 node_modules
 /.firebase
@@ -17,16 +18,24 @@ firebase-debug.log
 logs
 *.log
 >>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
+=======
+# Logs
+logs
+*.log
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 # Editor directories and files
 .idea
 .vscode
 =======
+=======
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 lerna-debug.log*
 
 node_modules
@@ -35,7 +44,10 @@ dist
 dist-ssr
 coverage
 *.local
+<<<<<<< HEAD
 .firebase
+=======
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 
 /cypress/videos/
 /cypress/screenshots/
@@ -44,7 +56,10 @@ coverage
 .vscode/*
 !.vscode/extensions.json
 .idea
+<<<<<<< HEAD
 >>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
+=======
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 *.suo
 *.ntvs*
 *.njsproj

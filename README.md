@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Barcode Generator
 > Аpplication for generating barcodes in various formats with the possibility of customization and export system
 <<<<<<< HEAD
@@ -50,3 +51,8 @@ This app made with [Vue](https://github.com/vuejs) together with [Pinia](https:/
 ___
 ### Have a question? Text me: [Telegram](https://t.me/afterallspace)
 >>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
+=======
+# QB-Generator
+
+### Under Development
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2

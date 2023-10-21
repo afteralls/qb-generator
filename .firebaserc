@@ -1,5 +1,9 @@
 {
   "projects": {
+<<<<<<< HEAD
     "default": "generator-space"
+=======
+    "default": "qb-generator"
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
   }
 }

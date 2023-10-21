@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <template>
   <div class="main-page">
     <img src="../assets/img/barcode.webp" alt="Штрих-код">
@@ -75,3 +76,13 @@ import TheCopyright from '../components/HomeView/TheCopyright.vue';
 </div>
 </template>
 >>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
+=======
+<template>
+  <UiBlock layout="wrapper">
+    <MainSection />
+    <TemplatesSection />
+    <LibrarySection />
+    <TheEnd />
+  </UiBlock>
+</template>
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2

@@ -1,12 +1,18 @@
+<<<<<<< HEAD
 @import './base.module.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 
 /* Global Styles */
+=======
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import 'base.css';
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+<<<<<<< HEAD
   outline: none;
   text-decoration: none;
   border: none;
@@ -78,6 +84,28 @@ label {
 
 /* Global Classes */
 
+=======
+  text-decoration: none;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Montserrat';
+  color: var(--txt-m);
+}
+
+::selection {
+  background-color: rgba(48, 213, 200, 0.7);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 .main {
   &-enter-from {
     opacity: 0;
@@ -92,6 +120,7 @@ label {
     transition: all 0.2s ease-in;
   }
 }
+<<<<<<< HEAD
 
 ._container {
   box-sizing: border-box;
@@ -182,3 +211,5 @@ label {
   width: 1px;
   height: 100%;
 }
+=======
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2

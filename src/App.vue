@@ -1,5 +1,6 @@
 <template>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div class="bg"></div>
   <router-view v-slot="{ Component }">
     <Transition name="route" mode="out-in">
@@ -64,11 +65,23 @@
       </Transition>
     </RouterView>
   </div>
+=======
+  <TheHeader />
+  <AppNotifications />
+  <UiBlock layout="container">
+    <RouterView v-slot="{ Component }">
+      <Transition name="main" mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </RouterView>
+  </UiBlock>
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
 </template>
 
 <script setup lang="ts">
 const router = useRouter()
 const i18n = inject('func') as LangFunc
+<<<<<<< HEAD
 router.beforeEach((to, _, next) => { document.title = i18n(to.name as string); next() })
 </script>
 
@@ -82,3 +95,11 @@ router.beforeEach((to, _, next) => { document.title = i18n(to.name as string); n
 .app-background { z-index: -2; }
 >>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
 </style>
+=======
+
+router.beforeEach((to, _, next) => {
+  document.title = i18n(to.name as string)
+  next()
+})
+</script>
+>>>>>>> f45ee6fb03fd50201fb8cb44fd165afbfd5dd1f2
