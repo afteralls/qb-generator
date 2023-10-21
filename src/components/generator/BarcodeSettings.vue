@@ -76,6 +76,12 @@ const formatHandler = (idx: number) => {
   contentTarget.value!.focus()
 }
 
+const { shift, ctrl } = useMagicKeys()
+
+watchEffect(() => {
+  if (shift.value && ctrl.value) contentTarget.value!.focus()
+})
+
 onMounted(() => {
   contentTarget.value = document.querySelector('[data-content]')
 })

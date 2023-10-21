@@ -43,6 +43,12 @@ onBeforeMount(() => {
   const params = useUrlSearchParams('history')
   if (params.mode) cpb.mode = params.mode as Mode
 })
+
+const { shift, m } = useMagicKeys()
+
+watchEffect(() => {
+  if (shift.value && m.value) cpb.mode === 'qr' ? (cpb.mode = 'barcode') : (cpb.mode = 'qr')
+})
 </script>
 
 <style scoped lang="scss">
