@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .DS_Store
 node_modules
 /.firebase
@@ -11,14 +12,39 @@ firebase-debug.log
 .env.*.local
 
 # Log files
+=======
+# Logs
+logs
+*.log
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+<<<<<<< HEAD
 
 # Editor directories and files
 .idea
 .vscode
+=======
+lerna-debug.log*
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
+.firebase
+
+/cypress/videos/
+/cypress/screenshots/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
 *.suo
 *.ntvs*
 *.njsproj

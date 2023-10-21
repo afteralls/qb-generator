@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="bg"></div>
   <router-view v-slot="{ Component }">
     <Transition name="route" mode="out-in">
@@ -49,4 +50,35 @@
     background-size: cover;
   }
 }
+=======
+  <TheNavbar />
+  <AppHotifications />
+  <AppBackground class="app-background _full-fixed" />
+  <div class="app-wrapper _full-fixed"></div>
+  <div class="_container">
+    <RouterView v-slot="{ Component }">
+      <Transition name="main" mode="out-in">
+        <div class="_wrapper">
+          <component :is="Component" />
+        </div>
+      </Transition>
+    </RouterView>
+  </div>
+</template>
+
+<script setup lang="ts">
+const router = useRouter()
+const i18n = inject('func') as LangFunc
+router.beforeEach((to, _, next) => { document.title = i18n(to.name as string); next() })
+</script>
+
+<style scoped lang="scss">
+.app-wrapper {
+  backdrop-filter: blur(40px);
+  background-color: var(--tp-c);
+  z-index: -1;
+}
+
+.app-background { z-index: -2; }
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
 </style>

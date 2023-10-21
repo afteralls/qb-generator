@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <div class="main-page">
     <img src="../assets/img/barcode.webp" alt="Штрих-код">
@@ -61,3 +62,16 @@
   button { padding: 0 15px; }
 }
 </style>
+=======
+
+import TheCopyright from '../components/HomeView/TheCopyright.vue';
+
+<template>
+<div class="_wrapper">
+  <TheHomeSection />
+  <TheTemplatesSection />
+  <TheLibrarySection />
+  <TheCopyright />
+</div>
+</template>
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6

@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "barcode-gen-app",
   "version": "0.1.0",
   "private": true,
@@ -33,5 +34,33 @@
     "eslint-plugin-vue": "^8.0.3",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0"
+=======
+  "name": "barcode-generator",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "dev-h": "vite --host",
+    "deploy": "firebase deploy --only hosting:generator-space",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev-p": "vite --port 3030 --host"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.6.0",
+    "file-saver": "^2.0.5",
+    "jsbarcode": "^3.11.5",
+    "jszip": "^3.10.1",
+    "pinia": "^2.0.23",
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.1.2",
+    "sass": "^1.56.1",
+    "unplugin-auto-import": "^0.12.1",
+    "unplugin-vue-components": "^0.22.12",
+    "vite": "^3.1.8",
+    "vite-plugin-pwa": "^0.13.3"
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
   }
 }

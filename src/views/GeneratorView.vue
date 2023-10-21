@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
 <div class="container">
   <router-link class="_link" style="max-width: 250px;" to="/">
     <div class="_img-wrapper"><img src="../assets/img/arrow-left.webp" alt="To Home"></div>
@@ -226,10 +227,17 @@
       :generated="flags.generated"
       :beforeGenerate="beforeGenerate"
     ></app-barcode-demo>
+=======
+<div class="_wrapper">
+  <div class="generator-wrapper">
+    <TheSettingSection />
+    <ThePreviewSection />
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
   </div>
 </div>
 </template>
 
+<<<<<<< HEAD
 <script>
 import AppNotification from '../components/AppNotification'
 import AppFormatSectionInfo from '../components/AppFormatSectionInfo'
@@ -555,6 +563,19 @@ export default {
   }
   &-leave-active {
     transition: all 0.2s ease-in;
+=======
+<style scoped lang="scss">
+.generator-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  gap: calc(var(--space) * 2);
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+>>>>>>> 5baed4873112c0132bf6864ad9d3b64d222d22b6
   }
 }
 </style>
