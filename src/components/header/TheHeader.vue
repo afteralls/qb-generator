@@ -38,11 +38,10 @@ const router = useRouter()
 const hotkeyModal = ref<boolean>(false)
 const i18n = inject('func') as LangFunc
 
-const { shift, h, g, l, k } = useMagicKeys()
+const { shift, h, g, l } = useMagicKeys()
 
 watchEffect(() => {
-  if (shift.value && k.value) hotkeyModal.value = !hotkeyModal.value
-  else if (shift.value && h.value) router.push('/')
+  if (shift.value && h.value) hotkeyModal.value = !hotkeyModal.value
   else if (shift.value && g.value) router.push('/generator')
   else if (shift.value && l.value) router.push('/library')
 })

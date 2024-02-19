@@ -14,7 +14,7 @@
         <UiText type="h4" text="Зажмите" />
         <UiBlock :center="true" class="key"><UiText text="Shift" /></UiBlock>
         <UiText type="h4" text="+" />
-        <UiBlock :center="true" class="key"><UiText text="K" /></UiBlock>
+        <UiBlock :center="true" class="key"><UiText text="H" /></UiBlock>
         <UiText type="h4" text=", чтобы увидеть список горячих клавиш" />
       </UiBlock>
     </UiBlock>
