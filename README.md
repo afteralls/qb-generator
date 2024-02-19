@@ -1,7 +1,7 @@
 # QB Generator
 
 > Аpplication for generating barcodes in various formats with the possibility of customization and export system
-### 👉 [Go to App](https://generator-space.web.app) ###
+### 👉 [Go to App](https://qb-generator.web.app/) ###
 
 ## Available formats
 - EAN 13: The European Article Number is a standard to encode product numbers. The EAN is a special case of a Global Trade Item Number.
