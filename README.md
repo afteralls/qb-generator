@@ -11,9 +11,6 @@
 - MSI — The code can display only the number 0-9 and has no fixed length. Today this type of code is outdated and is no longer used. Because of this most barcode scanners can not recognize this type of code.
 - Pharmacode: Pharmaceutical Binary Code is a barcode standard, used in the pharmaceutical industry as a packing control system. It is designed to be readable despite printing errors.
 
-## Demo
-https://user-images.githubusercontent.com/106645309/212559292-3db2c029-1b8e-44bd-9fe4-3c3731f889f3.mp4
-
 ## Examples of barcodes
 ![Examples](https://user-images.githubusercontent.com/106645309/185174398-6ed9b96f-746d-4ac9-97db-e88234663c33.png)
 
